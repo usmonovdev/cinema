@@ -1,6 +1,6 @@
 function App() {
   return (
-    <>App js</>
+    <div>App js</div>
   );
 }
 
