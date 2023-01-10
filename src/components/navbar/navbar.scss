@@ -1,6 +1,7 @@
 $white: #fff;
 $black: #343434;
 $yellow: #e6b31e;
+$yellow-opacity: #e6b41e33;
 $mobile: 480px;
 $tablet: 768px;
 $small-screens: 992px;
@@ -36,6 +37,10 @@ body {
             width: 100%;
             display: flex;
             justify-content: space-between;
+        }
+        @media screen and (max-width: $mobile) {
+            width: 80%;
+            margin: 0 auto;
         }
         height: 80px;
         display: flex;
@@ -75,7 +80,7 @@ body {
                 flex-direction: row;
                 list-style: none;
                 gap: 20px;
-                padding: 20px;
+                padding: 40px;
                 color: $white;
                 li {
                     cursor: pointer;
@@ -95,13 +100,14 @@ body {
                 .inp-and-sign {
                     display: flex;
                     align-items: center;
+                    border: 1px solid grey;
+                    border-radius: 30px;
                     .search-input {
                         width: 180px;
                         height: 40px;
                         padding: 0 45px 0 15px;
                         background-color: transparent;
-                        border: 1px solid grey;
-                        border-radius: 30px;
+                        border: none;
                         outline: none;
                         color: $white;
                     }
@@ -109,11 +115,14 @@ body {
                         font-size: 1.5rem;
                         color: $white;
                         position: relative;
-                        right: 40px;
+                        right: 10px;
                         cursor: pointer;
                     }
                 }
                 .sign-in {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     height: 40px;
                     padding: 0 15px;
                     background-color: $yellow;
@@ -131,6 +140,7 @@ body {
             .links {
                 width: 80%;
                 margin: 0 auto;
+                padding: 10px 0 30px 0;
                 display: flex;
                 flex-direction: column;
                 position: relative;
@@ -140,6 +150,11 @@ body {
                 }
                 li {
                     padding: 5px 0;
+                    display: flex;
+                    align-items: center;
+                    &:hover {
+                        background: $yellow-opacity;
+                    }
                 }
             }
             .user {
@@ -150,18 +165,24 @@ body {
                 display: flex;
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 15px;
+                gap: 20px;
                 .inp-and-sign {
                     width: 100%;
+                    border-radius: 0;
                     .search-input {
                         width: 100%;
-                        border-radius: 0;
+                    }
+                    .search-voice {
+                        position: relative;
+                        right: 20px;
                     }
                 }
                 .sign-in {
+                    width: 100%;
                     height: 40px;
-                    padding: 0 15px;
+                    padding: 0;
                     background-color: $yellow;
+                    cursor: pointer;
                 }
             }
         }

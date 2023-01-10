@@ -33,8 +33,8 @@ function Navbar() {
               <input className='search-input' type="text" placeholder='Search for Movies...' />
               <BiMicrophone className='search-voice' />
             </li>
-            <li>
-              <Link to="/register" className='sign-in'>Sign In</Link>
+            <li className='sign-in'>
+              <Link to="/register">Sign In</Link>
             </li>
           </ul>
         </div>
