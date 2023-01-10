@@ -11,7 +11,6 @@ function App() {
         <Route path="/register" element={<Registration />}/>
         <Route path="/" element={<Navbar />}/>
       </Routes>
-    <Footer />
     </>
   );
 }

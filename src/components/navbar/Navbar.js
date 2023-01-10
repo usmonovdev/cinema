@@ -15,7 +15,7 @@ function Navbar() {
       <header>
         <Link to="/"><img src={logo} alt="Logo" /> Media</Link>
         <Hamburger toggled={isOpen} toggle={setOpen} onToggle={toggled => {
-          if(toggled) {
+          if (toggled) {
             setClassAdd(false)
           } else {
             setClassAdd(true)
@@ -23,17 +23,19 @@ function Navbar() {
         }} />
         <div className={`links-box ${classAdd === false && "active"}`}>
           <ul className='links'>
-            <li><RiHome2Line className='link-icon'/>Home</li>
-            <li><RiMovie2Line className='link-icon'/>Movies</li>
-            <li><MdSlideshow className='link-icon'/>TV Shows</li>
-            <li><RiBearSmileLine className='link-icon'/>Cartoons</li>
+            <li><RiHome2Line className='link-icon' />Home</li>
+            <li><RiMovie2Line className='link-icon' />Movies</li>
+            <li><MdSlideshow className='link-icon' />TV Shows</li>
+            <li><RiBearSmileLine className='link-icon' />Cartoons</li>
           </ul>
           <ul className='user'>
             <li className='inp-and-sign'>
               <input className='search-input' type="text" placeholder='Search for Movies...' />
               <BiMicrophone className='search-voice' />
             </li>
-            <li><Link to="/register" className='sign-in'>Sign In</Link></li>
+            <li>
+              <Link to="/register" className='sign-in'>Sign In</Link>
+            </li>
           </ul>
         </div>
       </header>
