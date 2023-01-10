@@ -34,6 +34,8 @@ body {
         }
         @media screen and (max-width: $small-screens) {
             width: 100%;
+            display: flex;
+            justify-content: space-between;
         }
         height: 80px;
         display: flex;
@@ -46,8 +48,17 @@ body {
             text-decoration: none;
             font-size: 20px;
             font-weight: 600;
+            z-index: 1000;
             img {
                 width: 20px;
+            }
+        }
+        .hamburger-react {
+            color: $yellow;
+            display: none;
+            z-index: 1000;
+            @media screen and (max-width: $small-screens) {
+                display: block;
             }
         }
         .links-box {
@@ -68,6 +79,10 @@ body {
                 color: $white;
                 li {
                     cursor: pointer;
+                }
+                .link-icon {
+                    color: $yellow;
+                    margin-right: 10px;
                 }
             }
             .user {
@@ -104,11 +119,19 @@ body {
                 }
             }
         }
-        .hamburger-react {
-            color: $yellow;
-            display: none;
-            @media screen and (max-width: $small-screens) {
-                display: block;
+        .links-box.active {
+            width: 100vw;
+            height: 100vh;
+            background-color: $black;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column-reverse;
+            justify-content: flex-end;
+            .links {
+                display: flex;
+                flex-direction: column;
             }
         }
     }

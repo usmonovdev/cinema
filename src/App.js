@@ -7,11 +7,11 @@ import { Route, Routes } from "react-router-dom";
 function App() {
   return (
     <>
-    <Navbar />
-    <Footer />
       <Routes>
         <Route path="/register" element={<Registration />}/>
+        <Route path="/" element={<Navbar />}/>
       </Routes>
+    <Footer />
     </>
   );
 }

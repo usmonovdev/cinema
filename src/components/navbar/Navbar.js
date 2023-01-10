@@ -2,21 +2,31 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from "../../assets/logo-white.png"
 import { BiMicrophone } from "react-icons/bi"
+import { RiMovie2Line, RiBearSmileLine, RiHome2Line } from "react-icons/ri"
+import { MdSlideshow } from "react-icons/md"
 import "./navbar.scss"
 import Hamburger from 'hamburger-react'
 
 function Navbar() {
   const [isOpen, setOpen] = useState(false)
+  const [classAdd, setClassAdd] = useState(true)
   return (
     <div className="container">
       <header>
         <Link to="/"><img src={logo} alt="Logo" /> Media</Link>
-        <div className='links-box'>
+        <Hamburger toggled={isOpen} toggle={setOpen} onToggle={toggled => {
+          if(toggled) {
+            setClassAdd(false)
+          } else {
+            setClassAdd(true)
+          }
+        }} />
+        <div className={`links-box ${classAdd === false && "active"}`}>
           <ul className='links'>
-            <li>Home</li>
-            <li>Movies</li>
-            <li>TV Shows</li>
-            <li>Cartoons</li>
+            <li><RiHome2Line className='link-icon'/>Home</li>
+            <li><RiMovie2Line className='link-icon'/>Movies</li>
+            <li><MdSlideshow className='link-icon'/>TV Shows</li>
+            <li><RiBearSmileLine className='link-icon'/>Cartoons</li>
           </ul>
           <ul className='user'>
             <li className='inp-and-sign'>
@@ -26,7 +36,6 @@ function Navbar() {
             <li><Link to="/register" className='sign-in'>Sign In</Link></li>
           </ul>
         </div>
-        <Hamburger toggled={isOpen} toggle={setOpen} />
       </header>
     </div>
   )
