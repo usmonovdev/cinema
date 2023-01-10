@@ -13,8 +13,11 @@ function Navbar() {
   return (
     <div className="container">
       <header>
-        <Link to="/"><img src={logo} alt="Logo" /> Media</Link>
-        <Hamburger toggled={isOpen} toggle={setOpen} onToggle={toggled => {
+        <Link to="/"><img src={logo} alt="Logo" />Media</Link>
+        <Hamburger
+          toggled={isOpen}
+          toggle={setOpen}
+          onToggle={toggled => {
           if (toggled) {
             setClassAdd(false)
           } else {
