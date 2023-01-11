@@ -22,41 +22,54 @@ $large-screens: 1200px;
         display: flex;
         justify-content: flex-end;
         flex-direction: column;
-        .info-box {
+        .top-popular-home {
             width: 60%;
-            height: 100px;
-            padding: 10px;
-            background-color: #ffffff39;
-            backdrop-filter: blur(5px);
-            overflow: hidden;
-            .title-vote-box {
+            .play-and-next {
+                width: 100%;
                 display: flex;
+                justify-content: space-between;
                 flex-direction: row;
-                align-items: center;
-                gap: 10px;
-                h1 {
-                    font-size: 30px;
-                    gap: 20px;
-                }
-                .vote-average {
-                    padding: 4px 10px;
-                    gap: 10px;
+                margin-bottom: 10px;
+                div {
                     display: flex;
+                    flex-direction: row;
+                }
+            }
+            .info-box {
+                height: 100px;
+                padding: 10px;
+                background-color: #ffffff39;
+                backdrop-filter: blur(5px);
+                overflow: hidden;
+                .title-vote-box {
+                    display: flex;
+                    flex-direction: row;
                     align-items: center;
-                    background-color: $yellow;
-                    border-radius: 20px;
-                    cursor: pointer;
+                    gap: 10px;
+                    h1 {
+                        font-size: 30px;
+                        gap: 20px;
+                    }
+                    .vote-average {
+                        padding: 4px 10px;
+                        gap: 10px;
+                        display: flex;
+                        align-items: center;
+                        background-color: $yellow;
+                        border-radius: 20px;
+                        cursor: pointer;
+                    }
                 }
-            }
-            .info-release {
-                text-transform: uppercase;
-                span {
-                    margin-left: 5px;
+                .info-release {
+                    text-transform: uppercase;
+                    span {
+                        margin-left: 5px;
+                    }
                 }
-            }
-            .info-overview {
-                margin-top: 6px;
-                text-transform: unset;
+                .info-overview {
+                    margin-top: 6px;
+                    text-transform: unset;
+                }
             }
         }
     }
