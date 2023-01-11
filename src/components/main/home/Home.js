@@ -3,6 +3,7 @@ import "./home.scss"
 import React, { useEffect, useState } from 'react'
 import Navbar from '../../navbar/Navbar'
 import { AiFillStar } from "react-icons/ai"
+import { BiLeftArrowAlt, BiPlay, BiRightArrowAlt } from 'react-icons/bi'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Home() {
@@ -14,7 +15,7 @@ function Home() {
         overview: "",
         original_language: ""
     })
-    const [defaultImg, setDefaultImage] = useState(2)
+    const [defaultImg, setDefaultImage] = useState(5)
     useEffect(() => {
         axios.get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`)
             .then((res) => {
@@ -30,6 +31,7 @@ function Home() {
             })
     }, [])
     console.log(firstPage)
+    console.log(firstPage.title.length)
     return (
         <>
             <Navbar />
@@ -37,9 +39,19 @@ function Home() {
                 <div className='bg-image' style={{
                     backgroundImage: `url(${firstPage.img})`
                 }}>
+                    <div>
+                        <div>
+                            <button><BiLeftArrowAlt /></button>
+                            <button><BiRightArrowAlt /></button>
+                        </div>
+                        <div>
+                            <div>Watch Now!</div>
+                            <button><BiPlay /></button>
+                        </div>
+                    </div>
                     <div className='info-box'>
                         <div className='title-vote-box'>
-                            <h1>{firstPage.title}</h1>
+                            <h1>{firstPage.title.length < 30 ? <>{firstPage.title}</> : <>{firstPage.title.slice(0, 20)}...</>}</h1>
                             <div className='vote-average'>
                                 <AiFillStar />{firstPage.vote}
                             </div>

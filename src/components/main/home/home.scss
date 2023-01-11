@@ -12,9 +12,10 @@ $large-screens: 1200px;
     position: relative;
     .bg-image {
         width: 100%;
-        height: 400px;
+        height: 550px;
         margin: 0 auto;
-        background-position: center;
+        background-position-y:center;
+        background-attachment: fixed;
         background-size: cover;
         background-repeat: no-repeat;
         color: $white;
@@ -22,7 +23,7 @@ $large-screens: 1200px;
         justify-content: flex-end;
         flex-direction: column;
         .info-box {
-            width: 30%;
+            width: 60%;
             height: 100px;
             padding: 10px;
             background-color: #ffffff39;
