@@ -1,6 +1,9 @@
 .ads {
-    width: 100%;
-    img {
-        width: 100%;
+    width: 100vw;
+    position: relative;
+    .bg-image {
+        width: 80%;
+        height: auto;
+        margin: 0 auto;
     }
 }
