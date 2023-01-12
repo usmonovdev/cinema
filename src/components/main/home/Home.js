@@ -15,7 +15,7 @@ function Home() {
         overview: "",
         original_language: ""
     })
-    const defaultImg = 0;
+    const defaultImg = 2;
     useEffect(() => {
         axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
             .then((res) => {
