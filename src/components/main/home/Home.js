@@ -15,7 +15,7 @@ function Home() {
         overview: "",
         original_language: ""
     })
-    const [defaultImg, setDefaultImage] = useState(0)
+    const defaultImg = 0;
     useEffect(() => {
         axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
             .then((res) => {
@@ -30,8 +30,6 @@ function Home() {
                 console.log(res)
             })
     }, [])
-    console.log(firstPage)
-    console.log(firstPage.title.length)
     return (
         <>
             <Navbar />
