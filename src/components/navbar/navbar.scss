@@ -34,6 +34,11 @@ body {
         width: 100%;
     }
     header {
+        z-index: 1000 !important;
+        position: relative;
+        height: 80px;
+        display: flex;
+        align-items: center;
         @media screen and (max-width: $large-screens) {
             width: 100%;
         }
@@ -46,9 +51,6 @@ body {
             width: 80%;
             margin: 0 auto;
         }
-        height: 80px;
-        display: flex;
-        align-items: center;
         a {
             display: flex;
             align-items: center;

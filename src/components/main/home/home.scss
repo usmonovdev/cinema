@@ -10,29 +10,76 @@ $large-screens: 1200px;
 .ads {
     width: 100vw;
     position: relative;
+    z-index: 900;
     .bg-image {
         width: 100%;
         height: 550px;
         margin: 0 auto;
-        background-position-y:center;
-        background-attachment: fixed;
-        background-size: cover;
+        background-position: center;
+        background-size:cover;
         background-repeat: no-repeat;
         color: $white;
         display: flex;
         justify-content: flex-end;
         flex-direction: column;
+        @media screen and (max-width: $small-screens) {
+            width: 100%;
+            height: 400px;
+        }
+        @media screen and (max-width: $tablet) {
+            width: 100%;
+            height: 300px;
+        }
+        @media screen and (max-width: $mobile) {
+            width: 100%;
+            height: 200px;
+        }
         .top-popular-home {
             width: 60%;
+            @media screen and (max-width: $large-screens) {
+                width: 60%;
+            }
+            @media screen and (max-width: $small-screens) {
+                width: 70%;
+            }
+            @media screen and (max-width: $tablet) {
+                width: 100%;
+            }
             .play-and-next {
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
                 flex-direction: row;
                 margin-bottom: 10px;
                 div {
                     display: flex;
                     flex-direction: row;
+                    align-items: center;
+                    button {
+                        padding: 14px;
+                        margin: 0 10px 0 10px;
+                        border: none;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: #ffffff39;
+                        backdrop-filter: blur(5px);
+                        cursor: pointer;
+                        color: $white;
+                    }
+                    .play-icon {
+                        margin: 0 0 0 10px;
+                    }
+                }
+                .play-watch-now {
+                    width: 120px;
+                    height: 42px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: $yellow;
+                    cursor: pointer;
                 }
             }
             .info-box {
@@ -41,6 +88,15 @@ $large-screens: 1200px;
                 background-color: #ffffff39;
                 backdrop-filter: blur(5px);
                 overflow: hidden;
+                @media screen and (max-width: $large-screens) {
+                    height: 100px;
+                }
+                @media screen and (max-width: $small-screens) {
+                    height: 60px;
+                }
+                @media screen and (max-width: $tablet) {
+                    height: 30px;
+                }
                 .title-vote-box {
                     display: flex;
                     flex-direction: row;
@@ -49,6 +105,16 @@ $large-screens: 1200px;
                     h1 {
                         font-size: 30px;
                         gap: 20px;
+                        @media screen and (max-width: $large-screens) {
+                            font-size: 30px;
+                        }
+                        @media screen and (max-width: $small-screens) {
+                            font-size: 26px;
+                        }
+                        @media screen and (max-width: $tablet) {
+                            font-size: 16px;
+                            font-weight: 500;
+                        }
                     }
                     .vote-average {
                         padding: 4px 10px;
@@ -62,8 +128,26 @@ $large-screens: 1200px;
                 }
                 .info-release {
                     text-transform: uppercase;
+                    @media screen and (max-width: $large-screens) {
+                        display: block;
+                    }
+                    @media screen and (max-width: $small-screens) {
+                        display: block;
+                    }
+                    @media screen and (max-width: $tablet) {
+                        display: none;
+                    }
                     span {
                         margin-left: 5px;
+                        @media screen and (max-width: $large-screens) {
+                            display: block;
+                        }
+                        @media screen and (max-width: $small-screens) {
+                            display: block;
+                        }
+                        @media screen and (max-width: $tablet) {
+                            display: none;
+                        }
                     }
                 }
                 .info-overview {

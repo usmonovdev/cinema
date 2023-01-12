@@ -15,7 +15,7 @@ function Home() {
         overview: "",
         original_language: ""
     })
-    const [defaultImg, setDefaultImage] = useState(1)
+    const [defaultImg, setDefaultImage] = useState(0)
     useEffect(() => {
         axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
             .then((res) => {
@@ -46,10 +46,10 @@ function Home() {
                                 <button><BiRightArrowAlt /></button>
                             </div>
                             <div>
-                                <div>Watch Now!</div>
-                                <button><BiPlay /></button>
+                                <div className='play-watch-now'>Watch Now!</div>
+                                <button className='play-icon'><BiPlay /></button>
                             </div>
-                        </div>
+                        </div>  
                         <div className='info-box'>
                             <div className='title-vote-box'>
                                 <h1>{firstPage.title.length < 30 ? <>{firstPage.title}</> : <>{firstPage.title.slice(0, 20)}...</>}</h1>
