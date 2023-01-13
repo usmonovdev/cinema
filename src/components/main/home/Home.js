@@ -47,10 +47,10 @@ function Home() {
                 {firstPage.map((data, indexSlide) => {
                     const { id, backdrop_path, title, vote_average, release_date, original_language, overview } = data;
                     let slide = "nextMovie";
-                    if (indexSlide == index) {
+                    if (indexSlide === index) {
                         slide = "activeMovie"
                     }
-                    if (indexSlide == index - 1 || (index == 0 && indexSlide == firstPage.length - 1)) {
+                    if (indexSlide === index - 1 || (index === 0 && indexSlide === firstPage.length - 1)) {
                         slide = "lastMovie"
                     }
                     return (
