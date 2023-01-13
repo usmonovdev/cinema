@@ -9,7 +9,7 @@ const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 function Home() {
     const [firstPage, setFirstPage] = useState([])
     const [index, setIndex] = useState(0)
-    const [sliderTime, setSliderTime] = useState(10000)
+    // const [sliderTime, setSliderTime] = useState(10000)
 
     useEffect(() => {
         axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
@@ -32,7 +32,7 @@ function Home() {
     useEffect(() => {
         const time = setInterval(() => {
             setIndex(index + 1)
-        }, sliderTime);
+        }, 10000);
         return () => {
             clearInterval(time)
         }
