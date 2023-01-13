@@ -9,7 +9,7 @@ $large-screens: 1200px;
 
 .ads {
     width: 100vw;
-    position: relative;
+    position: absolute;
     z-index: 900;
     .bg-image {
         width: 100%;
@@ -71,6 +71,15 @@ $large-screens: 1200px;
                     }
                     .play-icon {
                         margin: 0 0 0 10px;
+                        @media screen and (max-width: $large-screens) {
+                            margin: 0 0 0 10px;
+                        }
+                        @media screen and (max-width: $small-screens) {
+                            margin: 0 0 0 10px;
+                        }
+                        @media screen and (max-width: $tablet) {
+                            margin: 0 10px 0 10px;
+                        }
                     }
                 }
                 .play-watch-now {
