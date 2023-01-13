@@ -10,6 +10,7 @@ function Home() {
     const [firstPage, setFirstPage] = useState([])
     const [index, setIndex] = useState(0)
     // const [sliderTime, setSliderTime] = useState(10000)
+    // const [slideAnimation, setSlideAnimation] = useState(false)
 
     useEffect(() => {
         axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)

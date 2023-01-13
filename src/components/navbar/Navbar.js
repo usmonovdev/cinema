@@ -18,12 +18,12 @@ function Navbar() {
           toggled={isOpen}
           toggle={setOpen}
           onToggle={toggled => {
-          if (toggled) {
-            setClassAdd(false)
-          } else {
-            setClassAdd(true)
-          }
-        }} />
+            if (toggled) {
+              setClassAdd(false)
+            } else {
+              setClassAdd(true)
+            }
+          }} />
         <div className={`links-box ${classAdd === false && "active"}`}>
           <ul className='links'>
             <li><RiHome2Line className='link-icon' />Home</li>
@@ -36,9 +36,9 @@ function Navbar() {
               <input className='search-input' type="text" placeholder='Search for Movies...' />
               <BiMicrophone className='search-voice' />
             </li>
-            <li className='sign-in'>
-              <Link to="/register">Sign In</Link>
-            </li>
+            <Link to="/register" className='sign-in'>
+              <li>Sign In</li>
+            </Link>
           </ul>
         </div>
       </header>
