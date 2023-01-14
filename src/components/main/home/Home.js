@@ -12,6 +12,11 @@ function Home() {
     const [firstPage, setFirstPage] = useState([])
     const [index, setIndex] = useState(0)
 
+    // Document title
+    useEffect(() => {
+        document.title = "Cinema App - Home"
+    })
+
     // Fetch API
     useEffect(() => {
         axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)

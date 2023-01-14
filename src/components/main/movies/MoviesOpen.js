@@ -10,14 +10,17 @@ const IMAGE_LINK = "https://image.tmdb.org/t/p/original/"
 function Movies() {
     const [movie, setMovie] = useState([])
     const param = useParams()
-    const URL = `https://api.themoviedb.org/3/movie/${param.moviesId}?api_key=${API_KEY}`;
 
     useEffect(() => {
-        axios.get(URL).then(data => {
+        axios.get(`https://api.themoviedb.org/3/movie/${param.moviesId}?api_key=${API_KEY}`).then(data => {
             setMovie(data.data)
             console.log(data.data);
         })
     }, [])
+
+    useEffect(() => {
+        document.title = `Movie - ${movie.original_title}`
+    })
 
     return (
         <>
