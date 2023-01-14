@@ -2,7 +2,8 @@ import Registration from "./components/registartion/Registration";
 import "./App.css"
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/main/home/Home";
-import Movies from "./components/movies/Movies";
+import MoviesOpen from "./components/main/movies/MoviesOpen";
+import Movies from "./components/main/movies/Movies";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/register" element={<Registration />}/>
-        <Route path="/:moviesId" element={<Movies />}/>
+        <Route path="/movies" element={<Movies />}/>
+        <Route path="/movies/:moviesId" element={<MoviesOpen />}/>
       </Routes>
     </>
   );

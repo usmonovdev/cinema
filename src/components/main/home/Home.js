@@ -6,11 +6,13 @@ import { AiFillStar } from "react-icons/ai"
 import { BiLeftArrowAlt, BiPlay, BiRightArrowAlt } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
+const IMAGE_LINK = "https://image.tmdb.org/t/p/original/"
 
 function Home() {
     const [firstPage, setFirstPage] = useState([])
     const [index, setIndex] = useState(0)
 
+    // Fetch API
     useEffect(() => {
         axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
             .then((res) => {
@@ -18,6 +20,7 @@ function Home() {
             })
     }, [])
 
+    // Next Movie Swipe Function
     useEffect(() => {
         const slide = firstPage.length - 1;
         if (index < 0) {
@@ -28,6 +31,7 @@ function Home() {
         }
     }, [firstPage, index])
 
+    // Auto Animation
     // useEffect(() => {
     //     const time = setInterval(() => {
     //         setIndex(index + 1)
@@ -51,7 +55,7 @@ function Home() {
                     }
                     return (
                         <div className={`bg-image ${slide}`} key={id} style={{
-                            backgroundImage: `url("https://image.tmdb.org/t/p/original/${backdrop_path}")`
+                            backgroundImage: `url(${IMAGE_LINK}${backdrop_path})`
                         }}>
                             <div className='top-popular-home'>
                                 <div className='play-and-next'>
@@ -64,8 +68,8 @@ function Home() {
                                         </button>
                                     </div>
                                     <div>
-                                        <Link to={`/${id}`}><div className='play-watch-now'>Watch Now!</div></Link>
-                                        <button className='play-icon'><BiPlay /></button>
+                                        <Link to={`/movies/${id}`} className='play-watch-now'><div>Watch Now!</div></Link>
+                                        <Link to={`/movies/${id}`}><button className='play-icon'><BiPlay /></button></Link>
                                     </div>
                                 </div>
                                 <div className='info-box'>
