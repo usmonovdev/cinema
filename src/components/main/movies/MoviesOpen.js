@@ -12,10 +12,11 @@ function Movies() {
     const {moviesId} = useParams()
 
     useEffect(() => {
-        axios.get(`https://api.themoviedb.org/3/movie/${moviesId}?api_key=${API_KEY}`).then(data => {
-            setMovie(data.data)
-            console.log(data.data);
-        })
+        axios.get(`https://api.themoviedb.org/3/movie/${moviesId}?api_key=${API_KEY}`)
+            .then(data => {
+                setMovie(data.data)
+                console.log(data.data)
+            })
     }, [])
 
     useEffect(() => {
