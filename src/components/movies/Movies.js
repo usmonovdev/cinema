@@ -4,16 +4,17 @@ import { Link, useParams } from 'react-router-dom'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Movies() {
-    const [movie, setMovie] = useState({ title: {} })
-    const {id} = useParams()
+    const [movie, setMovie] = useState()
+    const param = useParams()
+    // console.log(param.moviesId)
+    // const  = useParams()
+    const URL = `https://api.themoviedb.org/3/movie/${param.moviesId}?api_key=${API_KEY}`;
 
-    const fetchData = () => {
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)
-        .then(res => res.json())
-        .then(data => setMovie(data))
-    }
     useEffect(() => {
-        fetchData()
+        axios.get(URL).then(data => {
+            setMovie(data.data)
+            console.log(data.data);
+        })
     }, [])
     return (
         <div>
