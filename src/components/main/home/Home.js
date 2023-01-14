@@ -4,19 +4,17 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../../navbar/Navbar'
 import { AiFillStar } from "react-icons/ai"
 import { BiLeftArrowAlt, BiPlay, BiRightArrowAlt } from 'react-icons/bi'
+import { Link } from 'react-router-dom'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Home() {
     const [firstPage, setFirstPage] = useState([])
     const [index, setIndex] = useState(0)
-    // const [sliderTime, setSliderTime] = useState(10000)
-    // const [slideAnimation, setSlideAnimation] = useState(false)
 
     useEffect(() => {
         axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
             .then((res) => {
                 setFirstPage(res.data.results.slice(0, 10))
-                console.log(res)
             })
     }, [])
 
@@ -30,17 +28,14 @@ function Home() {
         }
     }, [firstPage, index])
 
-    useEffect(() => {
-        const time = setInterval(() => {
-            setIndex(index + 1)
-        }, 10000);
-        return () => {
-            clearInterval(time)
-        }
-    })
-
-    console.log(firstPage)
-    console.log(index)
+    // useEffect(() => {
+    //     const time = setInterval(() => {
+    //         setIndex(index + 1)
+    //     }, 10000);
+    //     return () => {
+    //         clearInterval(time)
+    //     }
+    // })
     return (
         <>
             <Navbar />
@@ -49,10 +44,10 @@ function Home() {
                     const { id, backdrop_path, title, vote_average, release_date, original_language, overview } = data;
                     let slide = "nextMovie";
                     if (indexSlide === index) {
-                        slide = "activeMovie"
+                        slide = "activeMovie";
                     }
                     if (indexSlide === index - 1 || (index === 0 && indexSlide === firstPage.length - 1)) {
-                        slide = "lastMovie"
+                        slide = "lastMovie";
                     }
                     return (
                         <div className={`bg-image ${slide}`} key={id} style={{
@@ -69,7 +64,7 @@ function Home() {
                                         </button>
                                     </div>
                                     <div>
-                                        <div className='play-watch-now'>Watch Now!</div>
+                                        <Link to={`/${id}`}><div className='play-watch-now'>Watch Now!</div></Link>
                                         <button className='play-icon'><BiPlay /></button>
                                     </div>
                                 </div>
