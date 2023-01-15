@@ -1,7 +1,7 @@
 import React from 'react'
-import { MdOutlineBackHand } from 'react-icons/md'
+import { MdBackHand } from 'react-icons/md'
 import { Link } from 'react-router-dom'
-import "./limitedContent.scss"
+import "./bannedContent.scss"
 import { motion } from 'framer-motion'
 
 function LimitedContent() {
@@ -17,9 +17,9 @@ function LimitedContent() {
                       damping: 20
                     }}
                 >
-                    <MdOutlineBackHand className='hand-icon' />
+                    <MdBackHand className='hand-icon' />
                 </motion.div>
-                <p><span className='limited-content'>Limited content. </span><br /> Please back to <Link to="/">Home</Link> page.</p>
+                <p><span className='limited-content'>Banned Movie.</span><br /> Please back to <Link to="/">Home</Link> page.</p>
                 Or <Link to="/movies">back to Movies</Link>
             </div>
         </div>

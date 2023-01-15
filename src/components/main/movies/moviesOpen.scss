@@ -12,27 +12,60 @@ $large-screens: 1200px;
     width: 100%;
     height: 100%;
     padding: 30px;
-    overflow: hidden;
     display: flex;
     align-items: center;
     flex-direction: row;
     box-sizing: border-box;
     background-color: $yellow-opacity;
+    backdrop-filter: blur(5px);
+    gap: 20px;
     .left-info {
-        width: 30%;
+        width: auto;
         height: 100%;
         position: relative;
         display: flex;
         flex-direction: column;
         z-index: 2000;
-        .poster-image {
-            width: auto;
+        .poster-image-box {
+            width: 100%;
             height: 100%;
-            border-radius: 10px;
+            display: flex;
+            overflow: hidden;
             cursor: pointer;
-            &:hover ~ .open-image{
-                display: block;
-                animation: open-image 200ms alternate;
+            .poster-image {
+                width: fit-content;
+                height: 100%;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+            .open-image-expand {
+                width: 100%;
+                height: 100%;
+                background-color: $black-opacity;
+                backdrop-filter: blur(5px);
+                position: absolute;
+                left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 10px;
+                transition: 200ms;
+                opacity: 0;
+                visibility: hidden;
+                transform: scale(.9);
+                p {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    .expand-icon {
+                        font-size: 1.6rem;
+                    }
+                }
+            }
+            &:hover .open-image-expand{
+                opacity: 1;
+                visibility: visible;
+                transform: scale(1);
             }
         }
         .open-image {

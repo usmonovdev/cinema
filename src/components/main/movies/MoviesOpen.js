@@ -4,7 +4,9 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Navbar from '../../navbar/Navbar'
-import LimitedContent from "../../LimitedContent/LimitedContent"
+import BannedContent from "../../BannedContent/BannedContent"
+import RightInfo from "./rightInfo/RightInfo"
+import LeftInfo from "./leftInfo/LeftInfo"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 const IMAGE_LINK = "https://image.tmdb.org/t/p/original/"
 
@@ -22,19 +24,17 @@ function Movies() {
     }, [moviesId])
 
     useEffect(() => {
-        if(loading) {
+        if (loading) {
             document.title = `Movie - Loading...`
         } else {
             document.title = `Movie - ${movie.original_title}`
         }
     })
-
     console.log(movie)
-    console.log(loading)
     return (
         <>
-            <Navbar />
-            {movie.adult ? <>
+            {!movie.adult ? <>
+                <Navbar />
                 <div className="ads">
                     <div className='bg-image' style={{
                         opacity: "1",
@@ -42,17 +42,17 @@ function Movies() {
                     }}>
                         <div className="opened-movie-backdrop">
                             <div className="left-info">
-                                <img className="poster-image" src={`${IMAGE_LINK}${movie.poster_path}`} alt={movie.original_title} />
-                                <div className="open-image"></div>
+                                <LeftInfo movie={movie}/>
                             </div>
                             <div className="right-info">
+                                <RightInfo movie={movie} />
                             </div>
                         </div>
                     </div>
                 </div>
                 <Link to="/">Back</Link>
             </> : <>
-                <LimitedContent />
+                <BannedContent />
             </>}
         </>
     )

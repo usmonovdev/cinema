@@ -37,14 +37,14 @@ function Home() {
     }, [firstPage, index])
 
     // Auto Animation
-    // useEffect(() => {
-    //     const time = setInterval(() => {
-    //         setIndex(index + 1)
-    //     }, 10000);
-    //     return () => {
-    //         clearInterval(time)
-    //     }
-    // })
+    useEffect(() => {
+        const time = setInterval(() => {
+            setIndex(index + 1)
+        }, 10000);
+        return () => {
+            clearInterval(time)
+        }
+    })
     return (
         <>
             <Navbar />
