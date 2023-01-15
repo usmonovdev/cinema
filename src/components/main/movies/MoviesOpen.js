@@ -2,19 +2,20 @@ import "../home/home.scss"
 import "./moviesOpen.scss"
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-// import Navbar from '../../navbar/Navbar'
+import { Link, useParams } from 'react-router-dom'
+import Navbar from '../../navbar/Navbar'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
-// const IMAGE_LINK = "https://image.tmdb.org/t/p/original/"
+const IMAGE_LINK = "https://image.tmdsb.org/t/p/original/"
+// get movie by id api https://api.themoviedb.org/3/movie/${param.moviesId}?api_key=${API_KEY}
 
 function Movies() {
     const [movie, setMovie] = useState([])
     const { moviesId } = useParams()
 
     useEffect(() => {
-        axios.get(`https://api.themoviedb.org/3/movie/315162?api_key=${API_KEY}`)
+        axios.get(`https://api.themoviedb.org/3/movie/${moviesId}?api_key=${API_KEY}`)
             .then((res) => {
-                setMovie(res.data.results)
+                setMovie(res.data)
             })
     }, [])
 
@@ -27,8 +28,8 @@ function Movies() {
     console.log(movie)
     return (
         <>
-            <h1>id: {moviesId}</h1>
-            {/* <Navbar />
+            {/* <h1>id: {moviesId}</h1> */}
+            <Navbar />
             {!movie.adult ? <>
                 <div className="ads">
                     <div className='bg-image' style={{
@@ -41,7 +42,7 @@ function Movies() {
                                 <div className="open-image"></div>
                             </div>
                             <div className="right-info">
-
+                                <h1>{movie.tagline}</h1>
                             </div>
                         </div>
                     </div>
@@ -52,7 +53,7 @@ function Movies() {
                     <h1>sdasda</h1>
                     <Link to="/">Back</Link>
                 </div>
-            </>} */}
+            </>}
         </>
     )
 }
