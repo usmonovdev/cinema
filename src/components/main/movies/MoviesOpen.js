@@ -10,22 +10,20 @@ const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 function Movies() {
     const [movie, setMovie] = useState([])
     const { moviesId } = useParams()
-    console.log(typeof moviesId)
-    console.log(typeof movie)
 
     useEffect(() => {
-        axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
+        axios.get(`https://api.themoviedb.org/3/movie/315162?api_key=${API_KEY}`)
             .then((res) => {
-                setMovie(res.data.results.slice(0, 10))
+                setMovie(res.data.results)
             })
     }, [])
 
-    useEffect(() => {
-        document.title = `Movie - ${movie.original_title}`
-    })
+    // useEffect(() => {
+    //     document.title = `Movie - ${movie.original_title}`
+    // })
 
-    const filterMovie = movie.filter(obj => obj.id == moviesId);
-    console.log(filterMovie)
+    // const filterMovie = movie.filter(obj => obj.id == moviesId);
+    // console.log(filterMovie)
     console.log(movie)
     return (
         <>
