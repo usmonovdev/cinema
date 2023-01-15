@@ -6,7 +6,6 @@ import { AiFillStar } from "react-icons/ai"
 import { BiLeftArrowAlt, BiPlay, BiRightArrowAlt } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
-const IMAGE_LINK = "https://image.tmdb.org/t/p/original/"
 
 function Home() {
     const [firstPage, setFirstPage] = useState([])
@@ -60,7 +59,7 @@ function Home() {
                     }
                     return (
                         <div className={`bg-image ${slide}`} key={id} style={{
-                            backgroundImage: `url(${IMAGE_LINK}${backdrop_path})`
+                            backgroundImage: `url("https://image.tmdb.org/t/p/original/${backdrop_path}")`
                         }}>
                             <div className='top-popular-home'>
                                 <div className='play-and-next'>
