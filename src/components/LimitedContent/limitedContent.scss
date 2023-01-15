@@ -1,0 +1,29 @@
+$white: #fff;
+$black: #343434;
+$yellow: #e6b31e;
+$yellow-opacity: #e6b41e33;
+$mobile: 480px;
+$tablet: 768px;
+$small-screens: 992px;
+$large-screens: 1200px;
+
+.cencored-content {
+    width: 100%;
+    height: 85vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: $white;
+    a {
+        color: unset;
+    }
+    .hand-icon {
+        font-size: 3rem;
+        color: $yellow;
+    }
+    .limited-content {
+        font-weight: 500;   
+    }
+}

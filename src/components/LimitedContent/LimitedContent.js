@@ -1,0 +1,29 @@
+import React from 'react'
+import { MdOutlineBackHand } from 'react-icons/md'
+import { Link } from 'react-router-dom'
+import "./limitedContent.scss"
+import { motion } from 'framer-motion'
+
+function LimitedContent() {
+    return (
+        <div className="cencored-content">
+            <div>
+                <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ rotate: -360, scale: 1 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 20
+                    }}
+                >
+                    <MdOutlineBackHand className='hand-icon' />
+                </motion.div>
+                <p><span className='limited-content'>Limited content. </span><br /> Please back to <Link to="/">Home</Link> page.</p>
+                Or <Link to="/movies">back to Movies</Link>
+            </div>
+        </div>
+    )
+}
+
+export default LimitedContent
