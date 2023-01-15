@@ -1,7 +1,6 @@
 import React from 'react'
 
 function RightInfo({ movie }) {
-    const genresNameLenght = [0, 1, 2]
     return (
         <>
             <h1>{movie.original_title} ({movie.release_date})</h1>
