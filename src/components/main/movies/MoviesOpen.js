@@ -17,7 +17,7 @@ function Movies() {
             .then((res) => {
                 setMovie(res.data)
             })
-    }, [])
+    }, [moviesId])
 
     // useEffect(() => {
     //     document.title = `Movie - ${movie.original_title}`
