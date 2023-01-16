@@ -17,7 +17,10 @@ function Movies() {
     useEffect(() => {
         getMovie(`https://api.themoviedb.org/3/movie/${moviesId}?api_key=${API_KEY}`);
         setLoading(false)
-    }, [moviesId])
+        return () => {
+            getMovie()
+        }
+    },[moviesId])
 
     const { adult, backdrop_path, original_title} = movie;
 
