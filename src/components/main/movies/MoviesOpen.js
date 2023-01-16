@@ -11,7 +11,7 @@ const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Movies() {
     const [loading, setLoading] = useState(true)
-    const { getMovie, movie} = useMovieContext()
+    const { getMovie, movie } = useMovieContext()
     const { moviesId } = useParams()
 
     useEffect(() => {
@@ -19,7 +19,7 @@ function Movies() {
         setLoading(false)
     }, [])
 
-    const { adult, backdrop_path, original_title} = movie;
+    const { adult, backdrop_path, original_title } = movie;
 
     useEffect(() => {
         if (loading) {

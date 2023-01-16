@@ -12,7 +12,6 @@ const MovieContextProvider = ({ children }) => {
             axios.get(url)
                 .then((movie) => {
                     setMovie(movie.data)
-                    console.log(movie)
                 });
         } catch (error) {
             console.log("Error in API", error)
