@@ -1,17 +1,17 @@
 import React from 'react'
 
 function RightInfo({ movie }) {
+    const { original_title, release_date, runtime, tagline, overview, production_countries } = movie;
+    const convertProductionCountries = production_countries || []
+    const first = convertProductionCountries[0]?.iso_3166_1
     return (
         <>
             <div className="right-info">
-                <h1>{movie.original_title} ({movie.release_date})</h1>
+                <h1>{original_title} ({release_date?.slice(0, 4)})</h1>
                 <div>
-                    {/* <p>{movie.release_date} ({movie.production_countries[0].iso_3166_1})</p> */}
-                    {/* <p>{movie.genres[0].name}</p> */}
-                    {/* <p>{movie.genres[1].name}</p> */}
-                    {/* <p>{movie.genres[3].name}</p> */}
-                    <p>{movie.runtime}</p>
-                    <p>{movie.tagline}</p>
+                    <p>{release_date?.replaceAll("-", "/")} ({first})</p>
+                    <p>{tagline}</p>
+                    <p>{overview}</p>
                 </div>
             </div>
         </>
