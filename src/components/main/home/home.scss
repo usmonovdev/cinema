@@ -7,6 +7,12 @@ $tablet: 768px;
 $small-screens: 992px;
 $large-screens: 1200px;
 
+.ant-skeleton-title {
+    height: 100px !important;
+    border-radius: 0 !important;
+    width: 100% !important;
+}
+
 .ads {
     width: 100vw;
     position: absolute;
