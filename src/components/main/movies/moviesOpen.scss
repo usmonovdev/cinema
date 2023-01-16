@@ -2,7 +2,7 @@ $white: #fff;
 $black: #343434;
 $black-opacity: #343434b3;
 $yellow: #e6b31e;
-$yellow-opacity: #e6b41eac;
+$yellow-opacity: #e6b41e59;
 $mobile: 480px;
 $tablet: 768px;
 $small-screens: 992px;
@@ -19,6 +19,7 @@ $large-screens: 1200px;
     background-color: $yellow-opacity;
     backdrop-filter: blur(5px);
     gap: 20px;
+    position: absolute;
     .left-info {
         width: auto;
         height: 100%;
@@ -27,7 +28,7 @@ $large-screens: 1200px;
         flex-direction: column;
         z-index: 2000;
         .poster-image-box {
-            width: 100%;
+            width: fit-content;
             height: 100%;
             display: flex;
             overflow: hidden;
@@ -58,7 +59,7 @@ $large-screens: 1200px;
                     align-items: center;
                     gap: 10px;
                     .expand-icon {
-                        font-size: 1.6rem;
+                        font-size: 1.7rem;
                     }
                 }
             }

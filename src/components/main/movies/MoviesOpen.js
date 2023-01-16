@@ -40,12 +40,8 @@ function Movies() {
                         backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie.backdrop_path}")`
                     }}>
                         <div className="opened-movie-backdrop">
-                            <div className="left-info">
-                                <LeftInfo movie={movie}/>
-                            </div>
-                            <div className="right-info">
-                                <RightInfo movie={movie} />
-                            </div>
+                            <LeftInfo movie={movie} />
+                            <RightInfo movie={movie} />
                         </div>
                     </div>
                 </div>
