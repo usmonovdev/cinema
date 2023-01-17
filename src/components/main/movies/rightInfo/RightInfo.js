@@ -14,7 +14,7 @@ function RightInfo({ movie }) {
     return (
         <>
             <div className="right-info">
-                <h1>{original_title} ({release_date?.slice(0, 4)})</h1>
+                <h1>{original_title}</h1>
                 <div className='right-info-small'>
                     <p>{release_date?.replaceAll("-", "/")} ({first})</p>
                     <p>{tagline}</p>
