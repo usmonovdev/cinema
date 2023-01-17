@@ -1,5 +1,34 @@
-.right-info-box {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+$white: #fff;
+$black: #343434;
+$yellow: #e6b31e;
+$yellow-opacity: #e6b41e33;
+$mobile: 480px;
+$tablet: 768px;
+$small-screens: 992px;
+$large-screens: 1200px;
+
+.right-info {
+    .right-info-small {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+    .right-overview-box {
+        margin-top: 10px;
+        width: 80%;
+    }
+    .events-box {
+        width: 100%;
+        position: relative;
+        margin-top: 10px;
+        box-sizing: border-box;
+        .events {
+            font-size: 1.7rem;
+            cursor: pointer;
+            margin: 0 10px 0 0;
+            background-color: $yellow;
+            padding: 5px;
+        }
+    }
 }
