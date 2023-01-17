@@ -8,21 +8,30 @@ $small-screens: 992px;
 $large-screens: 1200px;
 
 .right-info {
+    h1 {
+        @media screen and (max-width: $mobile) {
+            font-size: 20px;
+        }
+    }
     .right-info-small {
         margin-top: 10px;
         display: flex;
         flex-direction: row;
         gap: 10px;
+        @media screen and (max-width: $mobile) {
+            display: flex;
+            flex-direction: column;
+        }
     }
     .right-overview-box {
         margin-top: 10px;
         width: 80%;
-        // @media screen and (max-width: $tablet) {
-        //     width: 100%;
-        // }
-        // @media screen and (max-width: $mobile) {
+        @media screen and (max-width: $tablet) {
+            width: 90%;
+        }
+        @media screen and (max-width: $mobile) {
 
-        // }
+        }
     }
     .events-box {
         width: 100%;
