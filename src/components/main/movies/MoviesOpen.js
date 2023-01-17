@@ -1,5 +1,6 @@
 import "../home/home.scss"
 import "./moviesOpen.scss"
+import "../movies/moviesOpen.scss"
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Navbar from '../../navbar/Navbar'
@@ -34,7 +35,7 @@ function Movies() {
             {!adult ? <>
                 <Navbar />
                 <div className="ads">
-                    <div className='bg-image' style={{
+                    <div className='bg-image movies-open-media' style={{
                         opacity: "1",
                         backgroundImage: `url("https://image.tmdb.org/t/p/original/${backdrop_path}")`
                     }}>

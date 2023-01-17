@@ -8,6 +8,16 @@ $tablet: 768px;
 $small-screens: 992px;
 $large-screens: 1200px;
 
+.movies-open-media {
+    @media screen and (max-width: $tablet) {
+        background-image: unset !important;
+    }
+    @media screen and (max-width: $mobile) {
+        display: flex;
+        flex-direction: column;
+    } 
+}
+
 .opened-movie-backdrop {
     width: 100%;
     height: 100%;
@@ -20,6 +30,22 @@ $large-screens: 1200px;
     backdrop-filter: blur(5px);
     gap: 20px;
     position: absolute;
+    @media screen and (max-width: $small-screens) {
+        display: flex;
+        flex-direction: row;
+    }
+    @media screen and (max-width: $tablet) {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        background-color: unset;
+        padding: 0;
+    }
+    @media screen and (max-width: $mobile) {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+    }
     .left-info {
         width: auto;
         height: 100%;
@@ -27,14 +53,24 @@ $large-screens: 1200px;
         display: flex;
         flex-direction: column;
         z-index: 2000;
+        @media screen and (max-width: $tablet) {
+            width: 100%;
+        }
+        @media screen and (max-width: $mobile) {
+            width: 100%;
+        }
         .poster-image-box {
-            width: fit-content;
             height: 100%;
             display: flex;
             overflow: hidden;
             cursor: pointer;
+            @media screen and (max-width: $tablet) {
+                display: flex;
+                align-items: center;
+            }
+            @media screen and (max-width: $mobile) {
+            }
             .poster-image {
-                width: fit-content;
                 height: 100%;
                 border-radius: 10px;
                 cursor: pointer;
@@ -95,5 +131,10 @@ $large-screens: 1200px;
     .right-info {
         width: 70%;
         height: 100%;
+        @media screen and (max-width: $tablet) {
+            width: 100%;
+        }
+        @media screen and (max-width: $mobile) {
+        }
     }
 }

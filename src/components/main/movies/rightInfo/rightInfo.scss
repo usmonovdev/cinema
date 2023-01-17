@@ -17,6 +17,12 @@ $large-screens: 1200px;
     .right-overview-box {
         margin-top: 10px;
         width: 80%;
+        // @media screen and (max-width: $tablet) {
+        //     width: 100%;
+        // }
+        // @media screen and (max-width: $mobile) {
+
+        // }
     }
     .events-box {
         width: 100%;
