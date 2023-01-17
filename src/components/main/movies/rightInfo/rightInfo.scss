@@ -18,6 +18,10 @@ $large-screens: 1200px;
         display: flex;
         flex-direction: row;
         gap: 10px;
+        p {
+            background-color: $yellow;
+            padding: 2px;
+        }
         @media screen and (max-width: $mobile) {
             display: flex;
             flex-direction: column;
@@ -28,9 +32,6 @@ $large-screens: 1200px;
         width: 80%;
         @media screen and (max-width: $tablet) {
             width: 100%;
-        }
-        @media screen and (max-width: $mobile) {
-
         }
     }
     .events-box {
