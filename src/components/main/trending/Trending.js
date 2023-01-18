@@ -11,8 +11,8 @@ const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 const IMAGE_LINK = "https://image.tmdb.org/t/p/original/"
 
 function Trending() {
-    const { getMovie, movie, setMovie } = useMovieContext()
-    const [showMovieInfo, setShowMovieinfo] = useState(false)
+    const { getMovie, movie } = useMovieContext()
+    const [showMovieInfo] = useState(false)
     const [isCompleted, setIsCompleted] = useState(false)
     const [index, setIndex] = useState(4)
     const initialPosts = slice(movie.results, 0, index)
@@ -23,7 +23,7 @@ function Trending() {
     const loadMore = () => {
         setIndex(index + 4)
         console.log(index)
-        if(index >= 20) {
+        if (index >= 20) {
             setIsCompleted(true)
             console.log("completed")
         } else {
@@ -38,6 +38,7 @@ function Trending() {
     }, [])
     return (
         <div className='container'>
+            <h1 className='title'>Trending Movies</h1>
             <div className="trending">
                 {initialPosts.map((data) => {
                     const { id, poster_path, first_air_date, name, original_title, vote_average, overview, release_date } = data
