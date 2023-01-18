@@ -15,7 +15,17 @@ $large-screens: 1200px;
     @media screen and (max-width: $mobile) {
         display: flex;
         flex-direction: column;
-    } 
+    }
+}
+
+:where(.css-dev-only-do-not-override-1i9hnpv).ant-image .ant-image-mask {
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    border-radius: 10px;
+}
+:where(.css-dev-only-do-not-override-1i9hnpv).ant-image .ant-image-mask:hover {
+    opacity: 1;
+    border-radius: 10px;
 }
 
 .opened-movie-backdrop {
