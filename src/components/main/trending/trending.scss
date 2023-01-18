@@ -1,0 +1,50 @@
+$white: #fff;
+$black: #343434;
+$yellow: #e6b31e;
+$yellow-opacity: #e6b41e33;
+$mobile: 480px;
+$tablet: 768px;
+$small-screens: 992px;
+$large-screens: 1200px;
+
+.load-more {
+    width: 100%;
+    position: relative;
+    top: 40px;
+    border: none;
+    padding: 10px;
+    background-color: $yellow;
+    color: $white;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 100px;
+}
+
+.trending {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 30px;
+    z-index: 1000;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;
+    box-sizing: border-box;
+    transition: 200ms;
+    .trending-movie-container {
+        min-width: 24%;
+        .trending-movie-box {
+            display: flex;
+            .trending-movie-info {
+                display: none;
+                &.open {
+                    display: block;
+                }
+            }
+        }
+    }
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}

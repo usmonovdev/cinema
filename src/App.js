@@ -6,6 +6,8 @@ import MoviesOpen from "./components/main/movies/MoviesOpen";
 import Movies from "./components/main/movies/Movies";
 import Navbar from "./components/navbar/Navbar";
 import { MovieContextProvider } from "./context/MovieContex/MovieContex";
+import Trending from "./components/main/trending/Trending";
+import Posts from "./Posts";
 
 function App() {
   return (
@@ -13,12 +15,12 @@ function App() {
       <MovieContextProvider>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/" element={<Navbar />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/movies/:moviesId" element={<MoviesOpen />} />
         </Routes>
       </MovieContextProvider>
+      {/* <Posts /> */}
     </>
   );
 }

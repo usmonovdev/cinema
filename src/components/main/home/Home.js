@@ -6,6 +6,7 @@ import { AiFillStar } from "react-icons/ai"
 import { BiLeftArrowAlt, BiPlay, BiRightArrowAlt } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
 import { Tooltip } from 'antd';
+import Trending from '../trending/Trending'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Home() {
@@ -37,14 +38,14 @@ function Home() {
     }, [firstPage, index])
 
     // Auto Animation
-    useEffect(() => {
-        const time = setInterval(() => {
-            setIndex(index + 1)
-        }, 10000);
-        return () => {
-            clearInterval(time)
-        }
-    })
+    // useEffect(() => {
+    //     const time = setInterval(() => {
+    //         setIndex(index + 1)
+    //     }, 10000);
+    //     return () => {
+    //         clearInterval(time)
+    //     }
+    // })
     return (
         <>
             <Navbar />
@@ -97,6 +98,7 @@ function Home() {
                     )
                 })}
             </div>
+            <Trending />
         </>
     )
 }
