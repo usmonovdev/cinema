@@ -18,6 +18,7 @@ $large-screens: 1200px;
     position: relative;
     z-index: 900;
     height: 500px;
+    overflow: hidden;
     @media screen and (max-width: $small-screens) {
         height: 400px;
     }
