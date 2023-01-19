@@ -28,6 +28,10 @@ $large-screens: 1200px;
     border-radius: 10px;
 }
 
+.movie-info-overflow {
+    overflow:unset !important;
+}
+
 .opened-movie-backdrop {
     width: 100%;
     height: 100%;

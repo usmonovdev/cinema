@@ -33,7 +33,7 @@ function Movies() {
         <>
             {!adult ? <>
                 <Navbar />
-                <div className="ads">
+                <div className="ads movie-info-overflow">
                     <div className='bg-image movies-open-media' style={{
                         opacity: "1",
                         backgroundImage: `url("https://image.tmdb.org/t/p/original/${backdrop_path}")`
