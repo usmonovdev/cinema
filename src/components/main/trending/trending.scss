@@ -7,10 +7,14 @@ $tablet: 768px;
 $small-screens: 992px;
 $large-screens: 1200px;
 
+:where(.css-dev-only-do-not-override-1i9hnpv).ant-spin {
+    color: $white;
+}
+
 .load-more {
     width: 100%;
     position: relative;
-    top: 40px;
+    top: 60px;
     border: none;
     padding: 10px;
     background-color: $yellow;
@@ -76,9 +80,6 @@ $large-screens: 1200px;
             display: flex;
             .trending-movie-info {
                 display: none;
-                &.open {
-                    display: block;
-                }
             }
         }
     }

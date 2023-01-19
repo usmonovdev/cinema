@@ -21,7 +21,6 @@ function Movies() {
     }, [])
 
     const { adult, backdrop_path, original_title } = movie;
-    console.log(movie)
 
     useEffect(() => {
         if (loading) {
