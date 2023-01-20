@@ -1,5 +1,6 @@
 $white: #fff;
 $black: #343434;
+$second-black: #2e2e2e71;
 $yellow: #e6b31e;
 $yellow-opacity: #e6b41e33;
 $mobile: 480px;
@@ -69,6 +70,7 @@ $large-screens: 1200px;
     svg {
         cursor: pointer;
         font-size: 2rem;
+        transform: rotate(-90deg);
     }
 }
 
@@ -101,57 +103,86 @@ $large-screens: 1200px;
             align-items: flex-end;
             overflow: hidden;
             transition: 200ms;
-            .open-movie-box {
-                box-sizing: border-box;
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                bottom: 0;
+            &:hover .trending-movie-info {
                 left: 0;
-                display: flex;
-                align-items: flex-end;
-                color: $white;
-                &:hover .open-movie-buttons {
-                    position: relative;
-                    top: 0px;
-                    transition: 100ms;
-                }
-                .open-movie-buttons {
-                    cursor: pointer;
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    justify-content: flex-end;
-                    padding: 0 10px;
-                    gap: 10px;
-                    height: 40px;
-                    width: 100%;
-                    background-color: $yellow-opacity;
-                    backdrop-filter: blur(5px);
-                    transition: 200ms;
-                    position: relative;
-                    top: 40px;
-                    &:hover svg {
-                        animation: arrow 500ms alternate;
-                    }
-                    @keyframes arrow {
-                        0% {
-                            transform: translateX(0px);
-                        }
-                        50% {
-                            transform: translateX(-6px);
-                        }
-                        100% {
-                            transform: translateX(0px);
-                        }
-                    }
-                    svg {
-                        font-size: 1.2rem;
-                    }
+                opacity: 1;
+                .like-and-open {
+                    top: 0;
                 }
             }
             .trending-movie-info {
-                display: none;
+                box-sizing: border-box;
+                width: 100%;
+                height: 100%;
+                padding: 10px;
+                position: absolute;
+                left: 50%;
+                opacity: 0;
+                color: $white;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                background-color: $second-black;
+                backdrop-filter: blur(5px);
+                transition: 200ms;
+                .info {
+                    .title {
+                        font-weight: 600;
+                    }
+                }
+                .vote-average {
+                    width: fit-content;
+                    padding: 4px 10px;
+                    gap: 10px;
+                    display: flex;
+                    align-items: center;
+                    border: 2px solid $yellow;
+                    border-radius: 20px;
+                    cursor: pointer;
+                    margin-top: 5px;
+                    &:hover {
+                        background-color: $yellow;
+                    }
+                }
+                .like-and-open {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    position: relative;
+                    top: 50px;
+                    transition: 200ms;
+                    transition-delay: 300ms;
+                    .icon {
+                        width: 20px;
+                        height: 20px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        padding: 5px;
+                        background-color: unset;
+                        border: 2px solid $yellow;
+                        &:hover {
+                            background-color: $yellow;
+                        }
+                    }
+                    a {
+                        width: 60%;
+                        text-decoration: unset;
+                        color: $white;
+                    }
+                    .play {
+                        height: 20px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 5px 15px;
+                        border: 2px solid $yellow;
+                        background-color: $yellow;
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }

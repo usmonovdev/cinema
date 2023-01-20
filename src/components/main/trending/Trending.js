@@ -6,8 +6,10 @@ import { MdOutlineKeyboardArrowDown, MdSettingsInputComposite } from "react-icon
 import { GoSettings } from "react-icons/go"
 import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { BiChevronRightCircle } from "react-icons/bi"
+import { GiSettingsKnobs } from "react-icons/gi"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import "./trending.scss"
+import { Link } from 'react-router-dom';
 const API = "https://api.themoviedb.org/3/trending/all/day?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 const IMAGE_LINK = "https://image.tmdb.org/t/p/w500/"
@@ -20,7 +22,6 @@ function Trending() {
         />
     );
     const { getMovie, movie } = useMovieContext()
-    const [showMovieInfo] = useState(true)
     const [isCompleted, setIsCompleted] = useState(false)
     const [index, setIndex] = useState(4)
     const [loading, setLoading] = useState(false)
@@ -29,19 +30,14 @@ function Trending() {
         getMovie(`${API}${API_KEY}`)
     }
 
-    const openedMovie = (data) => {
-        console.log(data.id)
-    }
+    console.log(movie)
 
     const loadMore = () => {
         setIndex(index + 4)
-        console.log(index)
         if (index >= 16) {
             setIsCompleted(true)
-            console.log("completed")
         } else {
             setIsCompleted(false)
-            console.log("not completed")
         }
     }
     useEffect(() => {
@@ -51,34 +47,40 @@ function Trending() {
         <div className='container'>
             <div className="title-settings-box">
                 <h1 className='title'>Trending Movies</h1>
-                <GoSettings />
+                <Tooltip placement="top" title={"Filter Trending Movies"} color={"#343434"}>
+                    <GiSettingsKnobs />
+                </Tooltip>
             </div>
             <div className="trending">
                 {initialPosts.map((data) => {
                     const { id, poster_path, first_air_date, name, original_title, vote_average, overview, release_date } = data
                     return (
-                        <div className={`trending-movie-container ${showMovieInfo ? "open" : ""}`}
+                        <div className="trending-movie-container"
                             key={id}
-                            onClick={() => openedMovie(data)}
                         >
                             <div className="trending-movie-box">
-                                <img src={`${IMAGE_LINK}${poster_path}`} alt="" />
+                                <img src={`${IMAGE_LINK}${poster_path}`} alt={name} />
                                 <div className="trending-movie-info">
-                                    <div className="trending-name-vote">
-                                        {name ? <p>{name}</p> : <p>{original_title}</p>}
+                                    <div className='info'>
+                                        {name ? <p className='title'>{name}</p> : <p className='title'>{original_title}</p>}
+                                        {first_air_date ? <p>{first_air_date}</p> : <p>{release_date}</p>}
                                         <Tooltip placement="top" title={"Vote Average"} color={"#343434"}>
                                             <div className='vote-average'>
                                                 <AiFillStar />{vote_average}
                                             </div>
                                         </Tooltip>
                                     </div>
-                                    {first_air_date ? <p>{first_air_date}</p> : <p>{release_date}</p>}
-                                    <p>{overview.slice(0, 50)}...</p>
-                                </div>
-                                <div className="open-movie-box">
-                                    <div className="open-movie-buttons">
-                                        <p>View</p>
-                                        <BiChevronRightCircle />
+                                    <div className="like-and-open">
+                                        <Tooltip placement="top" title={"Mark As Fovorite"} color={"#343434"}>
+                                            <div className='icon'>
+                                                <AiOutlineHeart />
+                                            </div>
+                                        </Tooltip>
+                                        <Link to={`/movies/${id}`}>
+                                            <div className='play'>
+                                                <p>Play</p>
+                                            </div>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
