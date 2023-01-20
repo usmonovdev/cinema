@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { MdOutlineKeyboardArrowDown, MdSettingsInputComposite } from "react-icons/md"
 import { GoSettings } from "react-icons/go"
 import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
+import { BiChevronRightCircle } from "react-icons/bi"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import "./trending.scss"
 const API = "https://api.themoviedb.org/3/trending/all/day?api_key="
@@ -75,11 +76,9 @@ function Trending() {
                                     <p>{overview.slice(0, 50)}...</p>
                                 </div> */}
                                 <div className="open-movie-box">
-                                    <div className="add-to-liked-movies">
-                                        <AiOutlineHeart />
-                                    </div>
-                                    <div className="open-movie">
-                                        <button>Open Movie</button>
+                                    <div className="open-movie-buttons">
+                                        <p>View</p>
+                                        <BiChevronRightCircle />
                                     </div>
                                 </div>
                             </div>

@@ -99,15 +99,45 @@ $large-screens: 1200px;
         .trending-movie-box {
             display: flex;
             position: relative;
+            align-items: flex-end;
+            overflow: hidden;
+            transition: 200ms;
             .open-movie-box {
+                box-sizing: border-box;
                 width: 100%;
+                height: 100%;
                 z-index: 1000;
                 position: absolute;
-                top: 0;
+                bottom: 0;
                 left: 0;
                 display: flex;
-                justify-content: space-between;
-                flex-direction: row;
+                align-items: flex-end;
+                color: $white;
+                transition: 200ms;
+                &:hover .open-movie-buttons {
+                    display: flex;
+                    position: relative;
+                    top: 0px;
+                    transition: 200ms;
+                }
+                .open-movie-buttons {
+                    display: none;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-end;
+                    padding: 0 10px;
+                    gap: 10px;
+                    height: 40px;
+                    width: 100%;
+                    background-color: $yellow-opacity;
+                    backdrop-filter: blur(5px);
+                    transition: 200ms;
+                    position: relative;
+                    top: -30px;
+                    svg {
+                        font-size: 1.2rem;
+                    }
+                }
             }
             .trending-movie-info {
                 display: none;
