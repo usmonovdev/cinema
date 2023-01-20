@@ -23,31 +23,52 @@ $large-screens: 1200px;
     cursor: pointer;
     margin-bottom: 100px;
     transition: 200ms;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     @media screen and (max-width: $mobile) {
         width: 90%;
         margin: 0 auto;
         position: relative;
         top: 60px;
     }
+    .load-icon {
+        transition: 200ms;
+        font-size: 1.5rem;
+    }
 }
 
-.title {
+.title-settings-box {
     // font-size: 20px;
     color: $white;
     position: relative;
     top: 30px;
-    @media screen and (max-width: $large-screens) {
-        font-size: 30px;
-    }
-    @media screen and (max-width: $small-screens) {
-        font-size: 26px;
-    }
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     @media screen and (max-width: $tablet) {
-        font-size: 16px;
-        font-weight: 500;
+        margin: 0;
+    }
+    @media screen and (max-width: $mobile) {
         width: 90%;
         margin: 0 auto;
+    }
+    .title {
+        @media screen and (max-width: $large-screens) {
+            font-size: 30px;
+        }
+        @media screen and (max-width: $small-screens) {
+            font-size: 26px;
+        }
+        @media screen and (max-width: $tablet) {
+            font-size: 16px;
+            font-weight: 500;
+        }
+    }
+    svg {
+        cursor: pointer;
+        font-size: 2rem;
     }
 }
 
@@ -77,6 +98,17 @@ $large-screens: 1200px;
         min-width: 24%;
         .trending-movie-box {
             display: flex;
+            position: relative;
+            .open-movie-box {
+                width: 100%;
+                z-index: 1000;
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: flex;
+                justify-content: space-between;
+                flex-direction: row;
+            }
             .trending-movie-info {
                 display: none;
             }

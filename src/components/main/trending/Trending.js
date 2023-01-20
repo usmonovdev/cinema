@@ -2,7 +2,9 @@ import { Spin, Tooltip } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons';
 import { slice } from 'lodash'
 import React, { useEffect, useState } from 'react'
-import { AiFillStar } from 'react-icons/ai'
+import { MdOutlineKeyboardArrowDown, MdSettingsInputComposite } from "react-icons/md"
+import { GoSettings } from "react-icons/go"
+import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import "./trending.scss"
 const API = "https://api.themoviedb.org/3/trending/all/day?api_key="
@@ -33,7 +35,7 @@ function Trending() {
     const loadMore = () => {
         setIndex(index + 4)
         console.log(index)
-        if (index >= 20) {
+        if (index >= 16) {
             setIsCompleted(true)
             console.log("completed")
         } else {
@@ -46,18 +48,21 @@ function Trending() {
     }, [])
     return (
         <div className='container'>
-            <h1 className='title'>Trending Movies</h1>
+            <div className="title-settings-box">
+                <h1 className='title'>Trending Movies</h1>
+                <GoSettings />
+            </div>
             <div className="trending">
                 {initialPosts.map((data) => {
                     const { id, poster_path, first_air_date, name, original_title, vote_average, overview, release_date } = data
                     return (
-                        <div className={`trending-movie-container ${showMovieInfo ? "open" : ""}`} 
+                        <div className={`trending-movie-container ${showMovieInfo ? "open" : ""}`}
                             key={id}
                             onClick={() => openedMovie(data)}
                         >
                             <div className="trending-movie-box">
                                 <img src={`${IMAGE_LINK}${poster_path}`} alt="" />
-                                <div className="trending-movie-info">
+                                {/* <div className="trending-movie-info">
                                     <div className="trending-name-vote">
                                         {name ? <p>{name}</p> : <p>{original_title}</p>}
                                         <Tooltip placement="top" title={"Vote Average"} color={"#343434"}>
@@ -68,15 +73,23 @@ function Trending() {
                                     </div>
                                     {first_air_date ? <p>{first_air_date}</p> : <p>{release_date}</p>}
                                     <p>{overview.slice(0, 50)}...</p>
+                                </div> */}
+                                <div className="open-movie-box">
+                                    <div className="add-to-liked-movies">
+                                        <AiOutlineHeart />
+                                    </div>
+                                    <div className="open-movie">
+                                        <button>Open Movie</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     )
                 })}
             </div>
-            {isCompleted ? "" : 
+            {isCompleted ? "" :
                 <button className='load-more' onClick={loadMore}>
-                    {loading ? <Spin indicator={antIcon} /> : <p>Load More</p>}
+                    {loading ? <Spin indicator={antIcon} /> : <><p>Load More</p><MdOutlineKeyboardArrowDown className='load-icon' /></>}
                 </button>
             }
         </div>
