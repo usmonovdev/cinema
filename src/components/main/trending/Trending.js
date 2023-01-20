@@ -63,7 +63,7 @@ function Trending() {
                         >
                             <div className="trending-movie-box">
                                 <img src={`${IMAGE_LINK}${poster_path}`} alt="" />
-                                {/* <div className="trending-movie-info">
+                                <div className="trending-movie-info">
                                     <div className="trending-name-vote">
                                         {name ? <p>{name}</p> : <p>{original_title}</p>}
                                         <Tooltip placement="top" title={"Vote Average"} color={"#343434"}>
@@ -74,7 +74,7 @@ function Trending() {
                                     </div>
                                     {first_air_date ? <p>{first_air_date}</p> : <p>{release_date}</p>}
                                     <p>{overview.slice(0, 50)}...</p>
-                                </div> */}
+                                </div>
                                 <div className="open-movie-box">
                                     <div className="open-movie-buttons">
                                         <p>View</p>

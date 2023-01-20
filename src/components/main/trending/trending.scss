@@ -94,7 +94,6 @@ $large-screens: 1200px;
         margin: 0 auto;
     }
     .trending-movie-container {
-        cursor: pointer;
         min-width: 24%;
         .trending-movie-box {
             display: flex;
@@ -106,22 +105,20 @@ $large-screens: 1200px;
                 box-sizing: border-box;
                 width: 100%;
                 height: 100%;
-                z-index: 1000;
                 position: absolute;
                 bottom: 0;
                 left: 0;
                 display: flex;
                 align-items: flex-end;
                 color: $white;
-                transition: 200ms;
                 &:hover .open-movie-buttons {
-                    display: flex;
                     position: relative;
                     top: 0px;
-                    transition: 200ms;
+                    transition: 100ms;
                 }
                 .open-movie-buttons {
-                    display: none;
+                    cursor: pointer;
+                    display: flex;
                     flex-direction: row;
                     align-items: center;
                     justify-content: flex-end;
@@ -133,7 +130,21 @@ $large-screens: 1200px;
                     backdrop-filter: blur(5px);
                     transition: 200ms;
                     position: relative;
-                    top: -30px;
+                    top: 40px;
+                    &:hover svg {
+                        animation: arrow 500ms alternate;
+                    }
+                    @keyframes arrow {
+                        0% {
+                            transform: translateX(0px);
+                        }
+                        50% {
+                            transform: translateX(-6px);
+                        }
+                        100% {
+                            transform: translateX(0px);
+                        }
+                    }
                     svg {
                         font-size: 1.2rem;
                     }
