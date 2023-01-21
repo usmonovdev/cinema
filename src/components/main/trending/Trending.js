@@ -30,14 +30,15 @@ function Trending() {
         getMovie(`${API}${API_KEY}`)
     }
 
-    console.log(movie)
+    // console.log(movie)
+    console.log(index)
 
     const loadMore = () => {
         setLoading(true)
-        setInterval(() => {
+        setTimeout(() => {
             setIndex(index + 4)
             setLoading(false)
-        }, 3000);
+        }, 2000);
         if (index >= 16) {
             setIsCompleted(true)
         } else {
@@ -51,7 +52,7 @@ function Trending() {
         <div className='container'>
             <div className="title-settings-box">
                 <h1 className='title'><span className='sharp'>#</span> Trending</h1>
-                <Tooltip placement="top" title={"Filter Trending Movies"} color={"#343434"}>
+                <Tooltip placement="top" title={"Filter #Trending"} color={"#343434"}>
                     <GiSettingsKnobs />
                 </Tooltip>
             </div>
@@ -94,7 +95,7 @@ function Trending() {
             </div>
             {isCompleted ? "" :
                 <button className='load-more' onClick={loadMore}>
-                    {loading ? <Spin indicator={antIcon} /> : <><p>Load More</p><MdOutlineKeyboardArrowDown className='load-icon' /></>}
+                    {loading ? <Spin indicator={antIcon} className="spin" /> : <><p>Load More</p><MdOutlineKeyboardArrowDown className='load-icon' /></>}
                 </button>
             }
         </div>
