@@ -33,7 +33,11 @@ function Trending() {
     console.log(movie)
 
     const loadMore = () => {
-        setIndex(index + 4)
+        setLoading(true)
+        setInterval(() => {
+            setIndex(index + 4)
+            setLoading(false)
+        }, 3000);
         if (index >= 16) {
             setIsCompleted(true)
         } else {
@@ -46,7 +50,7 @@ function Trending() {
     return (
         <div className='container'>
             <div className="title-settings-box">
-                <h1 className='title'>Trending Movies</h1>
+                <h1 className='title'><span className='sharp'>#</span> Trending</h1>
                 <Tooltip placement="top" title={"Filter Trending Movies"} color={"#343434"}>
                     <GiSettingsKnobs />
                 </Tooltip>

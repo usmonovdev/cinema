@@ -39,6 +39,15 @@ $large-screens: 1200px;
     }
 }
 
+.sharp {
+    opacity: .6;
+    margin-right: 5px;
+    transition: 200ms;
+    &:hover {
+        opacity: 1;
+    }
+}
+
 .title-settings-box {
     // font-size: 20px;
     color: $white;
@@ -69,7 +78,7 @@ $large-screens: 1200px;
     }
     svg {
         cursor: pointer;
-        font-size: 2rem;
+        font-size: 1.7rem;
         transform: rotate(-90deg);
     }
 }
