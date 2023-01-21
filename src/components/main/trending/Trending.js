@@ -1,18 +1,37 @@
-import { Spin, Tooltip } from 'antd'
+import { Tooltip } from 'antd'
 import { LoadingOutlined } from '@ant-design/icons';
 import { slice } from 'lodash'
 import React, { useEffect, useState } from 'react'
-import { MdOutlineKeyboardArrowDown, MdSettingsInputComposite } from "react-icons/md"
-import { GoSettings } from "react-icons/go"
+import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
-import { BiChevronRightCircle } from "react-icons/bi"
 import { GiSettingsKnobs } from "react-icons/gi"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
-import "./trending.scss"
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import "./trending.scss"
 const API = "https://api.themoviedb.org/3/trending/all/day?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 const IMAGE_LINK = "https://image.tmdb.org/t/p/w500/"
+
+const container = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+        opacity: 1,
+        scale: 1,
+        transition: {
+            delayChildren: 0.3,
+            staggerChildren: 0.2
+        }
+    }
+};
+
+const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1
+    }
+};
 
 function Trending() {
     const antIcon = (
@@ -31,14 +50,14 @@ function Trending() {
     }
 
     // console.log(movie)
-    console.log(index)
+    // console.log(index)
 
     const loadMore = () => {
         setLoading(true)
         setTimeout(() => {
             setIndex(index + 4)
             setLoading(false)
-        }, 2000);
+        }, 1000);
         if (index >= 16) {
             setIsCompleted(true)
         } else {
@@ -52,15 +71,22 @@ function Trending() {
         <div className='container'>
             <div className="title-settings-box">
                 <h1 className='title'><span className='sharp'>#</span> Trending</h1>
-                <Tooltip placement="top" title={"Filter #Trending"} color={"#343434"}>
+                <Tooltip placement="left" title={"Filter #Trending"} color={"#343434"}>
                     <GiSettingsKnobs />
                 </Tooltip>
             </div>
-            <div className="trending">
+            <motion.ul
+                className="trending"
+                variants={container}
+                initial="hidden"
+                animate="visible"
+            >
                 {initialPosts.map((data) => {
                     const { id, poster_path, first_air_date, name, original_title, vote_average, overview, release_date } = data
                     return (
-                        <div className="trending-movie-container"
+                        <motion.li
+                            className="trending-movie-container"
+                            variants={item}
                             key={id}
                         >
                             <div className="trending-movie-box">
@@ -89,14 +115,16 @@ function Trending() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </motion.li>
                     )
                 })}
-            </div>
+            </motion.ul>
             {isCompleted ? "" :
-                <button className='load-more' onClick={loadMore}>
-                    {loading ? <Spin indicator={antIcon} className="spin" /> : <><p>Load More</p><MdOutlineKeyboardArrowDown className='load-icon' /></>}
-                </button>
+                <>
+                    <button className='load-more' onClick={loadMore}>
+                        {loading ? <div className='spin'></div> : <><p>Load More</p><MdOutlineKeyboardArrowDown className='load-icon' /></>}
+                    </button>
+                </>
             }
         </div>
     )

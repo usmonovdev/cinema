@@ -34,6 +34,22 @@ $large-screens: 1200px;
         position: relative;
         top: 60px;
     }
+    .spin {
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        border: .15rem solid rgba($white, 0.2);
+        border-top-color: $white;
+        animation: spin 1s infinite linear;
+    }
+    @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
     .load-icon {
         transition: 200ms;
         font-size: 1.5rem;
@@ -107,6 +123,7 @@ $large-screens: 1200px;
     }
     .trending-movie-container {
         min-width: 24%;
+        list-style: none;
         .trending-movie-box {
             display: flex;
             position: relative;
