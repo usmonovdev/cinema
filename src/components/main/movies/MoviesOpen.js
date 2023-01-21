@@ -2,14 +2,13 @@ import "../home/home.scss"
 import "./moviesOpen.scss"
 import "../movies/moviesOpen.scss"
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Navbar from '../../navbar/Navbar'
 import BannedContent from "../../BannedContent/BannedContent"
 import RightInfo from "./rightInfo/RightInfo"
 import LeftInfo from "./leftInfo/LeftInfo"
 import { useMovieContext } from "../../../context/MovieContex/MovieContex"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
-// https://api.themoviedb.org/3/movie/204541/?api_key=917c387c9e20da3ba121bafdd8e7df79
 function Movies() {
     const [loading, setLoading] = useState(true)
     const { getMovie, movie } = useMovieContext()
@@ -44,7 +43,6 @@ function Movies() {
                         </div>
                     </div>
                 </div>
-                <Link to="/">Back</Link>
             </> : <>
                 <BannedContent />
             </>}

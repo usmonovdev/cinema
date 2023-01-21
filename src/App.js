@@ -4,10 +4,9 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./components/main/home/Home";
 import MoviesOpen from "./components/main/movies/MoviesOpen";
 import Movies from "./components/main/movies/Movies";
-import Navbar from "./components/navbar/Navbar";
 import { MovieContextProvider } from "./context/MovieContex/MovieContex";
-import Trending from "./components/main/trending/Trending";
-import Posts from "./Posts";
+import Tvshow from "./components/main/tvshow/Tvshow";
+import ShowOpen from "./components/main/tvshow/ShowOpen";
 
 function App() {
   return (
@@ -16,8 +15,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Registration />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/movies/:moviesId" element={<MoviesOpen />} />
+          <Route path="/movie" element={<Movies />} />
+          <Route path="/movie/:moviesId" element={<MoviesOpen />} />
+          <Route path="/show" element={<Tvshow />} />
+          <Route path="/show/:showId" element={<ShowOpen />} />
         </Routes>
       </MovieContextProvider>
       {/* <Posts /> */}

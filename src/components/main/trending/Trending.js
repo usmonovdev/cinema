@@ -7,44 +7,26 @@ import { GiSettingsKnobs } from "react-icons/gi"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { container, item } from '../../../framer/Framer'
 import "./trending.scss"
+import Filter from './Filter'
 const API = "https://api.themoviedb.org/3/trending/all/day?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 const IMAGE_LINK = "https://image.tmdb.org/t/p/w500/"
-
-const container = {
-    hidden: { opacity: 1, scale: 0 },
-    visible: {
-        opacity: 1,
-        scale: 1,
-        transition: {
-            delayChildren: 0.3,
-            staggerChildren: 0.2
-        }
-    }
-}
-
-const item = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-        y: 0,
-        opacity: 1
-    }
-}
 
 function Trending() {
     const { getMovie, movie, loadingApi } = useMovieContext()
     const [isCompleted, setIsCompleted] = useState(false)
     const [index, setIndex] = useState(4)
     const [loading, setLoading] = useState(false)
+    const [filterComponent, setFilterComponent] = useState(false)
     const initialPosts = slice(movie.results, 0, index)
     const getData = () => {
         getMovie(`${API}${API_KEY}`)
     }
-
-    // console.log(movie)
-    // console.log(index)
-    console.log(loadingApi)
+    useEffect(() => {
+        getData()
+    }, [])
 
     const loadMore = () => {
         setLoading(true)
@@ -58,15 +40,15 @@ function Trending() {
             setIsCompleted(false)
         }
     }
-    useEffect(() => {
-        getData()
-    }, [])
+    const filter = () => {
+        setFilterComponent(true)
+    }
     return (
         <div className='container'>
             <div className="title-settings-box">
                 <h1 className='title'><span className='sharp'>#</span> Trending</h1>
                 <Tooltip placement="left" title={"Filter #Trending"} color={"#343434"}>
-                    <GiSettingsKnobs />
+                    <GiSettingsKnobs onClick={filter} />
                 </Tooltip>
             </div>
             <motion.ul
@@ -76,7 +58,7 @@ function Trending() {
                 animate="visible"
             >
                 {initialPosts.map((data) => {
-                    const { id, poster_path, first_air_date, name, original_title, vote_average, overview, release_date } = data
+                    const { id, poster_path, first_air_date, name, original_title, vote_average, media_type, release_date } = data
                     return (
                         <motion.li
                             className="trending-movie-container"
@@ -101,7 +83,7 @@ function Trending() {
                                                 <AiOutlineHeart />
                                             </div>
                                         </Tooltip>
-                                        <Link to={`/movies/${id}`}>
+                                        <Link to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}>
                                             <div className='play'>
                                                 <p>Play</p>
                                             </div>
@@ -116,10 +98,11 @@ function Trending() {
             {isCompleted ? "" :
                 <>
                     <button className='load-more' onClick={loadMore}>
-                        {loading ? <div className='spin'></div> : <><p>Load More</p><MdOutlineKeyboardArrowDown className='load-icon' /></>}
+                        {loading && !loadingApi ? <div className='spin'></div> : <><p>Load More</p><MdOutlineKeyboardArrowDown className='load-icon' /></>}
                     </button>
                 </>
             }
+            {/* {filterComponent ? <Filter /> : ""} */}
         </div>
     )
 }

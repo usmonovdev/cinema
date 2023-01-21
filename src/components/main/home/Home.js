@@ -74,8 +74,8 @@ function Home() {
                                         </button>
                                     </div>
                                     <div>
-                                        <Link to={`/movies/${id}`} className='play-watch-now'><div>Watch Now!</div></Link>
-                                        <Link to={`/movies/${id}`}><button className='play-icon'><BiPlay /></button></Link>
+                                        <Link to={`/movie/${id}`} className='play-watch-now'><div>Watch Now!</div></Link>
+                                        <Link to={`/movie/${id}`}><button className='play-icon'><BiPlay /></button></Link>
                                     </div>
                                 </div>
                                 <div className='info-box'>
