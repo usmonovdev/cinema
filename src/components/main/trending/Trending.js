@@ -1,5 +1,4 @@
 import { Tooltip } from 'antd'
-import { LoadingOutlined } from '@ant-design/icons';
 import { slice } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
@@ -23,7 +22,7 @@ const container = {
             staggerChildren: 0.2
         }
     }
-};
+}
 
 const item = {
     hidden: { y: 20, opacity: 0 },
@@ -31,16 +30,10 @@ const item = {
         y: 0,
         opacity: 1
     }
-};
+}
 
 function Trending() {
-    const antIcon = (
-        <LoadingOutlined
-            style={{ fontSize: 24 }}
-            spin
-        />
-    );
-    const { getMovie, movie } = useMovieContext()
+    const { getMovie, movie, loadingApi } = useMovieContext()
     const [isCompleted, setIsCompleted] = useState(false)
     const [index, setIndex] = useState(4)
     const [loading, setLoading] = useState(false)
@@ -51,6 +44,7 @@ function Trending() {
 
     // console.log(movie)
     // console.log(index)
+    console.log(loadingApi)
 
     const loadMore = () => {
         setLoading(true)

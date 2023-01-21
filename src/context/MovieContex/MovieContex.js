@@ -5,6 +5,7 @@ const MovieContext = createContext();
 
 const MovieContextProvider = ({ children }) => {
     const [movie, setMovie] = useState([]);
+    const [loadingApi, setLoadingApi] = useState(true)
 
     // Get Single Movie by APi and id
     const getMovie = (url) => {
@@ -12,6 +13,7 @@ const MovieContextProvider = ({ children }) => {
             axios.get(url)
                 .then((movie) => {
                     setMovie(movie.data)
+                    setLoadingApi(false)
                 });
         } catch (error) {
             console.log("Error in API", error)
@@ -19,7 +21,7 @@ const MovieContextProvider = ({ children }) => {
     }
 
     return (
-        <MovieContext.Provider value={{ movie, getMovie }}>
+        <MovieContext.Provider value={{ movie, loadingApi, getMovie }}>
             {children}
         </MovieContext.Provider>
     )
