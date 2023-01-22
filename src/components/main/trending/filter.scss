@@ -1,12 +1,17 @@
 $second-black: #2e2e2e71;
 
 .filter-container {
-    width: 100vw;
-    height: 100vh;
-    background-color: $second-black;
-    backdrop-filter: blur(5px);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 3000;
+    .media-type {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        .option {
+            p {
+                text-transform: uppercase !important;
+                font-size: 4rem;
+            }
+        }
+    }
 }

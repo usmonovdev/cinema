@@ -1,0 +1,13 @@
+.popoverTitleContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    svg {
+        opacity: .5;
+        cursor: pointer;
+        &:hover {
+            opacity: 1;
+        }
+    }
+}

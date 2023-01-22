@@ -1,15 +1,16 @@
-import { Tooltip } from 'antd'
+import { Popover, Tooltip } from 'antd'
 import { slice } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
-import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
+import { AiFillStar, AiOutlineHeart, AiOutlineInfoCircle } from 'react-icons/ai'
 import { GiSettingsKnobs } from "react-icons/gi"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { container, item } from '../../../framer/Framer'
+import { container, item } from '../../../assets/Framer'
 import "./trending.scss"
 import Filter from './Filter'
+import { PopoverTitleTrending } from "../../../assets/AntD"
 const API = "https://api.themoviedb.org/3/trending/all/day?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 const IMAGE_LINK = "https://image.tmdb.org/t/p/w500/"
@@ -19,7 +20,6 @@ function Trending() {
     const [isCompleted, setIsCompleted] = useState(false)
     const [index, setIndex] = useState(4)
     const [loading, setLoading] = useState(false)
-    const [filterComponent, setFilterComponent] = useState(false)
     const initialPosts = slice(movie.results, 0, index)
     const getData = () => {
         getMovie(`${API}${API_KEY}`)
@@ -40,16 +40,13 @@ function Trending() {
             setIsCompleted(false)
         }
     }
-    const filter = () => {
-        setFilterComponent(true)
-    }
     return (
         <div className='container'>
             <div className="title-settings-box">
                 <h1 className='title'><span className='sharp'>#</span> Trending</h1>
-                <Tooltip placement="left" title={"Filter #Trending"} color={"#343434"}>
-                    <GiSettingsKnobs onClick={filter} />
-                </Tooltip>
+                <Popover placement="topRight" content={<Filter />} title={PopoverTitleTrending} trigger="click">
+                    <GiSettingsKnobs />
+                </Popover>
             </div>
             <motion.ul
                 className="trending"
@@ -102,7 +99,6 @@ function Trending() {
                     </button>
                 </>
             }
-            {/* {filterComponent ? <Filter /> : ""} */}
         </div>
     )
 }
