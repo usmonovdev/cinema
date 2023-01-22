@@ -5,7 +5,7 @@ import "./filter.scss"
 
 function Filter() {
     const { movie } = useMovieContext()
-    console.log(movie)
+    // console.log(movie)
     const handleChange = (value) => {
         console.log(`selected ${value}`);
     };
@@ -24,7 +24,12 @@ function Filter() {
         return false;
     });
 
-    console.log(uniqueEmployees)
+    // Refresh Page to reset filter settings
+    const refreshPage = () => {
+        window.location.reload(false)
+    }
+
+    // console.log(uniqueEmployees)
 
     return (
         <div className='filter-container'>
@@ -82,7 +87,32 @@ function Filter() {
                         })}
                     </Select>
                 </div>
+                <div className='media-type'>
+                    <p>Stars</p>
+                    <Select
+                        defaultValue="All"
+                        style={{
+                            width: 120,
+                        }}
+                        onChange={handleChange}
+                        options={[
+                            {
+                                value: 'all',
+                                label: 'All',
+                            },
+                            {
+                                value: '8',
+                                label: '8.0 +',
+                            },
+                            {
+                                value: '9',
+                                label: '9.0 +',
+                            }
+                        ]}
+                    />
+                </div>
             </ConfigProvider>
+            <button className='reset' onClick={refreshPage}>Reset</button>
         </div>
     )
 }

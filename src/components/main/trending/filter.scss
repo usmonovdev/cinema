@@ -22,4 +22,14 @@ $large-screens: 1200px;
             }
         }
     }
+    .reset {
+        // width: ;
+        background-color: unset;
+        border: none;
+        position: relative;
+        top: 4px;
+        left: 78%;
+        cursor: pointer;
+        color: $yellow;
+    }
 }
