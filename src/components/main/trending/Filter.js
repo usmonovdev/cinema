@@ -1,5 +1,4 @@
-import { Select, Slider } from 'antd'
-import { Option } from 'antd/es/mentions'
+import { Select, ConfigProvider } from 'antd'
 import React from 'react'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import "./filter.scss"
@@ -11,13 +10,13 @@ function Filter() {
         console.log(`selected ${value}`);
     };
 
-    const uniqueIds = [];
+    const uniqueLang = [];
 
     const uniqueEmployees = movie.results.filter(element => {
-        const isDuplicate = uniqueIds.includes(element.original_language);
+        const isDuplicate = uniqueLang.includes(element.original_language);
 
         if (!isDuplicate) {
-            uniqueIds.push(element.original_language);
+            uniqueLang.push(element.original_language);
 
             return true;
         }
@@ -29,51 +28,61 @@ function Filter() {
 
     return (
         <div className='filter-container'>
-            <div className='media-type'>
-                <p>Media</p>
-                <Select
-                    defaultValue="All"
-                    style={{
-                        width: 120,
-                    }}
-                    onChange={handleChange}
-                    options={[
-                        {
-                            value: 'all',
-                            label: 'All',
-                        },
-                        {
-                            value: 'movie',
-                            label: 'Movie',
-                        },
-                        {
-                            value: 'tv',
-                            label: 'Tv Show',
-                        }
-                    ]}
-                />
-            </div>
-            <div className='media-type'>
-                <p>Lang</p>
-                <Select
-                    style={{
-                        width: 120,
-                    }}
-                    onChange={handleChange}
-                >
-                    {uniqueEmployees.map((data) => {
-                        return (
-                            <>
-                                <Option
-                                    key={data.id}
-                                    value={data.original_language}>
-                                    <p className='option'>{data.original_language}</p>
-                                </Option>
-                            </>
-                        )
-                    })}
-                </Select>
-            </div>
+            <ConfigProvider
+                theme={{
+                    token: {
+                        colorPrimary: "#e6b31e"
+                    }
+                }}
+            >
+                <div className='media-type'>
+                    <p>Media</p>
+                    <Select
+                        defaultValue="All"
+                        style={{
+                            width: 120,
+                        }}
+                        onChange={handleChange}
+                        options={[
+                            {
+                                value: 'all',
+                                label: 'All',
+                            },
+                            {
+                                value: 'movie',
+                                label: 'Movie',
+                            },
+                            {
+                                value: 'tv',
+                                label: 'Tv Show',
+                            }
+                        ]}
+                    />
+                </div>
+                <div className='media-type'>
+                    <p>Lang</p>
+                    <Select
+                        defaultValue="All"
+                        style={{
+                            width: 120,
+                        }}
+                        onChange={handleChange}
+                    >
+                        {uniqueEmployees.map((data) => {
+                            return (
+                                <>
+                                    <Select.Option
+                                        key={data.id}
+                                        value={data.original_language}
+                                    >
+                                        <p className='option' style={{ textTransform: "capitalize" }}>{data.original_language}</p>
+                                    </Select.Option>
+                                </>
+                            )
+                        })}
+                    </Select>
+                </div>
+            </ConfigProvider>
         </div>
     )
 }
