@@ -2,7 +2,7 @@ import { Popover, Tooltip } from 'antd'
 import { slice } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
-import { AiFillStar, AiOutlineHeart, AiOutlineInfoCircle } from 'react-icons/ai'
+import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { GiSettingsKnobs } from "react-icons/gi"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import { Link } from 'react-router-dom';
@@ -16,11 +16,13 @@ const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 const IMAGE_LINK = "https://image.tmdb.org/t/p/w500/"
 
 function Trending() {
-    const { getMovie, movie, loadingApi } = useMovieContext()
+    const { getMovie, movie, loadingApi, filterMedia } = useMovieContext()
     const [isCompleted, setIsCompleted] = useState(false)
     const [index, setIndex] = useState(4)
     const [loading, setLoading] = useState(false)
+
     const initialPosts = slice(movie.results, 0, index)
+    // console.log(movie.results)
     const getData = () => {
         getMovie(`${API}${API_KEY}`)
     }
@@ -44,7 +46,7 @@ function Trending() {
         <div className='container'>
             <div className="title-settings-box">
                 <h1 className='title'><span className='sharp'>#</span> Trending</h1>
-                <Popover placement="topRight" content={<Filter />} title={PopoverTitleTrending} trigger="click">
+                <Popover placement="topRight" content={<Filter movie={movie} />} title={PopoverTitleTrending} trigger="click">
                     <GiSettingsKnobs />
                 </Popover>
             </div>

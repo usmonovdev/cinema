@@ -4,32 +4,62 @@ import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import "./filter.scss"
 
 function Filter() {
-    const { movie } = useMovieContext()
-    // console.log(movie)
-    const handleChange = (value) => {
-        console.log(`selected ${value}`);
+    const { movie, setMovie, filterMedia, setFilterMedia } = useMovieContext()
+
+    // filter by media
+    const hendleFilterByMedia = (value) => {
+        const filterByMedia = movie.results.filter((data) => {
+            if (value == "movie") {
+                return data.media_type == "movie"
+            } else if (value == "tv") {
+                return data.media_type == "tv"
+            } else {
+                return data
+            }
+        })
+        setFilterMedia(filterByMedia)
     };
 
-    const uniqueLang = [];
+    console.log(filterMedia)
 
-    const uniqueEmployees = movie.results.filter(element => {
-        const isDuplicate = uniqueLang.includes(element.original_language);
+    // filter by language
+    const handleFilterByLang = (value) => {
+        const filterByLang = movie.results.filter((data) => {
+            if (value == "en") {
+                return data.original_language == "en"
+            } else if (value == "fr") {
+                return data.original_language == "fr"
+            } else if (value == "tr") {
+                return data.original_language == "tr"
+            } else {
+                return data
+            }
+        })
+        setFilterMedia(filterByLang)
+    };
 
-        if (!isDuplicate) {
-            uniqueLang.push(element.original_language);
-
-            return true;
-        }
-
-        return false;
-    });
+    // filter by star
+    const handleFilterByStar = (value) => {
+        const filterByStar = movie.results.filter((data) => {
+            if (value >= "9") {
+                return data.vote_average >= "9"
+            } else if (value >= "8") {
+                return data.vote_average >= "8"
+            } else if (value >= "7") {
+                return data.vote_average >= "7"
+            } else if (value >= "6") {
+                return data.vote_average >= "6"
+            } else {
+                return data
+            }
+        })
+        setFilterMedia(filterByStar)
+    };
 
     // Refresh Page to reset filter settings
     const refreshPage = () => {
         window.location.reload(false)
     }
-
-    // console.log(uniqueEmployees)
 
     return (
         <div className='filter-container'>
@@ -47,7 +77,7 @@ function Filter() {
                         style={{
                             width: 120,
                         }}
-                        onChange={handleChange}
+                        onChange={event => hendleFilterByMedia(event)}
                         options={[
                             {
                                 value: 'all',
@@ -71,21 +101,26 @@ function Filter() {
                         style={{
                             width: 120,
                         }}
-                        onChange={handleChange}
-                    >
-                        {uniqueEmployees.map((data) => {
-                            return (
-                                <>
-                                    <Select.Option
-                                        key={data.id}
-                                        value={data.original_language}
-                                    >
-                                        <p className='option' style={{ textTransform: "capitalize" }}>{data.original_language}</p>
-                                    </Select.Option>
-                                </>
-                            )
-                        })}
-                    </Select>
+                        onChange={event => handleFilterByLang(event)}
+                        options={[
+                            {
+                                value: 'all',
+                                label: 'All',
+                            },
+                            {
+                                value: 'en',
+                                label: 'English',
+                            },
+                            {
+                                value: 'fr',
+                                label: 'France',
+                            },
+                            {
+                                value: 'tr',
+                                label: 'Turkish',
+                            }
+                        ]}
+                    />
                 </div>
                 <div className='media-type'>
                     <p>Stars</p>
@@ -94,19 +129,27 @@ function Filter() {
                         style={{
                             width: 120,
                         }}
-                        onChange={handleChange}
+                        onChange={event => handleFilterByStar(event)}
                         options={[
                             {
                                 value: 'all',
                                 label: 'All',
                             },
                             {
+                                value: '9',
+                                label: '9.0 +',
+                            },
+                            {
                                 value: '8',
                                 label: '8.0 +',
                             },
                             {
-                                value: '9',
-                                label: '9.0 +',
+                                value: '7',
+                                label: '7.0 +',
+                            },
+                            {
+                                value: '6',
+                                label: '6.0 +',
                             }
                         ]}
                     />
