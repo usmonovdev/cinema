@@ -60,9 +60,6 @@ $large-screens: 1200px;
     opacity: .6;
     margin-right: 5px;
     transition: 200ms;
-    &:hover {
-        opacity: 1;
-    }
 }
 
 .title-settings-box {
@@ -91,6 +88,9 @@ $large-screens: 1200px;
         @media screen and (max-width: $tablet) {
             font-size: 16px;
             font-weight: 500;
+        }
+        &:hover .sharp{
+            opacity: 1;
         }
     }
     svg {

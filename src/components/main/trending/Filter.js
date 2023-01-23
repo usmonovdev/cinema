@@ -1,59 +1,24 @@
 import { Select, ConfigProvider } from 'antd'
 import React from 'react'
-import { useMovieContext } from '../../../context/MovieContex/MovieContex'
+import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import "./filter.scss"
 
 function Filter() {
-    const { movie, setMovie, filterMedia, setFilterMedia } = useMovieContext()
+    const { setFilterValueInMediaType, setFilterValueInLang, setFilterValueInStar } = useMovieContext()
 
     // filter by media
     const hendleFilterByMedia = (value) => {
-        const filterByMedia = movie.results.filter((data) => {
-            if (value == "movie") {
-                return data.media_type == "movie"
-            } else if (value == "tv") {
-                return data.media_type == "tv"
-            } else {
-                return data
-            }
-        })
-        setFilterMedia(filterByMedia)
+        setFilterValueInMediaType(value)
     };
-
-    console.log(filterMedia)
 
     // filter by language
     const handleFilterByLang = (value) => {
-        const filterByLang = movie.results.filter((data) => {
-            if (value == "en") {
-                return data.original_language == "en"
-            } else if (value == "fr") {
-                return data.original_language == "fr"
-            } else if (value == "tr") {
-                return data.original_language == "tr"
-            } else {
-                return data
-            }
-        })
-        setFilterMedia(filterByLang)
+        setFilterValueInLang(value)
     };
 
     // filter by star
     const handleFilterByStar = (value) => {
-        const filterByStar = movie.results.filter((data) => {
-            if (value >= "9") {
-                return data.vote_average >= "9"
-            } else if (value >= "8") {
-                return data.vote_average >= "8"
-            } else if (value >= "7") {
-                return data.vote_average >= "7"
-            } else if (value >= "6") {
-                return data.vote_average >= "6"
-            } else {
-                return data
-            }
-        })
-        setFilterMedia(filterByStar)
+        setFilterValueInStar(value)
     };
 
     // Refresh Page to reset filter settings

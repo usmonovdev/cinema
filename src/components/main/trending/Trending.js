@@ -1,35 +1,62 @@
-import { Popover, Tooltip } from 'antd'
+import { Popover } from 'antd'
 import { slice } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
-import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { GiSettingsKnobs } from "react-icons/gi"
-import { useMovieContext } from '../../../context/MovieContex/MovieContex'
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { container, item } from '../../../assets/Framer'
 import "./trending.scss"
 import Filter from './Filter'
 import { PopoverTitleTrending } from "../../../assets/AntD"
+import axios from 'axios'
+import TrendingData from './TrendingData'
+import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 const API = "https://api.themoviedb.org/3/trending/all/day?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
-const IMAGE_LINK = "https://image.tmdb.org/t/p/w500/"
 
 function Trending() {
-    const { getMovie, movie, loadingApi, filterMedia } = useMovieContext()
+    const { filterValueInMediaType, filterValueInLang, filterValueInStar } = useMovieContext()
+    const [movie, setMovie] = useState([]);
     const [isCompleted, setIsCompleted] = useState(false)
     const [index, setIndex] = useState(4)
     const [loading, setLoading] = useState(false)
 
-    const initialPosts = slice(movie.results, 0, index)
-    // console.log(movie.results)
-    const getData = () => {
-        getMovie(`${API}${API_KEY}`)
-    }
-    useEffect(() => {
-        getData()
-    }, [])
+    // filter movie by media_type
+    const filter = movie.filter((data) => {
+        if (filterValueInMediaType == "movie") { //filter by media_type
+            return data.media_type == "movie"
+        } else if (filterValueInMediaType == "tv") {
+            return data.media_type == "tv"
+        } else if (filterValueInLang == "en") { // filter by language
+            return data.original_language == "en"
+        } else if (filterValueInLang == "fr") {
+            return data.original_language == "fr"
+        } else if (filterValueInLang == "tr") {
+            return data.original_language == "tr"
+        } else if (filterValueInStar >= 9) { // filter by star
+            return data.vote_average >= 9
+        } else if (filterValueInStar >= 8) {
+            return data.vote_average >= 8
+        } else if (filterValueInStar >= 7) {
+            return data.vote_average >= 7
+        } else if (filterValueInStar >= 6) {
+            return data.vote_average >= 6
+        } else {
+            return data
+        }
+    });
 
+    const initialPosts = slice(filter, 0, index)
+    useEffect(() => {
+        try {
+            axios.get(`${API}${API_KEY}`)
+                .then((movie) => {
+                    setMovie(movie.data.results)
+                });
+        } catch (error) {
+            console.log("Error in API", error)
+        }
+    }, []);
+    console.log(movie.length)
+    console.log(index)
     const loadMore = () => {
         setLoading(true)
         setTimeout(() => {
@@ -42,62 +69,24 @@ function Trending() {
             setIsCompleted(false)
         }
     }
+
     return (
         <div className='container'>
             <div className="title-settings-box">
                 <h1 className='title'><span className='sharp'>#</span> Trending</h1>
-                <Popover placement="topRight" content={<Filter movie={movie} />} title={PopoverTitleTrending} trigger="click">
+                <Popover
+                    placement="topRight"
+                    content={<Filter />}
+                    title={PopoverTitleTrending} trigger="click"
+                >
                     <GiSettingsKnobs />
                 </Popover>
             </div>
-            <motion.ul
-                className="trending"
-                variants={container}
-                initial="hidden"
-                animate="visible"
-            >
-                {initialPosts.map((data) => {
-                    const { id, poster_path, first_air_date, name, original_title, vote_average, media_type, release_date } = data
-                    return (
-                        <motion.li
-                            className="trending-movie-container"
-                            variants={item}
-                            key={id}
-                        >
-                            <div className="trending-movie-box">
-                                <img src={`${IMAGE_LINK}${poster_path}`} alt={name} />
-                                <div className="trending-movie-info">
-                                    <div className='info'>
-                                        {name ? <p className='title'>{name}</p> : <p className='title'>{original_title}</p>}
-                                        {first_air_date ? <p>{first_air_date}</p> : <p>{release_date}</p>}
-                                        <Tooltip placement="top" title={"Vote Average"} color={"#343434"}>
-                                            <div className='vote-average'>
-                                                <AiFillStar />{vote_average}
-                                            </div>
-                                        </Tooltip>
-                                    </div>
-                                    <div className="like-and-open">
-                                        <Tooltip placement="top" title={"Mark As Fovorite"} color={"#343434"}>
-                                            <div className='icon'>
-                                                <AiOutlineHeart />
-                                            </div>
-                                        </Tooltip>
-                                        <Link to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}>
-                                            <div className='play'>
-                                                <p>Play</p>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.li>
-                    )
-                })}
-            </motion.ul>
+            <TrendingData initialPosts={initialPosts} />
             {isCompleted ? "" :
                 <>
                     <button className='load-more' onClick={loadMore}>
-                        {loading && !loadingApi ? <div className='spin'></div> : <><p>Load More</p><MdOutlineKeyboardArrowDown className='load-icon' /></>}
+                        {loading ? <div className='spin'></div> : <><p>Load More</p><MdOutlineKeyboardArrowDown className='load-icon' /></>}
                     </button>
                 </>
             }

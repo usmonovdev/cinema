@@ -6,7 +6,9 @@ const MovieContext = createContext();
 const MovieContextProvider = ({ children }) => {
     const [movie, setMovie] = useState([]);
     // state for filter #trending
-    const [filterMedia, setFilterMedia] = useState([])
+    const [filterValueInMediaType, setFilterValueInMediaType] = useState("all")
+    const [filterValueInLang, setFilterValueInLang] = useState("all")
+    const [filterValueInStar, setFilterValueInStar] = useState("all")
     const [loadingApi, setLoadingApi] = useState(true)
 
     // Get Single Movie by APi and id
@@ -23,7 +25,18 @@ const MovieContextProvider = ({ children }) => {
     }
 
     return (
-        <MovieContext.Provider value={{ movie, loadingApi, getMovie, filterMedia, setFilterMedia }}>
+        <MovieContext.Provider
+            value={{ 
+                movie,
+                loadingApi,
+                getMovie,
+                filterValueInMediaType,
+                setFilterValueInMediaType,
+                filterValueInLang,
+                setFilterValueInLang,
+                filterValueInStar,
+                setFilterValueInStar }}
+            >
             {children}
         </MovieContext.Provider>
     )
