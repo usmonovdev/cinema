@@ -19,13 +19,14 @@ function TrendingData({ initialPosts }) {
             setIndex(index + 4)
             setLoading(false)
         }, 1000);
-        if (index >= 16) {
+        if (index >= 16 || initialPosts.length < 3) {
             setIsCompleted(true)
         } else {
             setIsCompleted(false)
         }
     }
     console.log(isCompleted)
+    console.log(initialPosts)
     return (
         <>
             <motion.ul
