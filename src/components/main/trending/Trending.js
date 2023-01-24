@@ -1,7 +1,6 @@
 import { Popover } from 'antd'
 import { slice } from 'lodash'
 import React, { useEffect, useState } from 'react'
-import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import { GiSettingsKnobs } from "react-icons/gi"
 import "./trending.scss"
 import Filter from './Filter'
@@ -13,11 +12,9 @@ const API = "https://api.themoviedb.org/3/trending/all/day?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Trending() {
-    const { filterValueInMediaType, filterValueInLang, filterValueInStar } = useMovieContext()
+    const { filterValueInMediaType, filterValueInLang, filterValueInStar, index } = useMovieContext()
     const [movie, setMovie] = useState([]);
-    const [isCompleted, setIsCompleted] = useState(false)
-    const [index, setIndex] = useState(4)
-    const [loading, setLoading] = useState(false)
+    // const [isCompleted, setIsCompleted] = useState(false)
 
     // filter movie by media_type
     const filter = movie.filter((data) => {
@@ -55,20 +52,8 @@ function Trending() {
             console.log("Error in API", error)
         }
     }, []);
-    console.log(movie.length)
-    console.log(index)
-    const loadMore = () => {
-        setLoading(true)
-        setTimeout(() => {
-            setIndex(index + 4)
-            setLoading(false)
-        }, 1000);
-        if (index >= 16) {
-            setIsCompleted(true)
-        } else {
-            setIsCompleted(false)
-        }
-    }
+    // console.log(movie.length)
+    // console.log(index)
 
     return (
         <div className='container'>
@@ -83,13 +68,6 @@ function Trending() {
                 </Popover>
             </div>
             <TrendingData initialPosts={initialPosts} />
-            {isCompleted ? "" :
-                <>
-                    <button className='load-more' onClick={loadMore}>
-                        {loading ? <div className='spin'></div> : <><p>Load More</p><MdOutlineKeyboardArrowDown className='load-icon' /></>}
-                    </button>
-                </>
-            }
         </div>
     )
 }

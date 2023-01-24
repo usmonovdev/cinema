@@ -9,6 +9,9 @@ const MovieContextProvider = ({ children }) => {
     const [filterValueInMediaType, setFilterValueInMediaType] = useState("all")
     const [filterValueInLang, setFilterValueInLang] = useState("all")
     const [filterValueInStar, setFilterValueInStar] = useState("all")
+    // load more state
+    const [isCompleted, setIsCompleted] = useState(false)
+    const [index, setIndex] = useState(4)
     const [loadingApi, setLoadingApi] = useState(true)
 
     // Get Single Movie by APi and id
@@ -26,7 +29,7 @@ const MovieContextProvider = ({ children }) => {
 
     return (
         <MovieContext.Provider
-            value={{ 
+            value={{
                 movie,
                 loadingApi,
                 getMovie,
@@ -35,8 +38,13 @@ const MovieContextProvider = ({ children }) => {
                 filterValueInLang,
                 setFilterValueInLang,
                 filterValueInStar,
-                setFilterValueInStar }}
-            >
+                setFilterValueInStar,
+                isCompleted,
+                setIsCompleted,
+                index,
+                setIndex
+            }}
+        >
             {children}
         </MovieContext.Provider>
     )
