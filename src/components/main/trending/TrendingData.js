@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { container, item } from '../../../assets/Framer'
 import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
-import { Button, ConfigProvider, Empty, Tooltip } from 'antd';
+import { Tooltip } from 'antd';
+import { RiMovie2Line } from "react-icons/ri"
 const IMAGE_LINK = "https://image.tmdb.org/t/p/w500/"
 
 function TrendingData({ initialPosts }) {
     console.log(initialPosts)
     return (
         <motion.ul
-            className="trending"
+            className={`trending ${initialPosts.length == 0 ? "trendingNoItem" : ""}`}
             variants={container}
             initial="hidden"
             animate="visible"
@@ -54,7 +55,12 @@ function TrendingData({ initialPosts }) {
                             </motion.li>
                         )
                     })}
-                </> : <p>No items found!</p>
+                </> :
+                <div className='noItems'>
+                    <RiMovie2Line />
+                    <p>Items not found!</p>
+                </div>
+
             }
         </motion.ul>
     )

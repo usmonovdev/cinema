@@ -218,3 +218,23 @@ $large-screens: 1200px;
         height: 100%;
     }
 }
+
+.trending.trendingNoItem {
+    height: 150px;
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    .noItems {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        svg {
+            font-size: 3rem;
+        }
+        p {
+            opacity: .5;
+        }
+    }
+}
