@@ -54,7 +54,7 @@ function Filter() {
                             },
                             {
                                 value: 'tv',
-                                label: 'Tv Show',
+                                label: 'Tv Films',
                             }
                         ]}
                     />
