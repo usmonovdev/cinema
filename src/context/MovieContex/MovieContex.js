@@ -13,7 +13,7 @@ const MovieContextProvider = ({ children }) => {
     const [isCompleted, setIsCompleted] = useState(false)
     const [index, setIndex] = useState(4)
     // show all info
-    const [info, setInfo] = useState(true)
+    const [info, setInfo] = useState(false)
     const [loadingApi, setLoadingApi] = useState(true)
 
     // Get Single Movie by APi and id
