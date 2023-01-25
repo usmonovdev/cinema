@@ -10,7 +10,6 @@ function ShowOpen() {
     const [loading, setLoading] = useState(true)
     const { getMovie, movie } = useMovieContext()
     const { showId } = useParams()
-    console.log(movie)
     useEffect(() => {
         getMovie(`https://api.themoviedb.org/3/tv/${showId}?api_key=${API_KEY}`);
         setLoading(false)
@@ -35,8 +34,8 @@ function ShowOpen() {
                         backgroundImage: `url("https://image.tmdb.org/t/p/original/${backdrop_path}")`
                     }}>
                         <div className="opened-movie-backdrop">
-                            <LeftInfo movie={movie} />
-                            <RightInfo movie={movie} />
+                            <LeftInfo show={movie} />
+                            <RightInfo show={movie} />
                         </div>
                     </div>
                 </div>

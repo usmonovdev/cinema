@@ -1,8 +1,10 @@
 import React from 'react'
 import "../leftInfo/leftinfo.scss"
 import { Image } from 'antd';
+import { useMovieContext } from '../../../../context/MovieContex/MovieContex';
 
-function LeftInfo({ movie }) {
+function LeftInfo() {
+    const { movie } = useMovieContext()
     return (
         <>
             <div className="left-info">
