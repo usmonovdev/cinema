@@ -7,20 +7,23 @@ import Movies from "./components/main/movies/Movies";
 import { MovieContextProvider } from "./context/MovieContex/MovieContex";
 import Tvshow from "./components/main/tvshow/Tvshow";
 import ShowOpen from "./components/main/tvshow/ShowOpen";
+import { StateContextProvider } from "./context/StateContext/StateContext";
 
 function App() {
   return (
     <>
-      <MovieContextProvider>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Registration />} />
-          <Route path="/movie" element={<Movies />} />
-          <Route path="/movie/:moviesId" element={<MoviesOpen />} />
-          <Route path="/show" element={<Tvshow />} />
-          <Route path="/show/:showId" element={<ShowOpen />} />
-        </Routes>
-      </MovieContextProvider>
+      <StateContextProvider>
+        <MovieContextProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/register" element={<Registration />} />
+            <Route path="/movie" element={<Movies />} />
+            <Route path="/movie/:moviesId" element={<MoviesOpen />} />
+            <Route path="/show" element={<Tvshow />} />
+            <Route path="/show/:showId" element={<ShowOpen />} />
+          </Routes>
+        </MovieContextProvider>
+      </StateContextProvider>
       {/* <Posts /> */}
     </>
   );

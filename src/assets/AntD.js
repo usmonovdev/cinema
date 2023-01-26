@@ -5,3 +5,10 @@ export const PopoverTitleTrending = () => {
         </div>
     )
 }
+export const PopoverTitleUpcoming = () => {
+    return (
+        <div className="popoverTitleContainer">
+            <p>Filter <span>#</span>Upcoming</p>
+        </div>
+    )
+}
