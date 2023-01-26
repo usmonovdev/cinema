@@ -12,6 +12,7 @@ const MovieContextProvider = ({ children }) => {
     // load more state
     const [isCompleted, setIsCompleted] = useState(false)
     const [index, setIndex] = useState(4)
+    const [upcomingIndex, setUpcomingIndex] = useState(4)
     // show all info
     const [info, setInfo] = useState(false)
     const [loadingApi, setLoadingApi] = useState(true)
@@ -46,7 +47,9 @@ const MovieContextProvider = ({ children }) => {
                 index,
                 setIndex,
                 info,
-                setInfo
+                setInfo,
+                upcomingIndex,
+                setUpcomingIndex
             }}
         >
             {children}

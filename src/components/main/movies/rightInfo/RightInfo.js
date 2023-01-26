@@ -28,7 +28,7 @@ function RightInfo() {
                 <h1>{title}</h1>
                 <div className='right-info-small'>
                     <p>{release_date?.replaceAll("-", "/")} ({first})</p>
-                    <p>{tagline}</p>
+                    {tagline ? <p>{tagline}</p> : ""}
                     <p>{hours}h {remainMinutes}min</p>
                 </div>
                 <div className="right-overview-box">

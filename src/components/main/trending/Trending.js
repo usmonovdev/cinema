@@ -14,7 +14,6 @@ const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 function Trending() {
     const { filterValueInMediaType, filterValueInLang, filterValueInStar, index } = useMovieContext()
     const [movie, setMovie] = useState([]);
-    // const [isCompleted, setIsCompleted] = useState(false)
 
     // filter movie by media_type
     const filter = movie.filter((data) => {
@@ -56,7 +55,7 @@ function Trending() {
     // console.log(index)
 
     return (
-        <div className='container'>
+        <div className='container' style={{marginBottom: "60px"}}>
             <div className="title-settings-box">
                 <h1 className='title'><span className='sharp'>#</span> Trending</h1>
                 <Popover
