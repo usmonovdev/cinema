@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 function RightInfo() {
     const { info, setInfo, movie } = useMovieContext()
-    const { original_title, original_name, first_air_date, status, overview, production_countries, episode_run_time, name } = movie;
+    const { original_title, first_air_date, status, overview, production_countries, episode_run_time, name } = movie;
     const convertProductionCountries = production_countries || []
     const first = convertProductionCountries[0]?.iso_3166_1
     const allInfo = () => {

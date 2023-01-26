@@ -1,12 +1,12 @@
 import React from 'react'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
-import "./info.scss"
+import "../tvshow/info.scss"
 
 function Info() {
     const { movie } = useMovieContext()
-    const { languages, genres, production_companies, first_air_date, last_air_date, seasons, production_countries } = movie
+    const { budget, original_language, release_date, genres, production_companies, production_countries } = movie
 
-    // console.log(movie)
+    console.log(movie)
     return (
         <div className='info'>
             <div className='genres'>
@@ -17,21 +17,9 @@ function Info() {
                 })}
             </div>
             <div className='border'>
-                <p>Air Date: <span>{first_air_date?.replaceAll("-", "/")}</span></p>
-                <p>Last Air Date: <span>{last_air_date?.replaceAll("-", "/")}</span></p>
-                <p className='lang'>Languages: <span>{languages}</span></p>
-            </div>
-            <div className="border">
-                <p className='title'><span>Seasons: </span></p>
-                {seasons?.map((data) => {
-                    return (
-                        <div key={data.id}>
-                            <p>Air date: <span>{data.air_date}</span></p>
-                            <p>Name: <span>{data.name}</span></p>
-                            <p>Episode count: <span>{data.episode_count}</span></p>
-                        </div>
-                    )
-                })}
+                <p>Relase date: <span>{release_date?.replaceAll("-", "/")}</span></p>
+                <p>Budget: <span>{budget}</span></p>
+                <p className='lang'>Languages: <span>{original_language}</span></p>
             </div>
             <div className='border'>
                 <p className='production_companies title'><span>Production companies: </span></p>

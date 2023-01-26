@@ -10,7 +10,6 @@ $large-screens: 1200px;
 .ant-drawer-body {
     .info {
         .border {
-            border-bottom: 1px solid #05050527;
             margin-top: 5px;
             margin-bottom: 15px;
         }
@@ -40,7 +39,6 @@ $large-screens: 1200px;
         }
         &:last-of-type {
             border-bottom: unset;
-            // font-size: 2rem;
         }
     }
 }
