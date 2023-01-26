@@ -7,6 +7,25 @@ $tablet: 768px;
 $small-screens: 992px;
 $large-screens: 1200px;
 
+.ant-drawer .ant-drawer-content {
+    background-color: $black;
+    color: $white;
+}
+
+.ant-drawer .ant-drawer-close {
+    color: $white;
+    opacity: 0.5;
+    transition: 200ms;
+    &:hover {
+        color: $white;
+        opacity: 1;
+    }
+}
+
+.ant-drawer .ant-drawer-title {
+    color: $white;
+}
+
 .events-box {
     width: 100%;
     position: relative;

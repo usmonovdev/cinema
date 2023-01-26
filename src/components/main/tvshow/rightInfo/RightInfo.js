@@ -1,7 +1,7 @@
 import React from 'react'
 import "./rightInfo.scss"
 import { RxBookmark } from "react-icons/rx"
-import { Button, Drawer, Space, Tooltip } from 'antd';
+import { Button, ConfigProvider, Drawer, Space, Tooltip } from 'antd';
 import { AiOutlineHeart, AiOutlineInfoCircle, AiOutlineStar } from 'react-icons/ai';
 import Info from '../Info';
 import { useMovieContext } from '../../../../context/MovieContex/MovieContex';
@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 function RightInfo() {
     const { info, setInfo, movie } = useMovieContext()
-    const { original_title, first_air_date, status, overview, production_countries, episode_run_time } = movie;
+    const { original_title, original_name, first_air_date, status, overview, production_countries, episode_run_time } = movie;
     const convertProductionCountries = production_countries || []
     const first = convertProductionCountries[0]?.iso_3166_1
     const allInfo = () => {
@@ -31,22 +31,30 @@ function RightInfo() {
                 <div className="right-overview-box">
                     <p>{overview}</p>
                 </div>
-                {info ? <Drawer
-                    title="Title"
-                    onClose={onClose}
-                    width={500}
-                    open={info}
-                    placement={"bottom"}
-                    extra={
-                        <Space>
-                            <Button type="primary" onClick={onClose}>
-                                OK
-                            </Button>
-                        </Space>
-                    }
+                {info ? <ConfigProvider
+                    theme={{
+                        token: {
+                            colorPrimary: "#e6b31e"
+                        }
+                    }}
                 >
-                    <Info />
-                </Drawer> : ""}
+                    <Drawer
+                        title={original_title ? original_title : original_name}
+                        onClose={onClose}
+                        width={500}
+                        open={info}
+                        placement={"bottom"}
+                        extra={
+                            <Space>
+                                <Button type="primary" onClick={onClose}>
+                                    OK
+                                </Button>
+                            </Space>
+                        }
+                    >
+                        <Info />
+                    </Drawer>
+                </ConfigProvider> : ""}
                 <div className="events-box">
                     <Tooltip placement="bottom" title={"Mark As Fovorite"} color={"#343434"}>
                         <AiOutlineHeart className='events' />
