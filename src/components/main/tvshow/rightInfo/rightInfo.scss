@@ -22,8 +22,20 @@ $large-screens: 1200px;
     }
 }
 
+.ant-drawer .ant-drawer-header {
+    border-bottom: 1px solid rgba(5, 5, 5, 0.151);
+}
+
 .ant-drawer .ant-drawer-title {
     color: $white;
+}
+
+.ant-btn {
+    border-radius: unset;
+}
+
+.ant-drawer-content-wrapper {
+    height: 600px !important;
 }
 
 .events-box {

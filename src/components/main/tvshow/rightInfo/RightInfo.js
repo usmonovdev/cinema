@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 function RightInfo() {
     const { info, setInfo, movie } = useMovieContext()
-    const { original_title, original_name, first_air_date, status, overview, production_countries, episode_run_time } = movie;
+    const { original_title, original_name, first_air_date, status, overview, production_countries, episode_run_time, name } = movie;
     const convertProductionCountries = production_countries || []
     const first = convertProductionCountries[0]?.iso_3166_1
     const allInfo = () => {
@@ -22,7 +22,7 @@ function RightInfo() {
     return (
         <>
             <div className="right-info">
-                <h1>{original_title}</h1>
+                <h1>{original_title ? original_title : name}</h1>
                 <div className='right-info-small'>
                     {first_air_date ? <p>{first_air_date?.replaceAll("-", "/")} ({first})</p> : ""}
                     {status ? <p>{status}</p> : ""}
@@ -39,9 +39,9 @@ function RightInfo() {
                     }}
                 >
                     <Drawer
-                        title={original_title ? original_title : original_name}
+                        title={original_title ? original_title : name}
                         onClose={onClose}
-                        width={500}
+                        width={800}
                         open={info}
                         placement={"bottom"}
                         extra={
@@ -65,9 +65,7 @@ function RightInfo() {
                     <Tooltip placement="bottom" title={"Add To Your Watchlist"} color={"#343434"}>
                         <RxBookmark className='events' />
                     </Tooltip>
-                    <Tooltip placement="bottom" title={"All info"} color={"#343434"}>
-                        <AiOutlineInfoCircle className='events allInfo' onClick={allInfo} />
-                    </Tooltip>
+                    <AiOutlineInfoCircle className='events allInfo' onClick={allInfo} />
                 </div>
             </div>
         </>

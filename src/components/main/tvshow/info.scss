@@ -1,5 +1,45 @@
-.right-info {
+$white: #fff;
+$black: #343434;
+$yellow: #e6b31e;
+$yellow-opacity: #e6b41e33;
+$mobile: 480px;
+$tablet: 768px;
+$small-screens: 992px;
+$large-screens: 1200px;
+
+.ant-drawer-body {
     .info {
-        color: wheat;
+        .border {
+            border-bottom: 1px solid #05050527;
+            margin-top: 5px;
+        }
+        .genres {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            margin-bottom: 5px;
+            p {
+                padding: 2px;
+                background-color: $yellow;
+            }
+        }
+        .lang {
+            text-transform: capitalize;
+            margin-bottom: 5px;
+        }
+        p {
+            font-weight: 400;
+            margin-bottom: 5px;
+            span {
+                font-weight: 600;
+            }
+        }
+        .production_companies {
+            margin-top: 5px;
+        }
+        &:last-of-type {
+            border-bottom: unset;
+            // font-size: 2rem;
+        }
     }
 }
