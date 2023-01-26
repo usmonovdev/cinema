@@ -23,7 +23,7 @@ function Info() {
                 <p className='lang'>Languages: <span>{languages}</span></p>
             </div>
             <div className="border">
-                <p><span>Seasons: </span></p>
+                <p className='title'><span>Seasons: </span></p>
                 {seasons?.map((data) => {
                     return (
                         <div key={data.id}>
@@ -35,7 +35,7 @@ function Info() {
                 })}
             </div>
             <div className='border'>
-                <p className='production_companies'><span>Production companies: </span></p>
+                <p className='production_companies title'><span>Production companies: </span></p>
                 {production_companies?.map((data) => {
                     return (
                         <p key={data.id}>{data.name}({data.origin_country})</p>
@@ -43,7 +43,7 @@ function Info() {
                 })}
             </div>
             <div style={{marginTop: "5px"}}>
-                <p><span>Production countries:</span></p>
+                <p className='title'><span>Production countries:</span></p>
                 {production_countries?.map((data) => {
                     return (
                         <div key={data.id}>
