@@ -19,13 +19,13 @@ function Movies() {
         setLoading(false)
     }, [])
 
-    const { adult, backdrop_path, original_title } = movie;
+    const { adult, backdrop_path, title } = movie;
 
     useEffect(() => {
         if (loading) {
             document.title = `Movie - Loading...`
         } else {
-            document.title = `Movie - ${original_title}`
+            document.title = `Movie - ${title}`
         }
     })
     return (

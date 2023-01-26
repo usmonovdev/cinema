@@ -25,8 +25,6 @@ function TrendingData({ initialPosts }) {
             setIsCompleted(false)
         }
     }
-    console.log(isCompleted)
-    console.log(initialPosts)
     return (
         <>
             <motion.ul

@@ -8,7 +8,7 @@ import { useMovieContext } from '../../../../context/MovieContex/MovieContex';
 
 function RightInfo() {
     const { info, setInfo, movie } = useMovieContext()
-    const { original_title, release_date, runtime, tagline, overview, production_countries, name} = movie;
+    const { title, release_date, runtime, tagline, overview, production_countries, name} = movie;
     const convertProductionCountries = production_countries || []
     const first = convertProductionCountries[0]?.iso_3166_1
 
@@ -25,7 +25,7 @@ function RightInfo() {
     return (
         <>
             <div className="right-info">
-                <h1>{original_title}</h1>
+                <h1>{title}</h1>
                 <div className='right-info-small'>
                     <p>{release_date?.replaceAll("-", "/")} ({first})</p>
                     <p>{tagline}</p>
@@ -42,7 +42,7 @@ function RightInfo() {
                     }}
                 >
                     <Drawer
-                        title={original_title ? original_title : name}
+                        title={title ? title : name}
                         onClose={onClose}
                         width={800}
                         open={info}
