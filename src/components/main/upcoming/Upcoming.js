@@ -39,7 +39,6 @@ function Upcoming() {
     });
 
     const loadedUpcoming = slice(filter, 0, upcomingIndex)
-    console.log(upcoming)
     useEffect(() => {
         try {
             axios.get(`${API}${API_KEY}`)

@@ -11,33 +11,33 @@ import { useState } from 'react';
 import { useStateContext } from '../../../context/StateContext/StateContext';
 const IMAGE_LINK = "https://image.tmdb.org/t/p/w500/"
 
-function UpcomingData({ loadedUpcoming }) {
-    const { isCompleted, setIsCompleted } = useStateContext()
-    const { upcomingIndex, setUpcomingIndex } = useMovieContext()
+function TopRatedData({ initialPosts }) {
+    const { index, setIndex } = useMovieContext()
+    const { isCompletedTop, setIsCompletedTop} = useStateContext()
     const [loading, setLoading] = useState(false)
     const loadMore = () => {
         setLoading(true)
         setTimeout(() => {
-            setUpcomingIndex(upcomingIndex + 4)
+            setIndex(index + 4)
             setLoading(false)
         }, 1000);
-        if (upcomingIndex >= 16 || loadedUpcoming.length < 3) {
-            setIsCompleted(true)
+        if (index >= 16 || initialPosts.length < 3) {
+            setIsCompletedTop(true)
         } else {
-            setIsCompleted(false)
+            setIsCompletedTop(false)
         }
     }
     return (
         <>
             <motion.ul
-                className={`trending ${loadedUpcoming.length == 0 ? "trendingNoItem" : ""}`}
+                className={`trending ${initialPosts.length == 0 ? "trendingNoItem" : ""}`}
                 variants={container}
                 initial="hidden"
                 animate="visible"
             >
-                {loadedUpcoming.length !== 0 ?
+                {initialPosts.length !== 0 ?
                     <>
-                        {loadedUpcoming.map((data) => {
+                        {initialPosts.map((data) => {
                             const { id, poster_path, first_air_date, name, title, vote_average, media_type, release_date } = data
                             return (
                                 <motion.li
@@ -49,7 +49,7 @@ function UpcomingData({ loadedUpcoming }) {
                                         <img src={`${IMAGE_LINK}${poster_path}`} alt={name} />
                                         <div className="trending-movie-info">
                                             <div className='info'>
-                                                {name ? <p className='title'>{name}</p> : <><p className='title'>{title}</p></>}
+                                                {name ? <p className='title'>{name}</p> : <p className='title'>{title}</p>}
                                                 {first_air_date ? <p>{first_air_date}</p> : <p>{release_date}</p>}
                                                 <Tooltip placement="top" title={"Vote Average"} color={"#343434"}>
                                                     <div className='vote-average'>
@@ -63,7 +63,7 @@ function UpcomingData({ loadedUpcoming }) {
                                                         <AiOutlineHeart />
                                                     </div>
                                                 </Tooltip>
-                                                <Link to={`/movie/${id}`}>
+                                                <Link to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}>
                                                     <div className='play'>
                                                         <p>Play</p>
                                                     </div>
@@ -82,7 +82,7 @@ function UpcomingData({ loadedUpcoming }) {
 
                 }
             </motion.ul>
-            {isCompleted  ? "" :
+            {isCompletedTop  ? "" :
                 <>
                     <button className='load-more' onClick={loadMore}>
                         {loading ? <div className='spin'></div> : <><p>Load More</p><MdOutlineKeyboardArrowDown className='load-icon' /></>}
@@ -93,4 +93,4 @@ function UpcomingData({ loadedUpcoming }) {
     )
 }
 
-export default UpcomingData
+export default TopRatedData

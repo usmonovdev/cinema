@@ -12,3 +12,10 @@ export const PopoverTitleUpcoming = () => {
         </div>
     )
 }
+export const PopoverTitleTop = () => {
+    return (
+        <div className="popoverTitleContainer">
+            <p>Filter <span>#</span>Top Rated</p>
+        </div>
+    )
+}

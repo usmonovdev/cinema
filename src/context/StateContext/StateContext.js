@@ -9,8 +9,13 @@ const StateContextProvider = ({ children }) => {
     const [filterUpLang, setFilterUpLang] = useState("all")
     const [filterUpStar, setFilterUpStar] = useState("all")
 
+    // state for filter #top rated
+    const [filterTopLang, setFilterTopLang] = useState("all")
+    const [filterTopStar, setFilterTopStar] = useState("all")
+
     // state for loadMore
     const [isCompleted, setIsCompleted] = useState(false)
+    const [isCompletedTop, setIsCompletedTop] = useState(false)
 
     return (
         <StateContext.Provider
@@ -20,7 +25,13 @@ const StateContextProvider = ({ children }) => {
                 filterUpStar,
                 setFilterUpStar,
                 isCompleted,
-                setIsCompleted
+                setIsCompleted,
+                filterTopLang,
+                setFilterTopLang,
+                filterTopStar,
+                setFilterTopStar,
+                isCompletedTop,
+                setIsCompletedTop
             }}
         >
             {children}

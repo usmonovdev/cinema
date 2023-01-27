@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import { Tooltip } from 'antd';
 import Trending from '../trending/Trending'
 import Upcoming from '../upcoming/Upcoming'
+import TopRated from '../topRated/TopRated'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Home() {
@@ -101,6 +102,7 @@ function Home() {
             </div>
             <Trending />
             <Upcoming />
+            <TopRated />
         </>
     )
 }
