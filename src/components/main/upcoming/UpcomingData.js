@@ -8,10 +8,12 @@ import { Tooltip } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import { useState } from 'react';
+import { useStateContext } from '../../../context/StateContext/StateContext';
 const IMAGE_LINK = "https://image.tmdb.org/t/p/w500/"
 
 function UpcomingData({ loadedUpcoming }) {
-    const { isCompleted, setIsCompleted, upcomingIndex, setUpcomingIndex } = useMovieContext()
+    const { isCompleted, setIsCompleted } = useStateContext()
+    const { upcomingIndex, setUpcomingIndex } = useMovieContext()
     const [loading, setLoading] = useState(false)
     const loadMore = () => {
         setLoading(true)
