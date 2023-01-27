@@ -36,7 +36,7 @@ function TrendingData({ initialPosts }) {
                 {initialPosts.length !== 0 ?
                     <>
                         {initialPosts.map((data) => {
-                            const { id, poster_path, first_air_date, name, original_title, vote_average, media_type, release_date } = data
+                            const { id, poster_path, first_air_date, name, title, vote_average, media_type, release_date } = data
                             return (
                                 <motion.li
                                     className="trending-movie-container"
@@ -47,7 +47,7 @@ function TrendingData({ initialPosts }) {
                                         <img src={`${IMAGE_LINK}${poster_path}`} alt={name} />
                                         <div className="trending-movie-info">
                                             <div className='info'>
-                                                {name ? <p className='title'>{name}</p> : <p className='title'>{original_title}</p>}
+                                                {name ? <p className='title'>{name}</p> : <p className='title'>{title}</p>}
                                                 {first_air_date ? <p>{first_air_date}</p> : <p>{release_date}</p>}
                                                 <Tooltip placement="top" title={"Vote Average"} color={"#343434"}>
                                                     <div className='vote-average'>

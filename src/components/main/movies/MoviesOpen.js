@@ -28,6 +28,7 @@ function Movies() {
             document.title = `Movie - ${title}`
         }
     })
+    console.log(movie)
     return (
         <>
             {!adult ? <>
