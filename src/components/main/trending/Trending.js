@@ -22,10 +22,10 @@ function Trending() {
             return data.media_type == "tv"
         } else if (filterValueInLang == "en") { // filter by language
             return data.original_language == "en"
-        } else if (filterValueInLang == "fr") {
-            return data.original_language == "fr"
-        } else if (filterValueInLang == "tr") {
-            return data.original_language == "tr"
+        } else if (filterValueInLang == "ru") {
+            return data.original_language == "ru"
+        } else if (filterValueInLang == "uz") {
+            return data.original_language == "uz"
         } else if (filterValueInStar >= 9) { // filter by star
             return data.vote_average >= 9
         } else if (filterValueInStar >= 8) {

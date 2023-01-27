@@ -49,12 +49,12 @@ function Filter() {
                                 label: 'English',
                             },
                             {
-                                value: 'fr',
-                                label: 'France',
+                                value: 'ru',
+                                label: 'Russian',
                             },
                             {
-                                value: 'tr',
-                                label: 'Turkish',
+                                value: 'uz',
+                                label: 'Uzbek',
                             }
                         ]}
                     />

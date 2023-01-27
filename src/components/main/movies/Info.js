@@ -8,7 +8,7 @@ function Info() {
     return (
         <div className='info'>
             <div className='genres'>
-                {genres?.map((data) => {
+                {genres.slice(0, 3)?.map((data) => {
                     return (
                         <p key={data.id}>{data.name}</p>
                     )

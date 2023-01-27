@@ -21,10 +21,10 @@ function Upcoming() {
     const filter = upcoming.filter((data) => {
         if (filterUpLang == "en") { // filter by language
             return data.original_language == "en"
-        } else if (filterUpLang == "fr") {
-            return data.original_language == "fr"
-        } else if (filterUpLang == "tr") {
-            return data.original_language == "tr"
+        } else if (filterUpLang == "ru") {
+            return data.original_language == "ru"
+        } else if (filterUpLang == "uz") {
+            return data.original_language == "uz"
         } else if (filterUpStar >= 9) { // filter by star
             return data.vote_average >= 9
         } else if (filterUpStar >= 8) {
