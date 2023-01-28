@@ -9,6 +9,7 @@ import { Tooltip } from 'antd';
 import Trending from '../trending/Trending'
 import Upcoming from '../upcoming/Upcoming'
 import TopRated from '../topRated/TopRated'
+import Footer from '../../footer/Footer'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Home() {
@@ -103,6 +104,7 @@ function Home() {
             <Trending />
             <Upcoming />
             <TopRated />
+            <Footer />
         </>
     )
 }

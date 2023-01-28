@@ -63,7 +63,7 @@ function TopRatedData({ initialPosts }) {
                                                         <AiOutlineHeart />
                                                     </div>
                                                 </Tooltip>
-                                                <Link to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}>
+                                                <Link to={`/movie/${id}`}>
                                                     <div className='play'>
                                                         <p>Play</p>
                                                     </div>
