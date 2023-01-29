@@ -2,6 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import "../../../navbar/navbar.scss"
 import "./actors.scss"
+import "../../../../assets/slick.css"
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Slider from 'react-slick'
@@ -89,7 +90,7 @@ function Actors({ moviesId }) {
                     {filterActors.map((data) => {
                         return (
                             <div className="actor" key={data.id}>
-                                <img style={{ width: "90%" }} id='actorImage' src={`https://image.tmdb.org/t/p/original/${data.profile_path}`} alt={data.name} />
+                                <img style={{ width: "100%" }} id='actorImage' src={`https://image.tmdb.org/t/p/original/${data.profile_path}`} alt={data.name} />
                                 <p>{data.name}</p>
                             </div>
                         )
