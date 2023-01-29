@@ -70,30 +70,32 @@ function Actors({ moviesId }) {
     }
     return (
         <div className='container'>
-            <div className="title-settings-box actors-title">
-                <h1 className='title'>
-                    <span className='sharp'>#</span>
-                    Actors
-                </h1>
-                <div className='slider-buttons'>
-                    <button className='buttonSlider right' onClick={next} >
-                        <BiLeftArrowAlt />
-                    </button>
-                    <button className='buttonSlider left' onClick={previous}>
-                        <BiRightArrowAlt />
-                    </button>
+            <div className="actors-box">
+                <div className="actors-title">
+                    <h1 className='title'>
+                        <span className='sharp'>#</span>
+                        Actors
+                    </h1>
+                    <div className='slider-buttons'>
+                        <button className='buttonSlider right' onClick={next} >
+                            <BiLeftArrowAlt />
+                        </button>
+                        <button className='buttonSlider left' onClick={previous}>
+                            <BiRightArrowAlt />
+                        </button>
+                    </div>
                 </div>
+                <Slider {...settings} ref={customeSlider}>
+                    {filterActors.map((data) => {
+                        return (
+                            <div className="actor" key={data.id}>
+                                <img style={{ width: "90%" }} id='actorImage' src={`https://image.tmdb.org/t/p/original/${data.profile_path}`} alt={data.name} />
+                                <p>{data.name}</p>
+                            </div>
+                        )
+                    })}
+                </Slider>
             </div>
-            <Slider {...settings} ref={customeSlider}>
-                {filterActors.map((data) => {
-                    return (
-                        <div className="actor" key={data.id}>
-                            <img style={{ width: "90%" }} id='actorImage' src={`https://image.tmdb.org/t/p/original/${data.profile_path}`} alt={data.name} />
-                            <p>{data.name}</p>
-                        </div>
-                    )
-                })}
-            </Slider>
         </div>
     )
 }
