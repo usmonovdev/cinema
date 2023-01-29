@@ -50,8 +50,6 @@ function Trending() {
             console.log("Error in API", error)
         }
     }, []);
-    // console.log(movie.length)
-    // console.log(index)
 
     return (
         <div className='container' style={{marginBottom: "60px"}}>
