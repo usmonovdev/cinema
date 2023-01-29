@@ -5,6 +5,7 @@ import BannedContent from "../../BannedContent/BannedContent"
 import { useMovieContext } from "../../../context/MovieContex/MovieContex"
 import RightInfo from '../tvshow/rightInfo/RightInfo'
 import LeftInfo from '../tvshow/leftInfo/LeftInfo'
+import Footer from '../../footer/Footer'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 function ShowOpen() {
     const [loading, setLoading] = useState(true)
@@ -42,6 +43,7 @@ function ShowOpen() {
             </> : <>
                 <BannedContent />
             </>}
+            <Footer />
         </>
     )
 }

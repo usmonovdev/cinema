@@ -8,6 +8,7 @@ import BannedContent from "../../BannedContent/BannedContent"
 import RightInfo from "./rightInfo/RightInfo"
 import LeftInfo from "./leftInfo/LeftInfo"
 import { useMovieContext } from "../../../context/MovieContex/MovieContex"
+import Footer from "../../footer/Footer"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 function Movies() {
     const [loading, setLoading] = useState(true)
@@ -27,8 +28,8 @@ function Movies() {
         } else {
             document.title = `Movie - ${title}`
         }
-    })
-    console.log(movie)
+    });
+    
     return (
         <>
             {!adult ? <>
@@ -40,13 +41,14 @@ function Movies() {
                     }}>
                         <div className="opened-movie-backdrop">
                             <LeftInfo movie={movie} />
-                            <RightInfo movie={movie} />
+                            <RightInfo movie={movie} moviesId={moviesId}/>
                         </div>
                     </div>
                 </div>
             </> : <>
                 <BannedContent />
             </>}
+            <Footer />
         </>
     )
 }

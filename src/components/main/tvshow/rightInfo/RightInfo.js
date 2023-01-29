@@ -1,11 +1,10 @@
 import React from 'react'
 import "./rightInfo.scss"
-import { RxBookmark } from "react-icons/rx"
 import { Button, ConfigProvider, Drawer, Space, Tooltip } from 'antd';
 import { AiOutlineHeart, AiOutlineInfoCircle, AiOutlineStar } from 'react-icons/ai';
+import { BiPlay } from "react-icons/bi";
 import Info from '../Info';
 import { useMovieContext } from '../../../../context/MovieContex/MovieContex';
-import { useState } from 'react';
 
 function RightInfo() {
     const { info, setInfo, movie } = useMovieContext()
@@ -62,10 +61,10 @@ function RightInfo() {
                     <Tooltip placement="bottom" title={"Rate It!"} color={"#343434"}>
                         <AiOutlineStar className='events' />
                     </Tooltip>
-                    <Tooltip placement="bottom" title={"Add To Your Watchlist"} color={"#343434"}>
-                        <RxBookmark className='events' />
-                    </Tooltip>
                     <AiOutlineInfoCircle className='events allInfo' onClick={allInfo} />
+                    <Tooltip placement="bottom" title={"Play Trailer"} color={"#343434"}>
+                        <BiPlay className='events' />
+                    </Tooltip>
                 </div>
             </div>
         </>
