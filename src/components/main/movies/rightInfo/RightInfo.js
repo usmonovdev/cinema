@@ -30,7 +30,7 @@ function RightInfo() {
                     <p>{hours}h {remainMinutes}min</p>
                 </div>
                 <div className="right-overview-box">
-                    <p>{overview}</p>
+                    <p>{overview?.slice(0, 220)}...</p>
                 </div>
                 {info ? <ConfigProvider
                     theme={{

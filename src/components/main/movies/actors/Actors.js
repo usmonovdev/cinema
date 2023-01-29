@@ -5,8 +5,6 @@ import "./actors.scss"
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Slider from 'react-slick'
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { useRef } from 'react'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 const API = "https://api.themoviedb.org/3/movie/"
@@ -38,23 +36,26 @@ function Actors({ moviesId }) {
                 settings: {
                     slidesToShow: 3,
                     slidesToScroll: 3,
-                    infinite: false,
+                    infinite: true,
                     dots: false
                 }
             },
             {
                 breakpoint: 768,
                 settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 2
+                    slidesToShow: 3,
+                    slidesToScroll: 3,
+                    infinite: true,
+                    dots: false
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 2
+                    slidesToScroll: 2,
+                    infinite: true,
+                    dots: false
                 }
             }
         ]
