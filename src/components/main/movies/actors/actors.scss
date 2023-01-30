@@ -77,11 +77,22 @@ $large-screens: 1200px;
         }
     }
     .actor {
+        width: 100%;
+        height: 100%;
         display: flex !important;
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
         overflow: hidden;
+        .ant-skeleton-content {
+            h3 {
+                height: 100% !important;
+            }
+        }
+        .skeleton {
+            height:371px;
+            width: 100%;
+        }
         img {
             cursor: pointer;
         }
