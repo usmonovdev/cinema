@@ -8,13 +8,11 @@ import { useEffect } from 'react'
 import Slider from 'react-slick'
 import { useRef } from 'react'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
-import { Button, Skeleton } from 'antd'
 const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Actors({ moviesId }) {
     const [actors, setActors] = useState([])
-    const [loading, setLoading] = useState(true)
     const customeSlider = useRef();
 
     const filterActors = actors.filter(data => {
@@ -27,12 +25,6 @@ function Actors({ moviesId }) {
                 setActors(data.data.cast)
             });
     }, []);
-
-    useEffect(() => {
-        setTimeout(() => {
-            setLoading(false)
-        }, 5000);
-    }, [])
 
     const settings = {
         dots: false,
@@ -99,18 +91,8 @@ function Actors({ moviesId }) {
                     {filterActors.map((data) => {
                         return (
                             <div className="actor" key={data.id}>
-                                <Skeleton
-                                    className='skeleton'
-                                    loading={loading}
-                                    style={{ borderRadius: "0" }}
-                                    active
-                                    paragraph={{
-                                        rows: 0,
-                                    }}
-                                >
-                                    <img style={{ width: "100%" }} id='actorImage' src={`https://image.tmdb.org/t/p/original/${data.profile_path}`} alt={data.name} />
-                                    <p>{data.name}</p>
-                                </Skeleton>
+                                <img style={{ width: "100%" }} id='actorImage' src={`https://image.tmdb.org/t/p/original/${data.profile_path}`} alt={data.name} />
+                                <p>{data.name}</p>
                             </div>
                         )
                     })}
