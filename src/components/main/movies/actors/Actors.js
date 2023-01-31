@@ -25,14 +25,13 @@ function Actors({ moviesId }) {
         axios.get(`${API}${moviesId}/credits?api_key=${API_KEY}`)
             .then((data) => {
                 setActors(data.data.cast)
-                // setLoading(false)
             });
     }, []);
 
     useEffect(() => {
         setTimeout(() => {
             setLoading(false)
-        }, 50000);
+        }, 5000);
     }, [])
 
     const settings = {
