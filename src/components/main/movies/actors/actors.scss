@@ -86,13 +86,25 @@ $large-screens: 1200px;
         overflow: hidden;
         .ant-skeleton-content {
             h3 {
-                height: 100% !important;
+                height: 473px !important;
+                @media screen and (max-width: $large-screens) {
+                    height: 473px !important;
+                }
+                @media screen and (max-width: $small-screens) {
+                    height: 455px !important;
+                }
+                @media screen and (max-width: $tablet) {
+                    height: 280px !important;
+                }
+                @media screen and (max-width: $mobile) {
+                    height: 293px !important;
+                }
             }
         }
-        .skeleton {
-            height:371px;
-            width: 100%;
-        }
+        // .skeleton {
+        //     height:371px;
+        //     width: 100%;
+        // }
         img {
             cursor: pointer;
         }
