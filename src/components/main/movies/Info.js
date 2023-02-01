@@ -50,7 +50,7 @@ function Info() {
                 <p className='title'><span>Actors:</span></p>
                 {actors?.map((data) => {
                     return (
-                        <p key={data.id}>{data.name} ({data.character})</p>
+                        <p key={data.id}><span>{data?.name}</span> ({data?.character})</p>
                     )
                 })}
             </div>

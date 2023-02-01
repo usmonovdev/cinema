@@ -12,6 +12,7 @@ import { useMovieContext } from "../../../context/MovieContex/MovieContex"
 import Footer from "../../footer/Footer"
 import Actors from "./actors/Actors"
 import MoviesOpen from "../../loading/moviesOpen/MoviesOpen"
+import MovieImages from "./movieImages/MovieImages"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 function Movies() {
     const [loading, setLoading] = useState(true)
@@ -51,6 +52,7 @@ function Movies() {
                         </div>
                     </div>
                     <Actors moviesId={moviesId} />
+                    <MovieImages moviesId={moviesId}/>
                     <Footer />
                 </> : 
                 <>
