@@ -13,6 +13,7 @@ import Footer from "../../footer/Footer"
 import Actors from "./actors/Actors"
 import MoviesOpen from "../../loading/moviesOpen/MoviesOpen"
 import MovieImages from "./movieImages/MovieImages"
+import Reviews from "./reviews/Reviews"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 function Movies() {
     const [loading, setLoading] = useState(true)
@@ -53,6 +54,7 @@ function Movies() {
                     </div>
                     <Actors moviesId={moviesId} />
                     <MovieImages moviesId={moviesId}/>
+                    <Reviews moviesId={moviesId}/>
                     <Footer />
                 </> : 
                 <>

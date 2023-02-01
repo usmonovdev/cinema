@@ -9,21 +9,20 @@ import Slider from 'react-slick'
 import { useRef } from 'react'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { Image } from 'antd'
+import { useStateContext } from '../../../../context/StateContext/StateContext'
 const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function MovieImages({ moviesId }) {
-    const [actors, setActors] = useState([])
+    const [photos, setPhotos] = useState([])
     const customeSlider = useRef();
+    const { imageSize } = useStateContext()
 
-    // const filterActors = actors.filter(data => {
-    //     return data.profile_path !== null
-    // });
-    console.log(actors)
+    console.log(photos)
     useEffect(() => {
         axios.get(`${API}${moviesId}/images?api_key=${API_KEY}`)
             .then((data) => {
-                setActors(data.data.backdrops)
+                setPhotos(data.data.backdrops)
             });
     }, []);
 
@@ -89,10 +88,10 @@ function MovieImages({ moviesId }) {
                     </div>
                 </div>
                 <Slider {...settings} ref={customeSlider}>
-                    {actors?.map((data) => {
+                    {photos?.map((data) => {
                         return (
                             <div className="actor" key={data.id}>
-                                <Image style={{ width: "100%" }} id='actorImage' src={`https://image.tmdb.org/t/p/original/${data.file_path}`} alt={data.name} />
+                                <Image style={{ width: "100%" }} id='actorImage' src={`https://image.tmdb.org/t/p/${imageSize}/${data.file_path}`} alt={data.name} />
                             </div>
                         )
                     })}

@@ -17,6 +17,9 @@ const StateContextProvider = ({ children }) => {
     const [isCompleted, setIsCompleted] = useState(false)
     const [isCompletedTop, setIsCompletedTop] = useState(false)
 
+    // for image size
+    const [imageSize, setImageSize] = useState("w500")
+
     return (
         <StateContext.Provider
             value={{
@@ -31,7 +34,9 @@ const StateContextProvider = ({ children }) => {
                 filterTopStar,
                 setFilterTopStar,
                 isCompletedTop,
-                setIsCompletedTop
+                setIsCompletedTop,
+                imageSize,
+                setImageSize
             }}
         >
             {children}
