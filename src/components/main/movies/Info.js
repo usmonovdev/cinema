@@ -1,10 +1,21 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import "../tvshow/info.scss"
+const API = "https://api.themoviedb.org/3/movie/"
+const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Info() {
+    const [actors, setActors] = useState([])
     const { movie } = useMovieContext()
     const { budget, original_language, release_date, genres, production_companies, production_countries } = movie;
+    useEffect(() => {
+        axios.get(`${API}${movie.id}/credits?api_key=${API_KEY}`)
+            .then((data) => {
+                setActors(data.data.cast)
+            });
+    }, []);
+    console.log(actors)
     return (
         <div className='info'>
             <div className='genres'>
@@ -27,11 +38,19 @@ function Info() {
                     )
                 })}
             </div>
-            <div style={{ marginTop: "5px" }}>
+            <div className='border'>
                 <p className='title'><span>Production countries:</span></p>
                 {production_countries?.map((data) => {
                     return (
                         <p key={data.id}>{data.name} ({data.iso_3166_1})</p>
+                    )
+                })}
+            </div>
+            <div style={{ marginTop: "5px" }}>
+                <p className='title'><span>Actors:</span></p>
+                {actors?.map((data) => {
+                    return (
+                        <p key={data.id}>{data.name} ({data.character})</p>
                     )
                 })}
             </div>
