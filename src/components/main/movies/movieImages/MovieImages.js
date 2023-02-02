@@ -10,13 +10,15 @@ import { useRef } from 'react'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { Image } from 'antd'
 import { useStateContext } from '../../../../context/StateContext/StateContext'
+import { reducer } from '../../../../assets/reducer'
+import { useReducer } from 'react'
 const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function MovieImages({ moviesId }) {
+    const [state, dispatch] = useReducer(reducer, {imageSize: "original"})
     const [photos, setPhotos] = useState([])
     const customeSlider = useRef();
-    const { imageSize } = useStateContext()
 
     console.log(photos)
     useEffect(() => {
@@ -91,7 +93,7 @@ function MovieImages({ moviesId }) {
                     {photos?.map((data) => {
                         return (
                             <div className="actor" key={data.id}>
-                                <Image style={{ width: "100%" }} id='actorImage' src={`https://image.tmdb.org/t/p/${imageSize}/${data.file_path}`} alt={data.name} />
+                                <Image style={{ width: "100%" }} id='actorImage' src={`https://image.tmdb.org/t/p/${state.imageSize}/${data.file_path}`} alt={data.name} />
                             </div>
                         )
                     })}
