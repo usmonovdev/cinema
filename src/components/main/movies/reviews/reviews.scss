@@ -1,5 +1,6 @@
 $white: #fff;
 $black: #343434;
+$black-footer: #2E2E2E;
 $yellow: #e6b31e;
 $yellow-opacity: #e6b41e33;
 $mobile: 480px;
@@ -32,67 +33,34 @@ $large-screens: 1200px;
 }
 
 .actors-box {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    @media screen and (max-width: $tablet) {
-        width: 90%;
-        padding: 0 20px;
-    }
-    .actors-title {
-        margin: 20px 0 20px 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: white;
-        @media screen and (max-width: $mobile) {
-            margin: 10px 0px;
-        }
-        .title {
-            @media screen and (max-width: $mobile) {
-                font-size: 20px;
-            }
-            &:hover .sharp {
-                opacity: 1;
-            }
-        }
-    }
-    .slider-buttons {
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-        .buttonSlider {
-            padding: 5px;
-            margin: 0 0 0 auto;
-            border: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #ffffff39;
-            backdrop-filter: blur(5px);
-            cursor: pointer;
-            color: white;
-            font-size: 1.5rem;
-        }
-    }
-    .actor {
+    .review {
+        box-sizing: border-box;
         width: 100%;
         height: 100%;
         display: flex !important;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
+        flex-direction: row;
         overflow: hidden;
-        img {
-            cursor: pointer;
+        margin-bottom: 20px;
+        color: $white;
+        background-color: $black-footer;
+        padding: 10px;
+        .user {
+            width: 100px;
+            height: 100px;
+            img {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
         }
-        p {
+        .commit {
             width: 100%;
-            padding: 5px;
-            background-color: $yellow;
-            color: $white;
-            cursor: pointer;
+            padding: 0 10px;
+            .info {
+                display: flex;
+                flex-direction: row;
+                // justify-content: space-between;
+            }
         }
     }
 }

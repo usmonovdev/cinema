@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React from 'react'
+import image from "../../../../assets/logo-white.png"
 import "../../../navbar/navbar.scss"
 import "./reviews.scss"
 import "../../../../assets/slick.css"
@@ -30,15 +31,27 @@ function Reviews({ moviesId }) {
                     </h1>
                 </div>
                 {reviews?.map((data) => {
+                    const { author, author_details, id, created_at } = data
+                    // console.log(author_details.avatar_path)
                     return (
-                        <div className="actor" key={data.id}>
-                            <div>
-                                <div>
-                                    <p className='aut'>{data.author}</p>
-                                    <img src={data.avatar_path} alt={data.author} />
-                                </div>
+                        <div className="review" key={id}>
+                            <div className='user'>
+                                {author_details.avatar_path ?
+                                    <img
+                                        src={`https://image.tmdb.org/t/p/original/${author_details.avatar_path}`}
+                                        alt={author}
+                                    />
+                                    :
+                                    <img src={image}/>
+                                }
                             </div>
-                            <p>{data.content}</p>
+                            <div className='commit'>
+                                <div className='info'>
+                                    <p>{author} • {created_at.slice(0, 10)}</p>
+                                    <p></p>
+                                </div>
+                                <p>{data.content.slice(0, 200)}...</p>
+                            </div>
                         </div>
                     )
                 })}
