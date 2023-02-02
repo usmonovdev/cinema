@@ -47,10 +47,9 @@ function Reviews({ moviesId }) {
                             </div>
                             <div className='commit'>
                                 <div className='info'>
-                                    <p>{author} • {created_at.slice(0, 10)}</p>
-                                    <p></p>
+                                    <p>{author} • <span>{created_at.slice(0, 10)}</span></p>
                                 </div>
-                                <p>{data.content.slice(0, 200)}...</p>
+                                <p>{data.content.slice(0, 200)}... <span className='read-more'>Read more</span></p>
                             </div>
                         </div>
                     )

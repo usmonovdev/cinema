@@ -59,7 +59,15 @@ $large-screens: 1200px;
             .info {
                 display: flex;
                 flex-direction: row;
-                // justify-content: space-between;
+                margin-bottom: 10px;
+                p {
+                    font-size: 14px;
+                    opacity: .8;
+                }
+            }
+            .read-more {
+                opacity: .8;
+                cursor: pointer;
             }
         }
     }
