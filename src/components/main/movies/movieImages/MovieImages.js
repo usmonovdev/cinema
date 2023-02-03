@@ -20,7 +20,6 @@ function MovieImages({ moviesId }) {
     const [photos, setPhotos] = useState([])
     const customeSlider = useRef();
 
-    console.log(photos)
     useEffect(() => {
         axios.get(`${API}${moviesId}/images?api_key=${API_KEY}`)
             .then((data) => {

@@ -13,6 +13,8 @@ const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 function Reviews({ moviesId }) {
     const [reviews, setReviews] = useState([])
     const { imageSize } = useStateContext()
+    const [read, setRead] = useState("200")
+    const [readMoreButton, setMoreButton] = useState(true)
 
     console.log(reviews)
     useEffect(() => {
@@ -31,8 +33,12 @@ function Reviews({ moviesId }) {
                     </h1>
                 </div>
                 {reviews?.map((data) => {
-                    const { author, author_details, id, created_at } = data
-                    // console.log(author_details.avatar_path)
+                    const { author, author_details, id, created_at, content } = data
+                    const sliceContent = content.slice(0, 200)
+                    const readMore = (e, f) => {
+                        e.slice(0, 1000)
+                        console.log(e, f)
+                    }
                     return (
                         <div className="review" key={id}>
                             <div className='user'>
@@ -42,14 +48,14 @@ function Reviews({ moviesId }) {
                                         alt={author}
                                     />
                                     :
-                                    <img src={image}/>
+                                    <img src={image} />
                                 }
                             </div>
                             <div className='commit'>
                                 <div className='info'>
                                     <p>{author} • <span>{created_at.slice(0, 10)}</span></p>
                                 </div>
-                                <p>{data.content.slice(0, 200)}... <span className='read-more'>Read more</span></p>
+                                <p>{sliceContent} {readMoreButton ? <>... <span onClick={() => readMore(id, sliceContent)} className='read-more'>Read more</span></> : ""}</p>
                             </div>
                         </div>
                     )
