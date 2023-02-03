@@ -16,7 +16,7 @@ const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function MovieImages({ moviesId }) {
-    const [state, dispatch] = useReducer(reducer, {imageSize: "original"})
+    const [state, dispatch] = useReducer(reducer, { imageSize: "original" })
     const [photos, setPhotos] = useState([])
     const customeSlider = useRef();
 
@@ -92,7 +92,17 @@ function MovieImages({ moviesId }) {
                     {photos?.map((data) => {
                         return (
                             <div className="actor" key={data.id}>
-                                <Image style={{ width: "100%" }} id='actorImage' src={`https://image.tmdb.org/t/p/${state.imageSize}/${data.file_path}`} alt={data.name} />
+                                <Image
+                                    style={{ width: "100%" }} id='actorImage'
+                                    src={`https://image.tmdb.org/t/p/${state.imageSize}/${data.file_path}`}
+                                    alt={data.name}
+                                    placeholder={
+                                        <Image
+                                            preview={true}
+                                            src={`https://image.tmdb.org/t/p/${state.imageSize}/${data.file_path}`}
+                                        />
+                                    }
+                                />
                             </div>
                         )
                     })}
