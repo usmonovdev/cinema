@@ -9,7 +9,7 @@ $small-screens: 992px;
 $large-screens: 1200px;
 
 :where(.css-dev-only-do-not-override-1i9hnpv) .ant-image-preview-operations-progress {
-    display: none;
+    display: none !important;
 }
 
 .class-for-actors {

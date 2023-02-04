@@ -15,12 +15,13 @@ function Info() {
                 setActors(data.data.cast)
             });
     }, []);
+    console.log(actors)
     return (
         <div className='info'>
             <div className='genres'>
-                {genres.slice(0, 3)?.map((data) => {
+                {genres.slice(0, 3)?.map((data, key) => {
                     return (
-                        <p key={data.id}>{data.name}</p>
+                        <p key={key}>{data.name}</p>
                     )
                 })}
             </div>
@@ -31,25 +32,25 @@ function Info() {
             </div>
             <div className='border'>
                 <p className='production_companies title'><span>Production companies: </span></p>
-                {production_companies?.map((data) => {
+                {production_companies?.map((data, key) => {
                     return (
-                        <p key={data.id}>{data.name} {data.origin_country ? <>({data.origin_country})</> : ""}</p>
+                        <p key={key}>{data.name} {data.origin_country ? <>({data.origin_country})</> : ""}</p>
                     )
                 })}
             </div>
             <div className='border'>
                 <p className='title'><span>Production countries:</span></p>
-                {production_countries?.map((data) => {
+                {production_countries?.map((data, key) => {
                     return (
-                        <p key={data.id}>{data.name} ({data.iso_3166_1})</p>
+                        <p key={key}>{data.name} ({data.iso_3166_1})</p>
                     )
                 })}
             </div>
             <div style={{ marginTop: "5px" }}>
                 <p className='title'><span>Actors:</span></p>
-                {actors?.map((data) => {
+                {actors?.map((data, key) => {
                     return (
-                        <p key={data.id}><span>{data?.name}</span> ({data?.character})</p>
+                        <p key={key}><span>{data?.name}</span> ({data?.character})</p>
                     )
                 })}
             </div>
