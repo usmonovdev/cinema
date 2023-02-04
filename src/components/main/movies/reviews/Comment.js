@@ -17,8 +17,20 @@ function Comment({ content }) {
     }
     return (
         <>
-            <p className='content'>{slicedContent}{!state.read ? "..." : ""}</p>
-            {!state.read ? <p className='read-more' onClick={readMore}>Read More</p> : <p className='read-more' onClick={readLess}>Read Less</p>}
+            <p className='content'>
+                {slicedContent}
+                {content.length > "180" ? 
+                    <>{!state.read ? "..." : ""}</> : ""
+                }
+            </p>
+            {content.length > "180" ? 
+                <>{!state.read ? 
+                    <p className='read-more' onClick={readMore}>Read More</p> 
+                    : 
+                    <p className='read-more' onClick={readLess}>Read Less</p>
+                }</>
+                : ""
+            }
         </>
     )
 }

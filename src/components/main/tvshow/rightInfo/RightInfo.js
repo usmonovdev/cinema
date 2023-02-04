@@ -28,7 +28,7 @@ function RightInfo() {
                     {episode_run_time ? <p>Run time: {episode_run_time}min</p> : ""}
                 </div>
                 <div className="right-overview-box">
-                    <p>{overview}</p>
+                    <p>{overview?.slice(0, 220)}</p>
                 </div>
                 {info ? <ConfigProvider
                     theme={{
@@ -62,9 +62,6 @@ function RightInfo() {
                         <AiOutlineStar className='events' />
                     </Tooltip>
                     <AiOutlineInfoCircle className='events allInfo' onClick={allInfo} />
-                    <Tooltip placement="bottom" title={"Play Trailer"} color={"#343434"}>
-                        <BiPlay className='events' />
-                    </Tooltip>
                 </div>
             </div>
         </>

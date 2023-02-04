@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React from 'react'
-import image from "../../../../assets/logo-white.png"
+import image from "../../../../assets/user-not-downloaded.jpg"
 import "../../../navbar/navbar.scss"
 import "./reviews.scss"
 import "../../../../assets/slick.css"
