@@ -84,8 +84,9 @@ $large-screens: 1200px;
         align-items: flex-start;
         justify-content: center;
         overflow: hidden;
-        img {
-            cursor: pointer;
+        .movie-photo {
+            width: 100% !important;
+            height: 100%;
         }
         p {
             width: 100%;

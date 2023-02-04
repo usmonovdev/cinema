@@ -8,6 +8,8 @@ import { useEffect } from 'react'
 import Slider from 'react-slick'
 import { useRef } from 'react'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
+import { Image } from 'antd'
+import actor from "../../../../assets/actor-photo-not-downloaded.jpg"
 const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
@@ -92,7 +94,14 @@ function Actors({ moviesId }) {
                     {filterActors?.map((data) => {
                         return (
                             <div className="actor" key={data.id}>
-                                <img style={{ width: "100%" }} id='actorImage' src={`https://image.tmdb.org/t/p/original/${data.profile_path}`} alt={data.name} />
+                                <Image 
+                                    preview={false}
+                                    style={{ width: "100%" }} 
+                                    id='actorImage' 
+                                    src={`https://image.tmdb.org/t/p/original/${data.profile_path}`} 
+                                    alt={data.name} 
+                                    fallback={actor}
+                                />
                                 <p>{data.name}</p>
                             </div>
                         )

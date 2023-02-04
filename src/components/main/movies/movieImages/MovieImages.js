@@ -13,7 +13,7 @@ import { reducer } from '../../../../assets/reducer'
 import { useReducer } from 'react'
 import { BsImageFill } from "react-icons/bs"
 import { motion } from 'framer-motion'
-import logo from "../../../../assets/logo-white.png"
+import logo from "../../../../assets/movie-photo-not-downloaded.jpg"
 const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
@@ -99,17 +99,11 @@ function MovieImages({ moviesId }) {
                                 return (
                                     <div className="actor" key={key}>
                                         <Image
+                                            className='movie-photo'
                                             style={{ width: "100%" }} id='actorImage'
                                             src={`https://image.tmdb.org/t/p/${state.imageSize}/${data.file_path}`}
                                             alt={data.name}
                                             fallback={logo}
-                                            placeholder={
-                                                <Image
-                                                    preview={false}
-                                                    src={`https://image.tmdb.org/t/p/${state.imageSize}/${data.file_path}?x-oss-process=image/blur,r_50,s_50/quality,q_1/resize,m_mfit,h_100%,w_100%`}
-                                                    width={200}
-                                                />
-                                            }
                                         />
                                     </div>
                                 )
