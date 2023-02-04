@@ -9,6 +9,7 @@ import { useEffect } from 'react'
 import { useStateContext } from '../../../../context/StateContext/StateContext'
 import { BsChatLeftDotsFill } from 'react-icons/bs'
 import { motion } from "framer-motion"
+import Comment from './Comment'
 const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
@@ -36,11 +37,6 @@ function Reviews({ moviesId }) {
                 </div>
                 {reviews.results?.length !== 0 ? <>{reviews.results?.map((data) => {
                     const { author, author_details, id, created_at, content } = data
-                    const sliceContent = content.slice(0, 200)
-                    const readMore = (e, f) => {
-                        e.slice(0, 1000)
-                        console.log(e, f)
-                    }
                     return (
                         <div className="review" key={id}>
                             <div className='user'>
@@ -57,7 +53,8 @@ function Reviews({ moviesId }) {
                                 <div className='info'>
                                     <p>{author} • <span>{created_at.slice(0, 10)}</span></p>
                                 </div>
-                                <p>{sliceContent} {readMoreButton ? <>... <span onClick={() => readMore(id, sliceContent)} className='read-more'>Read more</span></> : ""}</p>
+                                <Comment content={content} />
+                                {/* <p>{readMoreButton ? <>... <span onClick={() => readMore(id, sliceContent)} className='read-more'>Read more</span></> : ""}</p> */}
                             </div>
                         </div>
                     )
