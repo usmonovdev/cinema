@@ -7,6 +7,8 @@ import "../../../../assets/slick.css"
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useStateContext } from '../../../../context/StateContext/StateContext'
+import { BsChatLeftDotsFill } from 'react-icons/bs'
+import { motion } from "framer-motion"
 const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
@@ -59,7 +61,20 @@ function Reviews({ moviesId }) {
                             </div>
                         </div>
                     )
-                })}</> : <h1>No Comments</h1>}
+                })}</> : <div className='no-review'>
+                    <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ rotate: -360, scale: 1 }}
+                        transition={{
+                            type: "spring",
+                            stiffness: 260,
+                            damping: 20
+                        }}
+                    >
+                        <BsChatLeftDotsFill className='icon' />
+                    </motion.div>
+                    <p>No Comments!</p>
+                </div>}
             </div>
         </div>
     )
