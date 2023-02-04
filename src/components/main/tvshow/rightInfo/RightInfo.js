@@ -5,6 +5,7 @@ import { AiOutlineHeart, AiOutlineInfoCircle, AiOutlineStar } from 'react-icons/
 import { BiPlay } from "react-icons/bi";
 import Info from '../Info';
 import { useMovieContext } from '../../../../context/MovieContex/MovieContex';
+import { RxShare1 } from 'react-icons/rx';
 
 function RightInfo() {
     const { info, setInfo, movie } = useMovieContext()
@@ -18,6 +19,15 @@ function RightInfo() {
     const onClose = () => {
         setInfo(false);
     };
+    const sharedData = {
+        title: `Share Movie - ${name}`,
+        text: `${name}`,
+        url: window.location
+    }
+
+    const share = () => {
+        navigator.share(sharedData)
+    }
     return (
         <>
             <div className="right-info">
@@ -62,6 +72,9 @@ function RightInfo() {
                         <AiOutlineStar className='events' />
                     </Tooltip>
                     <AiOutlineInfoCircle className='events allInfo' onClick={allInfo} />
+                    <Tooltip placement="bottom" title={"Share Movie"} color={"#343434"}>
+                        <RxShare1 className='events' onClick={share} />
+                    </Tooltip>
                 </div>
             </div>
         </>
