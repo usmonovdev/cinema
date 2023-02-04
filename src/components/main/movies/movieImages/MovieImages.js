@@ -89,20 +89,23 @@ function MovieImages({ moviesId }) {
                         </button>
                     </div>
                 </div>
-                <Slider {...settings} ref={customeSlider}>
-                    {photos?.map((data) => {
-                        return (
-                            <div className="actor" key={data.id}>
-                                <Image
-                                    style={{ width: "100%" }} id='actorImage'
-                                    src={`https://image.tmdb.org/t/p/${state.imageSize}/${data.file_path}`}
-                                    alt={data.name}
-                                    fallback={logo}
-                                />
-                            </div>
-                        )
-                    })}
-                </Slider>
+                <Image.PreviewGroup>
+                    <Slider {...settings} ref={customeSlider}>
+                        {photos?.map((data) => {
+                            return (
+                                <div className="actor" key={data.id}>
+                                    <Image
+                                        style={{ width: "100%" }} id='actorImage'
+                                        src={`https://image.tmdb.org/t/p/${state.imageSize}/${data.file_path}`}
+                                        alt={data.name}
+                                        fallback={logo}
+                                    />
+                                </div>
+                            )
+                        })}
+                    </Slider>
+                </Image.PreviewGroup>
+
             </div>
         </div>
     )

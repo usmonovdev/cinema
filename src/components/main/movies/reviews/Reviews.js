@@ -10,16 +10,14 @@ import { useStateContext } from '../../../../context/StateContext/StateContext'
 import { BsChatLeftDotsFill } from 'react-icons/bs'
 import { motion } from "framer-motion"
 import Comment from './Comment'
+import { Image } from 'antd'
 const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Reviews({ moviesId }) {
     const [reviews, setReviews] = useState([])
     const { imageSize } = useStateContext()
-    const [read, setRead] = useState("200")
-    const [readMoreButton, setMoreButton] = useState(true)
 
-    console.log(reviews)
     useEffect(() => {
         axios.get(`${API}${moviesId}/reviews?api_key=${API_KEY}`)
             .then((data) => {
@@ -40,21 +38,18 @@ function Reviews({ moviesId }) {
                     return (
                         <div className="review" key={id}>
                             <div className='user'>
-                                {author_details.avatar_path ?
-                                    <img
-                                        src={`https://image.tmdb.org/t/p/original/${author_details.avatar_path}`}
-                                        alt={author}
-                                    />
-                                    :
-                                    <img src={image} />
-                                }
+                                <Image
+                                    fallback={image}
+                                    preview={false}
+                                    src={`https://image.tmdb.org/t/p/original/${author_details.avatar_path}`}
+                                    alt={author}
+                                />
                             </div>
                             <div className='commit'>
                                 <div className='info'>
                                     <p>{author} • <span>{created_at.slice(0, 10)}</span></p>
                                 </div>
                                 <Comment content={content} />
-                                {/* <p>{readMoreButton ? <>... <span onClick={() => readMore(id, sliceContent)} className='read-more'>Read more</span></> : ""}</p> */}
                             </div>
                         </div>
                     )

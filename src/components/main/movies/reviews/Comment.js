@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 
 function Comment({ content }) {
-    const [commentLength, setCommentLength] = useState("150")
+    const [commentLength, setCommentLength] = useState("180")
     const [read, setRead] = useState(false)
     const sliceContent = content.substring(0, commentLength)
     const readMore = () => {
@@ -10,10 +10,10 @@ function Comment({ content }) {
         setRead(true)
     }
     return (
-        <div>
-            <p className='content'>{sliceContent}</p>
+        <>
+            <p className='content'>{sliceContent}{!read ? "..." : ""}</p>
             {!read ? <p className='read-more' onClick={readMore}>Read More</p> : ""}
-        </div>
+        </>
     )
 }
 

@@ -8,6 +8,10 @@ $tablet: 768px;
 $small-screens: 992px;
 $large-screens: 1200px;
 
+:where(.css-dev-only-do-not-override-1i9hnpv) .ant-image-preview-operations-progress {
+    display: none;
+}
+
 .class-for-actors {
     @media screen and (max-width: $small-screens) {
         height: 400px;
@@ -47,6 +51,10 @@ $large-screens: 1200px;
         .user {
             width: 100px;
             height: 100px;
+            @media screen and (max-width: $mobile) {
+                width: 70px;
+                height: 70px;
+            }
             img {
                 object-fit: cover;
                 width: 100%;
@@ -67,10 +75,14 @@ $large-screens: 1200px;
             }
             .content {
                 font-size: 14px;
+                display: inline;
+                margin-right: 4px;
             }
             .read-more {
+                font-size: 14px;
                 opacity: .8;
                 cursor: pointer;
+                display: inline;
             }
         }
     }
