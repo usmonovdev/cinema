@@ -1,22 +1,24 @@
 import React from 'react'
-import { useState } from 'react'
+import { useReducer } from 'react'
+import { reducer } from '../../../../assets/reducer'
 
 function Comment({ content }) {
-    const [commentLength, setCommentLength] = useState("180")
-    const [read, setRead] = useState(false)
-    const sliceContent = content.substring(0, commentLength)
-    const readMore = () => {
-        setCommentLength(content.length)
-        setRead(!read)
+    const initialState = {
+        sliceLast: "180",
+        read: false
     }
-    const lessMore = () => {
-        setCommentLength("180")
-        setRead(!read)
+    const [state, dispatch] = useReducer(reducer, initialState)
+    const slicedContent = content.substring(0, state.sliceLast)
+    const readMore = () => {
+        dispatch({ type: "READ_MORE" })
+    }
+    const readLess = () => {
+        dispatch({ type: "READ_LESS" })
     }
     return (
         <>
-            <p className='content'>{sliceContent}{!read ? "..." : ""}</p>
-            {!read ? <p className='read-more' onClick={readMore}>Read More</p> : <p className='read-more' onClick={lessMore}> Less More</p>}
+            <p className='content'>{slicedContent}{!state.read ? "..." : ""}</p>
+            {!state.read ? <p className='read-more' onClick={readMore}>Read More</p> : <p className='read-more' onClick={readLess}>Read Less</p>}
         </>
     )
 }

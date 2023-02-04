@@ -1,8 +1,17 @@
 export const reducer = (state, action) => {
     switch (action.type) {
-        case "IMAGE_SIZE":
-            return [...state, action.payload]
-    
+        case "READ_MORE":
+            return {
+                ...state,
+                sliceLast: state.sliceLast = state.length,
+                read: state.read = true
+            }
+        case "READ_LESS":
+            return {
+                ...state,
+                sliceLast: state.sliceLast = "180",
+                read: state.read = false
+            }
         default:
             return;
     }
