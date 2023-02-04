@@ -17,7 +17,7 @@ function TopRated() {
     const { filterTopMedia, filterTopLang, filterTopStar } = useStateContext()
     const [movie, setMovie] = useState([]);
 
-    const filter = movie.filter((data) => {
+    const filter = movie?.filter((data) => {
         if (filterTopLang == "en") { // filter by language
             return data.original_language == "en"
         } else if (filterTopLang == "ru") {

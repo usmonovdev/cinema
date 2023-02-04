@@ -15,7 +15,7 @@ function Trending() {
     const { filterValueInMediaType, filterValueInLang, filterValueInStar, index } = useMovieContext()
     const [movie, setMovie] = useState([]);
 
-    const filter = movie.filter((data) => {
+    const filter = movie?.filter((data) => {
         if (filterValueInMediaType == "movie") { //filter by media_type
             return data.media_type == "movie"
         } else if (filterValueInMediaType == "tv") {

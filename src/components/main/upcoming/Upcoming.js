@@ -18,7 +18,7 @@ function Upcoming() {
     const { filterUpLang, filterUpStar } = useStateContext()
     const [upcoming, setUpcoming] = useState([]);
 
-    const filter = upcoming.filter((data) => {
+    const filter = upcoming?.filter((data) => {
         if (filterUpLang == "en") { // filter by language
             return data.original_language == "en"
         } else if (filterUpLang == "ru") {

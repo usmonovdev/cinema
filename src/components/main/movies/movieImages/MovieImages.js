@@ -9,9 +9,10 @@ import Slider from 'react-slick'
 import { useRef } from 'react'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { Image } from 'antd'
-import { useStateContext } from '../../../../context/StateContext/StateContext'
 import { reducer } from '../../../../assets/reducer'
 import { useReducer } from 'react'
+import { BsImageFill } from "react-icons/bs"
+import logo from "../../../../assets/logo-white.png"
 const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
@@ -96,12 +97,7 @@ function MovieImages({ moviesId }) {
                                     style={{ width: "100%" }} id='actorImage'
                                     src={`https://image.tmdb.org/t/p/${state.imageSize}/${data.file_path}`}
                                     alt={data.name}
-                                    placeholder={
-                                        <Image
-                                            preview={true}
-                                            src={`https://image.tmdb.org/t/p/${state.imageSize}/${data.file_path}`}
-                                        />
-                                    }
+                                    fallback={logo}
                                 />
                             </div>
                         )

@@ -20,7 +20,7 @@ function Reviews({ moviesId }) {
     useEffect(() => {
         axios.get(`${API}${moviesId}/reviews?api_key=${API_KEY}`)
             .then((data) => {
-                setReviews(data.data.results)
+                setReviews(data.data)
             });
     }, []);
     return (
@@ -32,7 +32,7 @@ function Reviews({ moviesId }) {
                         Comments
                     </h1>
                 </div>
-                {reviews?.map((data) => {
+                {reviews.results?.length !== 0 ? <>{reviews.results?.map((data) => {
                     const { author, author_details, id, created_at, content } = data
                     const sliceContent = content.slice(0, 200)
                     const readMore = (e, f) => {
@@ -59,7 +59,7 @@ function Reviews({ moviesId }) {
                             </div>
                         </div>
                     )
-                })}
+                })}</> : <h1>No Comments</h1>}
             </div>
         </div>
     )
