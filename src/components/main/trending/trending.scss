@@ -124,11 +124,16 @@ $large-screens: 1200px;
         min-width: 24%;
         list-style: none;
         .trending-movie-box {
+            width: 100%;
+            height: 100%;
             display: flex;
             position: relative;
             align-items: flex-end;
             overflow: hidden;
             transition: 200ms;
+            img {
+                object-fit: cover;
+            }
             &:hover .trending-movie-info {
                 left: 0;
                 opacity: 1;

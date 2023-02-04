@@ -15,7 +15,7 @@ function Actors({ moviesId }) {
     const [actors, setActors] = useState([])
     const customeSlider = useRef();
 
-    const filterActors = actors.filter(data => {
+    const filterActors = actors?.filter(data => {
         return data.profile_path !== null
     });
 
@@ -33,6 +33,7 @@ function Actors({ moviesId }) {
         slidesToShow: 4,
         slidesToScroll: 4,
         initialSlide: 0,
+        infinite: true,
         responsive: [
             {
                 breakpoint: 992,
@@ -88,7 +89,7 @@ function Actors({ moviesId }) {
                     </div>
                 </div>
                 <Slider {...settings} ref={customeSlider}>
-                    {filterActors.map((data) => {
+                    {filterActors?.map((data) => {
                         return (
                             <div className="actor" key={data.id}>
                                 <img style={{ width: "100%" }} id='actorImage' src={`https://image.tmdb.org/t/p/original/${data.profile_path}`} alt={data.name} />

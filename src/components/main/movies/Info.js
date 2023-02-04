@@ -34,7 +34,10 @@ function Info() {
                 <p className='production_companies title'><span>Production companies: </span></p>
                 {production_companies?.map((data, key) => {
                     return (
-                        <p key={key}>{data.name} {data.origin_country ? <>({data.origin_country})</> : ""}</p>
+                        <p key={key}>
+                            {data.name} 
+                            {data.origin_country ? <>({data.origin_country})</> : ""}
+                        </p>
                     )
                 })}
             </div>
@@ -42,7 +45,10 @@ function Info() {
                 <p className='title'><span>Production countries:</span></p>
                 {production_countries?.map((data, key) => {
                     return (
-                        <p key={key}>{data.name} ({data.iso_3166_1})</p>
+                        <p key={key}>
+                            {data.name} 
+                            {data.iso_3166_1 ? <>({data.iso_3166_1})</> : ""}
+                        </p>
                     )
                 })}
             </div>
@@ -50,7 +56,10 @@ function Info() {
                 <p className='title'><span>Actors:</span></p>
                 {actors?.map((data, key) => {
                     return (
-                        <p key={key}><span>{data?.name}</span> ({data?.character})</p>
+                        <p key={key}>
+                            <span>{data?.name}</span> 
+                            {data?.character ? <>({data?.character})</> : ""}
+                        </p>
                     )
                 })}
             </div>

@@ -35,6 +35,7 @@ function MovieImages({ moviesId }) {
         slidesToShow: 4,
         slidesToScroll: 4,
         initialSlide: 0,
+        infinite: true,
         responsive: [
             {
                 breakpoint: 992,

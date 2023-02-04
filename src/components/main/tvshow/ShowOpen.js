@@ -6,6 +6,9 @@ import { useMovieContext } from "../../../context/MovieContex/MovieContex"
 import RightInfo from '../tvshow/rightInfo/RightInfo'
 import LeftInfo from '../tvshow/leftInfo/LeftInfo'
 import Footer from '../../footer/Footer'
+import Reviews from '../movies/reviews/Reviews'
+import MovieImages from '../movies/movieImages/MovieImages'
+import Actors from '../movies/actors/Actors'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 function ShowOpen() {
     const [loading, setLoading] = useState(true)
@@ -29,7 +32,7 @@ function ShowOpen() {
         <>
             {!adult ? <>
                 <Navbar />
-                <div className="ads movie-info-overflow">
+                <div className="ads movie-info-overflow class-for-actors">
                     <div className='bg-image movies-open-media' style={{
                         opacity: "1",
                         backgroundImage: `url("https://image.tmdb.org/t/p/original/${backdrop_path}")`
@@ -40,10 +43,14 @@ function ShowOpen() {
                         </div>
                     </div>
                 </div>
+                <Actors moviesId={showId} />
+                <MovieImages moviesId={showId} />
+                <Reviews moviesId={showId} />
+                <Footer />
             </> : <>
                 <BannedContent />
+                <Footer />
             </>}
-            <Footer />
         </>
     )
 }
