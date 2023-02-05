@@ -1,17 +1,17 @@
-import { Popover } from 'antd'
 import React, { useEffect, useState } from 'react'
+import { Popover } from 'antd'
 import { GiSettingsKnobs } from "react-icons/gi"
-import "./trending.scss"
 import Filter from './Filter'
-import { PopoverTitleTrending } from "../../../assets/AntD"
 import axios from 'axios'
+import "./trending.scss"
 import SimilarData from './SimilarData'
+import { PopoverTitleTrending } from "../../../assets/AntD"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Similar({ moviesId }) {
-    const { filterValueInLang, filterValueInStar, index } = useMovieContext()
+    const { filterValueInLang, filterValueInStar } = useMovieContext()
     const [movie, setMovie] = useState([]);
 
     const filter = movie?.filter((data) => {
@@ -47,11 +47,12 @@ function Similar({ moviesId }) {
     return (
         <div className='container' style={{ marginBottom: "60px" }}>
             <div className="title-settings-box">
-                <h1 className='title'><span className='sharp'>#</span> Similar Movies</h1>
+                <h1 className='title-similar'><span className='sharp'>#</span> Similar Movies</h1>
                 <Popover
                     placement="topRight"
                     content={<Filter />}
-                    title={PopoverTitleTrending} trigger="click"
+                    title={PopoverTitleTrending} 
+                    trigger="click"
                 >
                     <GiSettingsKnobs />
                 </Popover>

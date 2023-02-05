@@ -14,7 +14,7 @@ const API = "https://api.themoviedb.org/3/movie/upcoming?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Upcoming() {
-    const { upcomingIndex } = useMovieContext()
+    // const { upcomingIndex } = useMovieContext()
     const { filterUpLang, filterUpStar } = useStateContext()
     const [upcoming, setUpcoming] = useState([]);
 
@@ -38,7 +38,6 @@ function Upcoming() {
         }
     });
 
-    const loadedUpcoming = slice(filter, 0, upcomingIndex)
     useEffect(() => {
         try {
             axios.get(`${API}${API_KEY}`)
@@ -61,7 +60,7 @@ function Upcoming() {
                     <GiSettingsKnobs />
                 </Popover>
             </div>
-            <UpcomingData loadedUpcoming={loadedUpcoming} />
+            <UpcomingData filter={filter} />
         </div>
     )
 }

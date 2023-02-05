@@ -25,6 +25,19 @@ export const reducer = (state, action) => {
                 completed: state.completed = true
             }
         }
+        // for loading
+        case "LOADING": {
+            return {
+                ...state,
+                loading: state.loading = true
+            }
+        }
+        case "LOADING_FALSE": {
+            return {
+                ...state,
+                loading: state.loading = false
+            }
+        }
         default:
             return;
     }

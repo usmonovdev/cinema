@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useReducer } from 'react'
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { container, item } from '../../../assets/Framer'
@@ -6,23 +6,30 @@ import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import { Tooltip } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
-import { useMovieContext } from '../../../context/MovieContex/MovieContex';
-import { useState } from 'react';
+import { reducer } from '../../../assets/reducer';
+import { slice } from 'lodash';
 const IMAGE_LINK = "https://image.tmdb.org/t/p/w500/"
 
-function TrendingData({ initialPosts }) {
-    const { isCompleted, setIsCompleted, index, setIndex } = useMovieContext()
-    const [loading, setLoading] = useState(false)
+function TrendingData({ filter }) {
+    const initialState = {
+        completed: false,
+        index: 4,
+        loading: false
+    }
+
+    const [state, dispatch] = useReducer(reducer, initialState)
+    const initialPosts = slice(filter, 0, state.index)
+
     const loadMore = () => {
-        setLoading(true)
+        dispatch({ type: "LOADING" })
+        
         setTimeout(() => {
-            setIndex(index + 4)
-            setLoading(false)
+            dispatch({ type: "LOAD_MORE" })
+            dispatch({ type: "LOADING_FALSE" })
         }, 5000);
-        if (index >= 16 || initialPosts.length < 3) {
-            setIsCompleted(true)
-        } else {
-            setIsCompleted(false)
+
+        if (state.index >= 16 || initialPosts.length < 3) {
+            dispatch({ type: "IS_COMPLETED" })
         }
     }
     return (
@@ -80,10 +87,17 @@ function TrendingData({ initialPosts }) {
 
                 }
             </motion.ul>
-            {isCompleted  ? "" :
+            {state.completed  ? "" :
                 <>
                     <button className='load-more' onClick={loadMore}>
-                        {loading ? <div className='spin'></div> : <><p>Load More</p><MdOutlineKeyboardArrowDown className='load-icon' /></>}
+                        {state.loading ? 
+                            <div className='spin'></div> 
+                            : 
+                            <>
+                                <p>Load More</p>
+                                <MdOutlineKeyboardArrowDown className='load-icon' />
+                            </>
+                        }
                     </button>
                 </>
             }

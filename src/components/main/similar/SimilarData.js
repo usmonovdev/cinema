@@ -1,51 +1,50 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { container, item } from '../../../assets/Framer'
+import React, { useReducer, useState } from 'react'
 import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
-import { Tooltip } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
-import { useMovieContext } from '../../../context/MovieContex/MovieContex';
-import { useState } from 'react';
-import { reducer } from "../../../assets/reducer"
-import { useReducer } from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Tooltip } from 'antd';
 import { slice } from 'lodash';
+import { container, item } from '../../../assets/Framer'
+import { reducer } from "../../../assets/reducer"
 const IMAGE_LINK = "https://image.tmdb.org/t/p/w500/"
 
 function SimilarData({ filter }) {
+
     const initialState = {
         completed: false,
         index: 4,
+        loading: false
     }
+
     const [state, dispatch] = useReducer(reducer, initialState)
-    const initialPosts = slice(filter, 0, state.index)
-    const { setIsCompleted, index } = useMovieContext()
-    const [loading, setLoading] = useState(false)
+    const similar = slice(filter, 0, state.index)
+
     const loadMore = () => {
-        setLoading(true)
+        dispatch({ type: "LOADING" })
+        
         setTimeout(() => {
             dispatch({ type: "LOAD_MORE" })
-            setLoading(false)
-        }, 1000);
-        if (state.index >= 16 || initialPosts.length < 3) {
+            dispatch({ type: "LOADING_FALSE" })
+        }, 5000);
+
+        if (state.index >= 16 || similar.length < 3) {
             dispatch({ type: "IS_COMPLETED" })
-        } else {
-            setIsCompleted(false)
         }
     }
-    console.log(state.index)
+
     return (
         <>
             <motion.ul
-                className={`trending ${initialPosts.length == 0 ? "trendingNoItem" : ""}`}
+                className={`trending ${similar.length == 0 ? "trendingNoItem" : ""}`}
                 variants={container}
                 initial="hidden"
                 animate="visible"
             >
-                {initialPosts.length !== 0 ?
+                {similar.length !== 0 ?
                     <>
-                        {initialPosts.map((data) => {
+                        {similar.map((data) => {
                             const { id, poster_path, first_air_date, name, title, vote_average, media_type, release_date } = data
                             return (
                                 <motion.li
@@ -54,24 +53,37 @@ function SimilarData({ filter }) {
                                     key={id}
                                 >
                                     <div className="trending-movie-box">
-                                        <img src={`${IMAGE_LINK}${poster_path}`} alt={name} />
+                                        <img
+                                            src={`${IMAGE_LINK}${poster_path}`}
+                                            alt={name}
+                                        />
                                         <div className="trending-movie-info">
                                             <div className='info'>
                                                 {name ? <p className='title'>{name}</p> : <p className='title'>{title}</p>}
                                                 {first_air_date ? <p>{first_air_date}</p> : <p>{release_date}</p>}
-                                                <Tooltip placement="top" title={"Vote Average"} color={"#343434"}>
+                                                <Tooltip
+                                                    placement="top"
+                                                    title={"Vote Average"}
+                                                    color={"#343434"}
+                                                >
                                                     <div className='vote-average'>
                                                         <AiFillStar />{vote_average}
                                                     </div>
                                                 </Tooltip>
                                             </div>
                                             <div className="like-and-open">
-                                                <Tooltip placement="top" title={"Mark As Fovorite"} color={"#343434"}>
+                                                <Tooltip
+                                                    placement="top"
+                                                    title={"Mark As Fovorite"}
+                                                    color={"#343434"}
+                                                >
                                                     <div className='icon'>
                                                         <AiOutlineHeart />
                                                     </div>
                                                 </Tooltip>
-                                                <Link to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}>
+                                                <Link
+                                                    to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}
+                                                >
                                                     <div className='play'>
                                                         <p>Play</p>
                                                     </div>
@@ -93,7 +105,13 @@ function SimilarData({ filter }) {
             {state.completed ? "" :
                 <>
                     <button className='load-more' onClick={loadMore}>
-                        {loading ? <div className='spin'></div> : <><p>Load More</p><MdOutlineKeyboardArrowDown className='load-icon' /></>}
+                        {state.loading ?
+                            <div className='spin'></div>
+                            :
+                            <>
+                                <p>Load More</p>
+                                <MdOutlineKeyboardArrowDown className='load-icon' />
+                            </>}
                     </button>
                 </>
             }

@@ -39,7 +39,6 @@ function Trending() {
         }
     });
 
-    const initialPosts = slice(filter, 0, index)
     useEffect(() => {
         try {
             axios.get(`${API}${API_KEY}`)
@@ -63,7 +62,7 @@ function Trending() {
                     <GiSettingsKnobs />
                 </Popover>
             </div>
-            <TrendingData initialPosts={initialPosts} />
+            <TrendingData filter={filter} />
         </div>
     )
 }

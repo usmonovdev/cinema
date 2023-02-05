@@ -92,6 +92,14 @@ $large-screens: 1200px;
             opacity: 1;
         }
     }
+    .title-similar {
+        @media screen and (max-width: $mobile) {
+            font-size: 20px;
+        }
+        &:hover .sharp {
+            opacity: 1;
+        }
+    }
     svg {
         cursor: pointer;
         font-size: 1.7rem;

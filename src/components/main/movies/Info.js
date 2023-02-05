@@ -56,7 +56,7 @@ function Info() {
                 {actors?.map((data, key) => {
                     return (
                         <p key={key}>
-                            <span>{data?.name}</span> 
+                            <span>{data?.name} </span> 
                             {data?.character ? <>({data?.character})</> : ""}
                         </p>
                     )

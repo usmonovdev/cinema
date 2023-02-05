@@ -37,7 +37,7 @@ function TopRated() {
         }
     });
 
-    const initialPosts = slice(filter, 0, index)
+    
     useEffect(() => {
         try {
             axios.get(`${API}${API_KEY}`)
@@ -61,7 +61,7 @@ function TopRated() {
                     <GiSettingsKnobs />
                 </Popover>
             </div>
-            <TopRatedData initialPosts={initialPosts} />
+            <TopRatedData filter={filter} />
         </div>
     )
 }
