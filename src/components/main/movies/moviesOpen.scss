@@ -27,11 +27,7 @@ $large-screens: 1200px;
 }
 
 :where(.css-dev-only-do-not-override-1i9hnpv).ant-image {
-    height: 100%;
-    @media screen and (max-width: $tablet) {
-        height: unset;
-        width: 100%;
-    }
+    width: 100%;
 }
 
 .movie-info-overflow {

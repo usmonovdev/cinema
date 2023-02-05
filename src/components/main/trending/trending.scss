@@ -48,7 +48,7 @@ $large-screens: 1200px;
         100% {
           transform: rotate(360deg);
         }
-      }
+    }
     .load-icon {
         transition: 200ms;
         font-size: 1.5rem;
@@ -62,7 +62,6 @@ $large-screens: 1200px;
 }
 
 .title-settings-box {
-    // font-size: 20px;
     color: $white;
     position: relative;
     top: 30px;
@@ -131,12 +130,10 @@ $large-screens: 1200px;
             align-items: flex-end;
             overflow: hidden;
             transition: 200ms;
-            img {
+            .ant-image {
                 object-fit: cover;
                 height: 100%;
-                
             }
-            
             &:hover .trending-movie-info {
                 left: 0;
                 opacity: 1;

@@ -53,11 +53,10 @@ function TrendingData({ filter }) {
                                 >
                                     <div className="trending-movie-box">
                                         <Image
-                                            className='image-size'
-                                            preview={false} 
-                                            src={`https://image.tmdb.org/t/p/${initial.size}/${poster_path}`} 
+                                            preview={false}
+                                            src={`https://image.tmdb.org/t/p/${initial.size}/${poster_path}`}
                                             alt={title}
-                                            fallback={movie} 
+                                            fallback={movie}
                                         />
                                         <div className="trending-movie-info">
                                             <div className='info'>
