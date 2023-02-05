@@ -136,23 +136,25 @@ body {
             }
         }
         .links-box.active {
-            width: 100vw;
-            height: 100vh;
+            width: 0;
+            height: 0;
             background-color: $black;
             position: fixed;
             top: 0;
             left: 0;
             display: block;
-            animation: scaleNavbar 400ms alternate;
+            animation: scaleNavbar 400ms alternate both;
             transform-origin: top right;
             @keyframes scaleNavbar {
                 0% {
-                    transform: scale(0.5);
+                    width: 0;
+                    height: 0;
                     opacity: 0;
                     border-radius: 100%;
                 }
                 100% {
-                    transform: scale(1);
+                    width: 100vw;
+                    height: 100vh;
                     opacity: 1;
                     border-radius: 0;
                 }
@@ -165,6 +167,20 @@ body {
                 flex-direction: column;
                 position: relative;
                 top: 60px;
+                transform: translateY(70px);
+                opacity: 0;
+                animation: links 500ms alternate both;
+                animation-delay: 400ms;
+                @keyframes links {
+                    0% {
+                        transform: translateY(70px);
+                        opacity: 0;
+                    }
+                    100% {
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+                }
                 .link-icon {
                     display: inline;
                 }
@@ -186,6 +202,20 @@ body {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 20px;
+                transform: translateY(70px);
+                opacity: 0;
+                animation: links 500ms alternate both;
+                animation-delay: 500ms;
+                @keyframes links {
+                    0% {
+                        transform: translateY(70px);
+                        opacity: 0;
+                    }
+                    100% {
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+                }
                 .inp-and-sign {
                     width: 100%;
                     border-radius: 0;
