@@ -37,65 +37,75 @@ function SimilarData({ filter }) {
 
     return (
         <>
-            <motion.ul
-                className={`trending ${similar.length == 0 ? "trendingNoItem" : ""}`}
-                variants={container}
-                initial="hidden"
-                animate="visible"
-            >
-                {similar.map((data) => {
-                    const { id, poster_path, first_air_date, name, title, vote_average, media_type, release_date } = data
-                    return (
-                        <motion.li
-                            className="trending-movie-container"
-                            variants={item}
-                            key={id}
-                        >
-                            <div className="trending-movie-box">
-                                <Image
-                                    preview={false}
-                                    src={`https://image.tmdb.org/t/p/${initial.size}/${poster_path}`}
-                                    alt={name}
-                                    fallback={actor}
-                                />
-                                <div className="trending-movie-info">
-                                    <div className='info'>
-                                        {name ? <p className='title'>{name}</p> : <p className='title'>{title}</p>}
-                                        {first_air_date ? <p>{first_air_date}</p> : <p>{release_date}</p>}
-                                        <Tooltip
-                                            placement="top"
-                                            title={"Vote Average"}
-                                            color={"#343434"}
-                                        >
-                                            <div className='vote-average'>
-                                                <AiFillStar />{vote_average}
+            {similar.length !== 0 ?
+                <>
+                    <motion.ul
+                        className="trending"
+                        variants={container}
+                        initial="hidden"
+                        animate="visible"
+                    >
+                        {similar.map((data) => {
+                            const { id, poster_path, first_air_date, name, title, vote_average, media_type, release_date } = data
+                            return (
+                                <motion.li
+                                    className="trending-movie-container"
+                                    variants={item}
+                                    key={id}
+                                >
+                                    <div className="trending-movie-box">
+                                        <Image
+                                            preview={false}
+                                            src={`https://image.tmdb.org/t/p/${initial.size}/${poster_path}`}
+                                            alt={name}
+                                            fallback={actor}
+                                        />
+                                        <div className="trending-movie-info">
+                                            <div className='info'>
+                                                {name ? <p className='title'>{name}</p> : <p className='title'>{title}</p>}
+                                                {first_air_date ? <p>{first_air_date}</p> : <p>{release_date}</p>}
+                                                <Tooltip
+                                                    placement="top"
+                                                    title={"Vote Average"}
+                                                    color={"#343434"}
+                                                >
+                                                    <div className='vote-average'>
+                                                        <AiFillStar />{vote_average}
+                                                    </div>
+                                                </Tooltip>
                                             </div>
-                                        </Tooltip>
+                                            <div className="like-and-open">
+                                                <Tooltip
+                                                    placement="top"
+                                                    title={"Mark As Fovorite"}
+                                                    color={"#343434"}
+                                                >
+                                                    <div className='icon'>
+                                                        <AiOutlineHeart />
+                                                    </div>
+                                                </Tooltip>
+                                                <Link
+                                                    to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}
+                                                >
+                                                    <div className='play'>
+                                                        <p>Play</p>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div className="like-and-open">
-                                        <Tooltip
-                                            placement="top"
-                                            title={"Mark As Fovorite"}
-                                            color={"#343434"}
-                                        >
-                                            <div className='icon'>
-                                                <AiOutlineHeart />
-                                            </div>
-                                        </Tooltip>
-                                        <Link
-                                            to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}
-                                        >
-                                            <div className='play'>
-                                                <p>Play</p>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.li>
-                    )
-                })}
-            </motion.ul>
+                                </motion.li>
+                            )
+                        })}
+                    </motion.ul>
+                </> :
+                <div className="trendingNoItem">
+                    <div className='noItems'>
+                        <RiMovie2Line />
+                        <p>Items not found!</p>
+                    </div>
+                </div>
+            }
             {state.completed ? "" :
                 <>
                     <button className='load-more' onClick={loadMore}>

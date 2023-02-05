@@ -36,7 +36,7 @@ function UpcomingData({ filter }) {
             {upcoming.length !== 0 ?
                 <>
                     <motion.ul
-                        className={`trending ${upcoming.length == 0 ? "trendingNoItem" : ""}`}
+                        className="trending"
                         variants={container}
                         initial="hidden"
                         animate="visible"
@@ -88,10 +88,13 @@ function UpcomingData({ filter }) {
                         })}
                     </motion.ul>
                 </> :
-                <div className='noItems'>
-                    <RiMovie2Line />
-                    <p>Items not found!</p>
+                <div className="trendingNoItem">
+                    <div className='noItems'>
+                        <RiMovie2Line />
+                        <p>Items not found!</p>
+                    </div>
                 </div>
+
             }
             {state.completed ? "" :
                 <>

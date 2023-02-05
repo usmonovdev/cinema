@@ -223,7 +223,9 @@ $large-screens: 1200px;
     }
 }
 
-.trending.trendingNoItem {
+.trendingNoItem {
+    position: relative;
+    top: 40px;
     height: 150px;
     display: grid;
     grid-template-columns: auto;
