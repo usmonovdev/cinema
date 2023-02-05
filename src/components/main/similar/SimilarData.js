@@ -7,8 +7,7 @@ import { motion } from 'framer-motion';
 import { Tooltip } from 'antd';
 import { slice } from 'lodash';
 import { container, item } from '../../../assets/Framer'
-import { reducer } from "../../../assets/reducer"
-const IMAGE_LINK = "https://image.tmdb.org/t/p/w500/"
+import { initial, reducer } from "../../../assets/reducer"
 
 function SimilarData({ filter }) {
 
@@ -54,7 +53,7 @@ function SimilarData({ filter }) {
                                 >
                                     <div className="trending-movie-box">
                                         <img
-                                            src={`${IMAGE_LINK}${poster_path}`}
+                                            src={`https://image.tmdb.org/t/p/${initial.size}/${poster_path}`}
                                             alt={name}
                                         />
                                         <div className="trending-movie-info">

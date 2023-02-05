@@ -10,6 +10,7 @@ import { useRef } from 'react'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { Image } from 'antd'
 import actor from "../../../../assets/actor-photo-not-downloaded.jpg"
+import { initial } from '../../../../assets/reducer'
 const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
@@ -98,7 +99,7 @@ function Actors({ moviesId }) {
                                     preview={false}
                                     style={{ width: "100%" }} 
                                     id='actorImage' 
-                                    src={`https://image.tmdb.org/t/p/original/${data.profile_path}`} 
+                                    src={`https://image.tmdb.org/t/p/${initial.size}/${data.profile_path}`} 
                                     alt={data.name} 
                                     fallback={actor}
                                 />

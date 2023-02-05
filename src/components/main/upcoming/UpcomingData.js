@@ -6,9 +6,8 @@ import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import { Tooltip } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
-import { reducer } from '../../../assets/reducer';
+import { initial, reducer } from '../../../assets/reducer';
 import { slice } from 'lodash';
-const IMAGE_LINK = "https://image.tmdb.org/t/p/w500/"
 
 function UpcomingData({ filter }) {
     const initialState = {
@@ -51,7 +50,7 @@ function UpcomingData({ filter }) {
                                     key={id}
                                 >
                                     <div className="trending-movie-box">
-                                        <img src={`${IMAGE_LINK}${poster_path}`} alt={name} />
+                                        <img src={`https://image.tmdb.org/t/p/${initial.size}/${poster_path}`} alt={name} />
                                         <div className="trending-movie-info">
                                             <div className='info'>
                                                 {name ? <p className='title'>{name}</p> : <><p className='title'>{title}</p></>}

@@ -6,17 +6,16 @@ import "./reviews.scss"
 import "../../../../assets/slick.css"
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { useStateContext } from '../../../../context/StateContext/StateContext'
 import { BsChatLeftDotsFill } from 'react-icons/bs'
 import { motion } from "framer-motion"
 import Comment from './Comment'
 import { Image } from 'antd'
+import { initial } from '../../../../assets/reducer'
 const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Reviews({ moviesId }) {
     const [reviews, setReviews] = useState([])
-    const { imageSize } = useStateContext()
 
     useEffect(() => {
         axios.get(`${API}${moviesId}/reviews?api_key=${API_KEY}`)
@@ -41,7 +40,7 @@ function Reviews({ moviesId }) {
                                 <Image
                                     fallback={image}
                                     preview={false}
-                                    src={`https://image.tmdb.org/t/p/original/${author_details.avatar_path}`}
+                                    src={`https://image.tmdb.org/t/p/${initial.size}/${author_details.avatar_path}`}
                                     alt={author}
                                 />
                             </div>

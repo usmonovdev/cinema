@@ -13,7 +13,6 @@ const API = "https://api.themoviedb.org/3/movie/top_rated?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function TopRated() {
-    const { index } = useMovieContext()
     const { filterTopLang, filterTopStar } = useStateContext()
     const [movie, setMovie] = useState([]);
 

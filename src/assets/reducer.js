@@ -42,3 +42,7 @@ export const reducer = (state, action) => {
             return;
     }
 }
+
+export const initial = {
+    size: "w500"
+}

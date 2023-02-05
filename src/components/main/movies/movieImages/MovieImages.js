@@ -9,7 +9,7 @@ import Slider from 'react-slick'
 import { useRef } from 'react'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { Image } from 'antd'
-import { reducer } from '../../../../assets/reducer'
+import { initial, reducer } from '../../../../assets/reducer'
 import { useReducer } from 'react'
 import { BsImageFill } from "react-icons/bs"
 import { motion } from 'framer-motion'
@@ -99,7 +99,7 @@ function MovieImages({ moviesId }) {
                                         <Image
                                             className='movie-photo'
                                             style={{ width: "100%" }} id='actorImage'
-                                            src={`https://image.tmdb.org/t/p/${state.imageSize}/${data.file_path}`}
+                                            src={`https://image.tmdb.org/t/p/${initial.size}/${data.file_path}`}
                                             alt={data.name}
                                             fallback={logo}
                                         />

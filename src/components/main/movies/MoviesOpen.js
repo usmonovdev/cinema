@@ -3,20 +3,21 @@ import "./moviesOpen.scss"
 import "../movies/moviesOpen.scss"
 import "../movies/actors/actors.scss"
 import React, { useEffect, useState } from 'react'
+import { useMovieContext } from "../../../context/MovieContex/MovieContex"
 import { useParams } from 'react-router-dom'
 import Navbar from '../../navbar/Navbar'
 import BannedContent from "../../BannedContent/BannedContent"
 import RightInfo from "./rightInfo/RightInfo"
 import LeftInfo from "./leftInfo/LeftInfo"
-import { useMovieContext } from "../../../context/MovieContex/MovieContex"
 import Footer from "../../footer/Footer"
 import Actors from "./actors/Actors"
 import MoviesOpen from "../../loading/moviesOpen/MoviesOpen"
 import MovieImages from "./movieImages/MovieImages"
 import Reviews from "./reviews/Reviews"
-import Trending from "../trending/Trending"
 import Similar from "../similar/Similar"
+import { initial } from "../../../assets/reducer"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
+
 function Movies() {
     const [loading, setLoading] = useState(true)
     const { getMovie, movie } = useMovieContext()
@@ -46,7 +47,7 @@ function Movies() {
                     <div className="ads movie-info-overflow class-for-actors">
                         <div className='bg-image movies-open-media' style={{
                             opacity: "1",
-                            backgroundImage: `url("https://image.tmdb.org/t/p/original/${backdrop_path}")`
+                            backgroundImage: `url("https://image.tmdb.org/t/p/${initial.size}/${backdrop_path}")`
                         }}>
                             <div className="opened-movie-backdrop">
                                 <LeftInfo movie={movie} />
@@ -55,19 +56,20 @@ function Movies() {
                         </div>
                     </div>
                     <Actors moviesId={moviesId} />
-                    <MovieImages moviesId={moviesId}/>
-                    <Reviews moviesId={moviesId}/>
+                    <MovieImages moviesId={moviesId} />
+                    <Reviews moviesId={moviesId} />
                     <Similar moviesId={moviesId} />
                     <Footer />
-                </> : 
-                <>
-                    <Navbar />
-                    <MoviesOpen />
-                </>}
+                </> :
+                    <>
+                        <Navbar />
+                        <MoviesOpen />
+                    </>}
             </> : <>
                 <BannedContent />
                 <Footer />
-            </>}
+            </>
+            }
         </>
     )
 }

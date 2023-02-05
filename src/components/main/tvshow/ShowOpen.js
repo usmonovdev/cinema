@@ -10,6 +10,7 @@ import Reviews from '../movies/reviews/Reviews'
 import MovieImages from '../movies/movieImages/MovieImages'
 import Actors from '../movies/actors/Actors'
 import Similar from '../similar/Similar'
+import { initial } from '../../../assets/reducer'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 function ShowOpen() {
     const [loading, setLoading] = useState(true)
@@ -36,7 +37,7 @@ function ShowOpen() {
                 <div className="ads movie-info-overflow class-for-actors">
                     <div className='bg-image movies-open-media' style={{
                         opacity: "1",
-                        backgroundImage: `url("https://image.tmdb.org/t/p/original/${backdrop_path}")`
+                        backgroundImage: `url("https://image.tmdb.org/t/p/${initial.size}/${backdrop_path}")`
                     }}>
                         <div className="opened-movie-backdrop">
                             <LeftInfo show={movie} />

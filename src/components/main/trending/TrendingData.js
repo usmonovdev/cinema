@@ -8,7 +8,7 @@ import { Tooltip } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
 import { reducer } from '../../../assets/reducer';
 import { slice } from 'lodash';
-const IMAGE_LINK = "https://image.tmdb.org/t/p/w500/"
+import { initial } from '../../../assets/reducer'
 
 function TrendingData({ filter }) {
     const initialState = {
@@ -51,7 +51,7 @@ function TrendingData({ filter }) {
                                     key={id}
                                 >
                                     <div className="trending-movie-box">
-                                        <img src={`${IMAGE_LINK}${poster_path}`} alt={name} />
+                                        <img src={`https://image.tmdb.org/t/p/${initial.size}/${poster_path}`} alt={title} />
                                         <div className="trending-movie-info">
                                             <div className='info'>
                                                 {name ? <p className='title'>{name}</p> : <p className='title'>{title}</p>}

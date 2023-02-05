@@ -10,6 +10,7 @@ import Trending from '../trending/Trending'
 import Upcoming from '../upcoming/Upcoming'
 import TopRated from '../topRated/TopRated'
 import Footer from '../../footer/Footer'
+import { initial } from '../../../assets/reducer'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Home() {
@@ -64,15 +65,15 @@ function Home() {
                     }
                     return (
                         <div className={`bg-image ${slide}`} key={id} style={{
-                            backgroundImage: `url("https://image.tmdb.org/t/p/original/${backdrop_path}")`
+                            backgroundImage: `url("https://image.tmdb.org/t/p/${initial.size}/${backdrop_path}")`
                         }}>
                             <div className='top-popular-home'>
                                 <div className='play-and-next'>
                                     <div>
-                                        <button onClick={() => setIndex(index - 1)}>
+                                        <button className='arrows' onClick={() => setIndex(index - 1)}>
                                             <BiLeftArrowAlt />
                                         </button>
-                                        <button onClick={() => setIndex(index + 1)}>
+                                        <button className='arrows' onClick={() => setIndex(index + 1)}>
                                             <BiRightArrowAlt />
                                         </button>
                                     </div>
