@@ -6,7 +6,6 @@ function Info() {
     const { movie } = useMovieContext()
     const { languages, genres, production_companies, first_air_date, last_air_date, seasons, production_countries, number_of_episodes } = movie
 
-    console.log(movie)
     return (
         <div className='info'>
             <div className='genres'>

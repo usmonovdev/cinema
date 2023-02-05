@@ -2,45 +2,43 @@ import { Popover } from 'antd'
 import { slice } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { GiSettingsKnobs } from "react-icons/gi"
-import "../trending/trending.scss"
+import "./trending.scss"
 import Filter from './Filter'
-import { PopoverTitleTop } from "../../../assets/AntD"
+import { PopoverTitleTrending } from "../../../assets/AntD"
 import axios from 'axios'
-import TopRatedData from './TopRatedData'
+import SimilarData from './SimilarData'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
-import { useStateContext } from '../../../context/StateContext/StateContext'
-const API = "https://api.themoviedb.org/3/movie/top_rated?api_key="
+const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
-function TopRated() {
-    const { index } = useMovieContext()
-    const { filterTopLang, filterTopStar } = useStateContext()
+function Similar({ moviesId }) {
+    const { filterValueInLang, filterValueInStar, index } = useMovieContext()
     const [movie, setMovie] = useState([]);
 
     const filter = movie?.filter((data) => {
-        if (filterTopLang == "en") { // filter by language
+        if (filterValueInLang == "en") { // filter by language
             return data.original_language == "en"
-        } else if (filterTopLang == "ru") {
+        } else if (filterValueInLang == "ru") {
             return data.original_language == "ru"
-        } else if (filterTopLang == "uz") {
+        } else if (filterValueInLang == "uz") {
             return data.original_language == "uz"
-        } else if (filterTopStar >= 9) { // filter by star
+        } else if (filterValueInStar >= 9) { // filter by star
             return data.vote_average >= 9
-        } else if (filterTopStar >= 8) {
+        } else if (filterValueInStar >= 8) {
             return data.vote_average >= 8
-        } else if (filterTopStar >= 7) {
+        } else if (filterValueInStar >= 7) {
             return data.vote_average >= 7
-        } else if (filterTopStar >= 6) {
+        } else if (filterValueInStar >= 6) {
             return data.vote_average >= 6
         } else {
             return data
         }
     });
-
+    console.log(movie)
     const initialPosts = slice(filter, 0, index)
     useEffect(() => {
         try {
-            axios.get(`${API}${API_KEY}`)
+            axios.get(`${API}${moviesId}/similar?api_key=${API_KEY}`)
                 .then((movie) => {
                     setMovie(movie.data.results)
                 });
@@ -50,20 +48,20 @@ function TopRated() {
     }, []);
 
     return (
-        <div className='container' style={{marginBottom: "60px"}}>
+        <div className='container' style={{ marginBottom: "60px" }}>
             <div className="title-settings-box">
-                <h1 className='title'><span className='sharp'>#</span> Top Rated</h1>
+                <h1 className='title'><span className='sharp'>#</span> Similar Movies</h1>
                 <Popover
                     placement="topRight"
                     content={<Filter />}
-                    title={PopoverTitleTop} trigger="click"
+                    title={PopoverTitleTrending} trigger="click"
                 >
                     <GiSettingsKnobs />
                 </Popover>
             </div>
-            <TopRatedData initialPosts={initialPosts} />
+            <SimilarData initialPosts={initialPosts} />
         </div>
     )
 }
 
-export default TopRated
+export default Similar

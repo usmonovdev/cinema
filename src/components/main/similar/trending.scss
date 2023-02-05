@@ -1,0 +1,244 @@
+$white: #fff;
+$black: #343434;
+$second-black: #2e2e2e71;
+$yellow: #e6b31e;
+$yellow-opacity: #e6b41e33;
+$mobile: 480px;
+$tablet: 768px;
+$small-screens: 992px;
+$large-screens: 1200px;
+
+:where(.css-dev-only-do-not-override-1i9hnpv).ant-spin {
+    color: $white;
+}
+
+.load-more {
+    width: 100%;
+    height: 40px;
+    position: relative;
+    top: 60px;
+    border: none;
+    padding: 10px;
+    background-color: $yellow;
+    color: $white;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 200ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media screen and (max-width: $mobile) {
+        width: 90%;
+        margin: 0 auto;
+        position: relative;
+        top: 60px;
+    }
+    .spin {
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        border: .15rem solid rgba($white, 0.2);
+        border-top-color: $white;
+        animation: spin 1s infinite linear;
+    }
+    @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    .load-icon {
+        transition: 200ms;
+        font-size: 1.5rem;
+    }
+}
+
+.sharp {
+    opacity: .6;
+    margin-right: 5px;
+    transition: 200ms;
+}
+
+.title-settings-box {
+    // font-size: 20px;
+    color: $white;
+    position: relative;
+    top: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    @media screen and (max-width: $tablet) {
+        margin: 0;
+    }
+    @media screen and (max-width: $mobile) {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .title {
+        @media screen and (max-width: $large-screens) {
+            font-size: 30px;
+        }
+        @media screen and (max-width: $small-screens) {
+            font-size: 26px;
+        }
+        @media screen and (max-width: $tablet) {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        &:hover .sharp{
+            opacity: 1;
+        }
+    }
+    svg {
+        cursor: pointer;
+        font-size: 1.7rem;
+        transform: rotate(-90deg);
+    }
+}
+
+.trending {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 14px;
+    position: relative;
+    top: 40px;
+    box-sizing: border-box;
+    transition: 200ms;
+    @media screen and (max-width: $mobile) {
+        display: grid;
+        grid-template-columns: auto auto;
+        width: 100%;
+    }
+    @media screen and (max-width: $mobile) {
+        display: grid;
+        grid-template-columns: auto auto;
+        width: 90%;
+        margin: 0 auto;
+    }
+    .trending-movie-container {
+        min-width: 24%;
+        list-style: none;
+        .trending-movie-box {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            position: relative;
+            align-items: flex-end;
+            overflow: hidden;
+            transition: 200ms;
+            img {
+                object-fit: cover;
+            }
+            &:hover .trending-movie-info {
+                left: 0;
+                opacity: 1;
+                .like-and-open {
+                    top: 0;
+                }
+            }
+            .trending-movie-info {
+                box-sizing: border-box;
+                width: 100%;
+                height: 100%;
+                padding: 10px;
+                position: absolute;
+                left: 50%;
+                opacity: 0;
+                color: $white;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                background-color: $second-black;
+                backdrop-filter: blur(5px);
+                transition: 200ms;
+                .info {
+                    .title {
+                        font-weight: 600;
+                    }
+                }
+                .vote-average {
+                    width: fit-content;
+                    padding: 4px 10px;
+                    gap: 10px;
+                    display: flex;
+                    align-items: center;
+                    border: 2px solid $yellow;
+                    border-radius: 20px;
+                    cursor: pointer;
+                    margin-top: 5px;
+                    &:hover {
+                        background-color: $yellow;
+                    }
+                }
+                .like-and-open {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    position: relative;
+                    top: 50px;
+                    transition: 200ms;
+                    transition-delay: 300ms;
+                    .icon {
+                        width: 20px;
+                        height: 20px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        padding: 5px;
+                        background-color: unset;
+                        border: 2px solid $yellow;
+                        &:hover {
+                            background-color: $yellow;
+                        }
+                    }
+                    a {
+                        width: 60%;
+                        text-decoration: unset;
+                        color: $white;
+                    }
+                    .play {
+                        height: 20px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding: 5px 15px;
+                        border: 2px solid $yellow;
+                        background-color: $yellow;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.trending.trendingNoItem {
+    height: 150px;
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
+    align-items: center;
+    color: $white;
+    .noItems {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        svg {
+            font-size: 3rem;
+        }
+        p {
+            opacity: .5;
+        }
+    }
+}

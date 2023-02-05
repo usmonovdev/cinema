@@ -15,7 +15,6 @@ function Info() {
                 setActors(data.data.cast)
             });
     }, []);
-    console.log(actors)
     return (
         <div className='info'>
             <div className='genres'>

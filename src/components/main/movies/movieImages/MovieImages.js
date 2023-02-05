@@ -28,8 +28,6 @@ function MovieImages({ moviesId }) {
             });
     }, []);
 
-    console.log(photos)
-
     const settings = {
         dots: false,
         infinite: false,

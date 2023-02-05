@@ -26,6 +26,10 @@ $large-screens: 1200px;
     opacity: 1;
 }
 
+:where(.css-dev-only-do-not-override-1i9hnpv).ant-image {
+    width: 100%;
+}
+
 .movie-info-overflow {
     overflow:unset !important;
 }

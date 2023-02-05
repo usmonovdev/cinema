@@ -1,19 +1,19 @@
-import React from 'react'
 import { Select, ConfigProvider } from 'antd'
-import "../trending/filter.scss"
-import { useStateContext } from '../../../context/StateContext/StateContext';
+import React from 'react'
+import { useMovieContext } from '../../../context/MovieContex/MovieContex';
+import "./filter.scss"
 
 function Filter() {
-    const { setFilterUpLang, setFilterUpStar } = useStateContext()
+    const { setFilterValueInLang, setFilterValueInStar } = useMovieContext()
 
     // filter by language
-    const handleFilterUpcomingByLang = (value) => {
-        setFilterUpLang(value)
+    const handleFilterByLang = (value) => {
+        setFilterValueInLang(value)
     };
 
     // filter by star
-    const handleFilterUpcomingByStar = (value) => {
-        setFilterUpStar(value)
+    const handleFilterByStar = (value) => {
+        setFilterValueInStar(value)
     };
 
     // Refresh Page to reset filter settings
@@ -37,7 +37,7 @@ function Filter() {
                         style={{
                             width: 120,
                         }}
-                        onChange={event => handleFilterUpcomingByLang(event)}
+                        onChange={event => handleFilterByLang(event)}
                         options={[
                             {
                                 value: 'all',
@@ -65,7 +65,7 @@ function Filter() {
                         style={{
                             width: 120,
                         }}
-                        onChange={event => handleFilterUpcomingByStar(event)}
+                        onChange={event => handleFilterByStar(event)}
                         options={[
                             {
                                 value: 'all',

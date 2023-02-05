@@ -19,9 +19,10 @@ function RightInfo() {
     const onClose = () => {
         setInfo(false);
     };
+    
     const sharedData = {
         title: `Share Movie - ${name}`,
-        text: `${name}`,
+        text: `Watch the movie "${name}" via the link below.`,
         url: window.location
     }
 
