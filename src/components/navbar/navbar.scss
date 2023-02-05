@@ -143,6 +143,20 @@ body {
             top: 0;
             left: 0;
             display: block;
+            animation: scaleNavbar 400ms alternate;
+            transform-origin: top right;
+            @keyframes scaleNavbar {
+                0% {
+                    transform: scale(0.5);
+                    opacity: 0;
+                    border-radius: 100%;
+                }
+                100% {
+                    transform: scale(1);
+                    opacity: 1;
+                    border-radius: 0;
+                }
+            }
             .links {
                 width: 80%;
                 margin: 0 auto;

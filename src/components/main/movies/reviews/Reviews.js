@@ -24,50 +24,43 @@ function Reviews({ moviesId }) {
             });
     }, []);
     return (
-        <div className='container'>
-            <div className="actors-box">
-                <div className="actors-title">
-                    <h1 className='title'>
-                        <span className='sharp'>#</span>
-                        Comments
-                    </h1>
-                </div>
-                {reviews.results?.length !== 0 ? <>{reviews.results?.map((data) => {
-                    const { author, author_details, id, created_at, content } = data
-                    return (
-                        <div className="review" key={id}>
-                            <div className='user'>
-                                <Image
-                                    fallback={image}
-                                    preview={false}
-                                    src={`https://image.tmdb.org/t/p/${initial.size}/${author_details.avatar_path}`}
-                                    alt={author}
-                                />
-                            </div>
-                            <div className='commit'>
-                                <div className='info'>
-                                    <p>{author} • <span>{created_at.slice(0, 10)}</span></p>
-                                </div>
-                                <Comment content={content} />
-                            </div>
+        <>
+            {reviews.results?.length !== 0 ? <>
+                <div className='container'>
+                    <div className="actors-box">
+                        <div className="actors-title">
+                            <h1 className='title'>
+                                <span className='sharp'>#</span>
+                                Comments
+                            </h1>
                         </div>
-                    )
-                })}</> : <div className='no-review'>
-                    <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ rotate: -360, scale: 1 }}
-                        transition={{
-                            type: "spring",
-                            stiffness: 260,
-                            damping: 20
-                        }}
-                    >
-                        <BsChatLeftDotsFill className='icon' />
-                    </motion.div>
-                    <p>No Comments!</p>
-                </div>}
-            </div>
-        </div>
+                        {reviews.results?.map((data) => {
+                            const { author, author_details, id, created_at, content } = data
+                            return (
+                                <div className="review" key={id}>
+                                    <div className='user'>
+                                        <Image
+                                            fallback={image}
+                                            preview={false}
+                                            src={`https://image.tmdb.org/t/p/${initial.size}/${author_details.avatar_path}`}
+                                            alt={author}
+                                        />
+                                    </div>
+                                    <div className='commit'>
+                                        <div className='info'>
+                                            <p>{author} • <span>{created_at.slice(0, 10)}</span></p>
+                                        </div>
+                                        <Comment content={content} />
+                                    </div>
+                                </div>
+                            )
+                        })}
+
+                    </div>
+                </div>
+            </> : ""}
+        </>
+
     )
 }
 
