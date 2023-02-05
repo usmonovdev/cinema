@@ -18,7 +18,7 @@ function TrendingData({ initialPosts }) {
         setTimeout(() => {
             setIndex(index + 4)
             setLoading(false)
-        }, 1000);
+        }, 5000);
         if (index >= 16 || initialPosts.length < 3) {
             setIsCompleted(true)
         } else {

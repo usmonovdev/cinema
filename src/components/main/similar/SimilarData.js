@@ -8,23 +8,33 @@ import { Tooltip } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import { useState } from 'react';
+import { reducer } from "../../../assets/reducer"
+import { useReducer } from 'react';
+import { slice } from 'lodash';
 const IMAGE_LINK = "https://image.tmdb.org/t/p/w500/"
 
-function SimilarData({ initialPosts }) {
-    const { isCompleted, setIsCompleted, index, setIndex } = useMovieContext()
+function SimilarData({ filter }) {
+    const initialState = {
+        completed: false,
+        index: 4,
+    }
+    const [state, dispatch] = useReducer(reducer, initialState)
+    const initialPosts = slice(filter, 0, state.index)
+    const { setIsCompleted, index } = useMovieContext()
     const [loading, setLoading] = useState(false)
     const loadMore = () => {
         setLoading(true)
         setTimeout(() => {
-            setIndex(index + 4)
+            dispatch({ type: "LOAD_MORE" })
             setLoading(false)
         }, 1000);
-        if (index >= 16 || initialPosts.length < 3) {
-            setIsCompleted(true)
+        if (state.index >= 16 || initialPosts.length < 3) {
+            dispatch({ type: "IS_COMPLETED" })
         } else {
             setIsCompleted(false)
         }
     }
+    console.log(state.index)
     return (
         <>
             <motion.ul
@@ -80,7 +90,7 @@ function SimilarData({ initialPosts }) {
 
                 }
             </motion.ul>
-            {isCompleted  ? "" :
+            {state.completed ? "" :
                 <>
                     <button className='load-more' onClick={loadMore}>
                         {loading ? <div className='spin'></div> : <><p>Load More</p><MdOutlineKeyboardArrowDown className='load-icon' /></>}

@@ -1,5 +1,4 @@
 import { Popover } from 'antd'
-import { slice } from 'lodash'
 import React, { useEffect, useState } from 'react'
 import { GiSettingsKnobs } from "react-icons/gi"
 import "./trending.scss"
@@ -34,8 +33,6 @@ function Similar({ moviesId }) {
             return data
         }
     });
-    console.log(movie)
-    const initialPosts = slice(filter, 0, index)
     useEffect(() => {
         try {
             axios.get(`${API}${moviesId}/similar?api_key=${API_KEY}`)
@@ -59,7 +56,7 @@ function Similar({ moviesId }) {
                     <GiSettingsKnobs />
                 </Popover>
             </div>
-            <SimilarData initialPosts={initialPosts} />
+            <SimilarData filter={filter} />
         </div>
     )
 }

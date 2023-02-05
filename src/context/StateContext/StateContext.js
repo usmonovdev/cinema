@@ -14,7 +14,7 @@ const StateContextProvider = ({ children }) => {
     const [filterTopStar, setFilterTopStar] = useState("all")
 
     // state for loadMore
-    const [isCompleted, setIsCompleted] = useState(false)
+    // const [isCompleted, setIsCompleted] = useState(false)
     const [isCompletedTop, setIsCompletedTop] = useState(false)
 
     // for image size
@@ -27,8 +27,6 @@ const StateContextProvider = ({ children }) => {
                 setFilterUpLang,
                 filterUpStar,
                 setFilterUpStar,
-                isCompleted,
-                setIsCompleted,
                 filterTopLang,
                 setFilterTopLang,
                 filterTopStar,

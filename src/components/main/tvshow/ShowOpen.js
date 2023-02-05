@@ -9,6 +9,7 @@ import Footer from '../../footer/Footer'
 import Reviews from '../movies/reviews/Reviews'
 import MovieImages from '../movies/movieImages/MovieImages'
 import Actors from '../movies/actors/Actors'
+import Similar from '../similar/Similar'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 function ShowOpen() {
     const [loading, setLoading] = useState(true)
@@ -46,6 +47,7 @@ function ShowOpen() {
                 <Actors moviesId={showId} />
                 <MovieImages moviesId={showId} />
                 <Reviews moviesId={showId} />
+                <Similar moviesId={showId} />
                 <Footer />
             </> : <>
                 <BannedContent />

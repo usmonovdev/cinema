@@ -20,7 +20,7 @@ function UpcomingData({ loadedUpcoming }) {
         setTimeout(() => {
             setUpcomingIndex(upcomingIndex + 4)
             setLoading(false)
-        }, 1000);
+        }, 5000);
         if (upcomingIndex >= 16 || loadedUpcoming.length < 3) {
             setIsCompleted(true)
         } else {
