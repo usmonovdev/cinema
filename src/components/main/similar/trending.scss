@@ -62,7 +62,6 @@ $large-screens: 1200px;
 }
 
 .title-settings-box {
-    // font-size: 20px;
     color: $white;
     position: relative;
     top: 30px;
@@ -141,6 +140,10 @@ $large-screens: 1200px;
             transition: 200ms;
             img {
                 object-fit: cover;
+                height: 100%;
+                @media screen and (max-width: $tablet) {
+                    height: unset;
+                }
             }
             &:hover .trending-movie-info {
                 left: 0;

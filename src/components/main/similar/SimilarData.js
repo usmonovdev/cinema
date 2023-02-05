@@ -6,8 +6,10 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Tooltip } from 'antd';
 import { slice } from 'lodash';
+import actor from "../../../assets/actor-photo-not-downloaded.jpg"
 import { container, item } from '../../../assets/Framer'
 import { initial, reducer } from "../../../assets/reducer"
+import { Image } from 'antd'
 
 function SimilarData({ filter }) {
 
@@ -22,7 +24,7 @@ function SimilarData({ filter }) {
 
     const loadMore = () => {
         dispatch({ type: "LOADING" })
-        
+
         setTimeout(() => {
             dispatch({ type: "LOAD_MORE" })
             dispatch({ type: "LOADING_FALSE" })
@@ -41,65 +43,58 @@ function SimilarData({ filter }) {
                 initial="hidden"
                 animate="visible"
             >
-                {similar.length !== 0 ?
-                    <>
-                        {similar.map((data) => {
-                            const { id, poster_path, first_air_date, name, title, vote_average, media_type, release_date } = data
-                            return (
-                                <motion.li
-                                    className="trending-movie-container"
-                                    variants={item}
-                                    key={id}
-                                >
-                                    <div className="trending-movie-box">
-                                        <img
-                                            src={`https://image.tmdb.org/t/p/${initial.size}/${poster_path}`}
-                                            alt={name}
-                                        />
-                                        <div className="trending-movie-info">
-                                            <div className='info'>
-                                                {name ? <p className='title'>{name}</p> : <p className='title'>{title}</p>}
-                                                {first_air_date ? <p>{first_air_date}</p> : <p>{release_date}</p>}
-                                                <Tooltip
-                                                    placement="top"
-                                                    title={"Vote Average"}
-                                                    color={"#343434"}
-                                                >
-                                                    <div className='vote-average'>
-                                                        <AiFillStar />{vote_average}
-                                                    </div>
-                                                </Tooltip>
+                {similar.map((data) => {
+                    const { id, poster_path, first_air_date, name, title, vote_average, media_type, release_date } = data
+                    return (
+                        <motion.li
+                            className="trending-movie-container"
+                            variants={item}
+                            key={id}
+                        >
+                            <div className="trending-movie-box">
+                                <Image
+                                    preview={false}
+                                    src={`https://image.tmdb.org/t/p/${initial.size}/${poster_path}`}
+                                    alt={name}
+                                    fallback={actor}
+                                />
+                                <div className="trending-movie-info">
+                                    <div className='info'>
+                                        {name ? <p className='title'>{name}</p> : <p className='title'>{title}</p>}
+                                        {first_air_date ? <p>{first_air_date}</p> : <p>{release_date}</p>}
+                                        <Tooltip
+                                            placement="top"
+                                            title={"Vote Average"}
+                                            color={"#343434"}
+                                        >
+                                            <div className='vote-average'>
+                                                <AiFillStar />{vote_average}
                                             </div>
-                                            <div className="like-and-open">
-                                                <Tooltip
-                                                    placement="top"
-                                                    title={"Mark As Fovorite"}
-                                                    color={"#343434"}
-                                                >
-                                                    <div className='icon'>
-                                                        <AiOutlineHeart />
-                                                    </div>
-                                                </Tooltip>
-                                                <Link
-                                                    to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}
-                                                >
-                                                    <div className='play'>
-                                                        <p>Play</p>
-                                                    </div>
-                                                </Link>
-                                            </div>
-                                        </div>
+                                        </Tooltip>
                                     </div>
-                                </motion.li>
-                            )
-                        })}
-                    </> :
-                    <div className='noItems'>
-                        <RiMovie2Line />
-                        <p>Items not found!</p>
-                    </div>
-
-                }
+                                    <div className="like-and-open">
+                                        <Tooltip
+                                            placement="top"
+                                            title={"Mark As Fovorite"}
+                                            color={"#343434"}
+                                        >
+                                            <div className='icon'>
+                                                <AiOutlineHeart />
+                                            </div>
+                                        </Tooltip>
+                                        <Link
+                                            to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}
+                                        >
+                                            <div className='play'>
+                                                <p>Play</p>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.li>
+                    )
+                })}
             </motion.ul>
             {state.completed ? "" :
                 <>

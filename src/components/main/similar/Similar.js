@@ -43,22 +43,26 @@ function Similar({ moviesId }) {
             console.log("Error in API", error)
         }
     }, []);
-
+    console.log(movie)
     return (
-        <div className='container' style={{ marginBottom: "60px" }}>
-            <div className="title-settings-box">
-                <h1 className='title-similar'><span className='sharp'>#</span> Similar Movies</h1>
-                <Popover
-                    placement="topRight"
-                    content={<Filter />}
-                    title={PopoverTitleTrending} 
-                    trigger="click"
-                >
-                    <GiSettingsKnobs />
-                </Popover>
-            </div>
-            <SimilarData filter={filter} />
-        </div>
+        <>
+            {movie?.length !== 0 ? <>
+                <div className='container' style={{ marginBottom: "60px" }}>
+                    <div className="title-settings-box">
+                        <h1 className='title-similar'><span className='sharp'>#</span> Similar Movies</h1>
+                        <Popover
+                            placement="topRight"
+                            content={<Filter />}
+                            title={PopoverTitleTrending}
+                            trigger="click"
+                        >
+                            <GiSettingsKnobs />
+                        </Popover>
+                    </div>
+                    <SimilarData filter={filter} />
+                </div>
+            </> : ""}
+        </>
     )
 }
 

@@ -133,7 +133,10 @@ $large-screens: 1200px;
             transition: 200ms;
             img {
                 object-fit: cover;
+                height: 100%;
+                
             }
+            
             &:hover .trending-movie-info {
                 left: 0;
                 opacity: 1;

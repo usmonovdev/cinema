@@ -21,7 +21,7 @@ function UpcomingData({ filter }) {
 
     const loadMore = () => {
         dispatch({ type: "LOADING" })
-        
+
         setTimeout(() => {
             dispatch({ type: "LOAD_MORE" })
             dispatch({ type: "LOADING_FALSE" })
@@ -33,14 +33,14 @@ function UpcomingData({ filter }) {
     }
     return (
         <>
-            <motion.ul
-                className={`trending ${upcoming.length == 0 ? "trendingNoItem" : ""}`}
-                variants={container}
-                initial="hidden"
-                animate="visible"
-            >
-                {upcoming.length !== 0 ?
-                    <>
+            {upcoming.length !== 0 ?
+                <>
+                    <motion.ul
+                        className={`trending ${upcoming.length == 0 ? "trendingNoItem" : ""}`}
+                        variants={container}
+                        initial="hidden"
+                        animate="visible"
+                    >
                         {upcoming.map((data) => {
                             const { id, poster_path, first_air_date, name, title, vote_average, media_type, release_date } = data
                             return (
@@ -55,9 +55,9 @@ function UpcomingData({ filter }) {
                                             <div className='info'>
                                                 {name ? <p className='title'>{name}</p> : <><p className='title'>{title}</p></>}
                                                 {first_air_date ? <p>{first_air_date}</p> : <p>{release_date}</p>}
-                                                <Tooltip 
-                                                    placement="top" 
-                                                    title={"Vote Average"} 
+                                                <Tooltip
+                                                    placement="top"
+                                                    title={"Vote Average"}
                                                     color={"#343434"}
                                                 >
                                                     <div className='vote-average'>
@@ -66,9 +66,9 @@ function UpcomingData({ filter }) {
                                                 </Tooltip>
                                             </div>
                                             <div className="like-and-open">
-                                                <Tooltip 
-                                                    placement="top" 
-                                                    title={"Mark As Fovorite"} 
+                                                <Tooltip
+                                                    placement="top"
+                                                    title={"Mark As Fovorite"}
                                                     color={"#343434"}
                                                 >
                                                     <div className='icon'>
@@ -86,20 +86,19 @@ function UpcomingData({ filter }) {
                                 </motion.li>
                             )
                         })}
-                    </> :
-                    <div className='noItems'>
-                        <RiMovie2Line />
-                        <p>Items not found!</p>
-                    </div>
-
-                }
-            </motion.ul>
+                    </motion.ul>
+                </> :
+                <div className='noItems'>
+                    <RiMovie2Line />
+                    <p>Items not found!</p>
+                </div>
+            }
             {state.completed ? "" :
                 <>
                     <button className='load-more' onClick={loadMore}>
-                        {state.loading ? 
-                            <div className='spin'></div> 
-                            : 
+                        {state.loading ?
+                            <div className='spin'></div>
+                            :
                             <>
                                 <p>Load More</p>
                                 <MdOutlineKeyboardArrowDown className='load-icon' />

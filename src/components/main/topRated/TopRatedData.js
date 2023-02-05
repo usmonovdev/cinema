@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
-import { Tooltip } from 'antd';
+import { Image, Tooltip } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
 import { container, item } from '../../../assets/Framer'
 import { reducer } from '../../../assets/reducer';
 import { slice } from 'lodash';
 import { initial } from '../../../assets/reducer';
+import movie from "../../../assets/actor-photo-not-downloaded.jpg"
 
 function TopRatedData({ filter }) {
     const initialState = {
@@ -19,10 +20,10 @@ function TopRatedData({ filter }) {
 
     const [state, dispatch] = useReducer(reducer, initialState)
     const initialPosts = slice(filter, 0, state.index)
-    
+
     const loadMore = () => {
         dispatch({ type: "LOADING" })
-        
+
         setTimeout(() => {
             dispatch({ type: "LOAD_MORE" })
             dispatch({ type: "LOADING_FALSE" })
@@ -34,14 +35,14 @@ function TopRatedData({ filter }) {
     }
     return (
         <>
-            <motion.ul
-                className={`trending ${initialPosts.length == 0 ? "trendingNoItem" : ""}`}
-                variants={container}
-                initial="hidden"
-                animate="visible"
-            >
-                {initialPosts.length !== 0 ?
-                    <>
+            {initialPosts.length !== 0 ?
+                <>
+                    <motion.ul
+                        className={`trending ${initialPosts.length == 0 ? "trendingNoItem" : ""}`}
+                        variants={container}
+                        initial="hidden"
+                        animate="visible"
+                    >
                         {initialPosts.map((data) => {
                             const { id, poster_path, first_air_date, name, title, vote_average, media_type, release_date } = data
                             return (
@@ -51,15 +52,17 @@ function TopRatedData({ filter }) {
                                     key={id}
                                 >
                                     <div className="trending-movie-box">
-                                        <img 
-                                            src={`https://image.tmdb.org/t/p/${initial.size}/${poster_path}`} 
-                                            alt={name} 
+                                        <Image
+                                            preview={false}
+                                            src={`https://image.tmdb.org/t/p/${initial.size}/${poster_path}`}
+                                            alt={name}
+                                            fallback={movie}
                                         />
                                         <div className="trending-movie-info">
                                             <div className='info'>
                                                 {name ? <p className='title'>{name}</p> : <p className='title'>{title}</p>}
                                                 {first_air_date ? <p>{first_air_date}</p> : <p>{release_date}</p>}
-                                                <Tooltip 
+                                                <Tooltip
                                                     placement="top"
                                                     title={"Vote Average"}
                                                     color={"#343434"}
@@ -70,7 +73,7 @@ function TopRatedData({ filter }) {
                                                 </Tooltip>
                                             </div>
                                             <div className="like-and-open">
-                                                <Tooltip 
+                                                <Tooltip
                                                     placement="top"
                                                     title={"Mark As Fovorite"}
                                                     color={"#343434"}
@@ -90,20 +93,20 @@ function TopRatedData({ filter }) {
                                 </motion.li>
                             )
                         })}
-                    </> :
-                    <div className='noItems'>
-                        <RiMovie2Line />
-                        <p>Items not found!</p>
-                    </div>
+                    </motion.ul>
+                </> :
+                <div className='noItems'>
+                    <RiMovie2Line />
+                    <p>Items not found!</p>
+                </div>
 
-                }
-            </motion.ul>
-            {state.completed  ? "" :
+            }
+            {state.completed ? "" :
                 <>
                     <button className='load-more' onClick={loadMore}>
-                        {state.loading ? 
-                            <div className='spin'></div> 
-                            : 
+                        {state.loading ?
+                            <div className='spin'></div>
+                            :
                             <>
                                 <p>Load More</p>
                                 <MdOutlineKeyboardArrowDown className='load-icon' />

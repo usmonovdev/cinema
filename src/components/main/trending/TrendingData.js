@@ -4,11 +4,12 @@ import { motion } from 'framer-motion';
 import { container, item } from '../../../assets/Framer'
 import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
-import { Tooltip } from 'antd';
+import { Image, Tooltip } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
 import { reducer } from '../../../assets/reducer';
 import { slice } from 'lodash';
 import { initial } from '../../../assets/reducer'
+import movie from "../../../assets/actor-photo-not-downloaded.jpg"
 
 function TrendingData({ filter }) {
     const initialState = {
@@ -22,7 +23,7 @@ function TrendingData({ filter }) {
 
     const loadMore = () => {
         dispatch({ type: "LOADING" })
-        
+
         setTimeout(() => {
             dispatch({ type: "LOAD_MORE" })
             dispatch({ type: "LOADING_FALSE" })
@@ -34,14 +35,14 @@ function TrendingData({ filter }) {
     }
     return (
         <>
-            <motion.ul
-                className={`trending ${initialPosts.length == 0 ? "trendingNoItem" : ""}`}
-                variants={container}
-                initial="hidden"
-                animate="visible"
-            >
-                {initialPosts.length !== 0 ?
-                    <>
+            {initialPosts.length !== 0 ?
+                <>
+                    <motion.ul
+                        className={`trending ${initialPosts.length == 0 ? "trendingNoItem" : ""}`}
+                        variants={container}
+                        initial="hidden"
+                        animate="visible"
+                    >
                         {initialPosts.map((data) => {
                             const { id, poster_path, first_air_date, name, title, vote_average, media_type, release_date } = data
                             return (
@@ -51,7 +52,13 @@ function TrendingData({ filter }) {
                                     key={id}
                                 >
                                     <div className="trending-movie-box">
-                                        <img src={`https://image.tmdb.org/t/p/${initial.size}/${poster_path}`} alt={title} />
+                                        <Image
+                                            className='image-size'
+                                            preview={false} 
+                                            src={`https://image.tmdb.org/t/p/${initial.size}/${poster_path}`} 
+                                            alt={title}
+                                            fallback={movie} 
+                                        />
                                         <div className="trending-movie-info">
                                             <div className='info'>
                                                 {name ? <p className='title'>{name}</p> : <p className='title'>{title}</p>}
@@ -79,20 +86,19 @@ function TrendingData({ filter }) {
                                 </motion.li>
                             )
                         })}
-                    </> :
-                    <div className='noItems'>
-                        <RiMovie2Line />
-                        <p>Items not found!</p>
-                    </div>
-
-                }
-            </motion.ul>
-            {state.completed  ? "" :
+                    </motion.ul>
+                </> :
+                <div className='noItems'>
+                    <RiMovie2Line />
+                    <p>Items not found!</p>
+                </div>
+            }
+            {state.completed ? "" :
                 <>
                     <button className='load-more' onClick={loadMore}>
-                        {state.loading ? 
-                            <div className='spin'></div> 
-                            : 
+                        {state.loading ?
+                            <div className='spin'></div>
+                            :
                             <>
                                 <p>Load More</p>
                                 <MdOutlineKeyboardArrowDown className='load-icon' />

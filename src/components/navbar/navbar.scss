@@ -143,8 +143,9 @@ body {
             top: 0;
             left: 0;
             display: block;
-            animation: scaleNavbar 400ms alternate both;
-            transform-origin: top right;
+            animation: scaleNavbar 500ms alternate both ease-out;
+            box-sizing: border-box;
+            transform-origin: top left;
             @keyframes scaleNavbar {
                 0% {
                     width: 0;
@@ -170,7 +171,7 @@ body {
                 transform: translateY(70px);
                 opacity: 0;
                 animation: links 500ms alternate both;
-                animation-delay: 400ms;
+                animation-delay: 500ms;
                 @keyframes links {
                     0% {
                         transform: translateY(70px);
