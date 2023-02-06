@@ -13,36 +13,46 @@ function Navbar() {
     const [classAdd, setClassAdd] = useState(true)
     return (
         <div className="container">
-            <header>
-                <Link to="/"><img src={logo} alt="Logo" />Media</Link>
-                <Hamburger
-                    toggled={isOpen}
-                    toggle={setOpen}
-                    onToggle={toggled => {
-                        if (toggled) {
-                            setClassAdd(false)
-                        } else {
-                            setClassAdd(true)
-                        }
-                    }} />
-                <div className={`links-box ${classAdd ? "" : "active"}`}>
-                    <ul className='links'>
-                        <li><RiHome2Line className='link-icon' />Home</li>
-                        <li><RiMovie2Line className='link-icon' />Movies</li>
-                        <li><MdSlideshow className='link-icon' />TV Shows</li>
-                        <li><RiBearSmileLine className='link-icon' />Cartoons</li>
-                    </ul>
-                    <ul className='user'>
-                        <li className='inp-and-sign'>
-                            <input className='search-input' type="text" placeholder='Search for Movies...' />
-                            <BiMicrophone className='search-voice' />
-                        </li>
-                        <Link to="/register" className='sign-in'>
-                            <li>Sign In</li>
-                        </Link>
-                    </ul>
-                </div>
-            </header>
+            <motion.div
+                initial={{ y: -200 }}
+                animate={{ y: 0 }}
+                transition={{
+                    type: "spring",
+                    stiffness: 250,
+                    damping: 20
+                }}
+            >
+                <header>
+                    <Link to="/"><img src={logo} alt="Logo" />Media</Link>
+                    <Hamburger
+                        toggled={isOpen}
+                        toggle={setOpen}
+                        onToggle={toggled => {
+                            if (toggled) {
+                                setClassAdd(false)
+                            } else {
+                                setClassAdd(true)
+                            }
+                        }} />
+                    <div className={`links-box ${classAdd ? "" : "active"}`}>
+                        <ul className='links'>
+                            <li><RiHome2Line className='link-icon' />Home</li>
+                            <li><RiMovie2Line className='link-icon' />Movies</li>
+                            <li><MdSlideshow className='link-icon' />TV Shows</li>
+                            <li><RiBearSmileLine className='link-icon' />Cartoons</li>
+                        </ul>
+                        <ul className='user'>
+                            <li className='inp-and-sign'>
+                                <input className='search-input' type="text" placeholder='Search for Movies...' />
+                                <BiMicrophone className='search-voice' />
+                            </li>
+                            <Link to="/register" className='sign-in'>
+                                <li>Sign In</li>
+                            </Link>
+                        </ul>
+                    </div>
+                </header>
+            </motion.div>
         </div>
     )
 }
