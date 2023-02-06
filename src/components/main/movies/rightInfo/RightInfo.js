@@ -6,12 +6,13 @@ import Info from '../Info';
 import { useMovieContext } from '../../../../context/MovieContex/MovieContex';
 import { RxShare1 } from 'react-icons/rx';
 
-function RightInfo() {
-    const { info, setInfo, movie } = useMovieContext()
+function RightInfo({ movie }) {
+    const { info, setInfo } = useMovieContext()
     const { title, release_date, runtime, tagline, overview, production_countries, name } = movie;
     const convertProductionCountries = production_countries || []
     const first = convertProductionCountries[0]?.iso_3166_1
-
+    const movieId = movie.id
+    console.log(movieId)
     const hours = Math.floor(runtime / 60);
     const remainMinutes = runtime % 60;
     const allInfo = () => {
@@ -53,7 +54,7 @@ function RightInfo() {
                         title={title ? title : name}
                         onClose={onClose}
                         width={800}
-                        open={info}
+                        // open={<Info movie={movieId} />}
                         placement={"bottom"}
                         extra={
                             <Space>

@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
+import { AiOutlineHeart } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import { Image, Tooltip } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
@@ -44,7 +44,7 @@ function TopRatedData({ filter }) {
                         animate="visible"
                     >
                         {initialPosts.map((data) => {
-                            const { id, poster_path, first_air_date, name, title, vote_average, media_type, release_date } = data
+                            const { id, poster_path, name } = data
                             return (
                                 <motion.li
                                     className="trending-movie-container"
@@ -59,19 +59,6 @@ function TopRatedData({ filter }) {
                                             fallback={movie}
                                         />
                                         <div className="trending-movie-info">
-                                            <div className='info'>
-                                                {name ? <p className='title'>{name}</p> : <p className='title'>{title}</p>}
-                                                {first_air_date ? <p>{first_air_date}</p> : <p>{release_date}</p>}
-                                                <Tooltip
-                                                    placement="top"
-                                                    title={"Vote Average"}
-                                                    color={"#343434"}
-                                                >
-                                                    <div className='vote-average'>
-                                                        <AiFillStar />{vote_average}
-                                                    </div>
-                                                </Tooltip>
-                                            </div>
                                             <div className="like-and-open">
                                                 <Tooltip
                                                     placement="top"

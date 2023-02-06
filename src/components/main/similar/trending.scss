@@ -146,9 +146,6 @@ $large-screens: 1200px;
             &:hover .trending-movie-info {
                 left: 0;
                 opacity: 1;
-                .like-and-open {
-                    top: 0;
-                }
             }
             .trending-movie-info {
                 box-sizing: border-box;
@@ -161,15 +158,8 @@ $large-screens: 1200px;
                 color: $white;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-between;
-                background-color: $second-black;
-                backdrop-filter: blur(5px);
+                justify-content: flex-end;
                 transition: 200ms;
-                .info {
-                    .title {
-                        font-weight: 600;
-                    }
-                }
                 .vote-average {
                     width: fit-content;
                     padding: 4px 10px;
@@ -189,8 +179,6 @@ $large-screens: 1200px;
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
-                    position: relative;
-                    top: 50px;
                     transition: 200ms;
                     transition-delay: 300ms;
                     .icon {

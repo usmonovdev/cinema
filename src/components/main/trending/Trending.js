@@ -12,7 +12,7 @@ const API = "https://api.themoviedb.org/3/trending/all/day?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Trending() {
-    const { filterValueInMediaType, filterValueInLang, filterValueInStar, index } = useMovieContext()
+    const { filterValueInMediaType, filterValueInLang, filterValueInStar } = useMovieContext()
     const [movie, setMovie] = useState([]);
 
     const filter = movie?.filter((data) => {

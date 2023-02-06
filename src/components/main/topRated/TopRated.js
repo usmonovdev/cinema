@@ -7,7 +7,6 @@ import Filter from './Filter'
 import { PopoverTitleTop } from "../../../assets/AntD"
 import axios from 'axios'
 import TopRatedData from './TopRatedData'
-import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import { useStateContext } from '../../../context/StateContext/StateContext'
 const API = "https://api.themoviedb.org/3/movie/top_rated?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
@@ -35,7 +34,6 @@ function TopRated() {
             return data
         }
     });
-
     
     useEffect(() => {
         try {

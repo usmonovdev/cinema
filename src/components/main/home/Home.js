@@ -64,9 +64,10 @@ function Home() {
                         slide = "lastMovie";
                     }
                     return (
-                        <div className={`bg-image ${slide}`} key={id} style={{
-                            backgroundImage: `url("https://image.tmdb.org/t/p/${initial.size}/${backdrop_path}")`
-                        }}>
+                        <div 
+                            className={`bg-image ${slide}`} key={id} style={{
+                            backgroundImage: `url("https://image.tmdb.org/t/p/${initial.size}/${backdrop_path}")`}}
+                        >
                             <div className='top-popular-home'>
                                 <div className='play-and-next'>
                                     <div>

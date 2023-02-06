@@ -1,12 +1,10 @@
 import { Popover } from 'antd';
 import axios from 'axios';
-import { slice } from 'lodash';
 import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { GiSettingsKnobs } from 'react-icons/gi';
 import { PopoverTitleUpcoming } from '../../../assets/AntD';
-import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import { useStateContext } from '../../../context/StateContext/StateContext';
 import Filter from './Filter';
 import UpcomingData from './UpcomingData';
@@ -14,7 +12,6 @@ const API = "https://api.themoviedb.org/3/movie/upcoming?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Upcoming() {
-    // const { upcomingIndex } = useMovieContext()
     const { filterUpLang, filterUpStar } = useStateContext()
     const [upcoming, setUpcoming] = useState([]);
 

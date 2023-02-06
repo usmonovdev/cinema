@@ -16,15 +16,24 @@ import MovieImages from "./movieImages/MovieImages"
 import Reviews from "./reviews/Reviews"
 import Similar from "../similar/Similar"
 import { initial } from "../../../assets/reducer"
+import axios from "axios"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Movies() {
     const [loading, setLoading] = useState(true)
-    const { getMovie, movie } = useMovieContext()
+    const [movie, setMovie] = useState([])
+    // const { getMovie, movie } = useMovieContext()
     const { moviesId } = useParams()
 
     useEffect(() => {
-        getMovie(`https://api.themoviedb.org/3/movie/${moviesId}?api_key=${API_KEY}`);
+        try {
+            axios.get(`https://api.themoviedb.org/3/movie/${moviesId}?api_key=${API_KEY}`)
+                .then((data) => {
+                    setMovie(data.data)
+                })
+        } catch (error) {
+            console.log("Error in API", error)
+        }
     }, [])
 
     const { adult, backdrop_path, title } = movie;
@@ -32,12 +41,6 @@ function Movies() {
     useEffect(() => {
         document.title = `Movie - ${title}`
     });
-
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setLoading(true)
-    //     }, 3000);
-    // })
 
     return (
         <>
