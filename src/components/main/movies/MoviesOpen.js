@@ -53,14 +53,14 @@ function Movies() {
                         }}>
                             <div className="opened-movie-backdrop">
                                 <LeftInfo movie={movie} />
-                                <RightInfo movie={movie} moviesId={moviesId} />
+                                <RightInfo movie={movie}/>
                             </div>
                         </div>
                     </div>
-                    <Actors moviesId={moviesId} />
-                    <MovieImages moviesId={moviesId} />
-                    <Reviews moviesId={moviesId} />
-                    <Similar moviesId={moviesId} />
+                    <Actors moviesId={moviesId} type="movie" />
+                    <MovieImages moviesId={moviesId} type="movie" />
+                    <Reviews moviesId={moviesId} type="movie" />
+                    <Similar moviesId={moviesId}  type="movie" />
                     <Footer />
                 </> :
                     <>

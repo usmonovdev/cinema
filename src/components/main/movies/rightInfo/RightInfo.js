@@ -11,7 +11,6 @@ function RightInfo({ movie }) {
     const initialState = {
         info: false
     }
-    const [info, setInfo] = useState(false)
     const [state, dispatch] = useReducer(reducer, initialState)
     const { title, release_date, runtime, tagline, overview, production_countries, name } = movie;
 
@@ -21,11 +20,11 @@ function RightInfo({ movie }) {
     const remainMinutes = runtime % 60;
 
     const allInfo = () => {
-        dispatch({type: "OPEN_TRUE"})
+        dispatch({ type: "OPEN_TRUE" })
     };
 
     const onClose = () => {
-        dispatch({ type: "OPEN_FALSE"})
+        dispatch({ type: "OPEN_FALSE" })
     };
 
     const sharedData = {
@@ -59,7 +58,7 @@ function RightInfo({ movie }) {
                 >
                     <Drawer
                         title={title ? title : name}
-                        onClose={state.info}
+                        onClose={onClose}
                         width={800}
                         open={state.info}
                         placement={"bottom"}

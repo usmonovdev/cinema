@@ -6,15 +6,13 @@ import "./reviews.scss"
 import "../../../../assets/slick.css"
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { BsChatLeftDotsFill } from 'react-icons/bs'
-import { motion } from "framer-motion"
 import Comment from './Comment'
 import { Image } from 'antd'
 import { initial } from '../../../../assets/reducer'
-const API = "https://api.themoviedb.org/3/movie/"
-const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
-function Reviews({ moviesId }) {
+function Reviews({ moviesId, type }) {
+    const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
+    const API = `https://api.themoviedb.org/3/${type == "movie" ? "movie" : "tv"}/`
     const [reviews, setReviews] = useState([])
 
     useEffect(() => {

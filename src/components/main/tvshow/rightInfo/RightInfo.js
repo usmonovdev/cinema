@@ -2,24 +2,28 @@ import React from 'react'
 import "./rightInfo.scss"
 import { Button, ConfigProvider, Drawer, Space, Tooltip } from 'antd';
 import { AiOutlineHeart, AiOutlineInfoCircle, AiOutlineStar } from 'react-icons/ai';
-import { BiPlay } from "react-icons/bi";
 import Info from '../Info';
-import { useMovieContext } from '../../../../context/MovieContex/MovieContex';
 import { RxShare1 } from 'react-icons/rx';
+import { reducer } from '../../../../assets/reducer';
+import { useReducer } from 'react';
 
-function RightInfo() {
-    const { info, setInfo, movie } = useMovieContext()
-    const { original_title, first_air_date, status, overview, production_countries, episode_run_time, name } = movie;
-    const convertProductionCountries = production_countries || []
-    const first = convertProductionCountries[0]?.iso_3166_1
+function RightInfo({ show }) {
+    const initialState = {
+        info: false
+    }
+    const [state, dispatch] = useReducer(reducer, initialState)
+    const { original_title, first_air_date, status, overview, production_countries, episode_run_time, name } = show;
+    const countries = production_countries || []
+    const first = countries[0]?.iso_3166_1
+
     const allInfo = () => {
-        setInfo(true);
+        dispatch({ type: "OPEN_TRUE" })
     }
 
     const onClose = () => {
-        setInfo(false);
+        dispatch({ type: "OPEN_FALSE" })
     };
-    
+
     const sharedData = {
         title: `Share Movie - ${name}`,
         text: `Watch the movie "${name}" via the link below.`,
@@ -41,7 +45,7 @@ function RightInfo() {
                 <div className="right-overview-box">
                     <p>{overview?.slice(0, 220)}</p>
                 </div>
-                {info ? <ConfigProvider
+                {state.info ? <ConfigProvider
                     theme={{
                         token: {
                             colorPrimary: "#e6b31e"
@@ -52,7 +56,7 @@ function RightInfo() {
                         title={original_title ? original_title : name}
                         onClose={onClose}
                         width={800}
-                        open={info}
+                        open={state.info}
                         placement={"bottom"}
                         extra={
                             <Space>
@@ -62,7 +66,7 @@ function RightInfo() {
                             </Space>
                         }
                     >
-                        <Info />
+                        <Info show={show} />
                     </Drawer>
                 </ConfigProvider> : ""}
                 <div className="events-box">

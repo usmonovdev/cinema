@@ -11,13 +11,11 @@ import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { Image } from 'antd'
 import { initial, reducer } from '../../../../assets/reducer'
 import { useReducer } from 'react'
-import { BsImageFill } from "react-icons/bs"
-import { motion } from 'framer-motion'
 import logo from "../../../../assets/movie-photo-not-downloaded.jpg"
-const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
-function MovieImages({ moviesId }) {
+function MovieImages({ moviesId, type }) {
+    const API = `https://api.themoviedb.org/3/${type == "movie" ? "movie" : "tv"}/`
     const [state, dispatch] = useReducer(reducer, { imageSize: "original" })
     const [photos, setPhotos] = useState([])
     const customeSlider = useRef();
@@ -74,57 +72,45 @@ function MovieImages({ moviesId }) {
         customeSlider.current.slickPrev()
     }
     return (
-        <div className='container'>
-            <div className="actors-box">
-                <div className="actors-title">
-                    <h1 className='title'>
-                        <span className='sharp'>#</span>
-                        Photos
-                    </h1>
-                    <div className='slider-buttons'>
-                        <button className='buttonSlider right' onClick={next} >
-                            <BiLeftArrowAlt />
-                        </button>
-                        <button className='buttonSlider left' onClick={previous}>
-                            <BiRightArrowAlt />
-                        </button>
+        <>
+            {photos.length > 4 ?
+                <div className='container'>
+                    <div className="actors-box">
+                        <div className="actors-title">
+                            <h1 className='title'>
+                                <span className='sharp'>#</span>
+                                Photos
+                            </h1>
+                            <div className='slider-buttons'>
+                                <button className='buttonSlider right' onClick={next} >
+                                    <BiLeftArrowAlt />
+                                </button>
+                                <button className='buttonSlider left' onClick={previous}>
+                                    <BiRightArrowAlt />
+                                </button>
+                            </div>
+                        </div>
+                        <Image.PreviewGroup>
+                            <Slider {...settings} ref={customeSlider}>
+                                {photos?.map((data, key) => {
+                                    return (
+                                        <div className="actor" key={key}>
+                                            <Image
+                                                className='movie-photo'
+                                                style={{ width: "100%" }} id='actorImage'
+                                                src={`https://image.tmdb.org/t/p/${initial.size}/${data.file_path}`}
+                                                alt={data.name}
+                                                fallback={logo}
+                                            />
+                                        </div>
+                                    )
+                                })}
+                            </Slider>
+                        </Image.PreviewGroup>
                     </div>
-                </div>
-                {photos?.length !== 0 ? <>
-                    <Image.PreviewGroup>
-                        <Slider {...settings} ref={customeSlider}>
-                            {photos?.map((data, key) => {
-                                return (
-                                    <div className="actor" key={key}>
-                                        <Image
-                                            className='movie-photo'
-                                            style={{ width: "100%" }} id='actorImage'
-                                            src={`https://image.tmdb.org/t/p/${initial.size}/${data.file_path}`}
-                                            alt={data.name}
-                                            fallback={logo}
-                                        />
-                                    </div>
-                                )
-                            })}
-                        </Slider>
-                    </Image.PreviewGroup>
-                </> : <div className='no-photo'>
-                    <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ rotate: -360, scale: 1 }}
-                        transition={{
-                            type: "spring",
-                            stiffness: 260,
-                            damping: 20
-                        }}
-                    >
-                        <BsImageFill className='icon'/>
-                    </motion.div>
-                    <p>No Photos!</p>
-                </div>}
-
-            </div>
-        </div>
+                </div> : ""
+            }
+        </>
     )
 }
 

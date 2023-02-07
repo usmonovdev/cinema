@@ -1,17 +1,31 @@
+import axios from 'axios';
 import React from 'react'
-import { useMovieContext } from '../../../context/MovieContex/MovieContex'
+import { useState } from 'react';
+import { useEffect } from 'react';
 import "./info.scss"
+const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
-function Info() {
-    const { movie } = useMovieContext()
-    const { languages, genres, production_companies, first_air_date, last_air_date, seasons, production_countries, number_of_episodes } = movie
+function Info({ show }) {
+    const [tv, setTv] = useState([])
+    const { languages, genres, production_companies, first_air_date, last_air_date, seasons, production_countries, number_of_episodes } = show
+
+    useEffect(() => {
+        try {
+            axios.get(`https://api.themoviedb.org/3/tv/${show.id}/credits?api_key=${API_KEY}`)
+                .then((data) => {
+                    setTv(data.data.cast)
+                });
+        } catch (error) {
+            console.log("Error in API", error)
+        }
+    }, []);
 
     return (
         <div className='info'>
             <div className='genres'>
-                {genres?.map((data) => {
+                {genres?.map((data, key) => {
                     return (
-                        <p key={data.id}>{data.name}</p>
+                        <p key={key}>{data.name}</p>
                     )
                 })}
             </div>
@@ -23,9 +37,9 @@ function Info() {
             </div>
             <div className="border">
                 <p className='title'><span>Seasons: </span></p>
-                {seasons?.map((data) => {
+                {seasons?.map((data, key) => {
                     return (
-                        <div key={data.id}>
+                        <div key={key}>
                             <p>Air date: <span>{data.air_date}</span></p>
                             <p>Name: <span>{data.name}</span></p>
                             <p>Episode count: <span>{data.episode_count}</span></p>
@@ -35,17 +49,28 @@ function Info() {
             </div>
             <div className='border'>
                 <p className='production_companies title'><span>Production companies: </span></p>
-                {production_companies?.map((data) => {
+                {production_companies?.map((data, key) => {
                     return (
-                        <p key={data.id}>{data.name} {data.origin_country ? <>({data.origin_country})</> : ""}</p>
+                        <p key={key}>{data.name} {data.origin_country ? <>({data.origin_country})</> : ""}</p>
+                    )
+                })}
+            </div>
+            <div className='border'>
+                <p className='title'><span>Production countries:</span></p>
+                {production_countries?.map((data, key) => {
+                    return (
+                        <p key={key}>{data.name} ({data.iso_3166_1})</p>
                     )
                 })}
             </div>
             <div style={{ marginTop: "5px" }}>
-                <p className='title'><span>Production countries:</span></p>
-                {production_countries?.map((data) => {
+                <p className='title'><span>Actors:</span></p>
+                {tv?.map((data, key) => {
                     return (
-                        <p key={data.id}>{data.name} ({data.iso_3166_1})</p>
+                        <p key={key}>
+                            <span>{data?.name} </span>
+                            {data?.character ? <>({data?.character})</> : ""}
+                        </p>
                     )
                 })}
             </div>
