@@ -22,7 +22,6 @@ const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 function Movies() {
     const [loading, setLoading] = useState(true)
     const [movie, setMovie] = useState([])
-    // const { getMovie, movie } = useMovieContext()
     const { moviesId } = useParams()
 
     useEffect(() => {

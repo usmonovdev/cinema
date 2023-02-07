@@ -38,6 +38,19 @@ export const reducer = (state, action) => {
                 loading: state.loading = false
             }
         }
+        // for openMovies Info
+        case "OPEN_TRUE": {
+            return {
+                ...state,
+                info: state.info = true
+            }
+        }
+        case "OPEN_FALSE": {
+            return {
+                ...state,
+                info: state.info = false
+            }
+        }
         default:
             return;
     }

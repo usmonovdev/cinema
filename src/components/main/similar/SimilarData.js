@@ -61,19 +61,6 @@ function SimilarData({ filter }) {
                                             fallback={actor}
                                         />
                                         <div className="trending-movie-info">
-                                            <div className='info'>
-                                                {name ? <p className='title'>{name}</p> : <p className='title'>{title}</p>}
-                                                {first_air_date ? <p>{first_air_date}</p> : <p>{release_date}</p>}
-                                                <Tooltip
-                                                    placement="top"
-                                                    title={"Vote Average"}
-                                                    color={"#343434"}
-                                                >
-                                                    <div className='vote-average'>
-                                                        <AiFillStar />{vote_average}
-                                                    </div>
-                                                </Tooltip>
-                                            </div>
                                             <div className="like-and-open">
                                                 <Tooltip
                                                     placement="top"
