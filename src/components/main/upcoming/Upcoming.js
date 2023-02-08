@@ -6,27 +6,28 @@ import { PopoverTitleUpcoming } from '../../../assets/AntD';
 import { useStateContext } from '../../../context/StateContext/StateContext';
 import Filter from './Filter';
 import UpcomingData from './UpcomingData';
+import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 const API = "https://api.themoviedb.org/3/movie/upcoming?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Upcoming() {
-    const { filterUpLang, filterUpStar } = useStateContext()
+    const { upState } = useMovieContext()
     const [upcoming, setUpcoming] = useState([]);
-
+    console.log(upState.upFilter)
     const filter = upcoming?.filter((data) => {
-        if (filterUpLang == "en") { // filter by language
+        if (upState.upFilter == "en") { // filter by language
             return data.original_language == "en"
-        } else if (filterUpLang == "ru") {
+        } else if (upState.upFilter == "ru") {
             return data.original_language == "ru"
-        } else if (filterUpLang == "uz") {
+        } else if (upState.upFilter == "uz") {
             return data.original_language == "uz"
-        } else if (filterUpStar >= 9) { // filter by star
+        } else if (upState.upFilter >= 9) { // filter by star
             return data.vote_average >= 9
-        } else if (filterUpStar >= 8) {
+        } else if (upState.upFilter >= 8) {
             return data.vote_average >= 8
-        } else if (filterUpStar >= 7) {
+        } else if (upState.upFilter >= 7) {
             return data.vote_average >= 7
-        } else if (filterUpStar >= 6) {
+        } else if (upState.upFilter >= 6) {
             return data.vote_average >= 6
         } else {
             return data

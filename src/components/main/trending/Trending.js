@@ -11,27 +11,26 @@ const API = "https://api.themoviedb.org/3/trending/all/day?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Trending() {
-    const { state } = useMovieContext()
+    const { trendingState } = useMovieContext();
     const [movie, setMovie] = useState([]);
-
     const filter = movie?.filter((data) => {
-        if (state.media == "movie") { //filter by media_type
+        if (trendingState.trendingFilter == "movie") { //filter by media_type
             return data.media_type == "movie"
-        } else if (state.media == "tv") {
+        } else if (trendingState.trendingFilter == "tv") {
             return data.media_type == "tv"
-        } else if (state.media == "en") { // filter by language
+        } else if (trendingState.trendingFilter == "en") { // filter by language
             return data.original_language == "en"
-        } else if (state.media == "ru") {
+        } else if (trendingState.trendingFilter == "ru") {
             return data.original_language == "ru"
-        } else if (state.media == "uz") {
+        } else if (trendingState.trendingFilter == "uz") {
             return data.original_language == "uz"
-        } else if (state.media >= 9) { // filter by star
+        } else if (trendingState.trendingFilter >= 9) { // filter by star
             return data.vote_average >= 9
-        } else if (state.media >= 8) {
+        } else if (trendingState.trendingFilter >= 8) {
             return data.vote_average >= 8
-        } else if (state.media >= 7) {
+        } else if (trendingState.trendingFilter >= 7) {
             return data.vote_average >= 7
-        } else if (state.media >= 6) {
+        } else if (trendingState.trendingFilter >= 6) {
             return data.vote_average >= 6
         } else {
             return data
@@ -48,10 +47,6 @@ function Trending() {
             console.log("Error in API", error)
         }
     }, []);
-
-    const getData = (e) => {
-        console.log(e)
-    }
 
     return (
         <div className='container' style={{marginBottom: "60px"}}>

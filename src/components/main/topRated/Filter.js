@@ -1,19 +1,24 @@
 import { Select, ConfigProvider } from 'antd'
 import React from 'react'
-import { useStateContext } from '../../../context/StateContext/StateContext';
+import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import "../trending/filter.scss"
 
 function Filter() {
-    const { setFilterTopLang, setFilterTopStar } = useStateContext()
-
+    const { topDispatch } = useMovieContext()
     // filter by language
     const handleFilterByLang = (value) => {
-        setFilterTopLang(value)
+        topDispatch({
+            type: "FILTER_TOP",
+            topFilter: value
+        });
     };
 
     // filter by star
     const handleFilterByStar = (value) => {
-        setFilterTopStar(value)
+        topDispatch({
+            type: "FILTER_TOP",
+            topFilter: value
+        });
     };
 
     // Refresh Page to reset filter settings

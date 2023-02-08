@@ -7,7 +7,9 @@ const MovieContext = createContext();
 const MovieContextProvider = ({ children }) => {
     const [movie, setMovie] = useState([]);
     // state for filter #trending
-    const [state, dispatch] = useReducer(reducer, initial)
+    const [trendingState, trendingDispatch] = useReducer(reducer, initial)
+    const [topState, topDispatch] = useReducer(reducer, initial)
+    const [upState, upDispatch] = useReducer(reducer, initial)
     // load more state
     const [isCompleted, setIsCompleted] = useState(false)
     const [index, setIndex] = useState(4)
@@ -43,8 +45,12 @@ const MovieContextProvider = ({ children }) => {
                 setInfo,
                 upcomingIndex,
                 setUpcomingIndex,
-                state,
-                dispatch,
+                trendingState,
+                trendingDispatch,
+                topState,
+                topDispatch,
+                upState,
+                upDispatch
             }}
         >
             {children}

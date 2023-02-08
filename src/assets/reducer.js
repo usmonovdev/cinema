@@ -52,10 +52,22 @@ export const reducer = (state, action) => {
             }
         }
         // for filter
-        case "FILTER_MEDIA": {
+        case "FILTER_TRENDING": {
             return {
                 ...state,
-                media: action.nextMedia
+                trendingFilter: action.nextTrend
+            }
+        }
+        case "FILTER_TOP": {
+            return {
+                ...state,
+                topFilter: action.topFilter
+            }
+        }
+        case "FILTER_UP": {
+            return {
+                ...state,
+                upFilter: action.upFilter
             }
         }
         default:
@@ -65,5 +77,7 @@ export const reducer = (state, action) => {
 
 export const initial = {
     size: "w500",
-    media: "all"
+    trendingFilter: "all",
+    topFilter: "all",
+    upFilter: "all"
 }

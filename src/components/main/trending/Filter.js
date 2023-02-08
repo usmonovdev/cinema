@@ -4,28 +4,28 @@ import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import "./filter.scss"
 
 function Filter() {
-    const { dispatch } = useMovieContext()
+    const { trendingDispatch } = useMovieContext()
     // filter by media
     const hendleFilterByMedia = (value) => {
-        dispatch({
-            type: "FILTER_MEDIA",
-            nextMedia: value
+        trendingDispatch({
+            type: "FILTER_TRENDING",
+            nextTrend: value
         });
     };
 
     // filter by language
     const handleFilterByLang = (value) => {
-        dispatch({
-            type: "FILTER_MEDIA",
-            nextMedia: value
+        trendingDispatch({
+            type: "FILTER_TRENDING",
+            nextTrend: value
         });
     };
 
     // filter by star
     const handleFilterByStar = (value) => {
-        dispatch({
-            type: "FILTER_MEDIA",
-            nextMedia: value
+        trendingDispatch({
+            type: "FILTER_TRENDING",
+            nextTrend: value
         });
     };
 

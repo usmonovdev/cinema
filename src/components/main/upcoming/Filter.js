@@ -1,19 +1,25 @@
 import React from 'react'
 import { Select, ConfigProvider } from 'antd'
 import "../trending/filter.scss"
-import { useStateContext } from '../../../context/StateContext/StateContext';
+import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 
 function Filter() {
-    const { setFilterUpLang, setFilterUpStar } = useStateContext()
+    const { upDispatch } = useMovieContext()
 
     // filter by language
     const handleFilterUpcomingByLang = (value) => {
-        setFilterUpLang(value)
+        upDispatch({
+            type: "FILTER_UP",
+            upFilter: value
+        });
     };
 
     // filter by star
     const handleFilterUpcomingByStar = (value) => {
-        setFilterUpStar(value)
+        upDispatch({
+            type: "FILTER_UP",
+            upFilter: value
+        });
     };
 
     // Refresh Page to reset filter settings
