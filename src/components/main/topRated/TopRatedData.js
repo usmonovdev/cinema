@@ -38,7 +38,7 @@ function TopRatedData({ filter }) {
             {initialPosts.length !== 0 ?
                 <>
                     <motion.ul
-                        className={`trending ${initialPosts.length == 0 ? "trendingNoItem" : ""}`}
+                        className="trending"
                         variants={container}
                         initial="hidden"
                         animate="visible"
@@ -82,11 +82,12 @@ function TopRatedData({ filter }) {
                         })}
                     </motion.ul>
                 </> :
-                <div className='noItems'>
-                    <RiMovie2Line />
-                    <p>Items not found!</p>
+                <div className="trendingNoItem">
+                    <div className='noItems'>
+                        <RiMovie2Line />
+                        <p>Items not found!</p>
+                    </div>
                 </div>
-
             }
             {state.completed ? "" :
                 <>

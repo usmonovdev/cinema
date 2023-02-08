@@ -51,11 +51,19 @@ export const reducer = (state, action) => {
                 info: state.info = false
             }
         }
+        // for filter
+        case "FILTER_MEDIA": {
+            return {
+                ...state,
+                media: action.nextMedia
+            }
+        }
         default:
             return;
     }
 }
 
 export const initial = {
-    size: "w500"
+    size: "w500",
+    media: "all"
 }

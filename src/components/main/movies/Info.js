@@ -27,43 +27,49 @@ function Info({ movie }) {
                 })}
             </div>
             <div className='border'>
-                <p>Relase date: <span>{release_date?.replaceAll("-", "/")}</span></p>
-                <p>Budget: <span>${budget}</span></p>
-                <p className='lang'>Languages: <span>{original_language}</span></p>
+                {release_date ? <p>Relase date: <span>{release_date?.replaceAll("-", "/")}</span></p> : ""}
+                {budget ? <p>Budget: <span>${budget}</span></p> : ""}
+                {original_language ? <p className='lang'>Languages: <span>{original_language}</span></p> : ""}
             </div>
-            <div className='border'>
-                <p className='production_companies title'><span>Production companies: </span></p>
-                {production_companies?.map((data, key) => {
-                    return (
-                        <p key={key}>
-                            {data.name}
-                            {data.origin_country ? <>({data.origin_country})</> : ""}
-                        </p>
-                    )
-                })}
-            </div>
-            <div className='border'>
-                <p className='title'><span>Production countries:</span></p>
-                {production_countries?.map((data, key) => {
-                    return (
-                        <p key={key}>
-                            {data.name}
-                            {data.iso_3166_1 ? <>({data.iso_3166_1})</> : ""}
-                        </p>
-                    )
-                })}
-            </div>
-            <div style={{ marginTop: "5px" }}>
-                <p className='title'><span>Actors:</span></p>
-                {actors?.map((data, key) => {
-                    return (
-                        <p key={key}>
-                            <span>{data?.name} </span>
-                            {data?.character ? <>({data?.character})</> : ""}
-                        </p>
-                    )
-                })}
-            </div>
+            {production_companies.length !== 0 ?
+                <div className='border'>
+                    <p className='production_companies title'><span>Production companies: </span></p>
+                    {production_companies?.map((data, key) => {
+                        return (
+                            <p key={key}>
+                                {data.name}
+                                {data.origin_country ? <>({data.origin_country})</> : ""}
+                            </p>
+                        )
+                    })}
+                </div> : ""
+            }
+            {production_countries.length !== 0 ?
+                <div className='border'>
+                    <p className='title'><span>Production countries:</span></p>
+                    {production_countries?.map((data, key) => {
+                        return (
+                            <p key={key}>
+                                {data.name}
+                                {data.iso_3166_1 ? <>({data.iso_3166_1})</> : ""}
+                            </p>
+                        )
+                    })}
+                </div> : ""
+            }
+            {actors.length !== 0 ?
+                <div style={{ marginTop: "5px" }}>
+                    <p className='title'><span>Actors:</span></p>
+                    {actors?.map((data, key) => {
+                        return (
+                            <p key={key}>
+                                <span>{data?.name} </span>
+                                {data?.character ? <>({data?.character})</> : ""}
+                            </p>
+                        )
+                    })}
+                </div> : ""
+            }
         </div>
     )
 }

@@ -1,8 +1,6 @@
+import React, { useState, useEffect } from 'react'
 import { Popover } from 'antd';
 import axios from 'axios';
-import React from 'react'
-import { useState } from 'react';
-import { useEffect } from 'react';
 import { GiSettingsKnobs } from 'react-icons/gi';
 import { PopoverTitleUpcoming } from '../../../assets/AntD';
 import { useStateContext } from '../../../context/StateContext/StateContext';

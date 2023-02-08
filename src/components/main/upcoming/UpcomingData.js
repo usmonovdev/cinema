@@ -81,7 +81,6 @@ function UpcomingData({ filter }) {
                         <p>Items not found!</p>
                     </div>
                 </div>
-
             }
             {state.completed ? "" :
                 <>

@@ -33,6 +33,7 @@ function Similar({ moviesId }) {
             return data
         }
     });
+    
     useEffect(() => {
         try {
             axios.get(`${API}${moviesId}/similar?api_key=${API_KEY}`)

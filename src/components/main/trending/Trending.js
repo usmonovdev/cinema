@@ -1,22 +1,22 @@
-import { Popover } from 'antd'
-import { slice } from 'lodash'
 import React, { useEffect, useState } from 'react'
+import { Popover } from 'antd'
 import { GiSettingsKnobs } from "react-icons/gi"
-import "./trending.scss"
 import Filter from './Filter'
 import { PopoverTitleTrending } from "../../../assets/AntD"
 import axios from 'axios'
 import TrendingData from './TrendingData'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
+import "./trending.scss"
+import { initial } from '../../../assets/reducer'
 const API = "https://api.themoviedb.org/3/trending/all/day?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Trending() {
     const { filterValueInMediaType, filterValueInLang, filterValueInStar } = useMovieContext()
     const [movie, setMovie] = useState([]);
-
+    // console.log(initial.media)
     const filter = movie?.filter((data) => {
-        if (filterValueInMediaType == "movie") { //filter by media_type
+        if (initial.media == "movie") { //filter by media_type
             return data.media_type == "movie"
         } else if (filterValueInMediaType == "tv") {
             return data.media_type == "tv"
@@ -38,6 +38,7 @@ function Trending() {
             return data
         }
     });
+    console.log(filter)
 
     useEffect(() => {
         try {

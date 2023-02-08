@@ -4,7 +4,6 @@ import { Button, ConfigProvider, Drawer, Space, Tooltip } from 'antd';
 import { AiOutlineHeart, AiOutlineInfoCircle, AiOutlineStar } from 'react-icons/ai';
 import Info from '../Info';
 import { RxShare1 } from 'react-icons/rx';
-import { useState } from 'react';
 import { reducer } from '../../../../assets/reducer';
 
 function RightInfo({ movie }) {

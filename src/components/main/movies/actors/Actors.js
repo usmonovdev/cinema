@@ -1,22 +1,21 @@
 import axios from 'axios'
-import React from 'react'
+import React,{ useEffect, useState, useRef }  from 'react'
 import "../../../navbar/navbar.scss"
 import "./actors.scss"
 import "../../../../assets/slick.css"
-import { useState } from 'react'
-import { useEffect } from 'react'
 import Slider from 'react-slick'
-import { useRef } from 'react'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { Image } from 'antd'
 import actor from "../../../../assets/actor-photo-not-downloaded.jpg"
 import { initial } from '../../../../assets/reducer'
-const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Actors({ moviesId, type }) {
     const API = `https://api.themoviedb.org/3/${type == "movie" ? "movie" : "tv"}/`
-    const [actors, setActors] = useState([])
+    const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
+    const [actors, setActors] = useState([]);
+
     const customeSlider = useRef();
+
     const filterActors = actors?.filter(data => {
         return data.profile_path !== null
     });
@@ -27,7 +26,7 @@ function Actors({ moviesId, type }) {
                 setActors(data.data.cast)
             });
     }, []);
-    console.log(actors)
+
     const settings = {
         dots: false,
         infinite: false,
@@ -73,6 +72,7 @@ function Actors({ moviesId, type }) {
     const next = () => {
         customeSlider.current.slickPrev()
     }
+    
     return (
         <>
             {actors.length > 4 ?

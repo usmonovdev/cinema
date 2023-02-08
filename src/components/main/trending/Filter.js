@@ -1,14 +1,22 @@
-import { Select, ConfigProvider } from 'antd'
 import React from 'react'
+import { Select, ConfigProvider } from 'antd'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import "./filter.scss"
+import { initial, reducer } from '../../../assets/reducer';
+import { useReducer } from 'react';
 
 function Filter() {
+    const [state, dispatch] = useReducer(reducer, initial)
+    // console.log(state.media)
     const { setFilterValueInMediaType, setFilterValueInLang, setFilterValueInStar } = useMovieContext()
 
     // filter by media
-    const hendleFilterByMedia = (value) => {
-        setFilterValueInMediaType(value)
+    const hendleFilterByMedia = (e) => {
+        dispatch({ 
+            type: "FILTER_MEDIA",
+            nextMedia: e
+        });
+        console.log(e)
     };
 
     // filter by language

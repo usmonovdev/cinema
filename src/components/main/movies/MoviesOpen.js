@@ -1,9 +1,8 @@
+import React, { useEffect, useState } from 'react'
 import "../home/home.scss"
 import "./moviesOpen.scss"
 import "../movies/moviesOpen.scss"
 import "../movies/actors/actors.scss"
-import React, { useEffect, useState } from 'react'
-import { useMovieContext } from "../../../context/MovieContex/MovieContex"
 import { useParams } from 'react-router-dom'
 import Navbar from '../../navbar/Navbar'
 import BannedContent from "../../BannedContent/BannedContent"

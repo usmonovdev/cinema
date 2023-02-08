@@ -1,24 +1,19 @@
 import axios from 'axios'
-import React from 'react'
+import React, {useState, useEffect, useRef } from 'react'
 import "../../../navbar/navbar.scss"
 import "./movieImages.scss"
 import "../../../../assets/slick.css"
-import { useState } from 'react'
-import { useEffect } from 'react'
 import Slider from 'react-slick'
-import { useRef } from 'react'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { Image } from 'antd'
-import { initial, reducer } from '../../../../assets/reducer'
-import { useReducer } from 'react'
+import { initial } from '../../../../assets/reducer'
 import logo from "../../../../assets/movie-photo-not-downloaded.jpg"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function MovieImages({ moviesId, type }) {
     const API = `https://api.themoviedb.org/3/${type == "movie" ? "movie" : "tv"}/`
-    const [state, dispatch] = useReducer(reducer, { imageSize: "original" })
     const [photos, setPhotos] = useState([])
-    const customeSlider = useRef();
+    const slider = useRef();
     useEffect(() => {
         axios.get(`${API}${moviesId}/images?api_key=${API_KEY}`)
             .then((data) => {
@@ -66,10 +61,10 @@ function MovieImages({ moviesId, type }) {
     };
 
     const previous = () => {
-        customeSlider.current.slickNext()
+        slider.current.slickNext()
     }
     const next = () => {
-        customeSlider.current.slickPrev()
+        slider.current.slickPrev()
     }
     return (
         <>
@@ -91,7 +86,7 @@ function MovieImages({ moviesId, type }) {
                             </div>
                         </div>
                         <Image.PreviewGroup>
-                            <Slider {...settings} ref={customeSlider}>
+                            <Slider {...settings} ref={slider}>
                                 {photos?.map((data, key) => {
                                     return (
                                         <div className="actor" key={key}>
