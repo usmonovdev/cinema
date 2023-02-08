@@ -1,14 +1,13 @@
 import axios from "axios";
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useReducer, useState } from "react"
+import { initial, reducer } from "../../assets/reducer";
 
 const MovieContext = createContext();
 
 const MovieContextProvider = ({ children }) => {
     const [movie, setMovie] = useState([]);
     // state for filter #trending
-    const [filterValueInMediaType, setFilterValueInMediaType] = useState("all")
-    const [filterValueInLang, setFilterValueInLang] = useState("all")
-    const [filterValueInStar, setFilterValueInStar] = useState("all")
+    const [state, dispatch] = useReducer(reducer, initial)
     // load more state
     const [isCompleted, setIsCompleted] = useState(false)
     const [index, setIndex] = useState(4)
@@ -36,12 +35,6 @@ const MovieContextProvider = ({ children }) => {
                 movie,
                 loadingApi,
                 getMovie,
-                filterValueInMediaType,
-                setFilterValueInMediaType,
-                filterValueInLang,
-                setFilterValueInLang,
-                filterValueInStar,
-                setFilterValueInStar,
                 isCompleted,
                 setIsCompleted,
                 index,
@@ -49,7 +42,9 @@ const MovieContextProvider = ({ children }) => {
                 info,
                 setInfo,
                 upcomingIndex,
-                setUpcomingIndex
+                setUpcomingIndex,
+                state,
+                dispatch,
             }}
         >
             {children}
