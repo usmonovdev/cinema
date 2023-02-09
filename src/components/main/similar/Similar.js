@@ -11,23 +11,23 @@ const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Similar({ moviesId }) {
-    const { filterValueInLang, filterValueInStar } = useMovieContext()
+    const { simState } = useMovieContext()
     const [movie, setMovie] = useState([]);
 
     const filter = movie?.filter((data) => {
-        if (filterValueInLang == "en") { // filter by language
+        if (simState.simFilter == "en") { // filter by language
             return data.original_language == "en"
-        } else if (filterValueInLang == "ru") {
+        } else if (simState.simFilter == "ru") {
             return data.original_language == "ru"
-        } else if (filterValueInLang == "uz") {
+        } else if (simState.simFilter == "uz") {
             return data.original_language == "uz"
-        } else if (filterValueInStar >= 9) { // filter by star
+        } else if (simState.simFilter >= 9) { // filter by star
             return data.vote_average >= 9
-        } else if (filterValueInStar >= 8) {
+        } else if (simState.simFilter >= 8) {
             return data.vote_average >= 8
-        } else if (filterValueInStar >= 7) {
+        } else if (simState.simFilter >= 7) {
             return data.vote_average >= 7
-        } else if (filterValueInStar >= 6) {
+        } else if (simState.simFilter >= 6) {
             return data.vote_average >= 6
         } else {
             return data

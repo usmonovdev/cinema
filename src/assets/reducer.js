@@ -70,6 +70,12 @@ export const reducer = (state, action) => {
                 upFilter: action.upFilter
             }
         }
+        case "FILTER_SIMILAR": {
+            return {
+                ...state,
+                simFilter: action.nextSim
+            }
+        }
         default:
             return;
     }
@@ -79,5 +85,6 @@ export const initial = {
     size: "w500",
     trendingFilter: "all",
     topFilter: "all",
-    upFilter: "all"
+    upFilter: "all",
+    simFilter: "all"
 }

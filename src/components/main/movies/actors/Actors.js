@@ -14,12 +14,12 @@ function Actors({ moviesId, type }) {
     const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
     const [actors, setActors] = useState([]);
 
-    const customeSlider = useRef();
+    const customeSlider = useRef(null);
 
     const filterActors = actors?.filter(data => {
         return data.profile_path !== null
     });
-    console.log(moviesId)
+
     useEffect(() => {
         axios.get(`${API}${moviesId}/credits?api_key=${API_KEY}`)
             .then((data) => {

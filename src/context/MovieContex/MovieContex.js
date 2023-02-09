@@ -10,13 +10,7 @@ const MovieContextProvider = ({ children }) => {
     const [trendingState, trendingDispatch] = useReducer(reducer, initial)
     const [topState, topDispatch] = useReducer(reducer, initial)
     const [upState, upDispatch] = useReducer(reducer, initial)
-    // load more state
-    const [isCompleted, setIsCompleted] = useState(false)
-    const [index, setIndex] = useState(4)
-    const [upcomingIndex, setUpcomingIndex] = useState(4)
-    // show all info
-    const [info, setInfo] = useState(false)
-    const [loadingApi, setLoadingApi] = useState(true)
+    const [simState, simDispatch] = useReducer(reducer, initial)
 
     // Get Single Movie by APi and id
     const getMovie = (url) => {
@@ -24,7 +18,6 @@ const MovieContextProvider = ({ children }) => {
             axios.get(url)
                 .then((movie) => {
                     setMovie(movie.data)
-                    setLoadingApi(false)
                 });
         } catch (error) {
             console.log("Error in API", error)
@@ -35,22 +28,15 @@ const MovieContextProvider = ({ children }) => {
         <MovieContext.Provider
             value={{
                 movie,
-                loadingApi,
                 getMovie,
-                isCompleted,
-                setIsCompleted,
-                index,
-                setIndex,
-                info,
-                setInfo,
-                upcomingIndex,
-                setUpcomingIndex,
                 trendingState,
                 trendingDispatch,
                 topState,
                 topDispatch,
                 upState,
-                upDispatch
+                upDispatch,
+                simState,
+                simDispatch
             }}
         >
             {children}

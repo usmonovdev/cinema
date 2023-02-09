@@ -4,16 +4,22 @@ import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import "./filter.scss"
 
 function Filter() {
-    const { setFilterValueInLang, setFilterValueInStar } = useMovieContext()
+    const { simDispatch } = useMovieContext()
 
     // filter by language
     const handleFilterByLang = (value) => {
-        setFilterValueInLang(value)
+        simDispatch({
+            type: "FILTER_SIMILAR",
+            nextSim: value
+        })
     };
 
     // filter by star
     const handleFilterByStar = (value) => {
-        setFilterValueInStar(value)
+        simDispatch({
+            type: "FILTER_SIMILAR",
+            nextSim: value
+        })
     };
 
     // Refresh Page to reset filter settings

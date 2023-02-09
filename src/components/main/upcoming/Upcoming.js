@@ -3,7 +3,6 @@ import { Popover } from 'antd';
 import axios from 'axios';
 import { GiSettingsKnobs } from 'react-icons/gi';
 import { PopoverTitleUpcoming } from '../../../assets/AntD';
-import { useStateContext } from '../../../context/StateContext/StateContext';
 import Filter from './Filter';
 import UpcomingData from './UpcomingData';
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
@@ -13,7 +12,7 @@ const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 function Upcoming() {
     const { upState } = useMovieContext()
     const [upcoming, setUpcoming] = useState([]);
-    console.log(upState.upFilter)
+    
     const filter = upcoming?.filter((data) => {
         if (upState.upFilter == "en") { // filter by language
             return data.original_language == "en"
