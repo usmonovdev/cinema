@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React,{ useEffect, useState, useRef }  from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import "../../../navbar/navbar.scss"
 import "./actors.scss"
 import "../../../../assets/slick.css"
@@ -8,6 +8,7 @@ import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { Image } from 'antd'
 import actor from "../../../../assets/actor-photo-not-downloaded.jpg"
 import { initial } from '../../../../assets/reducer'
+import { Link } from 'react-router-dom'
 
 function Actors({ moviesId, type }) {
     const API = `https://api.themoviedb.org/3/${type == "movie" ? "movie" : "tv"}/`
@@ -72,7 +73,7 @@ function Actors({ moviesId, type }) {
     const next = () => {
         customeSlider.current.slickPrev()
     }
-    
+
     return (
         <>
             {actors.length > 4 ?
@@ -95,17 +96,24 @@ function Actors({ moviesId, type }) {
                         <Slider {...settings} ref={customeSlider}>
                             {filterActors?.map((data) => {
                                 return (
-                                    <div className="actor" key={data.id}>
-                                        <Image
-                                            preview={false}
-                                            style={{ width: "100%" }}
-                                            id='actorImage'
-                                            src={`https://image.tmdb.org/t/p/${initial.size}/${data.profile_path}`}
-                                            alt={data.name}
-                                            fallback={actor}
-                                        />
-                                        <p>{data.name}</p>
-                                    </div>
+                                    <Link 
+                                        to={`/actor/${data.id}`}
+                                        key={data.id}
+                                        className="actorLink"
+                                    >
+                                        <div className="actor">
+                                            <Image
+                                                preview={false}
+                                                style={{ width: "100%" }}
+                                                id='actorImage'
+                                                src={`https://image.tmdb.org/t/p/${initial.size}/${data.profile_path}`}
+                                                alt={data.name}
+                                                fallback={actor}
+                                            />
+                                            <p>{data.name}</p>
+                                        </div>
+                                    </Link>
+
                                 )
                             })}
                         </Slider>

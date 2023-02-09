@@ -8,6 +8,8 @@ import { MovieContextProvider } from "./context/MovieContex/MovieContex";
 import Tvshow from "./components/main/tvshow/Tvshow";
 import ShowOpen from "./components/main/tvshow/ShowOpen";
 import { StateContextProvider } from "./context/StateContext/StateContext";
+import Actor from "./components/main/actor/Actor";
+import ActorOpen from "./components/main/actor/ActorOpen";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
             <Route path="/movie/:moviesId" element={<MoviesOpen />} />
             <Route path="/show" element={<Tvshow />} />
             <Route path="/show/:showId" element={<ShowOpen />} />
+            <Route path="/actor" element={<Actor />} />
+            <Route path="/actor/:actorId" element={<ActorOpen />} />
           </Routes>
         </MovieContextProvider>
       </StateContextProvider>
