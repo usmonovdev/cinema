@@ -5,8 +5,12 @@ import { useParams } from 'react-router-dom'
 import Footer from "../../footer/Footer"
 import BannedContent from "../../BannedContent/BannedContent"
 import Navbar from '../../navbar/Navbar'
-import { Image } from 'antd'
+import { Image, Tooltip } from 'antd'
 import { initial } from '../../../assets/reducer'
+import Role from './Role'
+import { AiOutlineHeart, AiOutlineInfoCircle, AiOutlineStar } from 'react-icons/ai'
+import { RxShare1 } from 'react-icons/rx'
+import Right from './Right'
 
 function ActorOpen() {
     const { actorId } = useParams()
@@ -37,7 +41,7 @@ function ActorOpen() {
         }
     }, [])
 
-    const { adult, birthday, biography, name, place_of_birth, profile_path, gender } = actor
+    const { adult, profile_path } = actor
 
     return (
         <div>
@@ -58,16 +62,12 @@ function ActorOpen() {
                                         src={`https://image.tmdb.org/t/p/${initial.size}/${profile_path}`}
                                     />
                                 </div>
-                                <div className="right">
-                                    <h1>{name}</h1>
-                                    <p className='birthday'>{birthday?.replaceAll("-", " ")}</p>
-                                    <p className='birthday'>{place_of_birth}</p>
-                                    <p>{biography}</p>
-                                </div>
+                                <Right actor={actor} />
                             </div>
                         </div>
                     </div>
                 </div>
+                <Role />
                 <Footer />
             </> : <>
                 <BannedContent />
