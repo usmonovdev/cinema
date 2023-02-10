@@ -1,5 +1,4 @@
 import axios from 'axios'
-import "../home/home.scss"
 import "./actors.scss"
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
@@ -32,24 +31,24 @@ function ActorOpen() {
         <div>
             {!adult ? <>
                 <Navbar />
-                <div className='bg-image'
-                    style={{
-                        backgroundImage: `url("https://image.tmdb.org/t/p/${initial.size}/${profile_path}")`
-                    }}
-                >
-                    <div className="backdrop">
-                        <div className="container">
-                            <p>{name}</p>
-                            {gender == "2" ? <p>🚹</p> : <p>1🚺</p>}
-                            <p>{birthday?.replaceAll("-", " ")}</p>
-                            <p>{place_of_birth}</p>
-                            <p>{biography}</p>
+                <div className='container'>
+                    <div className="actor-box">
+                        <div className="left">
                             <Image
                                 width="100px"
                                 src={`https://image.tmdb.org/t/p/${initial.size}/${profile_path}`}
                             />
                         </div>
+                        <div className="right">
+                            <p>{name}</p>
+                            {gender == "2" ? <p>🚹</p> : <p>1🚺</p>}
+                            <p>{birthday?.replaceAll("-", " ")}</p>
+                            <p>{place_of_birth}</p>
+                            <p>{biography}</p>
+                        </div>
                     </div>
+
+
                 </div>
                 <Footer />
             </> : <>

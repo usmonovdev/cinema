@@ -108,11 +108,11 @@ $large-screens: 1200px;
     top: 40px;
     box-sizing: border-box;
     transition: 200ms;
-    @media screen and (max-width: $mobile) {
-        display: grid;
-        grid-template-columns: auto auto;
-        width: 100%;
-    }
+    // @media screen and (max-width: $mobile) {
+    //     display: grid;
+    //     grid-template-columns: auto auto;
+    //     width: 100%;
+    // }
     @media screen and (max-width: $mobile) {
         display: grid;
         grid-template-columns: auto auto;
