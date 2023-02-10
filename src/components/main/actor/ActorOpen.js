@@ -5,11 +5,9 @@ import { useParams } from 'react-router-dom'
 import Footer from "../../footer/Footer"
 import BannedContent from "../../BannedContent/BannedContent"
 import Navbar from '../../navbar/Navbar'
-import { Image, Tooltip } from 'antd'
+import { Image } from 'antd'
 import { initial } from '../../../assets/reducer'
 import Role from './Role'
-import { AiOutlineHeart, AiOutlineInfoCircle, AiOutlineStar } from 'react-icons/ai'
-import { RxShare1 } from 'react-icons/rx'
 import Right from './Right'
 
 function ActorOpen() {
@@ -67,7 +65,6 @@ function ActorOpen() {
                         </div>
                     </div>
                 </div>
-                <Role />
                 <Footer />
             </> : <>
                 <BannedContent />

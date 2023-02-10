@@ -36,7 +36,7 @@ function Right({ actor }) {
             <h1>{name}</h1>
             {birthday ? <p className='birthday'>Birthday: {birthday?.replaceAll("-", "/")}</p> : ""}
             {place_of_birth ? <p className='birthday'>{place_of_birth}</p> : ""}
-            {biography ? <p>{biography}</p> : ""}
+            {biography ? <p>{biography?.slice(0, 500)}</p> : ""}
             {state.info ? <ConfigProvider
                     theme={{
                         token: {
@@ -58,7 +58,7 @@ function Right({ actor }) {
                             </Space>
                         }
                     >
-                        <Role  />
+                        <Role/>
                     </Drawer>
                 </ConfigProvider> : ""}
             <div className="events-box">
