@@ -1,47 +1,72 @@
 $white: #fff;
 $black: #343434;
 $yellow: #e6b31e;
-$yellow-opacity: #e6b41e33;
+$yellow-opacity: #e6b41e72;
 $mobile: 480px;
 $tablet: 768px;
 $small-screens: 992px;
 $large-screens: 1200px;
 
-.container {
-    .actor-box {
-        display: flex;
-        flex-direction: row;
-        gap: 20px;
-        @media screen and (max-width: $mobile) {
-            display: flex;
-            flex-direction: column;
-        }
-        .left {
-            width: 20%;
-            height: 100%;
-            @media screen and (max-width: $tablet) {
-                width: 40%;
-            }
-            @media screen and (max-width: $mobile) {
-                width: 100%;
-            }
-            .ant-image {
-                width: 100% !important;
-                img {
-                    width: 100%;
-                    height: 100%;
+.bg-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    .bg-color {
+        background-color: $yellow-opacity;
+        backdrop-filter: blur(5px);
+        padding: 10px;
+        .container {
+            .actor-box {
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+                color: $white;
+
+                @media screen and (max-width: $mobile) {
+                    display: flex;
+                    flex-direction: column;
                 }
-            }
-            
-        }
-        .right {
-            width: 80%;
-            @media screen and (max-width: $mobile) {
-                width: 60%;
-            }
-            @media screen and (max-width: $mobile) {
-                width: 100%;
+
+                .left {
+                    width: 20%;
+                    height: 100%;
+
+                    @media screen and (max-width: $tablet) {
+                        width: 40%;
+                    }
+
+                    @media screen and (max-width: $mobile) {
+                        width: 100%;
+                    }
+
+                    .ant-image {
+                        width: 100% !important;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+
+                .right {
+                    width: 80%;
+                    @media screen and (max-width: $mobile) {
+                        width: 60%;
+                    }
+
+                    @media screen and (max-width: $mobile) {
+                        width: 100%;
+                    }
+                    .birthday {
+                        width: fit-content;
+                        background-color: $yellow;
+                        padding: 2px;
+                        margin-bottom: 5px;
+                    }
+                }
             }
         }
     }
+
 }
