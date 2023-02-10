@@ -20,19 +20,19 @@ function Role() {
     }, [])
     return (
         <div>
-            {role.crew.length > 0 ? <>
+            {role.crew?.length > 0 ? <>
                 <div className='info'>
                     <p className='title'>Film crew:</p>
                     {role.crew?.map((data, key) => {
                         return (
-                            <div>
+                            <div key={key}>
                                 <p>{data.title} {data.job ? <span>({data.job})</span> : ""}</p>
                             </div>
                         )
                     })}
                 </div>
             </> : ""}
-            {role.cast.length > 0 ? <>
+            {role.cast?.length > 0 ? <>
                 <div className='info'>
                     <p className='title'>Film cast:</p>
                     {role.cast?.slice(0, 50).map((data, key) => {
