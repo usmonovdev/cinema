@@ -16,7 +16,7 @@ function Info({ show }) {
         } catch (error) {
             console.log("Error in API", error)
         }
-    }, []);
+    }, [show.id]);
 
     return (
         <div className='info'>

@@ -26,7 +26,7 @@ function Actors({ moviesId, type }) {
             .then((data) => {
                 setActors(data.data.cast)
             });
-    }, []);
+    }, [moviesId]);
 
     const settings = {
         dots: false,

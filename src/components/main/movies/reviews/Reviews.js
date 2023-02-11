@@ -20,7 +20,7 @@ function Reviews({ moviesId, type }) {
             .then((data) => {
                 setReviews(data.data)
             });
-    }, []);
+    }, [moviesId]);
     return (
         <>
             {reviews.results?.length !== 0 ? <>

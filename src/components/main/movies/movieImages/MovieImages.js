@@ -19,7 +19,7 @@ function MovieImages({ moviesId, type }) {
             .then((data) => {
                 setPhotos(data.data.backdrops)
             });
-    }, []);
+    }, [moviesId]);
 
     const settings = {
         dots: false,

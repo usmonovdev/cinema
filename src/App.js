@@ -30,7 +30,6 @@ function App() {
           </Routes>
         </MovieContextProvider>
       </StateContextProvider>
-      {/* <Posts /> */}
     </>
   );
 }

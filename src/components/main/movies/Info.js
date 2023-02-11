@@ -16,7 +16,7 @@ function Info({ movie }) {
         } catch (error) {
             console.log("Error in API", error)
         }
-    }, []);
+    }, [movie.id]);
     return (
         <div className='info'>
             <div className='genres'>
