@@ -43,7 +43,7 @@ function Similar({ moviesId }) {
         } catch (error) {
             console.log("Error in API", error)
         }
-    }, []);
+    }, [moviesId]);
     return (
         <>
             {movie?.length !== 0 ? <>

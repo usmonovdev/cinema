@@ -26,7 +26,7 @@ function ShowOpen() {
         } catch (error) {
             console.log("Api error", error)
         }
-    }, [])
+    }, [showId])
 
     const { adult, backdrop_path, name } = show;
 

@@ -11,7 +11,6 @@ function Role() {
         try {
             axios.get(`https://api.themoviedb.org/3/person/${actorId}/movie_credits?api_key=${API_KEY}`)
                 .then((data) => {
-                    console.log(data.data)
                     setRole(data.data)
                 })
         } catch (error) {

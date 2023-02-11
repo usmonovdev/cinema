@@ -32,7 +32,7 @@ function Movies() {
         } catch (error) {
             console.log("Error in API", error)
         }
-    }, [])
+    }, [moviesId])
 
     const { adult, backdrop_path, title } = movie;
 

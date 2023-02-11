@@ -7,8 +7,8 @@ import BannedContent from "../../BannedContent/BannedContent"
 import Navbar from '../../navbar/Navbar'
 import { Image } from 'antd'
 import { initial } from '../../../assets/reducer'
-import Role from './Role'
 import Right from './Right'
+import Popular from './popular/Popular'
 
 function ActorOpen() {
     const { actorId } = useParams()
@@ -25,19 +25,19 @@ function ActorOpen() {
         } catch (error) {
             console.log("API Error", error)
         }
-    }, [])
+    }, [actorId])
 
     useEffect(() => {
         try {
             axios.get(`${API}${actorId}/images?api_key=${API_KEY}`)
                 .then((data) => {
                     setActorImage(data)
-                    console.log(data)
                 })
         } catch (error) {
             console.log("API Error", error)
         }
     }, [])
+    console.log(actor)
 
     const { adult, profile_path } = actor
 
@@ -65,6 +65,7 @@ function ActorOpen() {
                         </div>
                     </div>
                 </div>
+                <Popular />
                 <Footer />
             </> : <>
                 <BannedContent />

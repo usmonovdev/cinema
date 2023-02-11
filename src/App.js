@@ -10,12 +10,14 @@ import ShowOpen from "./components/main/tvshow/ShowOpen";
 import { StateContextProvider } from "./context/StateContext/StateContext";
 import Actor from "./components/main/actor/Actor";
 import ActorOpen from "./components/main/actor/ActorOpen";
+import ScrollToTop from "./assets/ScrollToTop";
 
 function App() {
   return (
     <>
       <StateContextProvider>
         <MovieContextProvider>
+          <ScrollToTop/>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Registration />} />

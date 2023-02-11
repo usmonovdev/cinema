@@ -1,5 +1,6 @@
 import { Button, ConfigProvider, Drawer, Space, Tooltip } from 'antd';
 import React from 'react'
+import { useEffect } from 'react';
 import { useReducer } from 'react';
 import { AiOutlineHeart, AiOutlineInfoCircle, AiOutlineStar } from 'react-icons/ai';
 import { RxShare1 } from 'react-icons/rx';
@@ -30,6 +31,10 @@ function Right({ actor }) {
     const share = () => {
         navigator.share(sharedData)
     }
+
+    useEffect(() => {
+        document.title = `Actor - ${name}`
+    });
 
     return (
         <div className="right">
