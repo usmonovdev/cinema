@@ -8,6 +8,7 @@ import { Image } from 'antd'
 import { RiMovie2Line } from 'react-icons/ri'
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { Link } from 'react-router-dom'
+import actorImage from "../../../../assets/actor-photo-not-downloaded.jpg"
 
 function PopularData({ popular }) {
     const initialState = {
@@ -58,6 +59,7 @@ function PopularData({ popular }) {
                                                 src={`https://image.tmdb.org/t/p/${initial.size}/${profile_path}`}
                                                 alt={name}
                                                 preview={false}
+                                                fallback={actorImage}
                                             />
                                             <p>{name}</p>
                                         </div>

@@ -81,6 +81,10 @@ body {
             @media screen and (max-width: $small-screens) {
                 display: none;
             }
+            a {
+                font-weight: unset;
+                font-size: unset;
+            }
             .links {
                 display: flex;
                 flex-direction: row;

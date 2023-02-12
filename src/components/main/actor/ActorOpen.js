@@ -9,6 +9,7 @@ import { Image } from 'antd'
 import { initial } from '../../../assets/reducer'
 import Right from './Right'
 import Popular from './popular/Popular'
+import notDownloaded from "../../../assets/actor-photo-not-downloaded.jpg"
 
 function ActorOpen() {
     const { actorId } = useParams()
@@ -58,6 +59,7 @@ function ActorOpen() {
                                     <Image
                                         width="100px"
                                         src={`https://image.tmdb.org/t/p/${initial.size}/${profile_path}`}
+                                        fallback={notDownloaded}
                                     />
                                 </div>
                                 <Right actor={actor} />
