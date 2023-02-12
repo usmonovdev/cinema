@@ -8,6 +8,15 @@ $tablet: 768px;
 $small-screens: 992px;
 $large-screens: 1200px;
 
+.pagination {
+    padding-top: 20px;
+    width: 100%;
+    .ant-pagination {
+        display: flex;
+        justify-content: center;
+    }
+}
+
 :where(.css-dev-only-do-not-override-1i9hnpv).ant-spin {
     color: $white;
 }

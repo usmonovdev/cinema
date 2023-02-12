@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Popover } from 'antd'
-import { GiSettingsKnobs } from "react-icons/gi"
 import { Link } from 'react-router-dom';
 import { AiOutlineHeart } from 'react-icons/ai'
-import { MdOutlineKeyboardArrowDown } from "react-icons/md"
-import { PopoverTitleTrending } from "../../../assets/AntD"
 import { container, item } from '../../../assets/Framer'
 import { motion } from 'framer-motion';
-import { Image, Tooltip } from 'antd';
+import { ConfigProvider, Image, Pagination, Tooltip } from 'antd';
 import { initial } from '../../../assets/reducer'
 import { RiMovie2Line } from "react-icons/ri"
 import axios from 'axios'
-import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import "../trending/trending.scss"
-import MovieData from './MovieData'
 import Navbar from "../../navbar/Navbar"
 import Footer from "../../footer/Footer"
 const API = "https://api.themoviedb.org/3/movie/popular?api_key="
@@ -21,23 +15,27 @@ const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Movies() {
     const [movie, setMovie] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1)
 
     useEffect(() => {
         try {
-            axios.get(`${API}${API_KEY}`)
+            axios.get(`${API}${API_KEY}&page=${currentPage}`)
                 .then((movie) => {
-                    setMovie(movie.data.results)
+                    setMovie(movie.data)
                 });
         } catch (error) {
             console.log("Error in API", error)
         }
-    }, []);
-
+    }, [currentPage]);
+    console.log(currentPage)
+    const onChange = (page) => {
+        setCurrentPage(page)
+    }
     return (
         <>
             <Navbar />
             <div className='container'>
-                {movie.length !== 0 ?
+                {movie.results?.length !== 0 ?
                     <>
                         <motion.ul
                             className="trending"
@@ -46,8 +44,8 @@ function Movies() {
                             animate="visible"
                             style={{ marginBottom: "50px" }}
                         >
-                            {movie.map((data) => {
-                                const { id, poster_path, title, media_type } = data
+                            {movie.results?.map((data) => {
+                                const { id, poster_path, title } = data
                                 return (
                                     <motion.li
                                         className="trending-movie-container"
@@ -68,7 +66,7 @@ function Movies() {
                                                             <AiOutlineHeart />
                                                         </div>
                                                     </Tooltip>
-                                                    <Link to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}>
+                                                    <Link to={`/movie/${id}`}>
                                                         <div className='play'>
                                                             <p>Play</p>
                                                         </div>
@@ -80,6 +78,26 @@ function Movies() {
                                 )
                             })}
                         </motion.ul>
+                        <div className='pagination'>
+                            <ConfigProvider
+                                theme={{
+                                    token: {
+                                        colorPrimary: "#e6b31e",
+                                        colorTextBase: "#fff"
+                                    }
+                                }}
+                            >
+                                <Pagination
+                                    onChange={onChange}
+                                    defaultCurrent={1}
+                                    total={50}
+                                    pageSize={4}
+                                    showLessItems={false}
+                                />
+                            </ConfigProvider>
+                        </div>
+
+
                     </> :
                     <div className="trendingNoItem">
                         <div className='noItems'>
