@@ -38,7 +38,6 @@ function ActorOpen() {
             console.log("API Error", error)
         }
     }, [])
-    console.log(actor)
 
     const { adult, profile_path } = actor
 

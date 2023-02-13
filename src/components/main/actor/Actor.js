@@ -28,15 +28,13 @@ function Actor() {
             console.log("Error in API", error)
         }
     }, [currentPage]);
-    console.log(currentPage)
     const onChange = (page) => {
         setCurrentPage(page)
     }
 
     useEffect(() => {
-        document.title = "Cinema App - Movie"
+        document.title = "Cinema App - Actor"
     }, [])
-    console.log(actor)
     return (
         <>
             <Navbar />

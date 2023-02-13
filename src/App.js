@@ -11,6 +11,7 @@ import { StateContextProvider } from "./context/StateContext/StateContext";
 import Actor from "./components/main/actor/Actor";
 import ActorOpen from "./components/main/actor/ActorOpen";
 import ScrollToTop from "./assets/ScrollToTop";
+import Settings from "./components/settings/Settings";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/show/:showId" element={<ShowOpen />} />
             <Route path="/actor" element={<Actor />} />
             <Route path="/actor/:actorId" element={<ActorOpen />} />
+            <Route path="/settings" element={<Settings />}/>
           </Routes>
         </MovieContextProvider>
       </StateContextProvider>

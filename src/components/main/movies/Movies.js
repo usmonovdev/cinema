@@ -27,7 +27,7 @@ function Movies() {
             console.log("Error in API", error)
         }
     }, [currentPage]);
-    console.log(currentPage)
+
     const onChange = (page) => {
         setCurrentPage(page)
     }
@@ -35,7 +35,6 @@ function Movies() {
     useEffect(() => {
         document.title = "Cinema App - Movie"
     }, [])
-
     return (
         <>
             <Navbar />
@@ -102,14 +101,14 @@ function Movies() {
                                 />
                             </ConfigProvider>
                         </div>
-                    </> :
+                    </>
+                    :
                     <div className="trendingNoItem">
                         <div className='noItems'>
                             <RiMovie2Line />
                             <p>Items not found!</p>
                         </div>
-                    </div>
-                }
+                    </div>}
             </div>
             <Footer />
         </>
