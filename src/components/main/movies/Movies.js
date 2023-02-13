@@ -31,6 +31,11 @@ function Movies() {
     const onChange = (page) => {
         setCurrentPage(page)
     }
+
+    useEffect(() => {
+        document.title = "Cinema App - Movie"
+    }, [])
+
     return (
         <>
             <Navbar />
@@ -83,7 +88,8 @@ function Movies() {
                                 theme={{
                                     token: {
                                         colorPrimary: "#e6b31e",
-                                        colorTextBase: "#fff"
+                                        colorTextBase: "#fff",
+                                        borderRadius: "0"
                                     }
                                 }}
                             >
@@ -91,13 +97,11 @@ function Movies() {
                                     onChange={onChange}
                                     defaultCurrent={1}
                                     total={50}
-                                    pageSize={4}
+                                    pageSize={1}
                                     showLessItems={false}
                                 />
                             </ConfigProvider>
                         </div>
-
-
                     </> :
                     <div className="trendingNoItem">
                         <div className='noItems'>

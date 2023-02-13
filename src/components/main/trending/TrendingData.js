@@ -43,7 +43,7 @@ function TrendingData({ filter }) {
                         initial="hidden"
                         animate="visible"
                     >
-                        {initialPosts.map((data) => {
+                        {initialPosts?.map((data) => {
                             const { id, poster_path, title, media_type} = data
                             return (
                                 <motion.li
