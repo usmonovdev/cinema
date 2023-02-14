@@ -1,32 +1,53 @@
-import React, { useState } from 'react'
+import React, { useReducer, useState } from 'react'
 import Navbar from "../navbar/Navbar"
 import user from "../../assets/user-not-downloaded.jpg"
 import { MdRefresh } from 'react-icons/md'
-import { ConfigProvider, message, Radio, Switch } from 'antd'
+import { Button, ConfigProvider, message, Radio, Switch } from 'antd'
 import Footer from "../footer/Footer"
 import "./settings.scss"
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
 
 function Settings() {
-    const [messageApi, contextHolder] = message.useMessage()
-    const alert = () => {
-        messageApi.info("Successful changed")
-    }
     const { imgState, colorState, imgDispatch } = useMovieContext()
+    const [messageApi, contextHolder] = message.useMessage()
+    const key = "updatable"
+    const defaultSize = () => {
+        imgDispatch({
+            type: "DEFAULT_IMAGE_SIZE"
+        })
+    }
+
+    const info = (e) => {
+        messageApi.open({
+            key,
+            type: "loading",
+            content: "Loading..."
+        });
+        setTimeout(() => {
+            messageApi.open({
+                key,
+                type: "success",
+                content: `Image quality: ${e.target.value == "original" ? "High" : "Low"}`,
+                duration: 2
+            });
+        }, 2000);
+    }
+
     const [value, setValue] = useState(1);
 
     const onChange = (e) => {
         setValue(e.target.value)
     }
+
     const changeImageSize = (e) => {
-        imgDispatch({ 
-            type: "IMAGE_SIZE", 
+        imgDispatch({
+            type: "IMAGE_SIZE",
             newSize: e.target.value
         })
     };
     return (
         <>
-        {contextHolder}
+            {contextHolder}
             <Navbar />
             <div className='container'>
                 <div className="set-title">
@@ -41,7 +62,10 @@ function Settings() {
                     <li>
                         <div className='setting-title'>
                             <h3>Quality images</h3>
-                            <MdRefresh style={{ color: colorState.color }} />
+                            <MdRefresh
+                                style={{ color: colorState.color }}
+                                onClick={defaultSize}
+                            />
                         </div>
                         <ConfigProvider
                             theme={{
@@ -53,12 +77,23 @@ function Settings() {
                             }}
                         >
                             <Radio.Group className='functions'
-                                onClick={alert}
-                                onChange={changeImageSize} 
+                                onChange={changeImageSize}
                                 value={imgState.size}
                             >
-                                <Radio className='radio' value={"original"}>High</Radio>
-                                <Radio className='radio' value={"w500"}>Low</Radio>
+                                <Radio
+                                    onClick={info}
+                                    className='radio'
+                                    value={"original"}
+                                >
+                                    High
+                                </Radio>
+                                <Radio
+                                    onClick={info}
+                                    className='radio'
+                                    value={"w500"}
+                                >
+                                    Low
+                                </Radio>
                             </Radio.Group>
                         </ConfigProvider>
                     </li>

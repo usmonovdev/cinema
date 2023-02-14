@@ -1,3 +1,5 @@
+import { size } from "lodash"
+
 export const reducer = (state, action) => {
     switch (action.type) {
         // for comments
@@ -80,6 +82,12 @@ export const reducer = (state, action) => {
             return {
                 ...state,
                 size: action.newSize
+            }
+        }
+        case "DEFAULT_IMAGE_SIZE": {
+            return {
+                ...state,
+                size: state.size = "w500"
             }
         }
         default:
