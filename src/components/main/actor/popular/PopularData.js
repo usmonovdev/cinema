@@ -17,7 +17,9 @@ function PopularData({ popular }) {
         loading: false
     }
 
-    const [state, dispatch] = useReducer(reducer, initialState)
+    const [state, dispatch] = useReducer(reducer, initialState);
+    const [imageState, imageDispatch] = useReducer(reducer, initial)
+    
     const actor = slice(popular, 0, state.index)
 
     const loadMore = () => {
@@ -56,7 +58,7 @@ function PopularData({ popular }) {
                                     >
                                         <div className="actor">
                                             <Image
-                                                src={`https://image.tmdb.org/t/p/${initial.size}/${profile_path}`}
+                                                src={`https://image.tmdb.org/t/p/${state.size}/${profile_path}`}
                                                 alt={name}
                                                 preview={false}
                                                 fallback={actorImage}

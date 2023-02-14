@@ -76,6 +76,12 @@ export const reducer = (state, action) => {
                 simFilter: action.nextSim
             }
         }
+        case "IMAGE_SIZE": {
+            return {
+                ...state,
+                size: action.newSize
+            }
+        }
         default:
             return;
     }
@@ -86,5 +92,6 @@ export const initial = {
     trendingFilter: "all",
     topFilter: "all",
     upFilter: "all",
-    simFilter: "all"
+    simFilter: "all",
+    color: "#e6b31e"
 }

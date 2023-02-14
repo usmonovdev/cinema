@@ -6,12 +6,14 @@ import Footer from "../../footer/Footer"
 import BannedContent from "../../BannedContent/BannedContent"
 import Navbar from '../../navbar/Navbar'
 import { Image } from 'antd'
-import { initial } from '../../../assets/reducer'
+import { initial, reducer } from '../../../assets/reducer'
 import Right from './Right'
 import Popular from './popular/Popular'
 import notDownloaded from "../../../assets/actor-photo-not-downloaded.jpg"
+import { useReducer } from 'react'
 
 function ActorOpen() {
+    const [state, dispatch] = useReducer(reducer, initial)
     const { actorId } = useParams()
     const API = "https://api.themoviedb.org/3/person/"
     const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
@@ -48,7 +50,7 @@ function ActorOpen() {
                 <div className="bg-image"
                     style={{
                         opacity: "1",
-                        backgroundImage: `url("https://image.tmdb.org/t/p/${initial.size}/${profile_path}")`
+                        backgroundImage: `url("https://image.tmdb.org/t/p/${state.size}/${profile_path}")`
                     }}
                 >
                     <div className="bg-color">
@@ -57,7 +59,7 @@ function ActorOpen() {
                                 <div className="left">
                                     <Image
                                         width="100px"
-                                        src={`https://image.tmdb.org/t/p/${initial.size}/${profile_path}`}
+                                        src={`https://image.tmdb.org/t/p/${state.size}/${profile_path}`}
                                         fallback={notDownloaded}
                                     />
                                 </div>

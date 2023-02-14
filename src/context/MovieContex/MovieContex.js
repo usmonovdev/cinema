@@ -12,6 +12,12 @@ const MovieContextProvider = ({ children }) => {
     const [upState, upDispatch] = useReducer(reducer, initial)
     const [simState, simDispatch] = useReducer(reducer, initial)
 
+    // state for image sizes setting
+    const [imgState, imgDispatch] = useReducer(reducer, initial)
+
+    // state for theme color settings
+    const [colorState, colorDispatch] = useReducer(reducer, initial)
+
     // Get Single Movie by APi and id
     const getMovie = (url) => {
         try {
@@ -36,7 +42,11 @@ const MovieContextProvider = ({ children }) => {
                 upState,
                 upDispatch,
                 simState,
-                simDispatch
+                simDispatch,
+                imgState,
+                imgDispatch,
+                colorState,
+                colorDispatch
             }}
         >
             {children}

@@ -33,6 +33,9 @@ body {
     @media screen and (max-width: $mobile) {
         width: 100%;
     }
+    header.active {
+        position: relative;
+    }
     header {
         z-index: 1000 !important;
         position: relative;
@@ -147,7 +150,7 @@ body {
             top: 0;
             left: 0;
             display: block;
-            animation: scaleNavbar 500ms alternate both ease-out;
+            animation: scaleNavbar 350ms alternate both ease-out;
             box-sizing: border-box;
             transform-origin: top left;
             @keyframes scaleNavbar {
@@ -169,7 +172,7 @@ body {
                 transform: translateY(70px);
                 opacity: 0;
                 animation: links 500ms alternate both;
-                animation-delay: 500ms;
+                animation-delay: 350ms;
                 @keyframes links {
                     0% {
                         transform: translateY(70px);
