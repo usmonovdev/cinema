@@ -9,8 +9,10 @@ import { RiMovie2Line } from "react-icons/ri"
 import { reducer, initial } from '../../../assets/reducer';
 import { slice } from 'lodash';
 import movie from "../../../assets/actor-photo-not-downloaded.jpg"
+import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 
 function TrendingData({ filter }) {
+    const { imgState } = useMovieContext()
     const initialState = {
         completed: false,
         index: 4,
@@ -18,9 +20,8 @@ function TrendingData({ filter }) {
     }
 
     const [state, dispatch] = useReducer(reducer, initialState)
-    const [imageState, imageDispatch] = useReducer(reducer, initial)
     const initialPosts = slice(filter, 0, state.index)
-    console.log(imageState.size)
+    
     const loadMore = () => {
         dispatch({ type: "LOADING" })
 
@@ -54,7 +55,7 @@ function TrendingData({ filter }) {
                                     <div className="trending-movie-box">
                                         <Image
                                             preview={false}
-                                            src={`https://image.tmdb.org/t/p/${imageState.size}/${poster_path}`}
+                                            src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
                                             alt={title}
                                             fallback={movie}
                                         />

@@ -1,13 +1,17 @@
-import React, { useReducer, useState } from 'react'
+import React, { useState } from 'react'
 import Navbar from "../navbar/Navbar"
 import user from "../../assets/user-not-downloaded.jpg"
 import { MdRefresh } from 'react-icons/md'
-import { ConfigProvider, Radio, Switch } from 'antd'
+import { ConfigProvider, message, Radio, Switch } from 'antd'
 import Footer from "../footer/Footer"
 import "./settings.scss"
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
 
 function Settings() {
+    const [messageApi, contextHolder] = message.useMessage()
+    const alert = () => {
+        messageApi.info("Successful changed")
+    }
     const { imgState, colorState, imgDispatch } = useMovieContext()
     const [value, setValue] = useState(1);
 
@@ -22,6 +26,7 @@ function Settings() {
     };
     return (
         <>
+        {contextHolder}
             <Navbar />
             <div className='container'>
                 <div className="set-title">
@@ -48,10 +53,11 @@ function Settings() {
                             }}
                         >
                             <Radio.Group className='functions'
-                                onChange={changeImageSize} value={imgState.size}
+                                onClick={alert}
+                                onChange={changeImageSize} 
+                                value={imgState.size}
                             >
                                 <Radio className='radio' value={"original"}>High</Radio>
-                                <Radio className='radio' value={"w1000"}>Medium</Radio>
                                 <Radio className='radio' value={"w500"}>Low</Radio>
                             </Radio.Group>
                         </ConfigProvider>
