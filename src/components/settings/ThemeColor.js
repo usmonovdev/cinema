@@ -1,5 +1,6 @@
 import { message } from 'antd'
 import React from 'react'
+import { useEffect } from 'react'
 import { useLayoutEffect } from 'react'
 import { MdRefresh } from 'react-icons/md'
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
@@ -12,10 +13,14 @@ function ThemeColor() {
         setTimeout(() => {
             colorDispatch({
                 type: "THEME",
-                newColor: e.target.value
+                payload: e.target.value
             })
         }, 0);
     }
+
+    useEffect(() => {
+        window.localStorage.setItem("THEME_COLOR", colorState.color)
+    }, [colorState.color])
 
     const info = (e) => {
         messageApi.open({

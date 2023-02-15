@@ -103,7 +103,7 @@ export const reducer = (state, action) => {
         case "THEME": {
             return {
                 ...state,
-                color: action.newColor
+                color: action.payload
             }
         }
         case "DEFAULT_THEME": {
@@ -123,6 +123,7 @@ export const initial = {
     topFilter: "all",
     upFilter: "all",
     simFilter: "all",
-    color: "#e6b31e",
+    color: window.localStorage.getItem("THEME_COLOR") == null ?
+        "#e6b31e" : window.localStorage.getItem("THEME_COLOR"),
     speed: "10000"
 }
