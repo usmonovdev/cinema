@@ -4,7 +4,6 @@ import { MdRefresh } from 'react-icons/md'
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
 
 function SliderSpeed() {
-    const colorS = localStorage.setItem("newTheme", "#e6b31e")
     const { speedDispatch, colorState, speedState } = useMovieContext()
     const [messageApi, contextHolder] = message.useMessage()
     // console.log(color)

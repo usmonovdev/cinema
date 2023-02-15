@@ -123,6 +123,6 @@ export const initial = {
     topFilter: "all",
     upFilter: "all",
     simFilter: "all",
-    color: localStorage.getItem(`${"theme" == null ? "newTheme" : "theme"}`),
+    color: "#e6b31e",
     speed: "10000"
 }

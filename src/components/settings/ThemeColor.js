@@ -1,5 +1,6 @@
 import { message } from 'antd'
 import React from 'react'
+import { useLayoutEffect } from 'react'
 import { MdRefresh } from 'react-icons/md'
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
 
@@ -7,18 +8,14 @@ function ThemeColor() {
     const { colorState, colorDispatch } = useMovieContext()
     const [messageApi, contextHolder] = message.useMessage()
     const key = "updatable"
-
     const changeTheme = (e) => {
         setTimeout(() => {
             colorDispatch({
                 type: "THEME",
                 newColor: e.target.value
             })
-            localStorage.setItem("theme", e.target.value)
-        }, 1800);
+        }, 0);
     }
-
-    console.log(colorState.color)
 
     const info = (e) => {
         messageApi.open({
@@ -33,13 +30,14 @@ function ThemeColor() {
                 content: `Image quality: ${e.target.value == "original" ? "High" : "Low"}`,
                 duration: 2
             });
-        }, 2000);
+        }, 0);
     }
 
     const defaultColor = () => {
         colorDispatch({
             type: "DEFAULT_THEME"
         })
+        localStorage.setItem("theme", "#e6b31e")
         messageApi.open({
             key,
             type: "loading",
@@ -88,10 +86,10 @@ function ThemeColor() {
                         type="radio"
                         name='theme'
                         id='radio2'
-                        value={"#BB86FC"}
+                        value={"#bb86fc"}
                     />
                     <label
-                        style={{ backgroundColor: "#BB86FC" }}
+                        style={{ backgroundColor: "#bb86fc" }}
                         htmlFor="radio2"
                         onClick={info}
                     ></label>
@@ -101,10 +99,10 @@ function ThemeColor() {
                         type="radio"
                         name='theme'
                         id='radio3'
-                        value={"#03DAC5"}
+                        value={"#03dac5"}
                     />
                     <label
-                        style={{ backgroundColor: "#03DAC5" }}
+                        style={{ backgroundColor: "#03dac5" }}
                         htmlFor="radio3"
                         onClick={info}
                     ></label>
