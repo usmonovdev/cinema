@@ -1,5 +1,3 @@
-import { size } from "lodash"
-
 export const reducer = (state, action) => {
     switch (action.type) {
         // for comments
@@ -125,6 +123,6 @@ export const initial = {
     topFilter: "all",
     upFilter: "all",
     simFilter: "all",
-    color: localStorage.getItem(`${"theme" == null ? "#e6b31e" : "theme"}`),
+    color: localStorage.getItem(`${"theme" == null ? "newTheme" : "theme"}`),
     speed: "10000"
 }
