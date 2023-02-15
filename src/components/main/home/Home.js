@@ -10,13 +10,13 @@ import Trending from '../trending/Trending'
 import Upcoming from '../upcoming/Upcoming'
 import TopRated from '../topRated/TopRated'
 import Footer from '../../footer/Footer'
-import { initial } from '../../../assets/reducer'
+import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Home() {
+    const { imgState, speedState } = useMovieContext()
     const [firstPage, setFirstPage] = useState([])
     const [index, setIndex] = useState(0)
-
     // Document title
     useEffect(() => {
         document.title = "Cinema App - Home"
@@ -45,7 +45,7 @@ function Home() {
     useEffect(() => {
         const time = setInterval(() => {
             setIndex(index + 1)
-        }, 10000);
+        }, speedState.speed);
         return () => {
             clearInterval(time)
         }
@@ -66,7 +66,7 @@ function Home() {
                     return (
                         <div 
                             className={`bg-image ${slide}`} key={id} style={{
-                            backgroundImage: `url("https://image.tmdb.org/t/p/${initial.size}/${backdrop_path}")`}}
+                            backgroundImage: `url("https://image.tmdb.org/t/p/${imgState.size}/${backdrop_path}")`}}
                         >
                             <div className='top-popular-home'>
                                 <div className='play-and-next'>

@@ -4,17 +4,18 @@ import { AiOutlineHeart } from 'react-icons/ai'
 import { container, item } from '../../../assets/Framer'
 import { motion } from 'framer-motion';
 import { ConfigProvider, Image, Pagination, Tooltip } from 'antd';
-import { initial } from '../../../assets/reducer'
 import { RiMovie2Line } from "react-icons/ri"
 import axios from 'axios'
 import "../trending/trending.scss"
 import Navbar from "../../navbar/Navbar"
 import Footer from "../../footer/Footer"
 import showImage from "../../../assets/actor-photo-not-downloaded.jpg"
+import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 const API = "https://api.themoviedb.org/3/tv/popular?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Tvshow() {
+    const { imgState } = useMovieContext()
     const [show, setShow] = useState([]);
     const [currentPage, setCurrentPage] = useState(1)
 
@@ -60,7 +61,7 @@ function Tvshow() {
                                         <div className="trending-movie-box">
                                             <Image
                                                 preview={false}
-                                                src={`https://image.tmdb.org/t/p/${initial.size}/${poster_path}`}
+                                                src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
                                                 alt={title}
                                                 fallback={showImage}
                                             />

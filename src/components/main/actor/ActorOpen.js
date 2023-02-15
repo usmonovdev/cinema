@@ -11,8 +11,10 @@ import Right from './Right'
 import Popular from './popular/Popular'
 import notDownloaded from "../../../assets/actor-photo-not-downloaded.jpg"
 import { useReducer } from 'react'
+import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 
 function ActorOpen() {
+    const { imgState } = useMovieContext()
     const [state, dispatch] = useReducer(reducer, initial)
     const { actorId } = useParams()
     const API = "https://api.themoviedb.org/3/person/"
@@ -50,7 +52,7 @@ function ActorOpen() {
                 <div className="bg-image"
                     style={{
                         opacity: "1",
-                        backgroundImage: `url("https://image.tmdb.org/t/p/${state.size}/${profile_path}")`
+                        backgroundImage: `url("https://image.tmdb.org/t/p/${imgState.size}/${profile_path}")`
                     }}
                 >
                     <div className="bg-color">
@@ -59,7 +61,7 @@ function ActorOpen() {
                                 <div className="left">
                                     <Image
                                         width="100px"
-                                        src={`https://image.tmdb.org/t/p/${state.size}/${profile_path}`}
+                                        src={`https://image.tmdb.org/t/p/${imgState.size}/${profile_path}`}
                                         fallback={notDownloaded}
                                     />
                                 </div>

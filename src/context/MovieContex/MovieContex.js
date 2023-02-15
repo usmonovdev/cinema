@@ -15,6 +15,9 @@ const MovieContextProvider = ({ children }) => {
     // state for image sizes setting
     const [imgState, imgDispatch] = useReducer(reducer, initial)
 
+    // state for slider speed setting
+    const [speedState, speedDispatch] = useReducer(reducer, initial)
+
     // state for theme color settings
     const [colorState, colorDispatch] = useReducer(reducer, initial)
 
@@ -46,7 +49,9 @@ const MovieContextProvider = ({ children }) => {
                 imgState,
                 imgDispatch,
                 colorState,
-                colorDispatch
+                colorDispatch,
+                speedState,
+                speedDispatch
             }}
         >
             {children}

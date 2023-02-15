@@ -8,10 +8,11 @@ import { RiMovie2Line } from "react-icons/ri"
 import { container, item } from '../../../assets/Framer'
 import { reducer } from '../../../assets/reducer';
 import { slice } from 'lodash';
-import { initial } from '../../../assets/reducer';
 import movie from "../../../assets/actor-photo-not-downloaded.jpg"
+import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 
 function TopRatedData({ filter }) {
+    const { imgState } = useMovieContext()
     const initialState = {
         completed: false,
         index: 4,
@@ -54,7 +55,7 @@ function TopRatedData({ filter }) {
                                     <div className="trending-movie-box">
                                         <Image
                                             preview={false}
-                                            src={`https://image.tmdb.org/t/p/${initial.size}/${poster_path}`}
+                                            src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
                                             alt={name}
                                             fallback={movie}
                                         />

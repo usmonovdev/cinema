@@ -4,21 +4,20 @@ import { AiOutlineHeart } from 'react-icons/ai'
 import { container, item } from '../../../assets/Framer'
 import { motion } from 'framer-motion';
 import { ConfigProvider, Image, Pagination, Tooltip } from 'antd';
-import { initial, reducer } from '../../../assets/reducer'
 import { RiMovie2Line } from "react-icons/ri"
 import axios from 'axios'
 import "../trending/trending.scss"
 import Navbar from "../../navbar/Navbar"
 import Footer from "../../footer/Footer"
 import actorImage from "../../../assets/actor-photo-not-downloaded.jpg"
+import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 const API = "https://api.themoviedb.org/3/person/popular?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Actor() {
-    const [state, dispatch] = useReducer(reducer, initial)
+    const { imgState } = useMovieContext()
     const [actor, setActor] = useState([]);
     const [currentPage, setCurrentPage] = useState(1)
-    console.log(state.size)
     useEffect(() => {
         try {
             axios.get(`${API}${API_KEY}&page=${currentPage}`)
@@ -61,7 +60,7 @@ function Actor() {
                                         <div className="trending-movie-box">
                                             <Image
                                                 preview={false}
-                                                src={`https://image.tmdb.org/t/p/${state.size}/${profile_path}`}
+                                                src={`https://image.tmdb.org/t/p/${imgState.size}/${profile_path}`}
                                                 alt={title}
                                                 fallback={actorImage}
                                             />

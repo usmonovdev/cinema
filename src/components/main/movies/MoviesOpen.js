@@ -14,11 +14,12 @@ import MoviesOpen from "../../loading/moviesOpen/MoviesOpen"
 import MovieImages from "./movieImages/MovieImages"
 import Reviews from "./reviews/Reviews"
 import Similar from "../similar/Similar"
-import { initial } from "../../../assets/reducer"
 import axios from "axios"
+import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Movies() {
+    const { imgState } = useMovieContext()
     const [loading, setLoading] = useState(true)
     const [movie, setMovie] = useState([])
     const { moviesId } = useParams()
@@ -48,7 +49,7 @@ function Movies() {
                     <div className="ads movie-info-overflow class-for-actors">
                         <div className='bg-image movies-open-media' style={{
                             opacity: "1",
-                            backgroundImage: `url("https://image.tmdb.org/t/p/${initial.size}/${backdrop_path}")`
+                            backgroundImage: `url("https://image.tmdb.org/t/p/${imgState.size}/${backdrop_path}")`
                         }}>
                             <div className="opened-movie-backdrop">
                                 <LeftInfo movie={movie} />

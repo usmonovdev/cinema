@@ -9,8 +9,10 @@ import { useEffect } from 'react'
 import Comment from './Comment'
 import { Image } from 'antd'
 import { initial } from '../../../../assets/reducer'
+import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
 
 function Reviews({ moviesId, type }) {
+    const { imgState } = useMovieContext()
     const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
     const API = `https://api.themoviedb.org/3/${type == "movie" ? "movie" : "tv"}/`
     const [reviews, setReviews] = useState([])
@@ -40,7 +42,7 @@ function Reviews({ moviesId, type }) {
                                         <Image
                                             fallback={image}
                                             preview={false}
-                                            src={`https://image.tmdb.org/t/p/${initial.size}/${author_details.avatar_path}`}
+                                            src={`https://image.tmdb.org/t/p/${imgState.size}/${author_details.avatar_path}`}
                                             alt={author}
                                         />
                                     </div>

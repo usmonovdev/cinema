@@ -9,8 +9,10 @@ import { RiMovie2Line } from 'react-icons/ri'
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import actorImage from "../../../../assets/actor-photo-not-downloaded.jpg"
+import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
 
 function PopularData({ popular }) {
+    const { imgState } = useMovieContext()
     const initialState = {
         completed: false,
         index: 4,
@@ -58,7 +60,7 @@ function PopularData({ popular }) {
                                     >
                                         <div className="actor">
                                             <Image
-                                                src={`https://image.tmdb.org/t/p/${state.size}/${profile_path}`}
+                                                src={`https://image.tmdb.org/t/p/${imgState.size}/${profile_path}`}
                                                 alt={name}
                                                 preview={false}
                                                 fallback={actorImage}

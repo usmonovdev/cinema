@@ -8,10 +8,12 @@ import { Tooltip } from 'antd';
 import { slice } from 'lodash';
 import actor from "../../../assets/actor-photo-not-downloaded.jpg"
 import { container, item } from '../../../assets/Framer'
-import { initial, reducer } from "../../../assets/reducer"
+import { reducer } from "../../../assets/reducer"
 import { Image } from 'antd'
+import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 
 function SimilarData({ filter }) {
+    const { imgState } = useMovieContext()
 
     const initialState = {
         completed: false,
@@ -56,7 +58,7 @@ function SimilarData({ filter }) {
                                     <div className="trending-movie-box">
                                         <Image
                                             preview={false}
-                                            src={`https://image.tmdb.org/t/p/${initial.size}/${poster_path}`}
+                                            src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
                                             alt={name}
                                             fallback={actor}
                                         />

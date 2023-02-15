@@ -6,7 +6,7 @@ import { AiOutlineHeart } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import { Image, Tooltip } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
-import { reducer, initial } from '../../../assets/reducer';
+import { reducer } from '../../../assets/reducer';
 import { slice } from 'lodash';
 import movie from "../../../assets/actor-photo-not-downloaded.jpg"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';

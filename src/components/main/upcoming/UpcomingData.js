@@ -6,10 +6,12 @@ import { AiOutlineHeart } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import { Tooltip } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
-import { initial, reducer } from '../../../assets/reducer';
+import { reducer } from '../../../assets/reducer';
 import { slice } from 'lodash';
+import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 
 function UpcomingData({ filter }) {
+    const { imgState } = useMovieContext()
     const initialState = {
         completed: false,
         index: 4,
@@ -50,7 +52,7 @@ function UpcomingData({ filter }) {
                                     key={id}
                                 >
                                     <div className="trending-movie-box">
-                                        <img src={`https://image.tmdb.org/t/p/${initial.size}/${poster_path}`} alt={name} />
+                                        <img src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`} alt={name} />
                                         <div className="trending-movie-info">
                                             <div className="like-and-open">
                                                 <Tooltip

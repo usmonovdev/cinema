@@ -6,11 +6,12 @@ import "../../../../assets/slick.css"
 import Slider from 'react-slick'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { Image } from 'antd'
-import { initial } from '../../../../assets/reducer'
 import logo from "../../../../assets/movie-photo-not-downloaded.jpg"
+import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function MovieImages({ moviesId, type }) {
+    const { imgState } = useMovieContext()
     const API = `https://api.themoviedb.org/3/${type == "movie" ? "movie" : "tv"}/`
     const [photos, setPhotos] = useState([])
     const slider = useRef();
@@ -93,7 +94,7 @@ function MovieImages({ moviesId, type }) {
                                             <Image
                                                 className='movie-photo'
                                                 style={{ width: "100%" }} id='actorImage'
-                                                src={`https://image.tmdb.org/t/p/${initial.size}/${data.file_path}`}
+                                                src={`https://image.tmdb.org/t/p/${imgState.size}/${data.file_path}`}
                                                 alt={data.name}
                                                 fallback={logo}
                                             />

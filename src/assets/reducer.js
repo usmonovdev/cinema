@@ -90,6 +90,30 @@ export const reducer = (state, action) => {
                 size: state.size = "w500"
             }
         }
+        case "SPEED": {
+            return {
+                ...state,
+                speed: action.newSpeed
+            }
+        }
+        case "DEFAULT_SLIDER_SPEED": {
+            return {
+                ...state,
+                speed: state.speed = "10000"
+            }
+        }
+        case "THEME": {
+            return {
+                ...state,
+                color: action.newColor
+            }
+        }
+        case "DEFAULT_THEME": {
+            return {
+                ...state,
+                color: state.color = "#e6b31e"
+            }
+        }
         default:
             return;
     }
@@ -101,5 +125,6 @@ export const initial = {
     topFilter: "all",
     upFilter: "all",
     simFilter: "all",
-    color: "#e6b31e"
+    color: localStorage.getItem(`${"theme" == null ? "#e6b31e" : "theme"}`),
+    speed: "10000"
 }

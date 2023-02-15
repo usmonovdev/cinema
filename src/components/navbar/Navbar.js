@@ -7,8 +7,10 @@ import { MdSlideshow } from "react-icons/md"
 import "./navbar.scss"
 import Hamburger from 'hamburger-react'
 import { motion } from "framer-motion"
+import { useMovieContext } from '../../context/MovieContex/MovieContex'
 
 function Navbar() {
+    const { colorState } = useMovieContext()
     const [isOpen, setOpen] = useState(false)
     const [classAdd, setClassAdd] = useState(true)
     return (
@@ -47,7 +49,7 @@ function Navbar() {
                                 <input className='search-input' type="text" placeholder='Search for Movies...' />
                                 <BiMicrophone className='search-voice' />
                             </li>
-                            <Link to="/register" className='sign-in'>
+                            <Link to="/register" className='sign-in' style={{backgroundColor: colorState.color}}>
                                 <li>Sign In</li>
                             </Link>
                         </ul>

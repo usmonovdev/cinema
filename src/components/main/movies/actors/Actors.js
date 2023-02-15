@@ -7,10 +7,11 @@ import Slider from 'react-slick'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { Image } from 'antd'
 import actor from "../../../../assets/actor-photo-not-downloaded.jpg"
-import { initial } from '../../../../assets/reducer'
 import { Link } from 'react-router-dom'
+import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
 
 function Actors({ moviesId, type }) {
+    const { imgState } = useMovieContext()
     const API = `https://api.themoviedb.org/3/${type == "movie" ? "movie" : "tv"}/`
     const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
     const [actors, setActors] = useState([]);
@@ -106,7 +107,7 @@ function Actors({ moviesId, type }) {
                                                 preview={false}
                                                 style={{ width: "100%" }}
                                                 id='actorImage'
-                                                src={`https://image.tmdb.org/t/p/${initial.size}/${data.profile_path}`}
+                                                src={`https://image.tmdb.org/t/p/${imgState.size}/${data.profile_path}`}
                                                 alt={data.name}
                                                 fallback={actor}
                                             />
