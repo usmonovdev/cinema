@@ -4,7 +4,7 @@ import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import "./filter.scss"
 
 function Filter() {
-    const { simDispatch } = useMovieContext()
+    const { simDispatch, colorState } = useMovieContext()
 
     // filter by language
     const handleFilterByLang = (value) => {
@@ -32,7 +32,7 @@ function Filter() {
             <ConfigProvider
                 theme={{
                     token: {
-                        colorPrimary: "#e6b31e"
+                        colorPrimary: colorState.color
                     }
                 }}
             >

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { AiOutlineHeart } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
-import { Image, Tooltip } from 'antd';
+import { Image } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
 import { container, item } from '../../../assets/Framer'
 import { reducer } from '../../../assets/reducer';
@@ -61,15 +61,9 @@ function TopRatedData({ filter }) {
                                         />
                                         <div className="trending-movie-info">
                                             <div className="like-and-open">
-                                                <Tooltip
-                                                    placement="top"
-                                                    title={"Mark As Fovorite"}
-                                                    color={"#343434"}
-                                                >
                                                     <div className='icon'>
                                                         <AiOutlineHeart />
                                                     </div>
-                                                </Tooltip>
                                                 <Link to={`/movie/${id}`}>
                                                     <div className='play'>
                                                         <p>Play</p>

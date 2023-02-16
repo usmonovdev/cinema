@@ -1,13 +1,15 @@
-import { Button, ConfigProvider, Drawer, Space, Tooltip } from 'antd';
+import { Button, ConfigProvider, Drawer, Space } from 'antd';
 import React from 'react'
 import { useEffect } from 'react';
 import { useReducer } from 'react';
 import { AiOutlineHeart, AiOutlineInfoCircle, AiOutlineStar } from 'react-icons/ai';
 import { RxShare1 } from 'react-icons/rx';
 import { reducer } from '../../../assets/reducer';
+import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import Role from './Role';
 
 function Right({ actor }) {
+    const { colorState } = useMovieContext()
     const initialState = {
         info: false
     }
@@ -43,40 +45,34 @@ function Right({ actor }) {
             {place_of_birth ? <p className='birthday'>{place_of_birth}</p> : ""}
             {biography ? <p>{biography?.slice(0, 500)}</p> : ""}
             {state.info ? <ConfigProvider
-                    theme={{
-                        token: {
-                            colorPrimary: "#e6b31e"
-                        }
-                    }}
+                theme={{
+                    token: {
+                        colorPrimary: colorState.color
+                    }
+                }}
+            >
+                <Drawer
+                    title={name}
+                    onClose={onClose}
+                    width={800}
+                    open={state.info}
+                    placement={"bottom"}
+                    extra={
+                        <Space>
+                            <Button type="primary" onClick={onClose}>
+                                OK
+                            </Button>
+                        </Space>
+                    }
                 >
-                    <Drawer
-                        title={name}
-                        onClose={onClose}
-                        width={800}
-                        open={state.info}
-                        placement={"bottom"}
-                        extra={
-                            <Space>
-                                <Button type="primary" onClick={onClose}>
-                                    OK
-                                </Button>
-                            </Space>
-                        }
-                    >
-                        <Role/>
-                    </Drawer>
-                </ConfigProvider> : ""}
+                    <Role />
+                </Drawer>
+            </ConfigProvider> : ""}
             <div className="events-box">
-                <Tooltip placement="bottom" title={"Mark As Fovorite"} color={"#343434"}>
-                    <AiOutlineHeart className='events' />
-                </Tooltip>
-                <Tooltip placement="bottom" title={"Rate It!"} color={"#343434"}>
-                    <AiOutlineStar className='events' />
-                </Tooltip>
+                <AiOutlineHeart className='events' />
+                <AiOutlineStar className='events' />
                 <AiOutlineInfoCircle className='events allInfo' onClick={allInfo} />
-                <Tooltip placement="bottom" title={"Share Movie"} color={"#343434"}>
-                    <RxShare1 className='events' onClick={share} />
-                </Tooltip>
+                <RxShare1 className='events' onClick={share} />
             </div>
         </div>
     )

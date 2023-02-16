@@ -1,5 +1,5 @@
 import { ConfigProvider, message, Radio } from 'antd'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { MdRefresh } from 'react-icons/md'
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
 
@@ -10,11 +10,17 @@ function ImageSize() {
     const key = "updatable"
 
     const changeImageSize = (e) => {
-        imgDispatch({
-            type: "IMAGE_SIZE",
-            newSize: e.target.value
-        })
+        setTimeout(() => {
+            imgDispatch({
+                type: "IMAGE_SIZE",
+                newSize: e.target.value
+            })
+        }, 1800);
     };
+
+    useEffect(() => {
+        window.localStorage.setItem("IMAGE_QUALITY", imgState.size)
+    }, [imgState.size])
 
     const defaultSize = () => {
         imgDispatch({
@@ -52,7 +58,7 @@ function ImageSize() {
     }
     return (
         <>
-        {contextHolder}
+            {contextHolder}
             <div className='setting-title'>
                 <h3>Quality images</h3>
                 <MdRefresh

@@ -1,11 +1,6 @@
-$white: #fff;
-$black: #343434;
-$yellow: #e6b31e;
 $yellow-opacity: #e6b41e33;
 $mobile: 480px;
 $tablet: 768px;
-$small-screens: 992px;
-$large-screens: 1200px;
 
 .right-info {
     h1 {
@@ -19,7 +14,7 @@ $large-screens: 1200px;
         flex-direction: row;
         gap: 10px;
         p {
-            background-color: $yellow;
+            background-color: var(--yellow);
             padding: 2px;
         }
         @media screen and (max-width: $mobile) {
@@ -43,7 +38,7 @@ $large-screens: 1200px;
             font-size: 1.7rem;
             cursor: pointer;
             margin: 0 10px 0 0;
-            background-color: $yellow;
+            background-color: var(--yellow);
             padding: 5px;
         }
     }

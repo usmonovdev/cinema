@@ -1,13 +1,17 @@
 import { message } from 'antd'
 import React from 'react'
 import { useEffect } from 'react'
-import { useLayoutEffect } from 'react'
 import { MdRefresh } from 'react-icons/md'
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
 
 function ThemeColor() {
     const { colorState, colorDispatch } = useMovieContext()
     const [messageApi, contextHolder] = message.useMessage()
+
+    // THEME_COLOR FOR GLOBAL STYLES
+    // GET THE ROOT PROPERTY AND SET THIS COLOR
+    const root = document.querySelector(":root")
+
     const key = "updatable"
     const changeTheme = (e) => {
         setTimeout(() => {
@@ -15,12 +19,17 @@ function ThemeColor() {
                 type: "THEME",
                 payload: e.target.value
             })
-        }, 0);
+            root.style.setProperty("--yellow", e.target.value)
+        }, 1800);
     }
 
     useEffect(() => {
         window.localStorage.setItem("THEME_COLOR", colorState.color)
     }, [colorState.color])
+
+    // useEffect(() => {
+    //     root.style.setProperty("--yellow", window.localStorage.getItem("THEME_COLOR"))
+    // }, [])
 
     const info = (e) => {
         messageApi.open({
@@ -35,14 +44,13 @@ function ThemeColor() {
                 content: `Image quality: ${e.target.value == "original" ? "High" : "Low"}`,
                 duration: 2
             });
-        }, 0);
+        }, 2000);
     }
 
     const defaultColor = () => {
         colorDispatch({
             type: "DEFAULT_THEME"
         })
-        localStorage.setItem("theme", "#e6b31e")
         messageApi.open({
             key,
             type: "loading",

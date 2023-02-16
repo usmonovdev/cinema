@@ -1,22 +1,22 @@
-$white: #fff;
-$black: #343434;
-$yellow: #e6b31e;
 $yellow-opacity: #e6b41e33;
 $mobile: 480px;
-$tablet: 768px;
-$small-screens: 992px;
-$large-screens: 1200px;
 
 .container {
-    .set-title {
-        color: $white;
+    .settings-container {
+        @media screen and (max-width: $mobile) {
+            width: 90%;
+            margin: 0 auto;
+        }
+        .set-title {
+        color: var(--white);
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         width: 100%;
         h1 {
-            font-size: 30px;
+            font-size: 20px;
+            font-weight: 600;
             &:hover span{
                 opacity: 100%;
             }
@@ -27,12 +27,12 @@ $large-screens: 1200px;
         }
     }
     .info {
-        color: $white;
+        color: var(--white);
         margin-bottom: 30px;
     }
     .settings {
         width: fit-content;
-        color: $white;
+        color: var(--white);
         li {
             margin-bottom: 30px;
             list-style: none;
@@ -41,14 +41,17 @@ $large-screens: 1200px;
                 flex-direction: row;
                 align-items: center;
                 gap: 10px;
-                font-size: 20px;
+                h3 {
+                    font-size: 20px;
+                    font-weight: 600;
+                }
                 &:hover svg {
                     transform: rotate(360deg);
                 }
                 svg {
                     transition: 300ms;
                     cursor: pointer;
-                    font-size: 1.6rem;
+                    font-size: 1.2rem;
                 }
             }
             .functions {
@@ -59,11 +62,12 @@ $large-screens: 1200px;
             .theme {
                 display: flex;
                 flex-direction: row;
+                margin-top: 10px;
                 .radio-box {
                     input{
                         display: none;
                         &:checked + label {
-                            border: 4px solid white;
+                            border: 4px solid var(--white);
                         }
                     }
                     label {
@@ -78,4 +82,6 @@ $large-screens: 1200px;
             }
         }
     }
+    }
+    
 }

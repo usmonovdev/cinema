@@ -1,7 +1,4 @@
-$white: #fff;
-$black: #343434;
 $black-footer: #2E2E2E;
-$yellow: #e6b31e;
 $yellow-opacity: #e6b41e33;
 $mobile: 480px;
 $tablet: 768px;
@@ -45,7 +42,7 @@ $large-screens: 1200px;
         flex-direction: row;
         overflow: hidden;
         margin-bottom: 20px;
-        color: $white;
+        color: var(--white);
         background-color: $black-footer;
         padding: 10px;
         .user {
@@ -93,10 +90,10 @@ $large-screens: 1200px;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        color: $white;
+        color: var(--white);
         .icon {
             font-size: 3rem;
-            color: $yellow;
+            color: var(--yellow);
             font-weight: 500;
         }
     }

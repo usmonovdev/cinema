@@ -1,7 +1,4 @@
-$white: #fff;
 $black: #343434;
-$second-black: #2e2e2e71;
-$yellow: #e6b31e;
 $yellow-opacity: #e6b41e33;
 $mobile: 480px;
 $tablet: 768px;
@@ -9,7 +6,7 @@ $small-screens: 992px;
 $large-screens: 1200px;
 
 :where(.css-dev-only-do-not-override-1i9hnpv).ant-spin {
-    color: $white;
+    color: var(--white);
 }
 
 .load-more {
@@ -19,8 +16,8 @@ $large-screens: 1200px;
     top: 60px;
     border: none;
     padding: 10px;
-    background-color: $yellow;
-    color: $white;
+    background-color: var(--yellow);
+    color: var(--white);
     text-transform: uppercase;
     cursor: pointer;
     transition: 200ms;
@@ -37,8 +34,8 @@ $large-screens: 1200px;
         border-radius: 50%;
         width: 20px;
         height: 20px;
-        border: .15rem solid rgba($white, 0.2);
-        border-top-color: $white;
+        border: .15rem solid rgba(var(--white), 0.2);
+        border-top-color: var(--white);
         animation: spin 1s infinite linear;
     }
     @keyframes spin {
@@ -62,8 +59,7 @@ $large-screens: 1200px;
 }
 
 .title-settings-box {
-    // font-size: 20px;
-    color: $white;
+    color: var(--white);
     position: relative;
     top: 30px;
     display: flex;
@@ -155,7 +151,7 @@ $large-screens: 1200px;
                 position: absolute;
                 left: 50%;
                 opacity: 0;
-                color: $white;
+                color: var(--white);
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-end;
@@ -166,12 +162,12 @@ $large-screens: 1200px;
                     gap: 10px;
                     display: flex;
                     align-items: center;
-                    border: 2px solid $yellow;
+                    border: 2px solid var(--yellow);
                     border-radius: 20px;
                     cursor: pointer;
                     margin-top: 5px;
                     &:hover {
-                        background-color: $yellow;
+                        background-color: var(--yellow);
                     }
                 }
                 .like-and-open {
@@ -190,15 +186,15 @@ $large-screens: 1200px;
                         cursor: pointer;
                         padding: 5px;
                         background-color: unset;
-                        border: 2px solid $yellow;
+                        border: 2px solid var(--yellow);
                         &:hover {
-                            background-color: $yellow;
+                            background-color: var(--yellow);
                         }
                     }
                     a {
                         width: 60%;
                         text-decoration: unset;
-                        color: $white;
+                        color: var(--white);
                     }
                     .play {
                         height: 20px;
@@ -206,8 +202,8 @@ $large-screens: 1200px;
                         justify-content: center;
                         align-items: center;
                         padding: 5px 15px;
-                        border: 2px solid $yellow;
-                        background-color: $yellow;
+                        border: 2px solid var(--yellow);
+                        background-color: var(--yellow);
                         cursor: pointer;
                     }
                 }
@@ -226,7 +222,7 @@ $large-screens: 1200px;
     grid-template-columns: auto;
     justify-content: center;
     align-items: center;
-    color: $white;
+    color: var(--white);
     .noItems {
         display: flex;
         align-items: center;

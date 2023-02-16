@@ -1,10 +1,9 @@
-import React, { useReducer, useState } from 'react'
-import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
+import React, { useReducer } from 'react'
+import { AiOutlineHeart } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import { RiMovie2Line } from "react-icons/ri"
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Tooltip } from 'antd';
 import { slice } from 'lodash';
 import actor from "../../../assets/actor-photo-not-downloaded.jpg"
 import { container, item } from '../../../assets/Framer'
@@ -64,15 +63,9 @@ function SimilarData({ filter }) {
                                         />
                                         <div className="trending-movie-info">
                                             <div className="like-and-open">
-                                                <Tooltip
-                                                    placement="top"
-                                                    title={"Mark As Fovorite"}
-                                                    color={"#343434"}
-                                                >
                                                     <div className='icon'>
                                                         <AiOutlineHeart />
                                                     </div>
-                                                </Tooltip>
                                                 <Link
                                                     to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}
                                                 >

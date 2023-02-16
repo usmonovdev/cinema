@@ -1,5 +1,6 @@
 import { ConfigProvider, message, Radio } from 'antd'
 import React from 'react'
+import { useEffect } from 'react'
 import { MdRefresh } from 'react-icons/md'
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
 
@@ -10,11 +11,17 @@ function SliderSpeed() {
     const key = "updatable"
 
     const changeSpeed = (e) => {
-        speedDispatch({
-            type: "SPEED",
-            newSpeed: e.target.value
-        })
+        setTimeout(() => {
+            speedDispatch({
+                type: "SPEED",
+                newSpeed: e.target.value
+            })
+        }, 1800);
     }
+
+    useEffect(() => {
+        window.localStorage.setItem("SLIDER_SPEED", speedState.speed)
+    }, [speedState.speed])
 
     const defaultSize = () => {
         speedDispatch({

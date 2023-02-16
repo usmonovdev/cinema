@@ -1,12 +1,14 @@
 import React, { useReducer } from 'react'
 import "./rightInfo.scss"
-import { Button, ConfigProvider, Drawer, Space, Tooltip } from 'antd';
+import { Button, ConfigProvider, Drawer, Space } from 'antd';
 import { AiOutlineHeart, AiOutlineInfoCircle, AiOutlineStar } from 'react-icons/ai';
 import Info from '../Info';
 import { RxShare1 } from 'react-icons/rx';
 import { reducer } from '../../../../assets/reducer';
+import { useMovieContext } from '../../../../context/MovieContex/MovieContex';
 
 function RightInfo({ movie }) {
+    const { colorState } = useMovieContext()
     const initialState = {
         info: false
     }
@@ -51,7 +53,7 @@ function RightInfo({ movie }) {
                 {state.info ? <ConfigProvider
                     theme={{
                         token: {
-                            colorPrimary: "#e6b31e"
+                            colorPrimary: colorState.color
                         }
                     }}
                 >
@@ -73,16 +75,10 @@ function RightInfo({ movie }) {
                     </Drawer>
                 </ConfigProvider> : ""}
                 <div className="events-box">
-                    <Tooltip placement="bottom" title={"Mark As Fovorite"} color={"#343434"}>
-                        <AiOutlineHeart className='events' />
-                    </Tooltip>
-                    <Tooltip placement="bottom" title={"Rate It!"} color={"#343434"}>
-                        <AiOutlineStar className='events' />
-                    </Tooltip>
+                    <AiOutlineHeart className='events' />
+                    <AiOutlineStar className='events' />
                     <AiOutlineInfoCircle className='events allInfo' onClick={allInfo} />
-                    <Tooltip placement="bottom" title={"Share Movie"} color={"#343434"}>
-                        <RxShare1 className='events' onClick={share} />
-                    </Tooltip>
+                    <RxShare1 className='events' onClick={share} />
                 </div>
             </div>
         </>

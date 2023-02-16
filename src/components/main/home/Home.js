@@ -5,7 +5,6 @@ import Navbar from '../../navbar/Navbar'
 import { AiFillStar } from "react-icons/ai"
 import { BiLeftArrowAlt, BiPlay, BiRightArrowAlt } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
-import { Tooltip } from 'antd';
 import Trending from '../trending/Trending'
 import Upcoming from '../upcoming/Upcoming'
 import TopRated from '../topRated/TopRated'
@@ -64,9 +63,10 @@ function Home() {
                         slide = "lastMovie";
                     }
                     return (
-                        <div 
+                        <div
                             className={`bg-image ${slide}`} key={id} style={{
-                            backgroundImage: `url("https://image.tmdb.org/t/p/${imgState.size}/${backdrop_path}")`}}
+                                backgroundImage: `url("https://image.tmdb.org/t/p/${imgState.size}/${backdrop_path}")`
+                            }}
                         >
                             <div className='top-popular-home'>
                                 <div className='play-and-next'>
@@ -86,11 +86,9 @@ function Home() {
                                 <div className='info-box'>
                                     <div className='title-vote-box'>
                                         <h1>{title.length < 30 ? <>{title}</> : <>{title.slice(0, 20)}...</>}</h1>
-                                        <Tooltip placement="top" title={"Vote Average"} color={"#343434"}>
-                                            <div className='vote-average'>
-                                                <AiFillStar />{vote_average}
-                                            </div>
-                                        </Tooltip>
+                                        <div className='vote-average'>
+                                            <AiFillStar />{vote_average}
+                                        </div>
                                     </div>
                                     <p className='info-release'>
                                         {release_date}

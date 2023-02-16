@@ -1,7 +1,5 @@
 $white: #fff;
 $black: #343434;
-$yellow: #e6b31e;
-$yellow-opacity: #e6b41e33;
 $mobile: 480px;
 $tablet: 768px;
 $small-screens: 992px;
@@ -91,7 +89,7 @@ $large-screens: 1200px;
         p {
             width: 100%;
             padding: 5px;
-            background-color: $yellow;
+            background-color: var(--yellow);
             color: $white;
             cursor: pointer;
         }
@@ -106,7 +104,7 @@ $large-screens: 1200px;
         color: $white;
         .icon {
             font-size: 3rem;
-            color: $yellow;
+            color: var(--yellow);
             font-weight: 500;
         }
     }

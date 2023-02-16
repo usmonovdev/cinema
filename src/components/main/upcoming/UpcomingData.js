@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { container, item } from '../../../assets/Framer'
 import { AiOutlineHeart } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
-import { Tooltip } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
 import { reducer } from '../../../assets/reducer';
 import { slice } from 'lodash';
@@ -55,15 +54,9 @@ function UpcomingData({ filter }) {
                                         <img src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`} alt={name} />
                                         <div className="trending-movie-info">
                                             <div className="like-and-open">
-                                                <Tooltip
-                                                    placement="top"
-                                                    title={"Mark As Fovorite"}
-                                                    color={"#343434"}
-                                                >
-                                                    <div className='icon'>
-                                                        <AiOutlineHeart />
-                                                    </div>
-                                                </Tooltip>
+                                                <div className='icon'>
+                                                    <AiOutlineHeart />
+                                                </div>
                                                 <Link to={`/movie/${id}`}>
                                                     <div className='play'>
                                                         <p>Play</p>

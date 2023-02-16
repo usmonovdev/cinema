@@ -4,7 +4,7 @@ import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import "./filter.scss"
 
 function Filter() {
-    const { trendingDispatch } = useMovieContext()
+    const { trendingDispatch, colorState } = useMovieContext()
     // filter by media
     const hendleFilterByMedia = (value) => {
         trendingDispatch({
@@ -39,7 +39,7 @@ function Filter() {
             <ConfigProvider
                 theme={{
                     token: {
-                        colorPrimary: "#e6b31e"
+                        colorPrimary: colorState.color
                     }
                 }}
             >

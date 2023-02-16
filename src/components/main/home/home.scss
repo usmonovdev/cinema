@@ -1,7 +1,5 @@
 $white: #fff;
 $black: #343434;
-$yellow: #e6b31e;
-$yellow-opacity: #e6b41e33;
 $mobile: 480px;
 $tablet: 768px;
 $small-screens: 992px;
@@ -119,7 +117,7 @@ $large-screens: 1200px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    background: $yellow;
+                    background: var(--yellow);
                     cursor: pointer;
                     text-decoration: none;
                     color: $white;
@@ -164,7 +162,7 @@ $large-screens: 1200px;
                         gap: 10px;
                         display: flex;
                         align-items: center;
-                        background-color: $yellow;
+                        background-color: var(--yellow);
                         border-radius: 20px;
                         cursor: pointer;
                     }

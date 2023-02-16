@@ -4,6 +4,12 @@
   font-family: "Poppins", sans-serif;
 }
 
+:root {
+  --yellow: #e6b31e;
+  --white: #fff;
+  --black: #343434;
+}
+
 .cencored-content {
   width: 100%;
   height: 100vh;

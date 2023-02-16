@@ -1,6 +1,5 @@
 $white: #fff;
 $black: #343434;
-$yellow: #e6b31e;
 $yellow-opacity: #e6b41e72;
 $mobile: 480px;
 $tablet: 768px;
@@ -73,7 +72,7 @@ $large-screens: 1200px;
                     }
                     .birthday {
                         width: fit-content;
-                        background-color: $yellow;
+                        background-color: var(--yellow);
                         padding: 2px;
                         margin-bottom: 5px;
                     }

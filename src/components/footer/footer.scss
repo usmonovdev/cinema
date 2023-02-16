@@ -1,7 +1,3 @@
-$white: #fff;
-$black: #343434;
-$yellow: #e6b31e;
-$yellow-opacity: #e6b41e33;
 $mobile: 480px;
 $tablet: 768px;
 $small-screens: 992px;
@@ -13,7 +9,7 @@ footer {
     top: 30px;
     width: 100%;
     height: 100%;
-    color: white;
+    color: var(--white);
     background-color: #2E2E2E;
     padding: 20px 0;
     .infoFooterTop {
@@ -62,10 +58,10 @@ footer {
             span {
                 position: relative;
                 top: 1px;
-                color: $yellow;
+                color: var(--yellow);
                 a {
                     text-decoration: none;
-                    color: $yellow;
+                    color: var(--yellow);
                     &:hover {
                         text-decoration: underline;
                     }

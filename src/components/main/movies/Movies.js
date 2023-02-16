@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AiOutlineHeart } from 'react-icons/ai'
 import { container, item } from '../../../assets/Framer'
 import { motion } from 'framer-motion';
-import { ConfigProvider, Image, Pagination, Tooltip } from 'antd';
+import { ConfigProvider, Image, Pagination } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
 import axios from 'axios'
 import "../trending/trending.scss"
@@ -14,7 +14,7 @@ const API = "https://api.themoviedb.org/3/movie/popular?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Movies() {
-    const { imgState } = useMovieContext()
+    const { imgState, colorState } = useMovieContext()
     const [movie, setMovie] = useState([]);
     const [currentPage, setCurrentPage] = useState(1)
 
@@ -66,11 +66,9 @@ function Movies() {
                                             />
                                             <div className="trending-movie-info">
                                                 <div className="like-and-open">
-                                                    <Tooltip placement="top" title={"Mark As Fovorite"} color={"#343434"}>
-                                                        <div className='icon'>
-                                                            <AiOutlineHeart />
-                                                        </div>
-                                                    </Tooltip>
+                                                    <div className='icon'>
+                                                        <AiOutlineHeart />
+                                                    </div>
                                                     <Link to={`/movie/${id}`}>
                                                         <div className='play'>
                                                             <p>Play</p>
@@ -87,7 +85,7 @@ function Movies() {
                             <ConfigProvider
                                 theme={{
                                     token: {
-                                        colorPrimary: "#e6b31e",
+                                        colorPrimary: colorState.color,
                                         colorTextBase: "#fff",
                                         borderRadius: "0"
                                     }

@@ -118,12 +118,14 @@ export const reducer = (state, action) => {
 }
 
 export const initial = {
-    size: "w500",
+    size: window.localStorage.getItem("IMAGE_QUALITY") == null ?
+        "w500" : window.localStorage.getItem("IMAGE_QUALITY"),
     trendingFilter: "all",
     topFilter: "all",
     upFilter: "all",
     simFilter: "all",
     color: window.localStorage.getItem("THEME_COLOR") == null ?
         "#e6b31e" : window.localStorage.getItem("THEME_COLOR"),
-    speed: "10000"
+    speed: window.localStorage.getItem("SLIDER_SPEED") == null ?
+        "10000" : window.localStorage.getItem("SLIDER_SPEED")
 }

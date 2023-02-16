@@ -4,7 +4,7 @@ import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import "../trending/filter.scss"
 
 function Filter() {
-    const { topDispatch } = useMovieContext()
+    const { topDispatch, colorState } = useMovieContext()
     // filter by language
     const handleFilterByLang = (value) => {
         topDispatch({
@@ -31,7 +31,7 @@ function Filter() {
             <ConfigProvider
                 theme={{
                     token: {
-                        colorPrimary: "#e6b31e"
+                        colorPrimary: colorState.color
                     }
                 }}
             >
