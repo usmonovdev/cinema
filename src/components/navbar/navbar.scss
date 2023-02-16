@@ -30,9 +30,6 @@ body {
     @media screen and (max-width: $mobile) {
         width: 100%;
     }
-    header.active {
-        position: relative;
-    }
     header {
         z-index: 1000 !important;
         position: relative;
@@ -159,7 +156,7 @@ body {
                 }
             }
             .links {
-                width: 80%;
+                width: 90%;
                 margin: 0 auto;
                 padding: 10px 0 30px 0;
                 display: flex;
@@ -188,13 +185,12 @@ body {
                     display: flex;
                     align-items: center;
                     &:hover {
-                        background: rgba($color: var(--yellow), $alpha: 0.2);
-                        // background-color: var(--yellow);
+                        background: rgba(255, 255, 255, 0.112);
                     }
                 }
             }
             .user {
-                width: 80%;
+                width: 90%;
                 margin: 0 auto;
                 position: relative;
                 top: 50px;

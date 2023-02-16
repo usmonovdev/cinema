@@ -24,7 +24,7 @@ function Navbar() {
                     damping: 20
                 }}
             >
-                <header className={`${classAdd ? "" : "active"}`}>
+                <header>
                     <Link to="/"><img src={logo} alt="Logo" />Media</Link>
                     <Hamburger
                         toggled={isOpen}

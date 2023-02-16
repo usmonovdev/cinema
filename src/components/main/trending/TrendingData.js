@@ -28,7 +28,7 @@ function TrendingData({ filter }) {
         setTimeout(() => {
             dispatch({ type: "LOAD_MORE" })
             dispatch({ type: "LOADING_FALSE" })
-        }, 5000);
+        }, 50000);
 
         if (state.index >= 16 || initialPosts.length < 3) {
             dispatch({ type: "IS_COMPLETED" })

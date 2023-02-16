@@ -15,7 +15,9 @@ import Settings from "./components/settings/Settings";
 
 function App() {
     const root = document.querySelector(":root")
-    root.style.setProperty("--yellow", window.localStorage.getItem("THEME_COLOR") == null ? "#e6b31e" : window.localStorage.getItem("THEME_COLOR"))
+    root.style.setProperty("--yellow", 
+        window.localStorage.getItem("THEME_COLOR") == null ? 
+            "#e6b31e" : window.localStorage.getItem("THEME_COLOR"))
     return (
         <>
             <StateContextProvider>

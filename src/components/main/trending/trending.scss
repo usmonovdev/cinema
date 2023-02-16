@@ -44,8 +44,8 @@ $large-screens: 1200px;
         border-radius: 50%;
         width: 20px;
         height: 20px;
-        border: .15rem solid rgba(var(--white), 0.2);
-        border-top-color: var(--white);
+        border: .15rem solid var(--white);
+        border-top-color: var(--yellow);
         animation: spin 1s infinite linear;
     }
     @keyframes spin {
