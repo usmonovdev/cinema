@@ -6,8 +6,14 @@ import "./settings.scss"
 import ImageSize from './ImageSize'
 import SliderSpeed from './SliderSpeed'
 import ThemeColor from './ThemeColor'
+import { useEffect } from 'react'
+import UserNotDownloaded from '../../assets/UserNotDownloaded'
 
 function Settings() {
+
+    useEffect(() => {
+        document.title = "Cinema App - Settings"
+    })
 
     return (
         <>
@@ -19,7 +25,8 @@ function Settings() {
                             <span>#</span>
                             Settings
                         </h1>
-                        <img width="30px" height="30px" src={user} alt="user photo" />
+                        {/* <img width="30px" height="30px" src={<UserNotDownloaded/>} alt="user photo" /> */}
+                        <UserNotDownloaded/>
                     </div>
                     <p className='info'>You can set the settings for yourself in this <br /> section you can make it comfortable.</p>
                     <ul className='settings'>

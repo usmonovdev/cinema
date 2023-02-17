@@ -27,10 +27,6 @@ function ThemeColor() {
         window.localStorage.setItem("THEME_COLOR", colorState.color)
     }, [colorState.color])
 
-    // useEffect(() => {
-    //     root.style.setProperty("--yellow", window.localStorage.getItem("THEME_COLOR"))
-    // }, [])
-
     const info = (e) => {
         messageApi.open({
             key,
@@ -41,7 +37,7 @@ function ThemeColor() {
             messageApi.open({
                 key,
                 type: "success",
-                content: `Image quality: ${e.target.value == "original" ? "High" : "Low"}`,
+                content: "Theme changed",
                 duration: 2
             });
         }, 2000);

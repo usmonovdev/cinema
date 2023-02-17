@@ -1,15 +1,12 @@
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import React from 'react'
 import image from "../../../../assets/user-not-downloaded.jpg"
+import Comment from './Comment'
+import { Image } from 'antd'
+import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
 import "../../../navbar/navbar.scss"
 import "./reviews.scss"
 import "../../../../assets/slick.css"
-import { useState } from 'react'
-import { useEffect } from 'react'
-import Comment from './Comment'
-import { Image } from 'antd'
-import { initial } from '../../../../assets/reducer'
-import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
 
 function Reviews({ moviesId, type }) {
     const { imgState } = useMovieContext()
@@ -40,10 +37,10 @@ function Reviews({ moviesId, type }) {
                                 <div className="review" key={id}>
                                     <div className='user'>
                                         <Image
-                                            fallback={image}
                                             preview={false}
                                             src={`https://image.tmdb.org/t/p/${imgState.size}/${author_details.avatar_path}`}
                                             alt={author}
+                                            fallback={image}
                                         />
                                     </div>
                                     <div className='commit'>
