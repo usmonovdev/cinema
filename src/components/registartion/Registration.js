@@ -3,6 +3,8 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Navbar from "../navbar/Navbar"
+import Footer from "../footer/Footer"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Registration() {
@@ -15,23 +17,19 @@ function Registration() {
                 console.log(token.data.request_token)
             })
     }, [])
-
-    const data = {
-        username: "johnny_appleseed",
-        password: "test123",
-        request_token: `${token}`
-    }
+    // console.log(login)
 
     useEffect(() => {
-        axios.post(`https://api.themoviedb.org/3/authentication/session/new?api_key=${API_KEY}`, data)
-            .then((data) => {
-                setLogin(data)
-            })
+        axios.post(`https://api.themoviedb.org/3/authentication/session/new?api_key=${API_KEY}`, token)
+        .then((data) => {
+            console.log(data)
+        })
     })
-    console.log(login)
     return (
         <div>
+            <Navbar />
             <p>Token: <a href={`https://www.themoviedb.org/authenticate/${token}?redirect_to=http://localhost:3000/register`}>Link</a></p>
+            <Footer />
         </div>
     )
 }
