@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { AiOutlineHeart } from 'react-icons/ai'
+import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { container, item } from '../../../assets/Framer'
 import { motion } from 'framer-motion';
 import { ConfigProvider, Image, Pagination } from 'antd';
@@ -36,6 +36,7 @@ function Movies() {
     useEffect(() => {
         document.title = "Cinema App - Movie"
     }, [])
+    console.log(movie)
     return (
         <>
             <Navbar />
@@ -50,7 +51,8 @@ function Movies() {
                             style={{ marginBottom: "50px" }}
                         >
                             {movie.results?.map((data) => {
-                                const { id, poster_path, title } = data
+                                const { id, poster_path, title, vote_average } = data
+                                console.log(title.length)
                                 return (
                                     <motion.li
                                         className="trending-movie-container"
@@ -75,6 +77,14 @@ function Movies() {
                                                         </div>
                                                     </Link>
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div className='info'>
+                                            <div className='text-anim'>
+                                                <p className={`${title.length > "10" ? "anim" : ""}`}>{title}</p>
+                                            </div>
+                                            <div className='vote'>
+                                                <AiFillStar /> {vote_average}
                                             </div>
                                         </div>
                                     </motion.li>

@@ -110,7 +110,7 @@ $large-screens: 1200px;
     grid-template-columns: auto auto auto auto;
     gap: 14px;
     position: relative;
-    top: 40px;
+    // top: 40px;
     box-sizing: border-box;
     transition: 200ms;
     @media screen and (max-width: $mobile) {
