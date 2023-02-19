@@ -77,7 +77,6 @@ function Navbar() {
                 onClose={onClose}
                 open={drawer}
                 placement={"right"}
-                size="large"
                 style={{
                     height: "100vh"
                 }}

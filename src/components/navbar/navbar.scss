@@ -15,7 +15,7 @@ body {
     display: none;
 }
 
-:where(.css-dev-only-do-not-override-1i9hnpv).ant-drawer-right>.ant-drawer-content-wrapper {
+.ant-drawer-content-wrapper {
     width: 500px !important;
     height: 100vh !important;
     @media screen and (max-width: 500px) {
