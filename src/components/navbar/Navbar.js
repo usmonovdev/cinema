@@ -9,8 +9,7 @@ import Hamburger from 'hamburger-react'
 import { motion } from "framer-motion"
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
 import Search from './Search'
-import { Button, Drawer, Space } from 'antd'
-import SearchTitle from './SearchTitle'
+import { Drawer } from 'antd'
 
 function Navbar() {
     const { colorState } = useMovieContext()
@@ -74,9 +73,8 @@ function Navbar() {
                 </header>
             </motion.div>
             <Drawer
-                title={<SearchTitle/>}
+                title="Search..."
                 onClose={onClose}
-                width={800}
                 open={drawer}
                 placement={"right"}
                 size="large"
