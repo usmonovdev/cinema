@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { container, item } from '../../../assets/Framer'
-import { AiOutlineHeart } from 'react-icons/ai'
+import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import { Image } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
@@ -23,7 +23,7 @@ function TrendingData({ filter }) {
 
     // SLICE THE FILTERED MOVIES USING STATE.INDEX
     const initialPosts = slice(filter, 0, state.index)
-    
+
     // LOAD MORE FUNCTION FOR OPEN NEW MOVIES
     const loadMore = () => {
         dispatch({ type: "LOADING" })
@@ -37,7 +37,9 @@ function TrendingData({ filter }) {
             dispatch({ type: "IS_COMPLETED" })
         }
     };
-    
+
+    console.log(filter)
+
     return (
         <>
             {initialPosts.length !== 0 ?
@@ -49,7 +51,7 @@ function TrendingData({ filter }) {
                         animate="visible"
                     >
                         {initialPosts?.map((data) => {
-                            const { id, poster_path, title, media_type} = data
+                            const { id, poster_path, title, name, media_type, vote_average } = data
                             return (
                                 <motion.li
                                     className="trending-movie-container"
@@ -65,15 +67,23 @@ function TrendingData({ filter }) {
                                         />
                                         <div className="trending-movie-info">
                                             <div className="like-and-open">
-                                                    <div className='icon'>
-                                                        <AiOutlineHeart />
-                                                    </div>
+                                                <div className='icon'>
+                                                    <AiOutlineHeart />
+                                                </div>
                                                 <Link to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}>
                                                     <div className='play'>
                                                         <p>Play</p>
                                                     </div>
                                                 </Link>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div className='info'>
+                                        <div className='text-anim'>
+                                            <p className={`${title?.length > "10" || name?.length > "10" ? "anim" : ""}`}>{title ? title : name}</p>
+                                        </div>
+                                        <div className='vote'>
+                                            <AiFillStar /> {vote_average}
                                         </div>
                                     </div>
                                 </motion.li>
@@ -91,7 +101,11 @@ function TrendingData({ filter }) {
             }
             {state.completed ? "" :
                 <>
-                    <button className='load-more' onClick={loadMore}>
+                    <button 
+                        className='load-more' 
+                        onClick={loadMore}
+                        style={{position: "relative", top: "86px"}}
+                    >
                         {state.loading ?
                             <div className='spin'></div>
                             :
