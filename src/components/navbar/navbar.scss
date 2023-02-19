@@ -17,8 +17,10 @@ body {
 
 :where(.css-dev-only-do-not-override-1i9hnpv).ant-drawer-right>.ant-drawer-content-wrapper {
     width: 500px !important;
+    height: 100vh !important;
     @media screen and (max-width: 500px) {
         width: 100% !important;
+        height: 100vh !important;
     }
 }
 
