@@ -116,11 +116,32 @@ export const reducer = (state, action) => {
                 color: state.color = "#e6b31e"
             }
         }
+        // FOR GET INPUT VALUE
+        case "INPUT_VALUE": {
+            return {
+                ...state,
+                inputValue: action.newInputValue
+            }
+        }
         // FOR SEARCH RESULTS
         case "SEARCH": {
             return {
                 ...state,
                 apiData: action.newApiData
+            }
+        }
+        // FOR DRAWER OPEN FUNCTION
+        case "DRAWER_OPEN": {
+            return {
+                ...state,
+                drawer: state.drawer = true
+            }
+        }
+        // FOR DRAWER CLOSE FUNCTION
+        case "DRAWER_CLOSE": {
+            return {
+                ...state,
+                drawer: state.drawer = false
             }
         }
         default:

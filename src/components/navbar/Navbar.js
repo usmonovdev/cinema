@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from "../../assets/logo-white.png"
-import { BiMicrophone } from "react-icons/bi"
+import { BiSearch } from "react-icons/bi"
 import { RiMovie2Line, RiBearSmileLine, RiHome2Line, RiSettingsLine } from "react-icons/ri"
 import { MdSlideshow } from "react-icons/md"
 import "./navbar.scss"
@@ -10,19 +10,39 @@ import { motion } from "framer-motion"
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
 import Search from './Search'
 import { Drawer } from 'antd'
+import { useEffect } from 'react'
+import { reducer } from '../../assets/reducer'
+import { useReducer } from 'react'
 
 function Navbar() {
     const { colorState } = useMovieContext()
+    const initialState = {
+        drawer: false
+    }
     const [isOpen, setOpen] = useState(false)
     const [classAdd, setClassAdd] = useState(true)
-    const [drawer, setDrawer] = useState(false)
+    const [state, dispatch] = useReducer(reducer, initialState)
 
     const showDrawer = () => {
-        setDrawer(true)
+        dispatch({
+            type: "DRAWER_OPEN"
+        })
     };
     const onClose = () => {
-        setDrawer(false);
+        dispatch({
+            type: "DRAWER_CLOSE"
+        })
     };
+
+    useEffect(() => {
+        window.addEventListener("keyup", e => {
+            if(e.key.toLowerCase() == "m" && e.ctrlKey) {
+                dispatch({
+                    type: "DRAWER_OPEN"
+                })
+            }
+        })
+    }, [])
 
     return (
         <div className="container">
@@ -54,17 +74,9 @@ function Navbar() {
                             <li><Link to="/show"><MdSlideshow className='link-icon' />TV Shows</Link></li>
                             <li><Link to="/actor"><RiBearSmileLine className='link-icon' />Actors</Link></li>
                             <li><Link to="/settings"><RiSettingsLine className='link-icon' />Settings</Link></li>
+                            <li><Link onClick={showDrawer}><BiSearch className='link-icon' />Search</Link></li>
                         </ul>
                         <ul className='user'>
-                            <li className='inp-and-sign'
-                                onClick={showDrawer}
-                            >
-                                <input
-                                    className='search-input'
-                                    type="text" placeholder='Search for Movies...'
-                                />
-                                <BiMicrophone className='search-voice' />
-                            </li>
                             <Link to="/register" className='sign-in' style={{ backgroundColor: colorState.color }}>
                                 <li>Sign In</li>
                             </Link>
@@ -73,9 +85,9 @@ function Navbar() {
                 </header>
             </motion.div>
             <Drawer
-                title="Search..."
+                title="Search Movie and Actors"
                 onClose={onClose}
-                open={drawer}
+                open={state.drawer}
                 placement={"right"}
                 style={{
                     height: "100vh"
