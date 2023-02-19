@@ -6,7 +6,7 @@ import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 function Filter() {
     const { upDispatch, colorState } = useMovieContext()
 
-    // filter by language
+    // FILTER BY LANGUAGE
     const handleFilterUpcomingByLang = (value) => {
         upDispatch({
             type: "FILTER_UP",
@@ -14,7 +14,7 @@ function Filter() {
         });
     };
 
-    // filter by star
+    // FILTER BY STAR COUNT
     const handleFilterUpcomingByStar = (value) => {
         upDispatch({
             type: "FILTER_UP",
@@ -22,8 +22,8 @@ function Filter() {
         });
     };
 
-    // Refresh Page to reset filter settings
-    const refreshPage = () => {
+    // REFRESH PAGE FUNCTION FOR RESET FILTER FUNCTIONS
+    const handleReset = () => {
         window.location.reload(false)
     }
 
@@ -97,7 +97,7 @@ function Filter() {
                     />
                 </div>
             </ConfigProvider>
-            <button className='reset' onClick={refreshPage}>Reset</button>
+            <button className='reset' onClick={handleReset}>Reset</button>
         </div>
     )
 }

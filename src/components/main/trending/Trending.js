@@ -14,17 +14,17 @@ function Trending() {
     const { trendingState } = useMovieContext();
     const [movie, setMovie] = useState([]);
     const filter = movie?.filter((data) => {
-        if (trendingState.trendingFilter == "movie") { //filter by media_type
+        if (trendingState.trendingFilter == "movie") { // FILTER BY MEDIA TYPE
             return data.media_type == "movie"
         } else if (trendingState.trendingFilter == "tv") {
             return data.media_type == "tv"
-        } else if (trendingState.trendingFilter == "en") { // filter by language
+        } else if (trendingState.trendingFilter == "en") { // FILTER BY LANGUAGE
             return data.original_language == "en"
         } else if (trendingState.trendingFilter == "ru") {
             return data.original_language == "ru"
         } else if (trendingState.trendingFilter == "uz") {
             return data.original_language == "uz"
-        } else if (trendingState.trendingFilter >= 9) { // filter by star
+        } else if (trendingState.trendingFilter >= 9) { // FILTER BY STAR COUNT
             return data.vote_average >= 9
         } else if (trendingState.trendingFilter >= 8) {
             return data.vote_average >= 8

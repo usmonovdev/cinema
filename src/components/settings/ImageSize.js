@@ -9,6 +9,8 @@ function ImageSize() {
 
     const key = "updatable"
 
+    // CHANGE IMAGE SIZE FUNCTION
+    // TARGET VALUE IN IMGDISPATCH
     const changeImageSize = (e) => {
         setTimeout(() => {
             imgDispatch({
@@ -18,10 +20,13 @@ function ImageSize() {
         }, 1800);
     };
 
+    // SET ITEM IN LOCALSTORAGE
     useEffect(() => {
         window.localStorage.setItem("IMAGE_QUALITY", imgState.size)
     }, [imgState.size])
 
+    // RESET DEFAULT IMAGE SIZE FUNCTION
+    // GET THE DISPATCH FUNCTION
     const defaultSize = () => {
         imgDispatch({
             type: "DEFAULT_IMAGE_SIZE"
@@ -41,6 +46,7 @@ function ImageSize() {
         }, 2000);
     }
 
+    // LOADING CHANGE IMAGE SIZE
     const info = (e) => {
         messageApi.open({
             key,
@@ -56,6 +62,7 @@ function ImageSize() {
             });
         }, 2000);
     }
+    
     return (
         <>
             {contextHolder}

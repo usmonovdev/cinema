@@ -5,7 +5,7 @@ import "../trending/filter.scss"
 
 function Filter() {
     const { topDispatch, colorState } = useMovieContext()
-    // filter by language
+    // FILTER BY LANGUAGE
     const handleFilterByLang = (value) => {
         topDispatch({
             type: "FILTER_TOP",
@@ -13,7 +13,7 @@ function Filter() {
         });
     };
 
-    // filter by star
+    // FILTER BY STAR
     const handleFilterByStar = (value) => {
         topDispatch({
             type: "FILTER_TOP",
@@ -21,7 +21,7 @@ function Filter() {
         });
     };
 
-    // Refresh Page to reset filter settings
+    // REFRESH PAGE FUNCTION FOR RESET FILTER FUNCTIONS
     const refreshPage = () => {
         window.location.reload(false)
     }

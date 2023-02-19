@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useEffect } from "react";
 import { createContext, useContext, useReducer, useState } from "react"
 import { initial, reducer } from "../../assets/reducer";
 
@@ -7,22 +6,23 @@ const MovieContext = createContext();
 
 const MovieContextProvider = ({ children }) => {
     const [movie, setMovie] = useState([]);
-    // state for filter #trending
+    // STATE FOR #TRENDING
     const [trendingState, trendingDispatch] = useReducer(reducer, initial)
     const [topState, topDispatch] = useReducer(reducer, initial)
     const [upState, upDispatch] = useReducer(reducer, initial)
     const [simState, simDispatch] = useReducer(reducer, initial)
 
-    // state for image sizes setting
+    // STATE FOR IMAGE STATE SETTINGS
     const [imgState, imgDispatch] = useReducer(reducer, initial)
 
-    // state for slider speed setting
+    // STATE FOR SLIDER SPEED SETTINGS
     const [speedState, speedDispatch] = useReducer(reducer, initial)
 
-    // state for theme color settings
+    // STATE FOR THEME SETTINGS 
     const [colorState, colorDispatch] = useReducer(reducer, initial)
 
     // Get Single Movie by APi and id
+    // GET SINGLE MOVIE BY API AND ID
     const getMovie = (url) => {
         try {
             axios.get(url)
@@ -60,10 +60,10 @@ const MovieContextProvider = ({ children }) => {
     )
 }
 
-// Custom Hook
+// CUSTOM HOOK
 const useMovieContext = () => {
     return useContext(MovieContext)
 }
 
-// Export Context's
+// EXPORT CONTEXT'S
 export { MovieContext, MovieContextProvider, useMovieContext }

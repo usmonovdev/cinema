@@ -17,17 +17,22 @@ function RightInfo({ movie }) {
 
     const countries = production_countries || []
     const first = countries[0]?.iso_3166_1
+
+    // CHANGE MOVIE RUNCTIME MINUTE TO HOUR
     const hours = Math.floor(runtime / 60);
     const remainMinutes = runtime % 60;
 
+    // OPEN THE MOVIE ALL INFO
     const allInfo = () => {
         dispatch({ type: "OPEN_TRUE" })
     };
 
+    // CLOSE INFO PAGE
     const onClose = () => {
         dispatch({ type: "OPEN_FALSE" })
     };
 
+    // SHARE DATA
     const sharedData = {
         title: `Share Movie - ${title}`,
         text: `${title}`,

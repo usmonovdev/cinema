@@ -2,6 +2,7 @@ import React, { useReducer } from 'react'
 import { reducer } from '../../../../assets/reducer'
 
 function Comment({ content }) {
+    
     const initialState = {
         sliceLast: "180",
         read: false
@@ -18,6 +19,8 @@ function Comment({ content }) {
         <>
             <p className='content'>
                 {slicedContent}
+
+                {/* CUT THE COMMENT AND RED MORE SOLUTION */}
                 {content.length > "180" ? 
                     <>{!state.read ? "..." : ""}</> : ""
                 }

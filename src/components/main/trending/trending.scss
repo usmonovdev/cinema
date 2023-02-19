@@ -7,7 +7,10 @@ $small-screens: 992px;
 $large-screens: 1200px;
 
 .pagination {
-    padding-top: 20px;
+    position: relative;
+    top: 50px;
+    margin: 0 0 40px 0;
+    // padding-top: 20px;
     width: 100%;
     .ant-pagination {
         display: flex;
@@ -112,18 +115,12 @@ $large-screens: 1200px;
     grid-template-columns: auto auto auto auto;
     gap: 50px 14px !important;
     position: relative;
-    // top: 40px;
+    top: 40px;
     box-sizing: border-box;
     transition: 200ms;
-    @media screen and (max-width: $tablet) {
-        display: grid;
-        grid-template-columns: auto auto auto !important;
-        width: 90%;
-        margin: 0 auto;
-    }
     @media screen and (max-width: $mobile) {
         display: grid;
-        grid-template-columns: auto auto !important;
+        grid-template-columns: auto auto;
         width: 90%;
         margin: 0 auto;
     }
@@ -226,6 +223,13 @@ $large-screens: 1200px;
             .text-anim {
                 overflow: hidden;
                 width: 75%;
+                z-index: 100;
+                @media screen and (max-width: $tablet) {
+                    width: 65%;
+                }
+                @media screen and (max-width: $mobile) {
+                    width: 65%;
+                }
                 p {
                     white-space: nowrap;
                 }
@@ -248,6 +252,12 @@ $large-screens: 1200px;
                 display: flex;
                 align-items: center;
                 justify-content: right;
+                @media screen and (max-width: $tablet) {
+                    width: 35%;
+                }
+                @media screen and (max-width: $mobile) {
+                    width: 35%;
+                }
                 svg {
                     margin: 0 4px 0 0;
                 }

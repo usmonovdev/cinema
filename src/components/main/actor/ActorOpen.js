@@ -1,6 +1,6 @@
 import axios from 'axios'
 import "./actors.scss"
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useReducer } from 'react'
 import { useParams } from 'react-router-dom'
 import Footer from "../../footer/Footer"
 import BannedContent from "../../BannedContent/BannedContent"
@@ -10,7 +10,6 @@ import { initial, reducer } from '../../../assets/reducer'
 import Right from './Right'
 import Popular from './popular/Popular'
 import notDownloaded from "../../../assets/actor-photo-not-downloaded.jpg"
-import { useReducer } from 'react'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 
 function ActorOpen() {

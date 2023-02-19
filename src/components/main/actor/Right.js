@@ -1,7 +1,5 @@
+import React, { useEffect, useReducer } from 'react'
 import { Button, ConfigProvider, Drawer, Space } from 'antd';
-import React from 'react'
-import { useEffect } from 'react';
-import { useReducer } from 'react';
 import { AiOutlineHeart, AiOutlineInfoCircle, AiOutlineStar } from 'react-icons/ai';
 import { RxShare1 } from 'react-icons/rx';
 import { reducer } from '../../../assets/reducer';
@@ -24,6 +22,7 @@ function Right({ actor }) {
         dispatch({ type: "OPEN_FALSE" })
     };
 
+    // USER SHARED THIS INFO
     const sharedData = {
         title: `Share Actor - ${name}`,
         text: `${name}`,

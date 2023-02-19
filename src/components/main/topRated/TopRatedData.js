@@ -13,27 +13,31 @@ import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 
 function TopRatedData({ filter }) {
     const { imgState } = useMovieContext()
+
+    // INITIAL STATE THE TOP RATED MOVIES
     const initialState = {
         completed: false,
         index: 4,
         loading: false
-    }
+    };
 
     const [state, dispatch] = useReducer(reducer, initialState)
     const initialPosts = slice(filter, 0, state.index)
 
+    // LOAD MORE FUNCTION
     const loadMore = () => {
         dispatch({ type: "LOADING" })
 
         setTimeout(() => {
             dispatch({ type: "LOAD_MORE" })
             dispatch({ type: "LOADING_FALSE" })
-        }, 5000);
+        }, 3900);
 
         if (state.index >= 16 || initialPosts.length < 3) {
             dispatch({ type: "IS_COMPLETED" })
         }
-    }
+    };
+
     return (
         <>
             {initialPosts.length !== 0 ?

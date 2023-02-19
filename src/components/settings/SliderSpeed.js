@@ -1,6 +1,5 @@
 import { ConfigProvider, message, Radio } from 'antd'
-import React from 'react'
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { MdRefresh } from 'react-icons/md'
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
 
@@ -10,6 +9,7 @@ function SliderSpeed() {
     // console.log(color)
     const key = "updatable"
 
+    // CHANGE SLIDER SPEED FUNCTION
     const changeSpeed = (e) => {
         setTimeout(() => {
             speedDispatch({
@@ -19,11 +19,13 @@ function SliderSpeed() {
         }, 1800);
     }
 
+    // SET THE SLIDER SPEED VALUE IN LOCALSTORAGE
     useEffect(() => {
         window.localStorage.setItem("SLIDER_SPEED", speedState.speed)
     }, [speedState.speed])
 
-    const defaultSize = () => {
+    // RESET DEFAULT SPEED FUNCTION
+    const defaultSpeed = () => {
         speedDispatch({
             type: "DEFAULT_SLIDER_SPEED"
         })
@@ -42,6 +44,7 @@ function SliderSpeed() {
         }, 2000);
     }
 
+    // LOADING FOR SPPED FUNCTION
     const info = (e) => {
         messageApi.open({
             key,
@@ -64,7 +67,7 @@ function SliderSpeed() {
                 <h3>Slider speed</h3>
                 <MdRefresh
                     style={{ color: colorState.color }}
-                    onClick={defaultSize}
+                    onClick={defaultSpeed}
                 />
             </div>
             <ConfigProvider

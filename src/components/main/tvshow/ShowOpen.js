@@ -18,6 +18,8 @@ function ShowOpen() {
     const [show, setShow] = useState([])
     const [loading, setLoading] = useState(true)
     const { showId } = useParams()
+
+    // GET THE DATA BY SHOW ID
     useEffect(() => {
         try {
             axios.get(`https://api.themoviedb.org/3/tv/${showId}?api_key=${API_KEY}`)
@@ -32,13 +34,15 @@ function ShowOpen() {
 
     const { adult, backdrop_path, name } = show;
 
+    // LOADING TEXT WITH TITLE
     useEffect(() => {
         if (loading) {
             document.title = `Movie - Loading...`
         } else {
             document.title = `Movie - ${name}`
         }
-    })
+    });
+
     return (
         <>
             {!adult ? <>

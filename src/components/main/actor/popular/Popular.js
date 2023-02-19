@@ -7,6 +7,8 @@ function Popular() {
     const API = "https://api.themoviedb.org/3/person/popular?api_key="
     const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
     const [popular, setPopular] = useState([])
+
+    // GET THE API DATA AND SET THE STATE
     useEffect(() => {
         try {
             axios.get(`${API}${API_KEY}`)

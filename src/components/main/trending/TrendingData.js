@@ -20,8 +20,11 @@ function TrendingData({ filter }) {
     }
 
     const [state, dispatch] = useReducer(reducer, initialState)
+
+    // SLICE THE FILTERED MOVIES USING STATE.INDEX
     const initialPosts = slice(filter, 0, state.index)
     
+    // LOAD MORE FUNCTION FOR OPEN NEW MOVIES
     const loadMore = () => {
         dispatch({ type: "LOADING" })
 
@@ -33,7 +36,8 @@ function TrendingData({ filter }) {
         if (state.index >= 16 || initialPosts.length < 3) {
             dispatch({ type: "IS_COMPLETED" })
         }
-    }
+    };
+    
     return (
         <>
             {initialPosts.length !== 0 ?

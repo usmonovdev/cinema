@@ -1,6 +1,6 @@
 export const reducer = (state, action) => {
     switch (action.type) {
-        // for comments
+        // FOR COMMENTS
         case "READ_MORE":
             return {
                 ...state,
@@ -13,7 +13,7 @@ export const reducer = (state, action) => {
                 sliceLast: state.sliceLast = "180",
                 read: state.read = false
             }
-        // for load more
+        // FOR LOAD MORE
         case "LOAD_MORE":
             return {
                 ...state,
@@ -25,7 +25,7 @@ export const reducer = (state, action) => {
                 completed: state.completed = true
             }
         }
-        // for loading
+        // FOR LOADING
         case "LOADING": {
             return {
                 ...state,
@@ -38,7 +38,7 @@ export const reducer = (state, action) => {
                 loading: state.loading = false
             }
         }
-        // for openMovies Info
+        // FOR OPENMOVIES INFO PAGE
         case "OPEN_TRUE": {
             return {
                 ...state,
@@ -51,7 +51,7 @@ export const reducer = (state, action) => {
                 info: state.info = false
             }
         }
-        // for filter
+        // FOR FILTER
         case "FILTER_TRENDING": {
             return {
                 ...state,
@@ -76,18 +76,21 @@ export const reducer = (state, action) => {
                 simFilter: action.nextSim
             }
         }
+        // FOR IMAGE SIZE CHANGING
         case "IMAGE_SIZE": {
             return {
                 ...state,
                 size: action.newSize
             }
         }
+        // FOR RESET IMAGE SIZE
         case "DEFAULT_IMAGE_SIZE": {
             return {
                 ...state,
                 size: state.size = "w500"
             }
         }
+        // FOR SLIDER SPEED
         case "SPEED": {
             return {
                 ...state,
@@ -100,6 +103,7 @@ export const reducer = (state, action) => {
                 speed: state.speed = "10000"
             }
         }
+        // FOR THEME COLOR
         case "THEME": {
             return {
                 ...state,

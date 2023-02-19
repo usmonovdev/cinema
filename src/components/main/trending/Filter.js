@@ -5,7 +5,8 @@ import "./filter.scss"
 
 function Filter() {
     const { trendingDispatch, colorState } = useMovieContext()
-    // filter by media
+
+    // FILTER BY MEDIA TYPE
     const hendleFilterByMedia = (value) => {
         trendingDispatch({
             type: "FILTER_TRENDING",
@@ -13,7 +14,7 @@ function Filter() {
         });
     };
 
-    // filter by language
+    // FILTER BY LANGUAGE
     const handleFilterByLang = (value) => {
         trendingDispatch({
             type: "FILTER_TRENDING",
@@ -21,7 +22,7 @@ function Filter() {
         });
     };
 
-    // filter by star
+    // FILTER BY STAR
     const handleFilterByStar = (value) => {
         trendingDispatch({
             type: "FILTER_TRENDING",
@@ -29,7 +30,7 @@ function Filter() {
         });
     };
 
-    // Refresh Page to reset filter settings
+    // REFRESH PAGE FUNCTION FOR RESET FILTER SETTINGS
     const refreshPage = () => {
         window.location.reload(false)
     }

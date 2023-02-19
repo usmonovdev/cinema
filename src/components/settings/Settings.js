@@ -41,7 +41,6 @@ function Settings() {
                         </li>
                     </ul>
                 </div>
-
             </div>
             <Footer />
         </>

@@ -1,6 +1,6 @@
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import "./home.scss"
-import React, { useEffect, useState } from 'react'
 import Navbar from '../../navbar/Navbar'
 import { AiFillStar } from "react-icons/ai"
 import { BiLeftArrowAlt, BiPlay, BiRightArrowAlt } from 'react-icons/bi'
@@ -16,20 +16,21 @@ function Home() {
     const { imgState, speedState } = useMovieContext()
     const [firstPage, setFirstPage] = useState([])
     const [index, setIndex] = useState(0)
-    // Document title
+
+    // DOCUMENT TITLE
     useEffect(() => {
         document.title = "Cinema App - Home"
-    })
+    });
 
-    // Fetch API
+    // GET DATA'S IN API
     useEffect(() => {
         axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
             .then((res) => {
                 setFirstPage(res.data.results.slice(0, 10))
             })
-    }, [])
+    }, []);
 
-    // Next Movie Swipe Function
+    // NEXT MOVIE SWIPE FUNCTION
     useEffect(() => {
         const slide = firstPage.length - 1;
         if (index < 0) {
@@ -38,9 +39,9 @@ function Home() {
         if (index > slide) {
             setIndex(0)
         }
-    }, [firstPage, index])
+    }, [firstPage, index]);
 
-    // Auto Animation
+    // AUTO ANIMATION
     useEffect(() => {
         const time = setInterval(() => {
             setIndex(index + 1)
@@ -48,7 +49,8 @@ function Home() {
         return () => {
             clearInterval(time)
         }
-    })
+    });
+
     return (
         <>
             <Navbar />

@@ -1,12 +1,12 @@
-import { Select, ConfigProvider } from 'antd'
 import React from 'react'
+import { Select, ConfigProvider } from 'antd'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import "./filter.scss"
 
 function Filter() {
     const { simDispatch, colorState } = useMovieContext()
 
-    // filter by language
+    // FILTER BY LANGUAGE
     const handleFilterByLang = (value) => {
         simDispatch({
             type: "FILTER_SIMILAR",
@@ -14,7 +14,7 @@ function Filter() {
         })
     };
 
-    // filter by star
+    // FILTER BY STAR
     const handleFilterByStar = (value) => {
         simDispatch({
             type: "FILTER_SIMILAR",
@@ -22,7 +22,7 @@ function Filter() {
         })
     };
 
-    // Refresh Page to reset filter settings
+    // REFRESH PAGE FOR RESET FILTER DETAILS
     const refreshPage = () => {
         window.location.reload(false)
     }

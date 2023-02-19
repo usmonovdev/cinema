@@ -12,6 +12,7 @@ import actorImage from "../../../../assets/actor-photo-not-downloaded.jpg"
 import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
 
 function PopularData({ popular }) {
+    // GET THE INITIAL STATES
     const { imgState } = useMovieContext()
     const initialState = {
         completed: false,
@@ -22,11 +23,14 @@ function PopularData({ popular }) {
     const [state, dispatch] = useReducer(reducer, initialState);
     const [imageState, imageDispatch] = useReducer(reducer, initial)
     
+    // CUT THE DATA'S BY STATE.INDEX
     const actor = slice(popular, 0, state.index)
 
+    // LOAD MORE FUNCTION
     const loadMore = () => {
         dispatch({ type: "LOADING" })
 
+        // LOADING 
         setTimeout(() => {
             dispatch({ type: "LOAD_MORE" })
             dispatch({ type: "LOADING_FALSE" })

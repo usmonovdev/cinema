@@ -15,13 +15,13 @@ function Similar({ moviesId }) {
     const [movie, setMovie] = useState([]);
 
     const filter = movie?.filter((data) => {
-        if (simState.simFilter == "en") { // filter by language
+        if (simState.simFilter == "en") { // FILTER BY LANGUAGE
             return data.original_language == "en"
         } else if (simState.simFilter == "ru") {
             return data.original_language == "ru"
         } else if (simState.simFilter == "uz") {
             return data.original_language == "uz"
-        } else if (simState.simFilter >= 9) { // filter by star
+        } else if (simState.simFilter >= 9) { // FILTER BY STAR
             return data.vote_average >= 9
         } else if (simState.simFilter >= 8) {
             return data.vote_average >= 8

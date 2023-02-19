@@ -6,11 +6,11 @@ import { motion } from 'framer-motion';
 import { ConfigProvider, Image, Pagination } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
 import axios from 'axios'
-import "../trending/trending.scss"
 import Navbar from "../../navbar/Navbar"
 import Footer from "../../footer/Footer"
 import actorImage from "../../../assets/actor-photo-not-downloaded.jpg"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
+import "../trending/trending.scss"
 const API = "https://api.themoviedb.org/3/person/popular?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
@@ -18,6 +18,8 @@ function Actor() {
     const { imgState, colorState } = useMovieContext()
     const [actor, setActor] = useState([]);
     const [currentPage, setCurrentPage] = useState(1)
+
+    // GET THE DATA AND SET CURRENT PAGE
     useEffect(() => {
         try {
             axios.get(`${API}${API_KEY}&page=${currentPage}`)
@@ -28,7 +30,9 @@ function Actor() {
             console.log("Error in API", error)
         }
     }, [currentPage]);
-    const onChange = (page) => {
+
+    // CHANGE PAGE VALUE
+    const changePage = (page) => {
         setCurrentPage(page)
     }
 
@@ -92,7 +96,7 @@ function Actor() {
                                 }}
                             >
                                 <Pagination
-                                    onChange={onChange}
+                                    onChange={changePage}
                                     defaultCurrent={1}
                                     total={50}
                                     pageSize={1}

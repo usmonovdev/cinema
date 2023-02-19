@@ -12,9 +12,13 @@ const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function MovieImages({ moviesId, type }) {
     const { imgState } = useMovieContext()
+
+    // CAHNGE API LINK WITH MEDIA TYPE
     const API = `https://api.themoviedb.org/3/${type == "movie" ? "movie" : "tv"}/`
     const [photos, setPhotos] = useState([])
     const slider = useRef();
+
+    // GET DATA WITH CHANGED LINK
     useEffect(() => {
         axios.get(`${API}${moviesId}/images?api_key=${API_KEY}`)
             .then((data) => {
@@ -22,6 +26,7 @@ function MovieImages({ moviesId, type }) {
             });
     }, [moviesId]);
 
+    // SLIDER SETTINGS
     const settings = {
         dots: false,
         infinite: false,
@@ -67,6 +72,7 @@ function MovieImages({ moviesId, type }) {
     const next = () => {
         slider.current.slickPrev()
     }
+    
     return (
         <>
             {photos.length > 4 ?

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState, useRef } from 'react'
-import "../../../navbar/navbar.scss"
 import "./actors.scss"
+import "../../../navbar/navbar.scss"
 import "../../../../assets/slick.css"
 import Slider from 'react-slick'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
@@ -12,12 +12,15 @@ import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
 
 function Actors({ moviesId, type }) {
     const { imgState } = useMovieContext()
+
+    // CHANGE API LINK WITH TYPE
     const API = `https://api.themoviedb.org/3/${type == "movie" ? "movie" : "tv"}/`
     const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
     const [actors, setActors] = useState([]);
 
     const customeSlider = useRef(null);
 
+    // FILTER ACTORS WITH PROFILE PATH
     const filterActors = actors?.filter(data => {
         return data.profile_path !== null
     });
@@ -29,6 +32,7 @@ function Actors({ moviesId, type }) {
             });
     }, [moviesId]);
 
+    // SLIDER STTTINGS
     const settings = {
         dots: false,
         infinite: false,
@@ -68,9 +72,12 @@ function Actors({ moviesId, type }) {
         ]
     };
 
+    // PREV ACTOR
     const previous = () => {
         customeSlider.current.slickNext()
     }
+
+    // NEXT ACTOR
     const next = () => {
         customeSlider.current.slickPrev()
     }

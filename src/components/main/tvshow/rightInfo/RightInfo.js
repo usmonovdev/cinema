@@ -15,17 +15,22 @@ function RightInfo({ show }) {
     }
     const [state, dispatch] = useReducer(reducer, initialState)
     const { original_title, first_air_date, status, overview, production_countries, episode_run_time, name } = show;
+    
+    // GET THE PRODUCTION COUNTRIES WITH ARRAY
     const countries = production_countries || []
     const first = countries[0]?.iso_3166_1
 
+    // OPEN ALL INFO MOVIE
     const allInfo = () => {
         dispatch({ type: "OPEN_TRUE" })
     }
 
+    // CLOSE INFO PAGE
     const onClose = () => {
         dispatch({ type: "OPEN_FALSE" })
     };
 
+    // USER SHARE THIS DATA
     const sharedData = {
         title: `Share Movie - ${name}`,
         text: `Watch the movie "${name}" via the link below.`,

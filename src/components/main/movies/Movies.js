@@ -29,7 +29,8 @@ function Movies() {
         }
     }, [currentPage]);
 
-    const onChange = (page) => {
+    // CHANGE CURENT PAGE DATA'S
+    const changePage = (page) => {
         setCurrentPage(page)
     }
 
@@ -102,7 +103,7 @@ function Movies() {
                                 }}
                             >
                                 <Pagination
-                                    onChange={onChange}
+                                    onChange={changePage}
                                     defaultCurrent={1}
                                     total={50}
                                     pageSize={1}

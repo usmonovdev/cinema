@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import axios from "axios"
 import "../home/home.scss"
 import "./moviesOpen.scss"
 import "../movies/moviesOpen.scss"
 import "../movies/actors/actors.scss"
-import { useParams } from 'react-router-dom'
+import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import Navbar from '../../navbar/Navbar'
 import BannedContent from "../../BannedContent/BannedContent"
 import RightInfo from "./rightInfo/RightInfo"
@@ -14,8 +16,6 @@ import MoviesOpen from "../../loading/moviesOpen/MoviesOpen"
 import MovieImages from "./movieImages/MovieImages"
 import Reviews from "./reviews/Reviews"
 import Similar from "../similar/Similar"
-import axios from "axios"
-import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Movies() {
