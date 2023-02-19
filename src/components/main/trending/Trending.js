@@ -49,7 +49,7 @@ function Trending() {
     }, []);
 
     return (
-        <div className='container' style={{marginBottom: "60px"}}>
+        <div className='container' style={{marginBottom: "90px"}}>
             <div className="title-settings-box">
                 <h1 className='title'><span className='sharp'>#</span> Trending</h1>
                 <Popover

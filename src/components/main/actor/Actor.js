@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { AiOutlineHeart } from 'react-icons/ai'
+import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { container, item } from '../../../assets/Framer'
 import { motion } from 'framer-motion';
 import { ConfigProvider, Image, Pagination } from 'antd';
@@ -39,10 +39,11 @@ function Actor() {
     useEffect(() => {
         document.title = "Cinema App - Actor"
     }, [])
+
+    console.log(actor)
     return (
         <>
             <Navbar />
-            asdadasd
             <div className='container'>
                 {actor.results?.length !== 0 ?
                     <>
@@ -54,7 +55,7 @@ function Actor() {
                             style={{ marginBottom: "50px" }}
                         >
                             {actor.results?.map((data) => {
-                                const { id, profile_path, title } = data
+                                const { id, profile_path, title, name, popularity } = data
                                 return (
                                     <motion.li
                                         className="trending-movie-container"
@@ -79,6 +80,11 @@ function Actor() {
                                                         </div>
                                                     </Link>
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div className='info'>
+                                            <div className='text-anim actor'>
+                                                <p className={`${name.length > "14" ? "anim" : ""}`}>{name}</p>
                                             </div>
                                         </div>
                                     </motion.li>

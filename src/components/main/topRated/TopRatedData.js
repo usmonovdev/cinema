@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react'
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { AiOutlineHeart } from 'react-icons/ai'
+import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import { Image } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
@@ -38,6 +38,8 @@ function TopRatedData({ filter }) {
         }
     };
 
+    console.log(filter)
+
     return (
         <>
             {initialPosts.length !== 0 ?
@@ -49,7 +51,7 @@ function TopRatedData({ filter }) {
                         animate="visible"
                     >
                         {initialPosts.map((data) => {
-                            const { id, poster_path, name } = data
+                            const { id, poster_path, name, title, vote_average } = data
                             return (
                                 <motion.li
                                     className="trending-movie-container"
@@ -65,15 +67,23 @@ function TopRatedData({ filter }) {
                                         />
                                         <div className="trending-movie-info">
                                             <div className="like-and-open">
-                                                    <div className='icon'>
-                                                        <AiOutlineHeart />
-                                                    </div>
+                                                <div className='icon'>
+                                                    <AiOutlineHeart />
+                                                </div>
                                                 <Link to={`/movie/${id}`}>
                                                     <div className='play'>
                                                         <p>Play</p>
                                                     </div>
                                                 </Link>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div className='info'>
+                                        <div className='text-anim'>
+                                            <p className={`${title?.length > "10" ? "anim" : ""}`}>{title}</p>
+                                        </div>
+                                        <div className='vote'>
+                                            <AiFillStar /> {vote_average}
                                         </div>
                                     </div>
                                 </motion.li>
@@ -90,7 +100,11 @@ function TopRatedData({ filter }) {
             }
             {state.completed ? "" :
                 <>
-                    <button className='load-more' onClick={loadMore}>
+                    <button 
+                        className='load-more' 
+                        onClick={loadMore}
+                        style={{position: "relative", top: "85px"}}    
+                    >
                         {state.loading ?
                             <div className='spin'></div>
                             :

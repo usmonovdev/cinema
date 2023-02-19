@@ -38,8 +38,6 @@ function TrendingData({ filter }) {
         }
     };
 
-    console.log(filter)
-
     return (
         <>
             {initialPosts.length !== 0 ?
@@ -83,7 +81,8 @@ function TrendingData({ filter }) {
                                             <p className={`${title?.length > "10" || name?.length > "10" ? "anim" : ""}`}>{title ? title : name}</p>
                                         </div>
                                         <div className='vote'>
-                                            <AiFillStar /> {vote_average}
+                                            <AiFillStar />
+                                            <p>{vote_average.toString()?.slice(0,3)}</p>
                                         </div>
                                     </div>
                                 </motion.li>

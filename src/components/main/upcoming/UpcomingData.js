@@ -2,7 +2,7 @@ import React, { useReducer } from 'react'
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { container, item } from '../../../assets/Framer'
-import { AiOutlineHeart } from 'react-icons/ai'
+import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import { RiMovie2Line } from "react-icons/ri"
 import { reducer } from '../../../assets/reducer';
@@ -32,6 +32,8 @@ function UpcomingData({ filter }) {
             dispatch({ type: "IS_COMPLETED" })
         }
     }
+
+    console.log(filter)
     return (
         <>
             {upcoming.length !== 0 ?
@@ -43,7 +45,7 @@ function UpcomingData({ filter }) {
                         animate="visible"
                     >
                         {upcoming.map((data) => {
-                            const { id, poster_path, name } = data
+                            const { id, poster_path, name, vote_average, title } = data
                             return (
                                 <motion.li
                                     className="trending-movie-container"
@@ -65,6 +67,14 @@ function UpcomingData({ filter }) {
                                             </div>
                                         </div>
                                     </div>
+                                    <div className='info'>
+                                        <div className='text-anim'>
+                                            <p className={`${title?.length > "10" ? "anim" : ""}`}>{title}</p>
+                                        </div>
+                                        <div className='vote'>
+                                            <AiFillStar /> {vote_average}
+                                        </div>
+                                    </div>
                                 </motion.li>
                             )
                         })}
@@ -79,7 +89,11 @@ function UpcomingData({ filter }) {
             }
             {state.completed ? "" :
                 <>
-                    <button className='load-more' onClick={loadMore}>
+                    <button 
+                        className='load-more' 
+                        onClick={loadMore}
+                        style={{position: "relative", top: "85px"}}
+                    >
                         {state.loading ?
                             <div className='spin'></div>
                             :

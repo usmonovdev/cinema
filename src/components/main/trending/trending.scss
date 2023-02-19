@@ -247,8 +247,11 @@ $large-screens: 1200px;
                     }
                 }
             }
+            .text-anim.actor {
+                width: 100%;
+            }
             .vote {
-                width: 25%;
+                width: fit-content;
                 display: flex;
                 align-items: center;
                 justify-content: right;
@@ -259,7 +262,11 @@ $large-screens: 1200px;
                     width: 35%;
                 }
                 svg {
+                    width: 50%;
                     margin: 0 4px 0 0;
+                }
+                p {
+                    width: 50%;
                 }
             }
         }
