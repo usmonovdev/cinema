@@ -32,8 +32,6 @@ function UpcomingData({ filter }) {
             dispatch({ type: "IS_COMPLETED" })
         }
     }
-
-    console.log(filter)
     return (
         <>
             {upcoming.length !== 0 ?

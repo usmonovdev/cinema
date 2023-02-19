@@ -8,11 +8,23 @@ import "./navbar.scss"
 import Hamburger from 'hamburger-react'
 import { motion } from "framer-motion"
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
+import Search from './Search'
+import { Button, Drawer, Space } from 'antd'
+import SearchTitle from './SearchTitle'
 
 function Navbar() {
     const { colorState } = useMovieContext()
     const [isOpen, setOpen] = useState(false)
     const [classAdd, setClassAdd] = useState(true)
+    const [drawer, setDrawer] = useState(false)
+
+    const showDrawer = () => {
+        setDrawer(true)
+    };
+    const onClose = () => {
+        setDrawer(false);
+    };
+
     return (
         <div className="container">
             <motion.div
@@ -45,17 +57,36 @@ function Navbar() {
                             <li><Link to="/settings"><RiSettingsLine className='link-icon' />Settings</Link></li>
                         </ul>
                         <ul className='user'>
-                            <li className='inp-and-sign'>
-                                <input className='search-input' type="text" placeholder='Search for Movies...' />
+                            <li className='inp-and-sign'
+                                onClick={showDrawer}
+                            >
+                                <input
+                                    className='search-input'
+                                    type="text" placeholder='Search for Movies...'
+                                />
                                 <BiMicrophone className='search-voice' />
                             </li>
-                            <Link to="/register" className='sign-in' style={{backgroundColor: colorState.color}}>
+                            <Link to="/register" className='sign-in' style={{ backgroundColor: colorState.color }}>
                                 <li>Sign In</li>
                             </Link>
                         </ul>
                     </div>
                 </header>
             </motion.div>
+            <Drawer
+                title={<SearchTitle/>}
+                onClose={onClose}
+                width={800}
+                open={drawer}
+                placement={"right"}
+                size="large"
+                style={{
+                    height: "100vh"
+                }}
+            >
+                <Search />
+            </Drawer>
+
         </div>
     )
 }

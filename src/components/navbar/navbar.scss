@@ -15,6 +15,13 @@ body {
     display: none;
 }
 
+:where(.css-dev-only-do-not-override-1i9hnpv).ant-drawer-right>.ant-drawer-content-wrapper {
+    width: 500px !important;
+    @media screen and (max-width: 500px) {
+        width: 100% !important;
+    }
+}
+
 .container {
     width: 80%;
     margin: 0 auto;
@@ -105,10 +112,10 @@ body {
                 list-style: none;
                 gap: 20px;
                 .inp-and-sign {
+                    box-sizing: border-box;
                     display: flex;
                     align-items: center;
-                    border: 1px solid grey;
-                    border-radius: 30px;
+                    border: .1rem solid gray;
                     .search-input {
                         width: 180px;
                         height: 40px;
@@ -232,5 +239,9 @@ body {
                 }
             }
         }
+    }
+    .search-result {
+        position: absolute;
+        z-index: 10000;
     }
 }

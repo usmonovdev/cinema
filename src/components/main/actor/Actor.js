@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
+import { AiOutlineHeart } from 'react-icons/ai'
 import { container, item } from '../../../assets/Framer'
 import { motion } from 'framer-motion';
 import { ConfigProvider, Image, Pagination } from 'antd';

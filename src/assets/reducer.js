@@ -116,6 +116,13 @@ export const reducer = (state, action) => {
                 color: state.color = "#e6b31e"
             }
         }
+        // FOR SEARCH RESULTS
+        case "SEARCH": {
+            return {
+                ...state,
+                apiData: action.newApiData
+            }
+        }
         default:
             return;
     }

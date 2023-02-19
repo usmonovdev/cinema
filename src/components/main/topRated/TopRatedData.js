@@ -38,8 +38,6 @@ function TopRatedData({ filter }) {
         }
     };
 
-    console.log(filter)
-
     return (
         <>
             {initialPosts.length !== 0 ?
