@@ -55,7 +55,7 @@ function Search() {
                             const imya = newName ? newName : newTitle
                             return (
                                 <li key={id}>
-                                    <Link to={`${media_type == "movie" ? "movie" : "tv"}/${id}`}>
+                                    <Link to={`${media_type == "movie" ? "movie" : "show"}/${id}`}>
                                         <h3>{imya}</h3>
                                     </Link>
                                     <div>

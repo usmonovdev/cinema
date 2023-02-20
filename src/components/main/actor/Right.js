@@ -56,6 +56,11 @@ function Right({ actor }) {
                     width={800}
                     open={state.info}
                     placement={"bottom"}
+                    style={
+                        {
+                            width: "100vw"
+                        }
+                    }
                     extra={
                         <Space>
                             <Button type="primary" onClick={onClose}>

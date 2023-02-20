@@ -36,13 +36,17 @@ function Navbar() {
 
     useEffect(() => {
         window.addEventListener("keyup", e => {
-            if(e.key.toLowerCase() == "m" && e.ctrlKey) {
+            if (e.key.toLowerCase() == "m" && e.ctrlKey) {
                 dispatch({
                     type: "DRAWER_OPEN"
                 })
             }
         })
     }, [])
+
+    const drawerStyles = {
+        color: "red"
+    }
 
     return (
         <div className="container">
