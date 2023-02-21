@@ -1,11 +1,13 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import axios from 'axios'
 import { reducer } from '../../assets/reducer'
-import { RiMicLine, RiMovie2Line } from 'react-icons/ri'
+import { RiMicLine, RiMicOffLine, RiMovie2Line } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
-import { AiFillStar } from 'react-icons/ai'
+import { AiOutlineStar } from 'react-icons/ai'
 import { BiDollar } from "react-icons/bi"
+import { VscPlay } from "react-icons/vsc"
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import { motion } from 'framer-motion'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Search() {
@@ -54,13 +56,16 @@ function Search() {
                     onChange={(e) => handleInput(e.target.value)}
                     value={state.inputValue}
                 />
-                <RiMicLine 
-                    onClick={SpeechRecognition.startListening} 
-                    className={`${listening ? "mic-on" : ""}`}
-                />
+                {listening ?
+                    <RiMicLine
+                        onClick={SpeechRecognition.stopListening}
+                    /> :
+                    <RiMicOffLine
+                        onClick={SpeechRecognition.startListening}
+                    />
+                }
             </div>
             <div className='bottom'>
-                {/* <p>{transcript}</p> */}
                 {state.apiData?.length > 0 ?
                     <ul>
                         {state.apiData?.map((data) => {
@@ -71,21 +76,42 @@ function Search() {
                             const imya = newName ? newName : newTitle
                             return (
                                 <li key={id}>
-                                    <Link to={`${media_type == "movie" ? "movie" : "show"}/${id}`}>
-                                        <h3>{imya}</h3>
-                                    </Link>
-                                    <div>
-                                        <p><BiDollar /> {popularity}k</p>
-                                        <p><AiFillStar /> {vote_average?.toString().slice(0, 3)}</p>
-                                    </div>
+                                    <motion.div
+                                        initial={{ scaleY: 0, y: 150 }}
+                                        animate={{ scaleY: 1, y: 0 }}
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 260,
+                                            damping: 20
+                                        }}
+                                    >
+                                        <Link to={`${media_type == "movie" ? "/movie" : media_type == "person" ? "/actor" : "/show"}/${id}`}>
+                                            <h3>{imya}</h3>
+                                        </Link>
+                                        <div className='small-info'>
+                                            <p><BiDollar /> {popularity}k</p>
+                                            <p><AiOutlineStar /> {vote_average?.toString().slice(0, 3)}</p>
+                                            <p><VscPlay /> {media_type}</p>
+                                        </div>
+                                    </motion.div>
                                 </li>
                             )
                         })}
                     </ul>
-                    : <div className='not-found'>
-                        <RiMovie2Line />
-                        <p>No items!</p>
-                    </div>
+                    : <motion.div
+                        initial={{ scaleY: 0, y: 300 }}
+                        animate={{ scaleY: 1, y: 200 }}
+                        transition={{
+                            type: "spring",
+                            stiffness: 260,
+                            damping: 20
+                        }}
+                    >
+                        <div className='not-found'>
+                            <RiMovie2Line />
+                            <p>No items!</p>
+                        </div>
+                    </motion.div>
                 }
             </div>
         </div>

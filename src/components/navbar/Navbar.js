@@ -93,6 +93,7 @@ function Navbar() {
                 onClose={onClose}
                 open={state.drawer}
                 placement={"right"}
+                zIndex="10000"
                 style={{
                     height: "100vh"
                 }}

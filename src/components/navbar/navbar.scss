@@ -248,16 +248,13 @@ body {
         gap: 20px;
         .input {
             padding: 5px 5px 5px 10px;
-            width: 80%;
+            width: 90%;
             height: 20px;
             background-color: transparent;
             border: .06rem solid var(--yellow);
             border-radius: 0;
             outline: none;
             color: var(--white);
-        }
-        .mic-on {
-            color: var(--yellow);
         }
         svg {
             font-size: 1.7rem;
@@ -287,9 +284,13 @@ body {
                 }
                 div {
                     display: flex;
-                    flex-direction: row;
+                    flex-direction: column;
                     gap: 10px;
                     display: flex;
+                    .small-info {
+                        display: flex;
+                        flex-direction: row;
+                    }
                     p{
                         border: .06rem solid var(--yellow);
                         border-radius: 10px;
