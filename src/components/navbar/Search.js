@@ -11,8 +11,7 @@ const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 function Search() {
     const {
         transcript,
-        listening,
-        resetTranscript
+        listening
     } = useSpeechRecognition()
 
     const initialState = {
@@ -38,7 +37,6 @@ function Search() {
     useEffect(() => {
         axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${state.inputValue}`)
             .then((data) => {
-                console.log(data)
                 dispatch({
                     type: "SEARCH",
                     newApiData: data.data.results

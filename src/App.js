@@ -11,7 +11,6 @@ import Actor from "./components/main/actor/Actor";
 import ActorOpen from "./components/main/actor/ActorOpen";
 import ScrollToTop from "./assets/ScrollToTop";
 import Settings from "./components/settings/Settings";
-import Dictaphone from "./Dictaphone";
 
 function App() {
     // SET THEME COLOR USING LOCALSTORAGE
@@ -36,7 +35,6 @@ function App() {
                     <Route path="/settings" element={<Settings />} />
                 </Routes>
             </MovieContextProvider>
-            {/* <Dictaphone/> */}
         </>
     );
 }
