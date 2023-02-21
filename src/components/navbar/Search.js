@@ -5,13 +5,22 @@ import { RiMicLine, RiMovie2Line } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 import { AiFillStar } from 'react-icons/ai'
 import { BiDollar } from "react-icons/bi"
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Search() {
+    const {
+        transcript,
+        listening,
+        resetTranscript
+    } = useSpeechRecognition()
+
     const initialState = {
         apiData: [],
         inputValue: ""
     }
+
+    console.log(transcript)
 
     const [state, dispatch] = useReducer(reducer, initialState)
     const handleInput = (e) => {
@@ -42,9 +51,10 @@ function Search() {
                     onChange={(e) => handleInput(e.target.value)}
                     value={state.inputValue}
                 />
-                <RiMicLine />
+                <RiMicLine onClick={SpeechRecognition.startListening} />
             </div>
             <div className='bottom'>
+                <p>{transcript}</p>
                 {state.apiData?.length > 0 ?
                     <ul>
                         {state.apiData?.map((data) => {

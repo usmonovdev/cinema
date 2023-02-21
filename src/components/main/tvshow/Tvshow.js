@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { AiOutlineHeart } from 'react-icons/ai'
+import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { container, item } from '../../../assets/Framer'
 import { motion } from 'framer-motion';
 import { ConfigProvider, Image, Pagination } from 'antd';
@@ -36,7 +36,7 @@ function Tvshow() {
     useEffect(() => {
         document.title = "Cinema App - Tv"
     }, []);
-
+    console.log(show)
     return (
         <>
             <Navbar />
@@ -51,7 +51,7 @@ function Tvshow() {
                             style={{ marginBottom: "50px" }}
                         >
                             {show.results?.map((data) => {
-                                const { id, poster_path, title } = data
+                                const { id, poster_path, name, vote_average } = data
                                 return (
                                     <motion.li
                                         className="trending-movie-container"
@@ -62,7 +62,7 @@ function Tvshow() {
                                             <Image
                                                 preview={false}
                                                 src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
-                                                alt={title}
+                                                alt={name}
                                                 fallback={showImage}
                                             />
                                             <div className="trending-movie-info">
@@ -76,6 +76,14 @@ function Tvshow() {
                                                         </div>
                                                     </Link>
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div className='info'>
+                                            <div className='text-anim'>
+                                                <p className={`${name?.length > "10" ? "anim" : ""}`}>{name}</p>
+                                            </div>
+                                            <div className='vote'>
+                                                <AiFillStar /> {vote_average}
                                             </div>
                                         </div>
                                     </motion.li>
