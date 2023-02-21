@@ -256,6 +256,9 @@ body {
             outline: none;
             color: var(--white);
         }
+        .mic-on {
+            color: var(--yellow);
+        }
         svg {
             font-size: 1.7rem;
             cursor: pointer;

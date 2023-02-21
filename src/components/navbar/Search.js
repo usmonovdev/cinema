@@ -17,10 +17,8 @@ function Search() {
 
     const initialState = {
         apiData: [],
-        inputValue: ""
+        inputValue: `${transcript.length > 0 ? transcript : ""}`
     }
-
-    console.log(transcript)
 
     const [state, dispatch] = useReducer(reducer, initialState)
     const handleInput = (e) => {
@@ -29,6 +27,13 @@ function Search() {
             newInputValue: e
         });
     }
+
+    useEffect(() => {
+        dispatch({
+            type: "INPUT_VALUE",
+            newInputValue: transcript
+        });
+    }, [transcript])
 
     useEffect(() => {
         axios.get(`https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${state.inputValue}`)
@@ -51,10 +56,13 @@ function Search() {
                     onChange={(e) => handleInput(e.target.value)}
                     value={state.inputValue}
                 />
-                <RiMicLine onClick={SpeechRecognition.startListening} />
+                <RiMicLine 
+                    onClick={SpeechRecognition.startListening} 
+                    className={`${listening ? "mic-on" : ""}`}
+                />
             </div>
             <div className='bottom'>
-                <p>{transcript}</p>
+                {/* <p>{transcript}</p> */}
                 {state.apiData?.length > 0 ?
                     <ul>
                         {state.apiData?.map((data) => {
