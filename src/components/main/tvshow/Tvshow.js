@@ -36,7 +36,6 @@ function Tvshow() {
     useEffect(() => {
         document.title = "Cinema App - Tv"
     }, []);
-    console.log(show)
     return (
         <>
             <Navbar />

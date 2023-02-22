@@ -11,6 +11,7 @@ import Actors from '../movies/actors/Actors'
 import Similar from '../similar/Similar'
 import axios from 'axios'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
+import SimilarLoad from '../../loading/Similar'
 import Movie from '../../loading/Movie'
 import Photo from '../../loading/Photo'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
@@ -51,6 +52,7 @@ function ShowOpen() {
                 <>
                     <Movie/>
                     <Photo/>
+                    <SimilarLoad />
                 </> :
                 <>
                     {!adult ? <>

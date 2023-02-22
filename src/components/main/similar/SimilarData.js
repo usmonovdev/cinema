@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react'
-import { AiOutlineHeart } from 'react-icons/ai'
+import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import { RiMovie2Line } from "react-icons/ri"
 import { Link } from 'react-router-dom';
@@ -47,7 +47,7 @@ function SimilarData({ filter }) {
                         animate="visible"
                     >
                         {similar.map((data) => {
-                            const { id, poster_path, first_air_date, name, title, vote_average, media_type, release_date } = data
+                            const { id, poster_path, title, media_type, vote_average } = data
                             return (
                                 <motion.li
                                     className="trending-movie-container"
@@ -58,14 +58,14 @@ function SimilarData({ filter }) {
                                         <Image
                                             preview={false}
                                             src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
-                                            alt={name}
+                                            alt={title}
                                             fallback={actor}
                                         />
                                         <div className="trending-movie-info">
                                             <div className="like-and-open">
-                                                    <div className='icon'>
-                                                        <AiOutlineHeart />
-                                                    </div>
+                                                <div className='icon'>
+                                                    <AiOutlineHeart />
+                                                </div>
                                                 <Link
                                                     to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}
                                                 >
@@ -74,6 +74,14 @@ function SimilarData({ filter }) {
                                                     </div>
                                                 </Link>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div className='info'>
+                                        <div className='text-anim'>
+                                            <p className={`${title?.length > "10" ? "anim" : ""}`}>{title}</p>
+                                        </div>
+                                        <div className='vote'>
+                                            <AiFillStar /> {vote_average}
                                         </div>
                                     </div>
                                 </motion.li>
@@ -90,7 +98,11 @@ function SimilarData({ filter }) {
             }
             {state.completed ? "" :
                 <>
-                    <button className='load-more' onClick={loadMore}>
+                    <button 
+                        className='load-more' 
+                        onClick={loadMore}
+                        style={{position: "relative", top: "85px"}}
+                    >
                         {state.loading ?
                             <div className='spin'></div>
                             :
