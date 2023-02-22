@@ -87,12 +87,27 @@ $large-screens: 1200px;
         img {
             cursor: pointer;
         }
-        p {
+        .actor-name-box {
             width: 100%;
-            padding: 5px;
             background-color: var(--yellow);
-            color: var(--white);
-            cursor: pointer;
+            p {
+                padding: 5px;
+                color: var(--white);
+                cursor: pointer;
+                white-space: nowrap;
+            }
+            .anim {
+                animation: text 6s linear infinite;
+                animation-delay: 3s;
+            }
+            @keyframes text {
+                0% {
+                    transform: translatex(100%);
+                }
+                100% {
+                    transform: translateX(-110%);
+                }
+            }
         }
     }
 }

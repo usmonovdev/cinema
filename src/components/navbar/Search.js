@@ -46,6 +46,26 @@ function Search() {
             })
     }, [state.inputValue]);
 
+    // FOR OPEN MICROPHONE SHORTCUT
+    // M + O
+    useEffect(() => {
+        window.addEventListener("keyup", e => {
+            if(e.key.toLowerCase() == "m", e.key.toLowerCase() == "o") {
+                SpeechRecognition.startListening()
+            }
+        })
+    }, [])
+
+    // FOR CLOSE MICROPHONE SHORTCUT
+    // M + C
+    useEffect(() => {
+        window.addEventListener("keyup", e => {
+            if(e.key.toLowerCase() == "m", e.key.toLowerCase() == "c") {
+                SpeechRecognition.stopListening()
+            }
+        })
+    }, [])
+
     return (
         <div className='search-result'>
             <div className='top'>

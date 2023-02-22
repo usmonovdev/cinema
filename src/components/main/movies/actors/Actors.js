@@ -104,7 +104,7 @@ function Actors({ moviesId, type }) {
                         <Slider {...settings} ref={customeSlider}>
                             {filterActors?.map((data) => {
                                 return (
-                                    <Link 
+                                    <Link
                                         to={`/actor/${data.id}`}
                                         key={data.id}
                                         className="actorLink"
@@ -118,7 +118,9 @@ function Actors({ moviesId, type }) {
                                                 alt={data.name}
                                                 fallback={actor}
                                             />
-                                            <p>{data.name}</p>
+                                            <div className='actor-name-box'>
+                                                <p className={`${data.name?.length > "18" ? "anim" : ""}`}>{data.name}</p>
+                                            </div>
                                         </div>
                                     </Link>
 

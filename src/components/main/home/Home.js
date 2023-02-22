@@ -50,7 +50,6 @@ function Home() {
             clearInterval(time)
         }
     });
-
     return (
         <>
             <Navbar />
