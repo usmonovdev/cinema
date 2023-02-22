@@ -36,7 +36,7 @@ function Navbar() {
 
     useEffect(() => {
         window.addEventListener("keyup", e => {
-            if (e.key === "/", e.key == "Control") {
+            if ( e.key === "Control", e.key === "/") {
                 dispatch({
                     type: "DRAWER_OPEN"
                 })

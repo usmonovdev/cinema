@@ -12,7 +12,7 @@ import RightInfo from "./rightInfo/RightInfo"
 import LeftInfo from "./leftInfo/LeftInfo"
 import Footer from "../../footer/Footer"
 import Actors from "./actors/Actors"
-import MoviesOpen from "../../loading/moviesOpen/MoviesOpen"
+// import MoviesOpen from "../../loading/moviesOpen/MoviesOpen"
 import MovieImages from "./movieImages/MovieImages"
 import Reviews from "./reviews/Reviews"
 import Similar from "../similar/Similar"
@@ -65,7 +65,7 @@ function Movies() {
                 </> :
                     <>
                         <Navbar />
-                        <MoviesOpen />
+                        {/* <MoviesOpen /> */}
                     </>}
             </> : <>
                 <BannedContent />

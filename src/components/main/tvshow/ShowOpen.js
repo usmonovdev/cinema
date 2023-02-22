@@ -11,6 +11,7 @@ import Actors from '../movies/actors/Actors'
 import Similar from '../similar/Similar'
 import axios from 'axios'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
+import Movie from '../../loading/Movie'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function ShowOpen() {
@@ -23,10 +24,10 @@ function ShowOpen() {
     useEffect(() => {
         try {
             axios.get(`https://api.themoviedb.org/3/tv/${showId}?api_key=${API_KEY}`)
-            .then((data) => {
-                setShow(data.data)
-                setLoading(false)
-            })
+                .then((data) => {
+                    setShow(data.data)
+                    setLoading(false)
+                })
         } catch (error) {
             console.log("Api error", error)
         }
@@ -45,28 +46,32 @@ function ShowOpen() {
 
     return (
         <>
-            {!adult ? <>
-                <Navbar />
-                <div className="ads movie-info-overflow class-for-actors">
-                    <div className='bg-image movies-open-media' style={{
-                        opacity: "1",
-                        backgroundImage: `url("https://image.tmdb.org/t/p/${imgState.size}/${backdrop_path}")`
-                    }}>
-                        <div className="opened-movie-backdrop">
-                            <LeftInfo show={show} />
-                            <RightInfo show={show} />
+            {loading ? <Movie/> :
+                <>
+                    {!adult ? <>
+                        <Navbar />
+                        <div className="ads movie-info-overflow class-for-actors">
+                            <div className='bg-image movies-open-media' style={{
+                                opacity: "1",
+                                backgroundImage: `url("https://image.tmdb.org/t/p/${imgState.size}/${backdrop_path}")`
+                            }}>
+                                <div className="opened-movie-backdrop">
+                                    <LeftInfo show={show} />
+                                    <RightInfo show={show} />
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <Actors moviesId={showId} type="tv" />
-                <MovieImages moviesId={showId} type="tv" />
-                <Reviews moviesId={showId} type="tv" />
-                <Similar moviesId={showId}  type="tv" />
-                <Footer />
-            </> : <>
-                <BannedContent />
-                <Footer />
-            </>}
+                        <Actors moviesId={showId} type="tv" />
+                        <MovieImages moviesId={showId} type="tv" />
+                        <Reviews moviesId={showId} type="tv" />
+                        <Similar moviesId={showId} type="tv" />
+                        <Footer />
+                    </> : <>
+                        <BannedContent />
+                        <Footer />
+                    </>}
+                </>
+            }
         </>
     )
 }

@@ -50,7 +50,7 @@ function Search() {
     // M + O
     useEffect(() => {
         window.addEventListener("keyup", e => {
-            if(e.key.toLowerCase() == "m", e.key.toLowerCase() == "o") {
+            if(e.key.toLowerCase() === "m", e.key.toLowerCase() === "o") {
                 SpeechRecognition.startListening()
             }
         })
@@ -60,7 +60,7 @@ function Search() {
     // M + C
     useEffect(() => {
         window.addEventListener("keyup", e => {
-            if(e.key.toLowerCase() == "m", e.key.toLowerCase() == "c") {
+            if(e.key.toLowerCase() === "m", e.key.toLowerCase() === "c") {
                 SpeechRecognition.stopListening()
             }
         })
