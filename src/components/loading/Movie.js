@@ -1,4 +1,3 @@
-import { Skeleton } from 'antd'
 import React from 'react'
 import "./movie.scss"
 
@@ -21,7 +20,6 @@ function Movie() {
                     </ul>
                 </div>
             </div>
-            {/* <Skeleton active /> */}
         </>
     )
 }

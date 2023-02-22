@@ -12,6 +12,7 @@ import Similar from '../similar/Similar'
 import axios from 'axios'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import Movie from '../../loading/Movie'
+import Photo from '../../loading/Photo'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function ShowOpen() {
@@ -46,7 +47,11 @@ function ShowOpen() {
 
     return (
         <>
-            {loading ? <Movie/> :
+            {loading ? 
+                <>
+                    <Movie/>
+                    <Photo/>
+                </> :
                 <>
                     {!adult ? <>
                         <Navbar />
