@@ -109,7 +109,8 @@ function SimilarData({ filter }) {
                             <>
                                 <p>Load More</p>
                                 <MdOutlineKeyboardArrowDown className='load-icon' />
-                            </>}
+                            </>
+                        }
                     </button>
                 </>
             }

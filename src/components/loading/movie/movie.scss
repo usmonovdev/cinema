@@ -1,0 +1,34 @@
+.load-movie {
+    width: 80%;
+    margin: 80px auto;
+    ul {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        gap: 14px !important;
+        @media screen and (max-width: 480px) {
+            display: grid;
+            grid-template-columns: auto auto;
+        }
+        li {
+            list-style: none;
+            width: 100%;
+            height: 370px;
+            background-color: rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            transition: 200ms;
+            &::before {
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, rgba(0, 0, 0, 0.06) 25%, rgba(0, 0, 0, 0.10) 37%, rgba(0, 0, 0, 0.06) 63%);
+                display: block;
+                animation: 1200ms skeleton linear infinite;
+                animation-timing-function: ease;
+            }
+            @media screen and (max-width: 480px) {
+                height: 300px;
+            }
+        }
+    }
+}

@@ -16,6 +16,9 @@ import Actors from "./actors/Actors"
 import MovieImages from "./movieImages/MovieImages"
 import Reviews from "./reviews/Reviews"
 import Similar from "../similar/Similar"
+import MovieLoad from "../../loading/movieOpen/Movie"
+import PhotoLoad from "../../loading/photo/Photo"
+import SimilarLoad from "../../loading/similar/Similar"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Movies() {
@@ -29,6 +32,7 @@ function Movies() {
             axios.get(`https://api.themoviedb.org/3/movie/${moviesId}?api_key=${API_KEY}`)
                 .then((data) => {
                     setMovie(data.data)
+                    setLoading(false)
                 })
         } catch (error) {
             console.log("Error in API", error)
@@ -38,39 +42,46 @@ function Movies() {
     const { adult, backdrop_path, title } = movie;
 
     useEffect(() => {
-        document.title = `Movie - ${title}`
+        if (loading) {
+            document.title = `Movie - Loading...`
+        } else {
+            document.title = `Movie - ${title}`
+        }
     });
 
     return (
         <>
-            {!adult ? <>
-                {loading ? <>
-                    <Navbar />
-                    <div className="ads movie-info-overflow class-for-actors">
-                        <div className='bg-image movies-open-media' style={{
-                            opacity: "1",
-                            backgroundImage: `url("https://image.tmdb.org/t/p/${imgState.size}/${backdrop_path}")`
-                        }}>
-                            <div className="opened-movie-backdrop">
-                                <LeftInfo movie={movie} />
-                                <RightInfo movie={movie}/>
+            {loading ?
+                <>
+                    <MovieLoad />
+                    <PhotoLoad />
+                    <SimilarLoad />
+                </> :
+                <>
+                    {!adult ? <>
+                        <Navbar />
+                        <div className="ads movie-info-overflow class-for-actors">
+                            <div className='bg-image movies-open-media' style={{
+                                opacity: "1",
+                                backgroundImage: `url("https://image.tmdb.org/t/p/${imgState.size}/${backdrop_path}")`
+                            }}>
+                                <div className="opened-movie-backdrop">
+                                    <LeftInfo movie={movie} />
+                                    <RightInfo movie={movie} />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <Actors moviesId={moviesId} type="movie" />
-                    <MovieImages moviesId={moviesId} type="movie" />
-                    <Reviews moviesId={moviesId} type="movie" />
-                    <Similar moviesId={moviesId}  type="movie" />
-                    <Footer />
-                </> :
-                    <>
-                        <Navbar />
-                        {/* <MoviesOpen /> */}
-                    </>}
-            </> : <>
-                <BannedContent />
-                <Footer />
-            </>
+                        <Actors moviesId={moviesId} type="movie" />
+                        <MovieImages moviesId={moviesId} type="movie" />
+                        <Reviews moviesId={moviesId} type="movie" />
+                        <Similar moviesId={moviesId} type="movie" />
+                        <Footer />
+                    </> : <>
+                        <BannedContent />
+                        <Footer />
+                    </>
+                    }
+                </>
             }
         </>
     )
