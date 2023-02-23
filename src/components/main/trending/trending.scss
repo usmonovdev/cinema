@@ -7,10 +7,7 @@ $small-screens: 992px;
 $large-screens: 1200px;
 
 .pagination {
-    position: relative;
-    top: 50px;
-    margin: 0 0 40px 0;
-    // padding-top: 20px;
+    margin: 10px 0 0 0;
     width: 100%;
     .ant-pagination {
         display: flex;

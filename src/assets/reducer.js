@@ -144,6 +144,13 @@ export const reducer = (state, action) => {
                 drawer: state.drawer = false
             }
         }
+        // FOR ADD TO LIKED MOVIES
+        // case "LIKE": {
+        //     return {
+        //         ...state,
+        //         like: state.like = !like
+        //     }
+        // }
         default:
             return;
     }

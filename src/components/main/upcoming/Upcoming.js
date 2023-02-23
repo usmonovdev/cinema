@@ -38,8 +38,8 @@ function Upcoming() {
     useEffect(() => {
         try {
             axios.get(`${API}${API_KEY}`)
-                .then((movie) => {
-                    setUpcoming(movie.data.results)
+                .then((data) => {
+                    setUpcoming(data.data.results)
                     setLoading(false)
                 });
         } catch (error) {
@@ -65,7 +65,6 @@ function Upcoming() {
                         </div>
                         <UpcomingData filter={filter} />
                     </div>
-
                 </div>
             </>}
         </>

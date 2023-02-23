@@ -1,8 +1,8 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { container, item } from '../../../assets/Framer'
-import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
+import { AiFillHeart, AiFillStar, AiOutlineHeart } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import { Image } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
@@ -17,11 +17,18 @@ function TrendingData({ filter }) {
     const initialState = {
         completed: false,
         index: 4,
-        loading: false
+        loading: false,
+        // like: false
     }
 
     const [state, dispatch] = useReducer(reducer, initialState)
+    const [addLike, setAddLike] = useState(false)
 
+    // console.log("like", state.like)
+    const like = (e) => {
+        setAddLike(!addLike)
+        console.log(e)
+    }
     // SLICE THE FILTERED MOVIES USING STATE.INDEX
     const initialPosts = slice(filter, 0, state.index)
 
@@ -64,17 +71,15 @@ function TrendingData({ filter }) {
                                             alt={title}
                                             fallback={movie}
                                             placeholder={
-                                                // <Image
-                                                //   preview={false}
-                                                //   src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
-                                                // />
-                                                <ImageLoading/>
+                                                <ImageLoading />
                                             }
                                         />
                                         <div className="trending-movie-info">
                                             <div className="like-and-open">
-                                                <div className='icon'>
-                                                    <AiOutlineHeart />
+                                                <div className='icon' onClick={() => like(id)}>
+                                                    {addLike ? <AiFillHeart/> : <AiOutlineHeart/>}
+                                                    {/* <AiOutlineHeart /> */}
+                                                    {/* <AiFillHeart/> */}
                                                 </div>
                                                 <Link to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}>
                                                     <div className='play'>
@@ -90,7 +95,7 @@ function TrendingData({ filter }) {
                                         </div>
                                         <div className='vote'>
                                             <AiFillStar />
-                                            <p>{vote_average.toString()?.slice(0,3)}</p>
+                                            <p>{vote_average.toString()?.slice(0, 3)}</p>
                                         </div>
                                     </div>
                                 </motion.li>
@@ -108,8 +113,8 @@ function TrendingData({ filter }) {
             }
             {state.completed ? "" :
                 <>
-                    <button 
-                        className='load-more' 
+                    <button
+                        className='load-more'
                         onClick={loadMore}
                     >
                         {state.loading ?
