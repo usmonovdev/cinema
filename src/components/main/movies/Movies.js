@@ -40,7 +40,6 @@ function Movies() {
     useEffect(() => {
         document.title = "Cinema App - Movie"
     }, [])
-    console.log(movie)
     return (
         <>
             {loading ? <>
@@ -59,7 +58,6 @@ function Movies() {
                             >
                                 {movie.results?.map((data) => {
                                     const { id, poster_path, title, vote_average } = data
-                                    console.log(title.length)
                                     return (
                                         <motion.li
                                             className="trending-movie-container"

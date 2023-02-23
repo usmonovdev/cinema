@@ -1,6 +1,13 @@
 .load-movie {
     width: 80%;
     margin: 80px auto;
+    @media screen and (max-width: 1200px) {
+        width: 90%;
+        margin: 80px auto;
+    }
+    @media screen and (max-width: 480px) {
+        width: 100%;
+    }
     ul {
         width: 100%;
         display: grid;
@@ -9,6 +16,8 @@
         @media screen and (max-width: 480px) {
             display: grid;
             grid-template-columns: auto auto;
+            width: 90%;
+            margin: auto;
         }
         li {
             list-style: none;

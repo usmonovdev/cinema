@@ -1,11 +1,14 @@
 .load-box-similar {
     width: 80%;
-    height: 250px;
-    margin: auto;
-    margin-bottom: 50px;
+    height: fit-content;
+    margin: 40px auto 50px auto;
     @media screen and (max-width: "1200px") {
         width: 90%;
-        margin: auto;
+        margin: 40px auto 50px auto;
+    }
+    @media screen and (max-width: "992px") {
+        width: 90%;
+        margin: 0 auto;
     }
     .title {
         width: 100%;
@@ -54,6 +57,7 @@
     }
     .photo-box {
         width: 100%;
+        height: 300px !important;
         height: fit-content;
         ul {
             display: flex;
@@ -61,25 +65,20 @@
             gap: 20px;
             width: 100%;
             height: 100%;
-            @media screen and (max-width: "992px") {
-                :nth-child(1) {
-                    display: none;
-                }
-            }            
-            @media screen and (max-width: "480px") {
-                :nth-child(2) {
-                    display: none;
-                }
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            @media screen and (max-width: 480px) {
+                display: grid;
+                grid-template-columns: auto auto;
             }
             li {
                 overflow: hidden;
-                width: 25%;
+                width: 100%;
                 height: 100%;
                 list-style: none;
                 background-color: rgba(0, 0, 0, 0.06);            
                 @media screen and (max-width: "992px") {
-                    width: 33%;
-                    height: 150px;
+                    height: 100%;
                 }
                 @media screen and (max-width: "480px") {
                     width: 100%;
