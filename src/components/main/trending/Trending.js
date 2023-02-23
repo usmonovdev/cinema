@@ -54,20 +54,23 @@ function Trending() {
     return (
         <>
             {loading ? <>
-                <Homemovie/>
+                <Homemovie />
             </> : <>
-                <div className='container' style={{ marginBottom: "90px" }}>
-                    <div className="title-settings-box">
-                        <h1 className='title'><span className='sharp'>#</span> Trending</h1>
-                        <Popover
-                            placement="topRight"
-                            content={<Filter />}
-                            title={PopoverTitleTrending} trigger="click"
-                        >
-                            <GiSettingsKnobs />
-                        </Popover>
+                <div className='container'>
+                    <div className="movies-box">
+                        <div className="title-settings-box">
+                            <h1 className='title'><span className='sharp'>#</span> Trending</h1>
+                            <Popover
+                                placement="topRight"
+                                content={<Filter />}
+                                title={PopoverTitleTrending} trigger="click"
+                            >
+                                <GiSettingsKnobs />
+                            </Popover>
+                        </div>
+                        <TrendingData filter={filter} />
                     </div>
-                    <TrendingData filter={filter} />
+
                 </div>
             </>}
         </>

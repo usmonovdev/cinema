@@ -111,7 +111,6 @@ function TrendingData({ filter }) {
                     <button 
                         className='load-more' 
                         onClick={loadMore}
-                        style={{position: "relative", top: "86px"}}
                     >
                         {state.loading ?
                             <div className='spin'></div>

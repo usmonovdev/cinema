@@ -51,20 +51,23 @@ function TopRated() {
     return (
         <>
             {loading ? <>
-                <Homemovie/>
+                <Homemovie />
             </> : <>
-                <div className='container' style={{ marginBottom: "90px" }}>
-                    <div className="title-settings-box">
-                        <h1 className='title'><span className='sharp'>#</span> Top Rated</h1>
-                        <Popover
-                            placement="topRight"
-                            content={<Filter />}
-                            title={PopoverTitleTop} trigger="click"
-                        >
-                            <GiSettingsKnobs />
-                        </Popover>
+                <div className='container'>
+                    <div className="movies-box">
+                        <div className="title-settings-box">
+                            <h1 className='title'><span className='sharp'>#</span> Top Rated</h1>
+                            <Popover
+                                placement="topRight"
+                                content={<Filter />}
+                                title={PopoverTitleTop} trigger="click"
+                            >
+                                <GiSettingsKnobs />
+                            </Popover>
+                        </div>
+                        <TopRatedData filter={filter} />
                     </div>
-                    <TopRatedData filter={filter} />
+
                 </div>
             </>}
         </>

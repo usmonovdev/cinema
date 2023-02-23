@@ -25,8 +25,8 @@ $large-screens: 1200px;
 .load-more {
     width: 100%;
     height: 40px;
-    position: relative;
-    top: 60px;
+    // position: relative;
+    // top: 60px;
     border: none;
     padding: 10px;
     background-color: var(--yellow);
@@ -40,8 +40,6 @@ $large-screens: 1200px;
     @media screen and (max-width: $mobile) {
         width: 90%;
         margin: 0 auto;
-        position: relative;
-        top: 60px;
     }
     .spin {
         border-radius: 50%;
@@ -73,8 +71,8 @@ $large-screens: 1200px;
 
 .title-settings-box {
     color: var(--white);
-    position: relative;
-    top: 30px;
+    // position: relative;
+    // top: 30px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -108,178 +106,182 @@ $large-screens: 1200px;
     }
 }
 
-.trending {
-    width: 100%;
-    height: auto;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    gap: 50px 14px !important;
-    position: relative;
-    top: 40px;
-    box-sizing: border-box;
-    transition: 200ms;
-    @media screen and (max-width: $mobile) {
+.movies-box {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px !important;
+    .trending {
+        width: 100%;
+        height: fit-content;
         display: grid;
-        grid-template-columns: auto auto;
-        width: 90%;
-        margin: 0 auto;
-    }
-    .trending-movie-container {
-        min-width: 24%;
-        list-style: none;
-        .trending-movie-box {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            position: relative;
-            align-items: flex-end;
-            overflow: hidden;
-            transition: 200ms;
-            .ant-image {
-                object-fit: cover;
-                height: 100%;
-            }
-            &:hover .trending-movie-info {
-                left: 0;
-                opacity: 1;
-                
-            }
-            .trending-movie-info {
-                box-sizing: border-box;
+        grid-template-columns: auto auto auto auto;
+        gap: 14px !important;
+        box-sizing: border-box;
+        transition: 200ms;
+        @media screen and (max-width: $mobile) {
+            display: grid;
+            grid-template-columns: auto auto;
+            width: 90%;
+            margin: 0 auto;
+        }
+        .trending-movie-container {
+            min-width: 24%;
+            list-style: none;
+            height: fit-content;
+            .trending-movie-box {
                 width: 100%;
                 height: 100%;
-                padding: 10px;
-                position: absolute;
-                left: 50%;
-                opacity: 0;
-                color: var(--white);
                 display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                background-color: $second-black;
-                backdrop-filter: blur(3px);
+                position: relative;
+                align-items: flex-end;
+                overflow: hidden;
                 transition: 200ms;
-                .vote-average {
-                    width: fit-content;
-                    padding: 4px 10px;
-                    gap: 10px;
-                    display: flex;
-                    align-items: center;
-                    border: 2px solid var(--yellow);
-                    border-radius: 20px;
-                    cursor: pointer;
-                    margin-top: 5px;
-                    &:hover {
-                        background-color: var(--yellow);
-                    }
+                .ant-image {
+                    object-fit: cover;
+                    height: 100%;
                 }
-                .like-and-open {
+                &:hover .trending-movie-info {
+                    left: 0;
+                    opacity: 1;
+                    
+                }
+                .trending-movie-info {
+                    box-sizing: border-box;
                     width: 100%;
+                    height: 100%;
+                    padding: 10px;
+                    position: absolute;
+                    left: 50%;
+                    opacity: 0;
+                    color: var(--white);
                     display: flex;
-                    flex-direction: row;
+                    flex-direction: column;
                     justify-content: space-between;
+                    background-color: $second-black;
+                    backdrop-filter: blur(3px);
                     transition: 200ms;
-                    transition-delay: 300ms;
-                    .icon {
-                        width: 20px;
-                        height: 20px;
+                    .vote-average {
+                        width: fit-content;
+                        padding: 4px 10px;
+                        gap: 10px;
                         display: flex;
                         align-items: center;
-                        justify-content: center;
-                        cursor: pointer;
-                        padding: 5px;
-                        background-color: unset;
                         border: 2px solid var(--yellow);
+                        border-radius: 20px;
+                        cursor: pointer;
+                        margin-top: 5px;
                         &:hover {
                             background-color: var(--yellow);
                         }
                     }
-                    a {
-                        width: 60%;
-                        text-decoration: unset;
-                        color: var(--white);
-                    }
-                    .play {
-                        height: 20px;
+                    .like-and-open {
+                        width: 100%;
                         display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        padding: 5px 15px;
-                        border: 2px solid var(--yellow);
-                        background-color: var(--yellow);
-                        cursor: pointer;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        transition: 200ms;
+                        transition-delay: 300ms;
+                        .icon {
+                            width: 20px;
+                            height: 20px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            cursor: pointer;
+                            padding: 5px;
+                            background-color: unset;
+                            border: 2px solid var(--yellow);
+                            &:hover {
+                                background-color: var(--yellow);
+                            }
+                        }
+                        a {
+                            width: 60%;
+                            text-decoration: unset;
+                            color: var(--white);
+                        }
+                        .play {
+                            height: 20px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            padding: 5px 15px;
+                            border: 2px solid var(--yellow);
+                            background-color: var(--yellow);
+                            cursor: pointer;
+                        }
                     }
                 }
             }
-        }
-        .info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 10px;
-            background-color: var(--yellow);
-            margin: unset;
-            color: var(--white);
-            .text-anim {
-                overflow: hidden;
-                width: 75%;
-                z-index: 100;
-                @media screen and (max-width: $tablet) {
-                    width: 65%;
-                }
-                @media screen and (max-width: $mobile) {
-                    width: 65%;
-                }
-                p {
-                    white-space: nowrap;
-                }
-                .anim {
-                    white-space: nowrap;
-                    animation: text 6s linear infinite;
-                    animation-delay: 3s;
-                }
-                @keyframes text {
-                    0% {
-                        transform: translatex(100%);
-                    }
-                    100% {
-                        transform: translateX(-140%);
-                    }
-                }
-            }
-            .text-anim.actor {
-                width: 100%;
-            }
-            .vote {
-                width: fit-content;
+            .info {
                 display: flex;
+                justify-content: space-between;
                 align-items: center;
-                justify-content: right;
-                @media screen and (max-width: $tablet) {
-                    width: 35%;
+                padding: 5px 10px;
+                background-color: var(--yellow);
+                margin: unset;
+                color: var(--white);
+                .text-anim {
+                    overflow: hidden;
+                    width: 75%;
+                    z-index: 100;
+                    @media screen and (max-width: $tablet) {
+                        width: 65%;
+                    }
+                    @media screen and (max-width: $mobile) {
+                        width: 65%;
+                    }
+                    p {
+                        white-space: nowrap;
+                    }
+                    .anim {
+                        white-space: nowrap;
+                        animation: text 6s linear infinite;
+                        animation-delay: 3s;
+                    }
+                    @keyframes text {
+                        0% {
+                            transform: translatex(100%);
+                        }
+                        100% {
+                            transform: translateX(-140%);
+                        }
+                    }
                 }
-                @media screen and (max-width: $mobile) {
-                    width: 35%;
+                .text-anim.actor {
+                    width: 100%;
                 }
-                svg {
-                    width: 50%;
-                    margin: 0 4px 0 0;
-                }
-                p {
-                    width: 50%;
+                .vote {
+                    width: fit-content;
+                    display: flex;
+                    align-items: center;
+                    justify-content: right;
+                    @media screen and (max-width: $tablet) {
+                        width: 35%;
+                    }
+                    @media screen and (max-width: $mobile) {
+                        width: 35%;
+                    }
+                    svg {
+                        width: 50%;
+                        margin: 0 4px 0 0;
+                    }
+                    p {
+                        width: 50%;
+                    }
                 }
             }
         }
-    }
-    img {
-        width: 100%;
-        height: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+        }
     }
 }
 
+
 .trendingNoItem {
-    position: relative;
-    top: 40px;
     height: 150px;
     display: grid;
     grid-template-columns: auto;
