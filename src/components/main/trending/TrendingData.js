@@ -11,24 +11,17 @@ import { slice } from 'lodash';
 import movie from "../../../assets/actor-photo-not-downloaded.jpg"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import ImageLoading from "../../loading/image/Image"
+import TrendingLike from './TrendingLike';
 
 function TrendingData({ filter }) {
-    const { imgState } = useMovieContext()
     const initialState = {
         completed: false,
         index: 4,
-        loading: false,
-        // like: false
+        loading: false
     }
 
     const [state, dispatch] = useReducer(reducer, initialState)
-    const [addLike, setAddLike] = useState(false)
-
-    // console.log("like", state.like)
-    const like = (e) => {
-        setAddLike(!addLike)
-        console.log(e)
-    }
+    
     // SLICE THE FILTERED MOVIES USING STATE.INDEX
     const initialPosts = slice(filter, 0, state.index)
 
@@ -64,31 +57,7 @@ function TrendingData({ filter }) {
                                     variants={item}
                                     key={id}
                                 >
-                                    <div className="trending-movie-box">
-                                        <Image
-                                            preview={false}
-                                            src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
-                                            alt={title}
-                                            fallback={movie}
-                                            placeholder={
-                                                <ImageLoading />
-                                            }
-                                        />
-                                        <div className="trending-movie-info">
-                                            <div className="like-and-open">
-                                                <div className='icon' onClick={() => like(id)}>
-                                                    {addLike ? <AiFillHeart/> : <AiOutlineHeart/>}
-                                                    {/* <AiOutlineHeart /> */}
-                                                    {/* <AiFillHeart/> */}
-                                                </div>
-                                                <Link to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}>
-                                                    <div className='play'>
-                                                        <p>Play</p>
-                                                    </div>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <TrendingLike data={data}/>
                                     <div className='info'>
                                         <div className='text-anim'>
                                             <p className={`${title?.length > "10" || name?.length > "10" ? "anim" : ""}`}>{title ? title : name}</p>
