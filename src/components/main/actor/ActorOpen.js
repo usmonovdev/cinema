@@ -1,52 +1,45 @@
-import axios from 'axios'
-import "./actors.scss"
-import React, { useEffect, useState, useReducer } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import { useParams } from 'react-router-dom'
-import Footer from "../../footer/Footer"
-import BannedContent from "../../BannedContent/BannedContent"
-import Navbar from '../../navbar/Navbar'
 import { Image } from 'antd'
-import { initial, reducer } from '../../../assets/reducer'
+import axios from 'axios'
+import Footer from "../../footer/Footer"
+import Navbar from '../../navbar/Navbar'
 import Right from './Right'
 import Popular from './popular/Popular'
 import notDownloaded from "../../../assets/actor-photo-not-downloaded.jpg"
-import { useMovieContext } from '../../../context/MovieContex/MovieContex'
+import ActorLoader from "../../loading/movieOpen/Movie"
+import SimilarLoader from "../../loading/similar/Similar"
+import "./actors.scss"
 
 function ActorOpen() {
     const { imgState } = useMovieContext()
-    const [state, dispatch] = useReducer(reducer, initial)
     const { actorId } = useParams()
     const API = "https://api.themoviedb.org/3/person/"
     const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
     const [actor, setActor] = useState([])
-    const [actorImage, setActorImage] = useState([])
+    const [loading, setLoading] = useState(true)
+
     useEffect(() => {
         try {
             axios.get(`${API}${actorId}?api_key=${API_KEY}`)
                 .then((data) => {
                     setActor(data.data)
+                    setLoading(false)
                 })
         } catch (error) {
             console.log("API Error", error)
         }
     }, [actorId])
 
-    useEffect(() => {
-        try {
-            axios.get(`${API}${actorId}/images?api_key=${API_KEY}`)
-                .then((data) => {
-                    setActorImage(data)
-                })
-        } catch (error) {
-            console.log("API Error", error)
-        }
-    }, [])
-
-    const { adult, profile_path } = actor
+    const { profile_path } = actor
 
     return (
         <div>
-            {!adult ? <>
+            {loading ? <>
+                <ActorLoader />
+                <SimilarLoader/>
+            </> : <>
                 <Navbar />
                 <div className="bg-image"
                     style={{
@@ -70,9 +63,6 @@ function ActorOpen() {
                     </div>
                 </div>
                 <Popular />
-                <Footer />
-            </> : <>
-                <BannedContent />
                 <Footer />
             </>}
         </div>

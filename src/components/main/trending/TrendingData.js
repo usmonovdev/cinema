@@ -10,6 +10,7 @@ import { reducer } from '../../../assets/reducer';
 import { slice } from 'lodash';
 import movie from "../../../assets/actor-photo-not-downloaded.jpg"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
+import ImageLoading from "../../loading/image/Image"
 
 function TrendingData({ filter }) {
     const { imgState } = useMovieContext()
@@ -62,6 +63,13 @@ function TrendingData({ filter }) {
                                             src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
                                             alt={title}
                                             fallback={movie}
+                                            placeholder={
+                                                // <Image
+                                                //   preview={false}
+                                                //   src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
+                                                // />
+                                                <ImageLoading/>
+                                            }
                                         />
                                         <div className="trending-movie-info">
                                             <div className="like-and-open">

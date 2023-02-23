@@ -7,12 +7,14 @@ import { PopoverTitleTop } from "../../../assets/AntD"
 import axios from 'axios'
 import TopRatedData from './TopRatedData'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
+import Homemovie from '../../loading/homeMovie/Homemovie'
 const API = "https://api.themoviedb.org/3/movie/top_rated?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function TopRated() {
     const { topState } = useMovieContext()
     const [movie, setMovie] = useState([]);
+    const [loading, setLoading] = useState(true)
 
     const filter = movie?.filter((data) => {
         if (topState.topFilter == "en") { // FILTER BY LANGUAGE
@@ -33,12 +35,13 @@ function TopRated() {
             return data
         }
     });
-    
+
     useEffect(() => {
         try {
             axios.get(`${API}${API_KEY}`)
                 .then((movie) => {
                     setMovie(movie.data.results)
+                    setLoading(false)
                 });
         } catch (error) {
             console.log("Error in API", error)
@@ -46,19 +49,25 @@ function TopRated() {
     }, []);
 
     return (
-        <div className='container' style={{marginBottom: "90px"}}>
-            <div className="title-settings-box">
-                <h1 className='title'><span className='sharp'>#</span> Top Rated</h1>
-                <Popover
-                    placement="topRight"
-                    content={<Filter />}
-                    title={PopoverTitleTop} trigger="click"
-                >
-                    <GiSettingsKnobs />
-                </Popover>
-            </div>
-            <TopRatedData filter={filter} />
-        </div>
+        <>
+            {loading ? <>
+                <Homemovie/>
+            </> : <>
+                <div className='container' style={{ marginBottom: "90px" }}>
+                    <div className="title-settings-box">
+                        <h1 className='title'><span className='sharp'>#</span> Top Rated</h1>
+                        <Popover
+                            placement="topRight"
+                            content={<Filter />}
+                            title={PopoverTitleTop} trigger="click"
+                        >
+                            <GiSettingsKnobs />
+                        </Popover>
+                    </div>
+                    <TopRatedData filter={filter} />
+                </div>
+            </>}
+        </>
     )
 }
 

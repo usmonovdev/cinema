@@ -7,12 +7,14 @@ import axios from 'axios'
 import TrendingData from './TrendingData'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import "./trending.scss"
+import Homemovie from '../../loading/homeMovie/Homemovie'
 const API = "https://api.themoviedb.org/3/trending/all/day?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Trending() {
     const { trendingState } = useMovieContext();
     const [movie, setMovie] = useState([]);
+    const [loading, setLoading] = useState(true)
     const filter = movie?.filter((data) => {
         if (trendingState.trendingFilter == "movie") { // FILTER BY MEDIA TYPE
             return data.media_type == "movie"
@@ -42,6 +44,7 @@ function Trending() {
             axios.get(`${API}${API_KEY}`)
                 .then((movie) => {
                     setMovie(movie.data.results)
+                    setLoading(false)
                 });
         } catch (error) {
             console.log("Error in API", error)
@@ -49,19 +52,25 @@ function Trending() {
     }, []);
 
     return (
-        <div className='container' style={{marginBottom: "90px"}}>
-            <div className="title-settings-box">
-                <h1 className='title'><span className='sharp'>#</span> Trending</h1>
-                <Popover
-                    placement="topRight"
-                    content={<Filter />}
-                    title={PopoverTitleTrending} trigger="click"
-                >
-                    <GiSettingsKnobs />
-                </Popover>
-            </div>
-            <TrendingData filter={filter} />
-        </div>
+        <>
+            {loading ? <>
+                <Homemovie/>
+            </> : <>
+                <div className='container' style={{ marginBottom: "90px" }}>
+                    <div className="title-settings-box">
+                        <h1 className='title'><span className='sharp'>#</span> Trending</h1>
+                        <Popover
+                            placement="topRight"
+                            content={<Filter />}
+                            title={PopoverTitleTrending} trigger="click"
+                        >
+                            <GiSettingsKnobs />
+                        </Popover>
+                    </div>
+                    <TrendingData filter={filter} />
+                </div>
+            </>}
+        </>
     )
 }
 

@@ -27,7 +27,7 @@ function Actor() {
             axios.get(`${API}${API_KEY}&page=${currentPage}`)
                 .then((actor) => {
                     setActor(actor.data)
-                    // setLoading(false)
+                    setLoading(false)
                 });
         } catch (error) {
             console.log("Error in API", error)
