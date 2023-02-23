@@ -135,6 +135,7 @@ $large-screens: 1200px;
                 overflow: hidden;
                 transition: 200ms;
                 .ant-image {
+                    aspect-ratio: 9 /16;
                     object-fit: cover;
                     height: 100%;
                 }
