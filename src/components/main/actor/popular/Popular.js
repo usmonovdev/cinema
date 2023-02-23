@@ -19,13 +19,15 @@ function Popular() {
             console.log("Error in API", error)
         }
     }, []);
-    
+
     return (
         <div className='container'>
-            <div className="title-settings-box">
-                <h1 className='title'><span className='sharp'>#</span> Popular Actors</h1>
+            <div className="movies-box">
+                <div className="title-settings-box">
+                    <h1 className='title'><span className='sharp'>#</span> Popular Actors</h1>
+                </div>
+                <PopularData popular={popular} />
             </div>
-            <PopularData popular={popular} />
         </div>
     )
 }

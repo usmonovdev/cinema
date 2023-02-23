@@ -41,7 +41,7 @@ function PopularData({ popular }) {
         }
     }
     return (
-        <div className='popular-data'>
+        <>
             {actor?.length !== 0 ?
                 <>
                     <motion.ul
@@ -69,7 +69,7 @@ function PopularData({ popular }) {
                                                 preview={false}
                                                 fallback={actorImage}
                                             />
-                                            <p>{name}</p>
+                                            <p className='actor-name'>{name}</p>
                                         </div>
                                     </Link>
 
@@ -88,7 +88,6 @@ function PopularData({ popular }) {
             {state.completed ? "" :
                 <>
                     <button
-                        style={{ marginBottom: "50px" }}
                         className='load-more'
                         onClick={loadMore}
                     >
@@ -103,7 +102,7 @@ function PopularData({ popular }) {
                     </button>
                 </>
             }
-        </div>
+        </>
     )
 }
 

@@ -101,7 +101,6 @@ function SimilarData({ filter }) {
                     <button 
                         className='load-more' 
                         onClick={loadMore}
-                        style={{position: "relative", top: "85px"}}
                     >
                         {state.loading ?
                             <div className='spin'></div>

@@ -33,7 +33,7 @@ function Similar({ moviesId }) {
             return data
         }
     });
-    
+
     useEffect(() => {
         try {
             axios.get(`${API}${moviesId}/similar?api_key=${API_KEY}`)
@@ -47,19 +47,22 @@ function Similar({ moviesId }) {
     return (
         <>
             {movie?.length !== 0 ? <>
-                <div className='container' style={{ marginBottom: "60px" }}>
-                    <div className="title-settings-box">
-                        <h1 className='title-similar'><span className='sharp'>#</span> Similar Movies</h1>
-                        <Popover
-                            placement="topRight"
-                            content={<Filter />}
-                            title={PopoverTitleTrending}
-                            trigger="click"
-                        >
-                            <GiSettingsKnobs />
-                        </Popover>
+                <div className='container'>
+                    <div className="movies-box">
+                        <div className="title-settings-box">
+                            <h1 className='title-similar'><span className='sharp'>#</span> Similar Movies</h1>
+                            <Popover
+                                placement="topRight"
+                                content={<Filter />}
+                                title={PopoverTitleTrending}
+                                trigger="click"
+                            >
+                                <GiSettingsKnobs />
+                            </Popover>
+                        </div>
+                        <SimilarData filter={filter} />
                     </div>
-                    <SimilarData filter={filter} />
+
                 </div>
             </> : ""}
         </>
