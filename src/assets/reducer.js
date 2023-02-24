@@ -145,12 +145,12 @@ export const reducer = (state, action) => {
             }
         }
         // FOR ADD TO LIKED MOVIES
-        // case "LIKE": {
-        //     return {
-        //         ...state,
-        //         like: state.like = !like
-        //     }
-        // }
+        case "LIKE": {
+            return {
+                ...state,
+                localMovie: action.newLocalMovie
+            }
+        }
         default:
             return;
     }
@@ -166,5 +166,6 @@ export const initial = {
     color: window.localStorage.getItem("THEME_COLOR") == null ?
         "#e6b31e" : window.localStorage.getItem("THEME_COLOR"),
     speed: window.localStorage.getItem("SLIDER_SPEED") == null ?
-        "10000" : window.localStorage.getItem("SLIDER_SPEED")
+        "10000" : window.localStorage.getItem("SLIDER_SPEED"),
+    localMovie: []
 }

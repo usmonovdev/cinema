@@ -12,6 +12,7 @@ import Footer from "../../footer/Footer"
 import showImage from "../../../assets/actor-photo-not-downloaded.jpg"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import TvLoad from "../../loading/movie/Movie"
+import ImageLoading from "../../loading/image/Image"
 const API = "https://api.themoviedb.org/3/tv/popular?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
@@ -71,6 +72,9 @@ function Tvshow() {
                                                             src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
                                                             alt={name}
                                                             fallback={showImage}
+                                                            placeholder={
+                                                                <ImageLoading />
+                                                            }
                                                         />
                                                         <div className="trending-movie-info">
                                                             <div className="like-and-open">

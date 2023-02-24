@@ -15,7 +15,7 @@ import Settings from "./components/settings/Settings";
 function App() {
     // SET THEME COLOR USING LOCALSTORAGE
     const root = document.querySelector(":root")
-    root.style.setProperty("--yellow",
+    root.style.setProperty("--yellow" ,
         window.localStorage.getItem("THEME_COLOR") == null ?
             "#e6b31e" : window.localStorage.getItem("THEME_COLOR"))
 

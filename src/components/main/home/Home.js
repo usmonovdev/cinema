@@ -112,7 +112,7 @@ function Home() {
             <Trending />
             <TopRated />
             <Upcoming />
-            <Footer />
+            {loading ? "" : <Footer />}
         </>
     )
 }

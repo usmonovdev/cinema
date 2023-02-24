@@ -10,6 +10,7 @@ import Popular from './popular/Popular'
 import notDownloaded from "../../../assets/actor-photo-not-downloaded.jpg"
 import ActorLoader from "../../loading/movieOpen/Movie"
 import SimilarLoader from "../../loading/similar/Similar"
+import ImageLoading from "../../loading/image/Image"
 import "./actors.scss"
 
 function ActorOpen() {
@@ -55,6 +56,9 @@ function ActorOpen() {
                                         width="100px"
                                         src={`https://image.tmdb.org/t/p/${imgState.size}/${profile_path}`}
                                         fallback={notDownloaded}
+                                        placeholder={
+                                            <ImageLoading />
+                                        }
                                     />
                                 </div>
                                 <Right actor={actor} />

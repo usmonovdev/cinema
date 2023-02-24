@@ -9,6 +9,7 @@ import { Image } from 'antd'
 import actor from "../../../../assets/actor-photo-not-downloaded.jpg"
 import { Link } from 'react-router-dom'
 import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
+import ImageLoading from "../../../loading/image/Image"
 
 function Actors({ moviesId, type }) {
     const { imgState } = useMovieContext()
@@ -117,6 +118,9 @@ function Actors({ moviesId, type }) {
                                                 src={`https://image.tmdb.org/t/p/${imgState.size}/${data.profile_path}`}
                                                 alt={data.name}
                                                 fallback={actor}
+                                                placeholder={
+                                                    <ImageLoading />
+                                                }
                                             />
                                             <div className='actor-name-box'>
                                                 <p className={`${data.name?.length > "18" ? "anim" : ""}`}>{data.name}</p>

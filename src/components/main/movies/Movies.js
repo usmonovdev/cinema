@@ -11,6 +11,7 @@ import Navbar from "../../navbar/Navbar"
 import Footer from "../../footer/Footer"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import MovieLoad from '../../loading/movie/Movie';
+import ImageLoading from "../../loading/image/Image"
 const API = "https://api.themoviedb.org/3/movie/popular?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
@@ -73,6 +74,9 @@ function Movies() {
                                                         src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
                                                         alt={title}
                                                         fallback={movie}
+                                                        placeholder={
+                                                            <ImageLoading />
+                                                        }
                                                     />
                                                     <div className="trending-movie-info">
                                                         <div className="like-and-open">

@@ -10,6 +10,7 @@ import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import actorImage from "../../../../assets/actor-photo-not-downloaded.jpg"
 import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
+import ImageLoading from "../../../loading/image/Image"
 
 function PopularData({ popular }) {
     // GET THE INITIAL STATES
@@ -68,6 +69,9 @@ function PopularData({ popular }) {
                                                 alt={name}
                                                 preview={false}
                                                 fallback={actorImage}
+                                                placeholder={
+                                                    <ImageLoading />
+                                                }
                                             />
                                             <p className='actor-name'>{name}</p>
                                         </div>

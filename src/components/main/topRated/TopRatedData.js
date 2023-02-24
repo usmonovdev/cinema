@@ -9,6 +9,7 @@ import { container, item } from '../../../assets/Framer'
 import { reducer } from '../../../assets/reducer';
 import { slice } from 'lodash';
 import movie from "../../../assets/actor-photo-not-downloaded.jpg"
+import ImageLoading from "../../loading/image/Image"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 
 function TopRatedData({ filter }) {
@@ -62,6 +63,9 @@ function TopRatedData({ filter }) {
                                             src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
                                             alt={name}
                                             fallback={movie}
+                                            placeholder={
+                                                <ImageLoading />
+                                            }
                                         />
                                         <div className="trending-movie-info">
                                             <div className="like-and-open">

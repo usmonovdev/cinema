@@ -11,6 +11,7 @@ import Footer from "../../footer/Footer"
 import actorImage from "../../../assets/actor-photo-not-downloaded.jpg"
 import ActorLoad from "../../loading/movie/Movie"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
+import ImageLoading from "../../loading/image/Image"
 import "../trending/trending.scss"
 const API = "https://api.themoviedb.org/3/person/popular?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
@@ -57,7 +58,6 @@ function Actor() {
                                     variants={container}
                                     initial="hidden"
                                     animate="visible"
-                                    style={{ marginBottom: "50px" }}
                                 >
                                     {actor.results?.map((data) => {
                                         const { id, profile_path, title, name, popularity } = data
@@ -73,6 +73,9 @@ function Actor() {
                                                         src={`https://image.tmdb.org/t/p/${imgState.size}/${profile_path}`}
                                                         alt={title}
                                                         fallback={actorImage}
+                                                        placeholder={
+                                                            <ImageLoading />
+                                                        }
                                                     />
                                                     <div className="trending-movie-info">
                                                         <div className="like-and-open">

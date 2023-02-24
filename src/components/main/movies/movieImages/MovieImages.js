@@ -8,6 +8,7 @@ import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { Image } from 'antd'
 import logo from "../../../../assets/movie-photo-not-downloaded.jpg"
 import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
+import ImageLoading from "../../../loading/image/Image"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function MovieImages({ moviesId, type }) {
@@ -103,6 +104,9 @@ function MovieImages({ moviesId, type }) {
                                                 src={`https://image.tmdb.org/t/p/${imgState.size}/${data.file_path}`}
                                                 alt={data.name}
                                                 fallback={logo}
+                                                placeholder={
+                                                    <ImageLoading />
+                                                }
                                             />
                                         </div>
                                     )

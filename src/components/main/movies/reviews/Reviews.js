@@ -7,6 +7,7 @@ import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
 import "../../../navbar/navbar.scss"
 import "./reviews.scss"
 import "../../../../assets/slick.css"
+import ImageLoading from "../../../loading/image/Image"
 
 function Reviews({ moviesId, type }) {
     const { imgState } = useMovieContext()
@@ -41,6 +42,9 @@ function Reviews({ moviesId, type }) {
                                             src={`https://image.tmdb.org/t/p/${imgState.size}/${author_details.avatar_path}`}
                                             alt={author}
                                             fallback={image}
+                                            placeholder={
+                                                <ImageLoading />
+                                            }
                                         />
                                     </div>
                                     <div className='commit'>

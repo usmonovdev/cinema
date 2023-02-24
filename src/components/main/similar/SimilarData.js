@@ -10,6 +10,7 @@ import { container, item } from '../../../assets/Framer'
 import { reducer } from "../../../assets/reducer"
 import { Image } from 'antd'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
+import ImageLoading from "../../loading/image/Image"
 
 function SimilarData({ filter }) {
     const { imgState } = useMovieContext()
@@ -60,6 +61,9 @@ function SimilarData({ filter }) {
                                             src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
                                             alt={title}
                                             fallback={actor}
+                                            placeholder={
+                                                <ImageLoading />
+                                            }
                                         />
                                         <div className="trending-movie-info">
                                             <div className="like-and-open">
