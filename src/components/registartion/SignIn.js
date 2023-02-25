@@ -6,9 +6,9 @@ import Navbar from '../navbar/Navbar'
 import Footer from "../footer/Footer"
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import "./registration.scss"
 
 function SignIn() {
-    const [register, setRegister] = useState(true)
     const [password, setPassword] = useState(true)
     const code = () => {
         if (document.getElementById("passwordd").type === "password") {

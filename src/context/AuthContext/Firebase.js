@@ -1,11 +1,18 @@
 import { initializeApp } from "firebase/app";
-
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 const firebaseConfig = {
-    apiKey: "AIzaSyCpg-1AMNMJVueGz09MOV-bNXr5nW_nmzk",
-    authDomain: "cinema-2b5b1.firebaseapp.com",
-    projectId: "cinema-2b5b1",
-    storageBucket: "cinema-2b5b1.appspot.com",
-    messagingSenderId: "982831624225",
-    appId: "1:982831624225:web:a39376ad68fc4eb88cb360"
+    apiKey: "AIzaSyBMqmeDUWARlAf_Yb2J2pJuBmidJ5rzbRM",
+    authDomain: "cinema-6df49.firebaseapp.com",
+    projectId: "cinema-6df49",
+    storageBucket: "cinema-6df49.appspot.com",
+    messagingSenderId: "805461826492",
+    appId: "1:805461826492:web:31fb220587b404cf79e9b9"
 };
-const app = initializeApp(firebaseConfig);
+
+// Initialize Firebase
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth();
+export const storage = getStorage();
+export const db = getFirestore();

@@ -46,6 +46,7 @@
                         outline: none;
                         background-color: transparent;
                         border:  2px solid var(--white);
+                        border-radius: 0;
                         color: var(--white);
                         &:focus, &:hover {
                             border: 2px solid var(--yellow);
@@ -66,6 +67,19 @@
                             &:hover {
                                 color: var(--yellow);
                             }
+                        }
+                    }
+                    .label {
+                        display: flex;
+                        justify-content: left;
+                        p {
+                            position: relative;
+                            left: 30px;
+                            text-align: left;
+                            cursor: pointer;
+                        }
+                        #image {
+                            display: none;
                         }
                     }
                 }
@@ -101,6 +115,7 @@
                     background-color: var(--yellow);
                     border: none;
                     cursor: pointer;
+                    font-size: 16px;
                     &:hover svg{
                         animation: continue 800ms forwards;
                     }
