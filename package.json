@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.2.1",
     "antd": "^5.1.5",
     "axios": "^1.2.2",
+    "firebase": "^9.17.1",
     "framer-motion": "^8.4.0",
     "hamburger-react": "^2.5.0",
     "lodash": "^4.17.21",

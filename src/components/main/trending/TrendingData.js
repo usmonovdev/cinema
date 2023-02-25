@@ -1,16 +1,11 @@
-import React, { useReducer, useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useReducer } from 'react'
 import { motion } from 'framer-motion';
 import { container, item } from '../../../assets/Framer'
-import { AiFillHeart, AiFillStar, AiOutlineHeart } from 'react-icons/ai'
+import { AiFillStar } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
-import { Image } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
 import { reducer } from '../../../assets/reducer';
 import { slice } from 'lodash';
-import movie from "../../../assets/actor-photo-not-downloaded.jpg"
-import { useMovieContext } from '../../../context/MovieContex/MovieContex';
-import ImageLoading from "../../loading/image/Image"
 import TrendingLike from './TrendingLike';
 
 function TrendingData({ filter }) {
@@ -50,7 +45,7 @@ function TrendingData({ filter }) {
                         animate="visible"
                     >
                         {initialPosts?.map((data) => {
-                            const { id, poster_path, title, name, media_type, vote_average } = data
+                            const { id, title, name, vote_average } = data
                             return (
                                 <motion.li
                                     className="trending-movie-container"
@@ -78,7 +73,6 @@ function TrendingData({ filter }) {
                         <p>Items not found!</p>
                     </div>
                 </div>
-
             }
             {state.completed ? "" :
                 <>

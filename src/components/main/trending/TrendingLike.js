@@ -1,17 +1,17 @@
 import { Image } from 'antd'
-import React, { useReducer, useState } from 'react'
+import React, { useState } from 'react'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import ImageLoading from "../../loading/image/Image"
 import { message } from 'antd';
-import { initial, reducer } from '../../../assets/reducer'
 import { useEffect } from 'react'
+import movieImage from "../../../assets/movie-photo-not-downloaded.jpg"
 
 function TrendingLike({ data }) {
-    const { poster_path, media_type, id, title, movie } = data
+    const { poster_path, media_type, id, title } = data
     const { imgState } = useMovieContext()
-    // const [state, dispatch] = useReducer(reducer, initial)
+
     const [addLike, setAddLike] = useState(false)
     const [localMovie, setLocalMovie] = useState([])
     console.log("Local movie", localMovie)
@@ -46,7 +46,7 @@ function TrendingLike({ data }) {
                 preview={false}
                 src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
                 alt={title}
-                fallback={movie}
+                fallback={movieImage}
                 placeholder={
                     <ImageLoading />
                 }

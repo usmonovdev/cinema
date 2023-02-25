@@ -52,7 +52,7 @@ function Home() {
         return () => {
             clearInterval(time)
         }
-    });
+    }, [index]);
     return (
         <>
             {loading ? <>

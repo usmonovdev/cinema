@@ -77,8 +77,8 @@ function Navbar() {
                             <li><Link onClick={showDrawer}><BiSearch className='link-icon' />Search</Link></li>
                         </ul>
                         <ul className='user'>
-                            <Link to="/register" className='sign-in' style={{ backgroundColor: colorState.color }}>
-                                <li>Sign In</li>
+                            <Link to="/sign-up" className='sign-in' style={{ backgroundColor: colorState.color }}>
+                                <li>Sign Up</li>
                             </Link>
                         </ul>
                     </div>

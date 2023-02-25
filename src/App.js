@@ -11,6 +11,8 @@ import Actor from "./components/main/actor/Actor";
 import ActorOpen from "./components/main/actor/ActorOpen";
 import ScrollToTop from "./assets/ScrollToTop";
 import Settings from "./components/settings/Settings";
+import SignUp from "./components/registartion/SignUp";
+import SignIn from "./components/registartion/SignIn";
 
 function App() {
     // SET THEME COLOR USING LOCALSTORAGE
@@ -25,7 +27,8 @@ function App() {
                 <ScrollToTop />
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/register" element={<Registration />} />
+                    <Route path="/sign-up" element={<SignUp />} />
+                    <Route path="/sign-in" element={<SignIn />} />
                     <Route path="/movie" element={<Movies />} />
                     <Route path="/movie/:moviesId" element={<MoviesOpen />} />
                     <Route path="/show" element={<Tvshow />} />

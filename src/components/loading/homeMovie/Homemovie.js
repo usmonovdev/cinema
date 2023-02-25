@@ -8,7 +8,6 @@ function Homemovie() {
                 <div className="big-text"></div>
                 <ul>
                     <li></li>
-                    <li></li>
                 </ul>
             </div>
             <div className="photo-box">

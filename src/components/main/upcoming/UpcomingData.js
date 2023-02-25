@@ -8,6 +8,8 @@ import { RiMovie2Line } from "react-icons/ri"
 import { reducer } from '../../../assets/reducer';
 import { slice } from 'lodash';
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
+import { Image } from 'antd';
+import movieImage from "../../../assets/movie-photo-not-downloaded.jpg"
 
 function UpcomingData({ filter }) {
     const { imgState } = useMovieContext()
@@ -51,7 +53,12 @@ function UpcomingData({ filter }) {
                                     key={id}
                                 >
                                     <div className="trending-movie-box">
-                                        <img src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`} alt={name} />
+                                        <Image 
+                                            preview={false}
+                                            src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`} 
+                                            alt={name} 
+                                            fallback={movieImage}
+                                        />
                                         <div className="trending-movie-info">
                                             <div className="like-and-open">
                                                 <div className='icon'>

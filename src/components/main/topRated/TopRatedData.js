@@ -8,7 +8,7 @@ import { RiMovie2Line } from "react-icons/ri"
 import { container, item } from '../../../assets/Framer'
 import { reducer } from '../../../assets/reducer';
 import { slice } from 'lodash';
-import movie from "../../../assets/actor-photo-not-downloaded.jpg"
+import movie from "../../../assets/movie-photo-not-downloaded.jpg"
 import ImageLoading from "../../loading/image/Image"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 
