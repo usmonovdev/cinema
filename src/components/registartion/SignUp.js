@@ -50,7 +50,6 @@ function SignUp() {
                         email,
                         photoURL: downloadURL,
                     });
-                    
                     navigate("/")
                 });
             })
@@ -111,7 +110,7 @@ function SignUp() {
                                         {password ? <AiOutlineEye onClick={code} /> : <AiOutlineEyeInvisible onClick={code} />}
                                     </label>
                                     <label className='label' htmlFor="image">
-                                        <input type="file" id='image' />
+                                        <input type="file" accept='image/*' id='image' />
                                         <p>Profile Photo</p>
                                         <BiImage />
                                     </label>

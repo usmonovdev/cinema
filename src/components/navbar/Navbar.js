@@ -4,7 +4,6 @@ import logo from "../../assets/logo-white.png"
 import { BiSearch } from "react-icons/bi"
 import { RiMovie2Line, RiBearSmileLine, RiHome2Line, RiSettingsLine } from "react-icons/ri"
 import { MdSlideshow } from "react-icons/md"
-import "./navbar.scss"
 import Hamburger from 'hamburger-react'
 import { motion } from "framer-motion"
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
@@ -12,11 +11,12 @@ import Search from './Search'
 import { Drawer, Image } from 'antd'
 import { reducer } from '../../assets/reducer'
 import { AuthContext } from '../../context/AuthContext/AuthContext'
+import "./navbar.scss"
 
 function Navbar() {
     const { currentUser } = useContext(AuthContext)
-    // console.log(currentUser)
     const { colorState } = useMovieContext()
+
     const initialState = {
         drawer: false
     }
@@ -93,8 +93,8 @@ function Navbar() {
                                         className='user-photo'
                                         preview={false}
                                         src={currentUser.photoURL}
-                                        width="40px"
                                     />
+                                    <p className='user-name'>{currentUser.displayName}</p>
                                 </Link>
                             }
                         </ul>

@@ -146,6 +146,26 @@ body {
                     padding: 0 15px;
                     background-color: var(--yellow);
                 }
+                .user-photo {
+                    width: 40px;
+                    background-color: var(--yellow);
+                }
+                .user-name {
+                    display: none;
+                }
+                @media screen and (max-width: $small-screens) {
+                    height: 40px;
+                    background-color: var(--yellow);
+                    display: flex;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    .user-photo {
+                        display: none;
+                    }
+                    .user-name {
+                        display: block;
+                    }
+                }
             }
         }
         .links-box.active {

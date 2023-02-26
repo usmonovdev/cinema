@@ -1,6 +1,29 @@
 $yellow-opacity: #e6b41e33;
 $mobile: 480px;
 
+.tab-box {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: 0 0 10px 0;
+    .tab {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        padding: 4px;
+        background-color: var(--yellow);
+        border: 0;
+        color: var(--white);
+        cursor: pointer;
+        font-size: 16px;
+        svg {
+            font-size: 20px;
+        }
+    }
+}
+
+
 .container {
     .settings-container {
         @media screen and (max-width: $mobile) {
@@ -36,6 +59,49 @@ $mobile: 480px;
         li {
             margin-bottom: 30px;
             list-style: none;
+            .text-info {
+                margin: 6px 0 4px 0;
+            }
+            .user-photo-settings {
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+                .avatar {
+                    width: 50px;
+                    background-color: var(--yellow);
+                }
+                #upload {
+                    display: none;
+                }
+                label {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 4px;
+                    border: 0;
+                    color: var(--white);
+                    background-color: var(--yellow);
+                    cursor: pointer;
+                }
+                div {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 10px;
+                    button {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 4px;
+                        height: 32px;
+                        border: 2px solid var(--yellow);
+                        color: var(--white);
+                        background-color: transparent;
+                        cursor: pointer;
+                        font-size: 20px;
+                    }
+                }
+            }
             .setting-title {
                 display: flex;
                 flex-direction: row;
