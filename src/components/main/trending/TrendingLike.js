@@ -14,7 +14,7 @@ function TrendingLike({ data }) {
 
     const [addLike, setAddLike] = useState(false)
     const [localMovie, setLocalMovie] = useState([])
-    console.log("Local movie", localMovie)
+    // console.log("Local movie", localMovie)
     // FOR USER INFO IN ADDING LIKED MOVIES
     const [messageApi, contextHolder] = message.useMessage();
     const key = 'updatable';

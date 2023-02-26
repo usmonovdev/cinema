@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import "./App.css"
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/main/home/Home";
@@ -12,31 +13,33 @@ import ScrollToTop from "./assets/ScrollToTop";
 import Settings from "./components/settings/Settings";
 import SignUp from "./components/registartion/SignUp";
 import SignIn from "./components/registartion/SignIn";
+import { AuthContextProvider } from "./context/AuthContext/AuthContext";
 
 function App() {
     // SET THEME COLOR USING LOCALSTORAGE
     const root = document.querySelector(":root")
-    root.style.setProperty("--yellow" ,
+    root.style.setProperty("--yellow",
         window.localStorage.getItem("THEME_COLOR") == null ?
             "#e6b31e" : window.localStorage.getItem("THEME_COLOR"))
-
     return (
         <>
-            <MovieContextProvider>
-                <ScrollToTop />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/sign-up" element={<SignUp />} />
-                    <Route path="/sign-in" element={<SignIn />} />
-                    <Route path="/movie" element={<Movies />} />
-                    <Route path="/movie/:moviesId" element={<MoviesOpen />} />
-                    <Route path="/show" element={<Tvshow />} />
-                    <Route path="/show/:showId" element={<ShowOpen />} />
-                    <Route path="/actor" element={<Actor />} />
-                    <Route path="/actor/:actorId" element={<ActorOpen />} />
-                    <Route path="/settings" element={<Settings />} />
-                </Routes>
-            </MovieContextProvider>
+            <AuthContextProvider>
+                <MovieContextProvider>
+                    <ScrollToTop />
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/sign-up" element={<SignUp />} />
+                        <Route path="/sign-in" element={<SignIn />} />
+                        <Route path="/movie" element={<Movies />} />
+                        <Route path="/movie/:moviesId" element={<MoviesOpen />} />
+                        <Route path="/show" element={<Tvshow />} />
+                        <Route path="/show/:showId" element={<ShowOpen />} />
+                        <Route path="/actor" element={<Actor />} />
+                        <Route path="/actor/:actorId" element={<ActorOpen />} />
+                        <Route path="/settings" element={<Settings />} />
+                    </Routes>
+                </MovieContextProvider>
+            </AuthContextProvider>
         </>
     );
 }

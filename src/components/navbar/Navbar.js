@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useReducer, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import logo from "../../assets/logo-white.png"
 import { BiSearch } from "react-icons/bi"
@@ -9,12 +9,13 @@ import Hamburger from 'hamburger-react'
 import { motion } from "framer-motion"
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
 import Search from './Search'
-import { Drawer } from 'antd'
-import { useEffect } from 'react'
+import { Drawer, Image } from 'antd'
 import { reducer } from '../../assets/reducer'
-import { useReducer } from 'react'
+import { AuthContext } from '../../context/AuthContext/AuthContext'
 
 function Navbar() {
+    const { currentUser } = useContext(AuthContext)
+    // console.log(currentUser)
     const { colorState } = useMovieContext()
     const initialState = {
         drawer: false
@@ -35,8 +36,12 @@ function Navbar() {
     };
 
     useEffect(() => {
+        currentUser.photoURL !== null ? console.log("is user") : console.log("is not user")
+    }, [])
+
+    useEffect(() => {
         window.addEventListener("keyup", e => {
-            if ( e.key === "Control", e.key === "/") {
+            if (e.key === "Control", e.key === "/") {
                 dispatch({
                     type: "DRAWER_OPEN"
                 })
@@ -77,9 +82,21 @@ function Navbar() {
                             <li><Link onClick={showDrawer}><BiSearch className='link-icon' />Search</Link></li>
                         </ul>
                         <ul className='user'>
-                            <Link to="/sign-up" className='sign-in' style={{ backgroundColor: colorState.color }}>
-                                <li>Sign Up</li>
-                            </Link>
+                            {currentUser.uid == null ?
+                                <>
+                                    <Link to="/sign-up" className='sign-in' style={{ backgroundColor: colorState.color }}>
+                                        <li>Sign Up</li>
+                                    </Link>
+                                </> :
+                                <Link to="/settings">
+                                    <Image
+                                        className='user-photo'
+                                        preview={false}
+                                        src={currentUser.photoURL}
+                                        width="40px"
+                                    />
+                                </Link>
+                            }
                         </ul>
                     </div>
                 </header>

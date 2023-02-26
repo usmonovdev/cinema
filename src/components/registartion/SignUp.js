@@ -50,7 +50,7 @@ function SignUp() {
                         email,
                         photoURL: downloadURL,
                     });
-
+                    
                     navigate("/")
                 });
             })
