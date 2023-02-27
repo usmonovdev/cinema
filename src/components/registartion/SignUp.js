@@ -7,17 +7,21 @@ import Footer from "../footer/Footer"
 import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { message } from 'antd'
+import { ConfigProvider, message, Progress } from 'antd'
 import { auth, db, storage } from '../../context/AuthContext/Firebase'
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
 import "./registration.scss"
 import { BiImage } from 'react-icons/bi'
+import { useMovieContext } from '../../context/MovieContex/MovieContex'
 
 function SignUp() {
+    const { colorState } = useMovieContext()
     const navigate = useNavigate()
     const [messageApi, contextHolder] = message.useMessage();
     const [password, setPassword] = useState(true)
+    const [loading, setLoading] = useState(true)
+    const [isProgress, setIsProgress] = useState()
     const code = () => {
         if (document.getElementById("password").type === "password") {
             setPassword(false)
@@ -38,21 +42,42 @@ function SignUp() {
         try {
             const res = await createUserWithEmailAndPassword(auth, email, password)
             const storageRef = ref(storage, displayName);
-            await uploadBytesResumable(storageRef, file).then(() => {
-                getDownloadURL(storageRef).then(async (downloadURL) => {
-                    await updateProfile(res.user, {
-                        displayName,
-                        photoURL: downloadURL
+            const uploadTask = uploadBytesResumable(storageRef, file);
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    // console.log(progress)
+                    setIsProgress(progress)
+                    console.log('Upload is ' + progress + '% done');
+                    progress >= "0" ? setLoading(false) : setLoading(true)
+                    switch (snapshot.state) {
+                        case 'paused':
+                            console.log('Upload is paused');
+                            break;
+                        case 'running':
+                            console.log('Upload is running');
+                            break;
+                    }
+                },
+                (error) => {
+                    console.log("Image not uploaded!")
+                },
+                () => {
+                    getDownloadURL(storageRef).then(async (downloadURL) => {
+                        await updateProfile(res.user, {
+                            displayName,
+                            photoURL: downloadURL
+                        });
+                        await setDoc(doc(db, "users", res.user.uid), {
+                            uid: res.user.uid,
+                            displayName,
+                            email,
+                            photoURL: downloadURL,
+                        });
+                        navigate("/")
                     });
-                    await setDoc(doc(db, "users", res.user.uid), {
-                        uid: res.user.uid,
-                        displayName,
-                        email,
-                        photoURL: downloadURL,
-                    });
-                    navigate("/")
-                });
-            })
+                }
+            );
         } catch (err) {
             messageApi.open({
                 type: 'error',
@@ -94,7 +119,26 @@ function SignUp() {
                                         <p>Profile Photo</p>
                                         <BiImage />
                                     </label>
-                                    <button>Continue <MdKeyboardArrowRight /></button>
+                                    {loading ?
+                                        <button>
+                                            Continue <MdKeyboardArrowRight />
+                                        </button>
+                                        :
+                                        <>
+
+                                            <ConfigProvider
+                                                theme={{
+                                                    token: {
+                                                        colorPrimary: colorState.color,
+                                                        colorTextBase: "#fff",
+                                                        borderRadius: "0"
+                                                    }
+                                                }}
+                                            >
+                                                <Progress percent={isProgress} status="active" strokeColor={colorState.color} strokeWidth={"40px"} showInfo={false} />
+                                            </ConfigProvider>
+                                        </>
+                                    }
                                 </form>
                                 <p className='already'>Already registered? <span><Link to="/sign-in">Sign In</Link></span></p>
                             </div>

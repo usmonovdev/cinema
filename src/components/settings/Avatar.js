@@ -1,8 +1,11 @@
 import { Image } from 'antd'
 import React from 'react'
+import { useContext } from 'react'
 import { MdDeleteOutline } from 'react-icons/md'
+import { AuthContext } from '../../context/AuthContext/AuthContext'
 
 function Avatar() {
+    const { currentUser } = useContext(AuthContext)
     const handleUpdatePhotoURL = () => {
 
     }
@@ -13,6 +16,7 @@ function Avatar() {
                 <Image
                     className='avatar'
                     preview={false}
+                    src={currentUser?.photoURL}
                 />
                 <div className='form'>
                     <form onSubmit={handleUpdatePhotoURL}>

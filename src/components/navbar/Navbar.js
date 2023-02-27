@@ -93,9 +93,6 @@ function Navbar() {
                                     <p className='user-name'>{currentUser?.displayName}</p>
                                 </Link>
                             }
-                            {/* <Link to="/sign-up" className='sign-in' style={{ backgroundColor: colorState.color }}>
-                                <li>Sign Up</li>
-                            </Link> */}
                         </ul>
                     </div>
                 </header>

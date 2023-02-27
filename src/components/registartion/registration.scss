@@ -1,3 +1,11 @@
+:where(.css-dev-only-do-not-override-144rx06).ant-progress .ant-progress-inner {
+    border-radius:  unset !important;
+}
+
+:where(.css-dev-only-do-not-override-144rx06).ant-progress.ant-progress-success-bg, :where(.css-dev-only-do-not-override-144rx06).ant-progress .ant-progress-bg {
+    border-radius: unset !important;
+}
+
 .container {
     .register-page {
         width: 100%;
