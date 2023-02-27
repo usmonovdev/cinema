@@ -34,7 +34,7 @@ function SignUp() {
         const email = e.target[1].value;
         const password = e.target[2].value;
         const file = e.target[3].files[0];
-        console.log(displayName, email, password, file)
+        // console.log(displayName, email, password, file)
         try {
             const res = await createUserWithEmailAndPassword(auth, email, password)
             const storageRef = ref(storage, displayName);
@@ -60,26 +60,6 @@ function SignUp() {
             });
         }
     }
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault()
-    //     const displayName = e.target[0].value
-    //     const email = e.target[1].value
-    //     const password = e.target[2].value
-    //     const file = e.target[3].files[0]
-
-    //     try {
-    //         const res = await createUserWithEmailAndPassword(auth, email, password)
-    //         const storageRef = ref(storage, displayName);
-    //         const uploadTask = uploadBytesResumable(storageRef, file);
-    //     } catch {
-    //         messageApi.open({
-    //             type: 'error',
-    //             content: 'Failed in create account!',
-    //         });
-    //     }
-
-    // }
     return (
         <>
             {contextHolder}

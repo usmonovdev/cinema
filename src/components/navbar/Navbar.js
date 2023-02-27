@@ -36,10 +36,6 @@ function Navbar() {
     };
 
     useEffect(() => {
-        currentUser.photoURL !== null ? console.log("is user") : console.log("is not user")
-    }, [])
-
-    useEffect(() => {
         window.addEventListener("keyup", e => {
             if (e.key === "Control", e.key === "/") {
                 dispatch({
@@ -82,7 +78,7 @@ function Navbar() {
                             <li><Link onClick={showDrawer}><BiSearch className='link-icon' />Search</Link></li>
                         </ul>
                         <ul className='user'>
-                            {currentUser.uid == null ?
+                            {currentUser?.uid == null ?
                                 <>
                                     <Link to="/sign-up" className='sign-in' style={{ backgroundColor: colorState.color }}>
                                         <li>Sign Up</li>
@@ -94,9 +90,12 @@ function Navbar() {
                                         preview={false}
                                         src={currentUser.photoURL}
                                     />
-                                    <p className='user-name'>{currentUser.displayName}</p>
+                                    <p className='user-name'>{currentUser?.displayName}</p>
                                 </Link>
                             }
+                            {/* <Link to="/sign-up" className='sign-in' style={{ backgroundColor: colorState.color }}>
+                                <li>Sign Up</li>
+                            </Link> */}
                         </ul>
                     </div>
                 </header>

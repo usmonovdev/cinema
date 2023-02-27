@@ -12,14 +12,18 @@ $mobile: 480px;
         align-items: center;
         gap: 6px;
         padding: 4px;
-        background-color: var(--yellow);
-        border: 0;
+        background-color: transparent;
+        border: 2px solid var(--yellow);
         color: var(--white);
         cursor: pointer;
         font-size: 16px;
+        transition: 200ms;
         svg {
             font-size: 20px;
         }
+    }
+    .tab.active {
+        background-color: var(--yellow);
     }
 }
 
@@ -86,19 +90,23 @@ $mobile: 480px;
                 div {
                     display: flex;
                     flex-direction: row;
-                    align-items: center;
-                    gap: 10px;
-                    button {
+                    form {
                         display: flex;
+                        flex-direction: row;
                         align-items: center;
-                        justify-content: center;
-                        padding: 4px;
-                        height: 32px;
-                        border: 2px solid var(--yellow);
-                        color: var(--white);
-                        background-color: transparent;
-                        cursor: pointer;
-                        font-size: 20px;
+                        gap: 10px;  
+                        button {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding: 4px;
+                            height: 32px;
+                            border: 2px solid var(--yellow);
+                            color: var(--white);
+                            background-color: transparent;
+                            cursor: pointer;
+                            font-size: 20px;
+                        }
                     }
                 }
             }

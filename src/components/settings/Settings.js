@@ -23,8 +23,18 @@ function Settings() {
             <div className='container'>
                 <div className='settings-container'>
                     <div className="tab-box">
-                        <button className='tab' onClick={() => setTab(true)}><HiPencil />Appearance</button>
-                        <button className='tab' onClick={() => setTab(false)}><MdAccountCircle />Account</button>
+                        <button 
+                            className={`tab ${tab ? "active" : ""}`} 
+                            onClick={() => setTab(true)}
+                        >
+                            <HiPencil />Appearance
+                        </button>
+                        <button 
+                            className={`tab ${!tab ? "active" : ""}`} 
+                            onClick={() => setTab(false)}
+                        >
+                            <MdAccountCircle />Account
+                        </button>
                     </div>
                 </div>
                 {!tab ?
