@@ -38,7 +38,7 @@ function SignUp() {
         const email = e.target[1].value;
         const password = e.target[2].value;
         const file = e.target[3].files[0];
-        // console.log(displayName, email, password, file)
+        
         try {
             const res = await createUserWithEmailAndPassword(auth, email, password)
             const storageRef = ref(storage, displayName);
@@ -46,7 +46,6 @@ function SignUp() {
             uploadTask.on('state_changed',
                 (snapshot) => {
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    // console.log(progress)
                     setIsProgress(progress)
                     console.log('Upload is ' + progress + '% done');
                     progress >= "0" ? setLoading(false) : setLoading(true)
@@ -124,20 +123,22 @@ function SignUp() {
                                             Continue <MdKeyboardArrowRight />
                                         </button>
                                         :
-                                        <>
-
-                                            <ConfigProvider
-                                                theme={{
-                                                    token: {
-                                                        colorPrimary: colorState.color,
-                                                        colorTextBase: "#fff",
-                                                        borderRadius: "0"
-                                                    }
-                                                }}
-                                            >
-                                                <Progress percent={isProgress} status="active" strokeColor={colorState.color} strokeWidth={"40px"} showInfo={false} />
-                                            </ConfigProvider>
-                                        </>
+                                        <ConfigProvider
+                                            theme={{
+                                                token: {
+                                                    colorTextBase: "#fff",
+                                                }
+                                            }}
+                                        >
+                                            <Progress
+                                                percent={isProgress}
+                                                status="active"
+                                                strokeColor={colorState.color}
+                                                strokeWidth={"40px"}
+                                                showInfo={false}
+                                                strokeLinecap="butt"
+                                            />
+                                        </ConfigProvider>
                                     }
                                 </form>
                                 <p className='already'>Already registered? <span><Link to="/sign-in">Sign In</Link></span></p>
