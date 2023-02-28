@@ -1,23 +1,32 @@
-import React, { useContext, useEffect } from 'react'
-import { Image } from 'antd'
+import React, { useContext, useState } from 'react'
+import { Image, Progress } from 'antd'
 import { updateProfile } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
-import { MdDeleteOutline } from 'react-icons/md'
 import { AuthContext } from '../../context/AuthContext/AuthContext'
 import { db, storage } from '../../context/AuthContext/Firebase'
 
 function Avatar() {
+
     const { currentUser } = useContext(AuthContext)
+    const [photo, setPhoto] = useState(currentUser.photoURL)
+    const [loading, setLoading] = useState(false)
+    const [isProgress, setIsProgress] = useState()
+
+    setInterval(() => {
+        setPhoto(currentUser.photoURL)
+    }, 1000);
+    
     const handleUpdatePhotoURL = (e) => {
         e.preventDefault()
         const file = e.target[0].files[0]
-        const storageRef = ref(storage, currentUser.displayName);
+        const storageRef = ref(storage, currentUser.photoURL);
         const uploadTask = uploadBytesResumable(storageRef, file);
         uploadTask.on('state_changed',
             (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
+                setIsProgress(progress)
+                progress == "100" ? setLoading(false) : setLoading(true)
                 switch (snapshot.state) {
                     case 'paused':
                         console.log('Upload is paused');
@@ -50,18 +59,31 @@ function Avatar() {
         <>
             <p className='text-info'>Avatar</p>
             <div className='user-photo-settings'>
-                <Image
-                    className='avatar'
-                    preview={false}
-                    src={currentUser?.photoURL}
-                />
+                <div className="avatar">
+                    {loading ?
+                        <Progress
+                            className='progress'
+                            type="circle"
+                            percent={isProgress}
+                            strokeWidth={16}
+                            width={40}
+                            showInfo={false}
+                            strokeColor="#fff"
+                        /> :
+                        <Image
+                            preview={false}
+                            src={photo}
+                        />
+                    }
+                </div>
+
                 <div className='form'>
                     <form onSubmit={handleUpdatePhotoURL}>
                         <input type="file" id='upload' accept='image/*' />
                         <label htmlFor="upload">
                             Upload
                         </label>
-                        <button><MdDeleteOutline /></button>
+                        <button onClick={() => setLoading(true)}>Save</button>
                     </form>
                 </div>
             </div>

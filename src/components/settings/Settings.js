@@ -9,6 +9,7 @@ import "./settings.scss"
 import { useState } from 'react'
 import { MdAccountCircle } from 'react-icons/md'
 import { HiPencil } from 'react-icons/hi'
+import Name from './Name'
 
 function Settings() {
     const [tab, setTab] = useState(true)
@@ -23,14 +24,14 @@ function Settings() {
             <div className='container'>
                 <div className='settings-container'>
                     <div className="tab-box">
-                        <button 
-                            className={`tab ${tab ? "active" : ""}`} 
+                        <button
+                            className={`tab ${tab ? "active" : ""}`}
                             onClick={() => setTab(true)}
                         >
                             <HiPencil />Appearance
                         </button>
-                        <button 
-                            className={`tab ${!tab ? "active" : ""}`} 
+                        <button
+                            className={`tab ${!tab ? "active" : ""}`}
                             onClick={() => setTab(false)}
                         >
                             <MdAccountCircle />Account
@@ -48,6 +49,9 @@ function Settings() {
                         <ul className='settings'>
                             <li>
                                 <Avatar />
+                            </li>
+                            <li>
+                                <Name />
                             </li>
                         </ul>
                     </div>

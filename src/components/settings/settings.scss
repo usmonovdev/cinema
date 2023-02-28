@@ -72,7 +72,17 @@ $mobile: 480px;
                 gap: 10px;
                 .avatar {
                     width: 50px;
+                    height: 50px;
                     background-color: var(--yellow);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .progress {
+                        animation: spin 1.3s infinite linear;
+                    }
+                    img {
+                        aspect-ratio: 4 / 4;
+                    }
                 }
                 #upload {
                     display: none;
@@ -105,7 +115,49 @@ $mobile: 480px;
                             color: var(--white);
                             background-color: transparent;
                             cursor: pointer;
-                            font-size: 20px;
+                            transition: 200ms;
+                            &:hover {
+                                background-color: var(--yellow);
+                            }
+                        }
+                    }
+                }
+            }
+            .name {
+                div {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    margin-top: 10px;
+                    gap: 10px;
+                    input {
+                        display: inline;
+                        box-sizing: border-box;
+                        width: 170px;
+                        height: 32px;
+                        outline: none;
+                        background-color: transparent;
+                        padding: 4px;
+                        border: 2px solid var(--white);
+                        color: var(--white);
+                        transition: 200ms;
+                        &:focus {
+                            border: 2px solid var(--yellow);
+                        }
+                    }
+                    button {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 4px;
+                        height: 32px;
+                        border: 2px solid var(--yellow);
+                        color: var(--white);
+                        background-color: transparent;
+                        cursor: pointer;
+                        transition: 200ms;
+                        &:hover {
+                            background-color: var(--yellow);
                         }
                     }
                 }
