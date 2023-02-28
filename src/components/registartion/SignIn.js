@@ -69,10 +69,10 @@ function SignIn() {
                                 <form onSubmit={handleSubmit}>
                                     <input type="text" placeholder='Email' />
                                     <label htmlFor="#password">
-                                        <input type="password" id='passwordd' placeholder='Passowrd' />
+                                        <input type="password" id='passwordd' placeholder='Password' />
                                         {password ? <AiOutlineEye onClick={code} /> : <AiOutlineEyeInvisible onClick={code} />}
                                     </label>
-                                <p className='forgot'>Forgot Password?</p>
+                                <p className='forgot'><Link to="/reset-password">Forgot Password?</Link></p>
                                 <button>Continue <MdKeyboardArrowRight /></button>
                                 <p className='already'>You need Account? <span><Link to="/sign-up">Sign Up</Link></span></p>
                                 </form>

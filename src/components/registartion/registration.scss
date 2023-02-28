@@ -90,6 +90,9 @@
                     &:hover {
                         text-decoration: underline;
                     }
+                    a {
+                        color: var(--yellow);
+                    }
                 }
                 .already {
                     text-align: center;

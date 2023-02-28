@@ -6,12 +6,15 @@ import { auth } from '../../context/AuthContext/Firebase'
 function SignOut() {
     const navigate = useNavigate()
     const handleSignOut = () => {
-        signOut(auth).then(() => {
-            console.log("Sign-out succesful")
-            navigate("/")
-        }).catch((error) => {
-            console.log(error, "error")
-        });
+        setTimeout(() => {
+            signOut(auth).then(() => {
+                console.log("Sign-out succesful")
+                navigate("/")
+            }).catch((error) => {
+                console.log(error, "error")
+            });
+        }, 2300);
+
     }
     return (
         <div>
