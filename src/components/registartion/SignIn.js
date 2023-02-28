@@ -5,8 +5,12 @@ import { MdKeyboardArrowRight } from 'react-icons/md'
 import Navbar from '../navbar/Navbar'
 import Footer from "../footer/Footer"
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import "./registration.scss"
+import { useMovieContext } from '../../context/MovieContex/MovieContex'
+import { message } from 'antd'
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '../../context/AuthContext/Firebase'
 
 function SignIn() {
     const [password, setPassword] = useState(true)
@@ -17,6 +21,28 @@ function SignIn() {
         } else {
             setPassword(true)
             document.getElementById("passwordd").type = "password"
+        }
+    }
+
+    const { colorState } = useMovieContext()
+    const navigate = useNavigate()
+    const [messageApi, contextHolder] = message.useMessage();
+    const [loading, setLoading] = useState(true)
+    const [isProgress, setIsProgress] = useState()
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const email = e.target[0].value;
+        const password = e.target[1].value;
+        console.log(email, password)
+        try {
+            signInWithEmailAndPassword(auth, email, password)
+            navigate("/")
+        } catch (err) {
+            messageApi.open({
+                type: 'error',
+                content: 'Failed in create account!',
+            });
         }
     }
     return (
@@ -40,16 +66,16 @@ function SignIn() {
                                 <button><Link to="/sign-up">Sign In</Link></button>
                             </div>
                             <div className="reg-box">
-                                <form>
+                                <form onSubmit={handleSubmit}>
                                     <input type="text" placeholder='Email' />
                                     <label htmlFor="#password">
                                         <input type="password" id='passwordd' placeholder='Passowrd' />
                                         {password ? <AiOutlineEye onClick={code} /> : <AiOutlineEyeInvisible onClick={code} />}
                                     </label>
-                                </form>
                                 <p className='forgot'>Forgot Password?</p>
                                 <button>Continue <MdKeyboardArrowRight /></button>
                                 <p className='already'>You need Account? <span><Link to="/sign-up">Sign Up</Link></span></p>
+                                </form>
                             </div>
                         </div>
                     </div>

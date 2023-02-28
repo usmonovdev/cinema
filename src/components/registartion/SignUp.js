@@ -58,7 +58,7 @@ function SignUp() {
                             break;
                     }
                 },
-                (error) => {
+                () => {
                     console.log("Image not uploaded!")
                 },
                 () => {

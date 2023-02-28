@@ -10,9 +10,15 @@ import { useState } from 'react'
 import { MdAccountCircle } from 'react-icons/md'
 import { HiPencil } from 'react-icons/hi'
 import Name from './Name'
+import Email from './Email'
+import SignOut from './SignOut'
+import { useContext } from 'react'
+import { AuthContext } from '../../context/AuthContext/AuthContext'
 
 function Settings() {
     const [tab, setTab] = useState(true)
+    const { currentUser } = useContext(AuthContext)
+    console.log(currentUser)
 
     useEffect(() => {
         document.title = "Cinema App - Settings"
@@ -22,22 +28,24 @@ function Settings() {
         <>
             <Navbar />
             <div className='container'>
-                <div className='settings-container'>
-                    <div className="tab-box">
-                        <button
-                            className={`tab ${tab ? "active" : ""}`}
-                            onClick={() => setTab(true)}
-                        >
-                            <HiPencil />Appearance
-                        </button>
-                        <button
-                            className={`tab ${!tab ? "active" : ""}`}
-                            onClick={() => setTab(false)}
-                        >
-                            <MdAccountCircle />Account
-                        </button>
+                {currentUser == null ? "" :
+                    <div className='settings-container'>
+                        <div className="tab-box">
+                            <button
+                                className={`tab ${tab ? "active" : ""}`}
+                                onClick={() => setTab(true)}
+                            >
+                                <HiPencil />Appearance
+                            </button>
+                            <button
+                                className={`tab ${!tab ? "active" : ""}`}
+                                onClick={() => setTab(false)}
+                            >
+                                <MdAccountCircle />Account
+                            </button>
+                        </div>
                     </div>
-                </div>
+                }
                 {!tab ?
                     <div className="settings-container">
                         <div className="set-title">
@@ -52,6 +60,12 @@ function Settings() {
                             </li>
                             <li>
                                 <Name />
+                            </li>
+                            <li>
+                                <Email />
+                            </li>
+                            <li>
+                                <SignOut />
                             </li>
                         </ul>
                     </div>
