@@ -32,7 +32,7 @@ function Email() {
     }
     return (
         <div className='name'>
-            <p>Email: <b>{currentUser.email}</b></p>
+            <p>Email: {currentUser.email}</p>
             <div>
                 <input placeholder='New email address' type="text" onChange={(e) => setNewEmail(e.target.value)} value={newEmail} />
                 <button onClick={handleChangeName}>Save</button>

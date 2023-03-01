@@ -35,7 +35,7 @@ function Name() {
 
     return (
         <div className='name'>
-            <p>Display Name: <b>{lastName}</b></p>
+            <p>Name: {lastName}</p>
             <div>
                 <input placeholder='New display name' type="text" onChange={(e) => setNewName(e.target.value)} value={newName} />
                 <button onClick={handleChangeName}>Save</button>

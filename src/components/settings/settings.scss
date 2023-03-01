@@ -61,18 +61,20 @@ $mobile: 480px;
         width: fit-content;
         color: var(--white);
         li {
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             list-style: none;
             .text-info {
                 margin: 6px 0 4px 0;
             }
             .user-photo-settings {
+                box-sizing: border-box;
                 display: flex;
                 flex-direction: row;
-                gap: 10px;
                 .avatar {
-                    width: 50px;
-                    height: 50px;
+                    cursor: pointer;
+                    width: 70px;
+                    height: 70px;
+                    border: 2px solid var(--yellow);
                     background-color: var(--yellow);
                     display: flex;
                     align-items: center;
@@ -84,41 +86,38 @@ $mobile: 480px;
                         aspect-ratio: 4 / 4;
                     }
                 }
-                #upload {
-                    display: none;
-                }
-                label {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 4px;
-                    border: 0;
-                    color: var(--white);
-                    background-color: var(--yellow);
-                    cursor: pointer;
-                }
-                div {
+                .form {
+                    width: 74px;
+                    height: 74px;
+                    position: relative;
+                    left: -74px;
                     display: flex;
                     flex-direction: row;
-                    form {
+                    transition: 200ms ease;
+                    transform: scale(.8);
+                    opacity: 0;
+                    z-index: 10000;
+                    &:hover {
+                        transform: scale(1);
+                        opacity: 1;
+                    }
+                    #upload {
+                        display: none;
+                    }
+                    label {
+                        transition: 200ms;
+                        position: absolute;
+                        width: 74px;
+                        height: 74px;
                         display: flex;
-                        flex-direction: row;
                         align-items: center;
-                        gap: 10px;  
-                        button {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            padding: 4px;
-                            height: 32px;
-                            border: 2px solid var(--yellow);
-                            color: var(--white);
-                            background-color: transparent;
-                            cursor: pointer;
-                            transition: 200ms;
-                            &:hover {
-                                background-color: var(--yellow);
-                            }
+                        justify-content: center;
+                        border: 0;
+                        color: var(--white);
+                        cursor: pointer;
+                        background-color: rgba(0, 0, 0, 0.33);
+                        svg {
+                            font-size: 1.5rem;
                         }
                     }
                 }

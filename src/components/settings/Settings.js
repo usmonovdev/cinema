@@ -18,7 +18,16 @@ import { AuthContext } from '../../context/AuthContext/AuthContext'
 function Settings() {
     const [tab, setTab] = useState(true)
     const { currentUser } = useContext(AuthContext)
-    console.log(currentUser)
+    // console.log(currentUser)
+
+    // useEffect(() => {
+    //     window.addEventListener("keyup", e => {
+    //         console.log(e)
+    //         if (e.key === "m", e.key === "Tab") {
+    //             setTab(!tab)
+    //         }
+    //     })
+    // }, [])
 
     useEffect(() => {
         document.title = "Cinema App - Settings"
@@ -48,12 +57,6 @@ function Settings() {
                 }
                 {!tab ?
                     <div className="settings-container">
-                        <div className="set-title">
-                            <h1>
-                                <span>#</span>
-                                Account settings
-                            </h1>
-                        </div>
                         <ul className='settings'>
                             <li>
                                 <Avatar />
