@@ -46,12 +46,12 @@ function SignIn() {
             .catch((error) => {
                 const errorCode = error.code;
                 console.log(errorCode)
-                if (error.code === "auth/invalid-email" || "auth/user-not-found") {
+                if (error.code == "auth/invalid-email" || error.code == "auth/user-not-found") {
                     dispatch({
                         type: "ERR_EMAIL"
                     })
                 }
-                if (error.code === "auth/wrong-password") {
+                if (error.code == "auth/wrong-password") {
                     dispatch({
                         type: "ERR_PASSWORD"
                     })
