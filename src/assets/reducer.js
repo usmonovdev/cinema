@@ -151,6 +151,31 @@ export const reducer = (state, action) => {
                 localMovie: action.newLocalMovie
             }
         }
+        // FOR GET ERRORS IN SIGN
+        case "ERR_EMAIL": {
+            return {
+                ...state,
+                errEmail: state.errEmail = true
+            }
+        }
+        case "ERR_EMAIL_RETURN": {
+            return {
+                ...state,
+                errEmail: state.errEmail = false
+            }
+        }
+        case "ERR_PASSWORD": {
+            return {
+                ...state,
+                errPassword: state.errPassword = true
+            }
+        }
+        case "ERR_PASSWORD_RETURN": {
+            return {
+                ...state,
+                errPassword: state.errPassword = false
+            }
+        }
         default:
             return;
     }

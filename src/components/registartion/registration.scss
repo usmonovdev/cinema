@@ -52,6 +52,24 @@
                             border: 2px solid var(--yellow);
                         }
                     }
+                    .err {
+                        animation-name: shake, glow;
+                        animation-duration: 0.5s, 0.35s;
+                        animation-iteration-count: 1, 2;
+                    }
+                    @keyframes shake {
+                        0%, 40%, 80% {
+                            transform: translateX(8px);
+                        }
+                        20%, 60%, 100% {
+                            transform: translateX(-8px);
+                        }
+                    }
+                    @keyframes glow {
+                        50% {
+                          border-color: red;
+                        }
+                    }
                     #password, #passwordd {
                         padding: 6px 40px 6px 6px;
                     }

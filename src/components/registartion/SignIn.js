@@ -1,19 +1,24 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useReducer, useState, useEffect } from 'react'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { MdKeyboardArrowRight } from 'react-icons/md'
-import Navbar from '../navbar/Navbar'
-import Footer from "../footer/Footer"
 import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
-import "./registration.scss"
-import { useMovieContext } from '../../context/MovieContex/MovieContex'
 import { message } from 'antd'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../context/AuthContext/Firebase'
+import Navbar from '../navbar/Navbar'
+import Footer from "../footer/Footer"
+import "./registration.scss"
+import { reducer } from '../../assets/reducer'
 
 function SignIn() {
     const [password, setPassword] = useState(true)
+    const initialState = {
+        errEmail: false,
+        errPassword: false
+    }
+    const [state, dispatch] = useReducer(reducer, initialState)
+
     const code = () => {
         if (document.getElementById("passwordd").type === "password") {
             setPassword(false)
@@ -24,29 +29,63 @@ function SignIn() {
         }
     }
 
-    const { colorState } = useMovieContext()
     const navigate = useNavigate()
     const [messageApi, contextHolder] = message.useMessage();
-    const [loading, setLoading] = useState(true)
-    const [isProgress, setIsProgress] = useState()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         const email = e.target[0].value;
         const password = e.target[1].value;
-        console.log(email, password)
-        try {
-            signInWithEmailAndPassword(auth, email, password)
-            navigate("/")
-        } catch (err) {
-            messageApi.open({
-                type: 'error',
-                content: 'Failed in create account!',
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user)
+                navigate("/")
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                console.log(errorCode)
+                if (error.code === "auth/invalid-email" || "auth/user-not-found") {
+                    dispatch({
+                        type: "ERR_EMAIL"
+                    })
+                }
+                if (error.code === "auth/wrong-password") {
+                    dispatch({
+                        type: "ERR_PASSWORD"
+                    })
+                }
+                messageApi.open({
+                    type: 'error',
+                    content: `Error! ${errorCode?.slice(5).replaceAll("-", " ")}`,
+                    duration: 5
+                });
             });
-        }
     }
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (state.errEmail == true) {
+                dispatch({
+                    type: "ERR_EMAIL_RETURN"
+                })
+            }
+        }, 1000);
+    }, [state.errEmail])
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (state.errPassword == true) {
+                dispatch({
+                    type: "ERR_PASSWORD_RETURN"
+                })
+            }
+        }, 1000);
+    }, [state.errPassword])
     return (
         <>
+            {contextHolder}
             <Navbar />
             <div className="container">
                 <motion.div
@@ -67,14 +106,14 @@ function SignIn() {
                             </div>
                             <div className="reg-box">
                                 <form onSubmit={handleSubmit}>
-                                    <input type="text" placeholder='Email' />
+                                    <input type="text" placeholder='Email' className={`${state.errEmail ? "err" : ""}`} />
                                     <label htmlFor="#password">
-                                        <input type="password" id='passwordd' placeholder='Password' />
+                                        <input type="password" id='passwordd' placeholder='Password' className={`${state.errPassword ? "err" : ""}`} />
                                         {password ? <AiOutlineEye onClick={code} /> : <AiOutlineEyeInvisible onClick={code} />}
                                     </label>
-                                <p className='forgot'><Link to="/reset-password">Forgot Password?</Link></p>
-                                <button>Continue <MdKeyboardArrowRight /></button>
-                                <p className='already'>You need Account? <span><Link to="/sign-up">Sign Up</Link></span></p>
+                                    <p className='forgot'><Link to="/reset-password">Forgot Password?</Link></p>
+                                    <button>Continue <MdKeyboardArrowRight /></button>
+                                    <p className='already'>You need Account? <span><Link to="/sign-up">Sign Up</Link></span></p>
                                 </form>
                             </div>
                         </div>
