@@ -4,12 +4,14 @@ import { ref, uploadBytesResumable } from 'firebase/storage'
 import React from 'react'
 import { useState } from 'react'
 import { useContext } from 'react'
+import { HiPencil } from 'react-icons/hi'
 import { AuthContext } from '../../context/AuthContext/AuthContext'
 import { db, storage } from '../../context/AuthContext/Firebase'
 
 function Email() {
     const { currentUser } = useContext(AuthContext)
     const [newEmail, setNewEmail] = useState("")
+    const [openEdit, setOpenEdit] = useState(false)
     console.log(newEmail)
     const handleChangeName = () => {
         const storageRef = ref(storage, currentUser.email);
@@ -30,10 +32,18 @@ function Email() {
             }
         );
     }
+
+    const edit = () => {
+        setOpenEdit(!openEdit)
+    }
+
     return (
         <div className='name'>
-            <p>Email: {currentUser.email}</p>
-            <div>
+            <div onClick={edit}>
+                <p>Email: {currentUser.email}</p>
+                <HiPencil />
+            </div>
+            <div className={`editBox ${openEdit ? "active" : ""}`}>
                 <input placeholder='New email address' type="text" onChange={(e) => setNewEmail(e.target.value)} value={newEmail} />
                 <button onClick={handleChangeName}>Save</button>
             </div>

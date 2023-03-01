@@ -19,3 +19,11 @@ export const PopoverTitleTop = () => {
         </div>
     )
 }
+export const DeleteAccount = () => {
+    return (
+        <div className="popoverTitleContainer">
+            <p>Delete your account?</p>
+            <p style={{opacity: ".8", fontWeight: "400"}}>If you delete your account, it will <br /> not be possible to return the data.</p>
+        </div>
+    )
+}

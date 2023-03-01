@@ -4,11 +4,13 @@ import { doc, setDoc } from 'firebase/firestore'
 import { ref, uploadBytesResumable } from 'firebase/storage'
 import { AuthContext } from '../../context/AuthContext/AuthContext'
 import { db, storage } from '../../context/AuthContext/Firebase'
+import { HiPencil } from 'react-icons/hi'
 
 function Name() {
     const { currentUser } = useContext(AuthContext)
     const [newName, setNewName] = useState("")
     const [lastName, setLastName] = useState(currentUser.displayName)
+    const [openEdit, setOpenEdit] = useState(false)
 
     setInterval(() => {
         setLastName(currentUser.displayName)
@@ -33,10 +35,17 @@ function Name() {
         );
     }
 
+    const edit = () => {
+        setOpenEdit(!openEdit)
+    }
+
     return (
         <div className='name'>
-            <p>Name: {lastName}</p>
-            <div>
+            <div onClick={edit}>
+                <p>Name: {lastName}</p>
+                <HiPencil />
+            </div>
+            <div className={`editBox ${openEdit ? "active" : ""}`}>
                 <input placeholder='New display name' type="text" onChange={(e) => setNewName(e.target.value)} value={newName} />
                 <button onClick={handleChangeName}>Save</button>
             </div>

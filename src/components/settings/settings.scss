@@ -1,6 +1,22 @@
 $yellow-opacity: #e6b41e33;
 $mobile: 480px;
 
+.deletePopover {
+    display: flex;
+    gap: 10px;
+    button {
+        padding: 4px 8px;
+        color: red;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        &:nth-child(1) {
+            background-color: var(--yellow);
+            color: var(--white);
+        }
+    }
+}
+
 .tab-box {
     display: flex;
     flex-direction: row;
@@ -61,10 +77,36 @@ $mobile: 480px;
         width: fit-content;
         color: var(--white);
         li {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             list-style: none;
             .text-info {
                 margin: 6px 0 4px 0;
+            }
+            .signOut {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 10px;
+                svg {
+                    color: var(--white);
+                    font-size: 1.2rem;
+                    opacity: .5;
+                    transform: 200ms;
+                    cursor: pointer;
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+            .delete {
+                padding: 5px;
+                width: fit-content;
+                background-color: rgba(255, 255, 255, 0.11);
+                color: red;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 10px;
             }
             .user-photo-settings {
                 box-sizing: border-box;
@@ -129,6 +171,15 @@ $mobile: 480px;
                     align-items: center;
                     margin-top: 10px;
                     gap: 10px;
+                    svg {
+                        color: var(--white);
+                        cursor: pointer;
+                        opacity: .5;
+                        transition: 200ms;
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
                     input {
                         display: inline;
                         box-sizing: border-box;
@@ -159,6 +210,17 @@ $mobile: 480px;
                             background-color: var(--yellow);
                         }
                     }
+                }
+                .editBox {
+                    transform: translateX(100px);
+                    transition: 200ms;
+                    opacity: 0;
+                    display: none;
+                }
+                .editBox.active {
+                    transform: translateX(0);
+                    opacity: 1;
+                    display: flex;
                 }
             }
             .setting-title {

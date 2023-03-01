@@ -14,6 +14,7 @@ import Email from './Email'
 import SignOut from './SignOut'
 import { useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext/AuthContext'
+import DeleteUser from './DeleteUser'
 
 function Settings() {
     const [tab, setTab] = useState(true)
@@ -69,6 +70,9 @@ function Settings() {
                             </li>
                             <li>
                                 <SignOut />
+                            </li>
+                            <li>
+                                <DeleteUser />
                             </li>
                         </ul>
                     </div>

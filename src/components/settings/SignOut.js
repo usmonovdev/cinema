@@ -2,6 +2,7 @@ import { signOut } from 'firebase/auth'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth } from '../../context/AuthContext/Firebase'
+import { TbLogout } from "react-icons/tb"
 
 function SignOut() {
     const navigate = useNavigate()
@@ -17,9 +18,9 @@ function SignOut() {
 
     }
     return (
-        <div>
+        <div className='signOut'>
             <p>Sign Out</p>
-            <button onClick={handleSignOut}>button</button>
+            <TbLogout onClick={handleSignOut} />
         </div>
     )
 }
