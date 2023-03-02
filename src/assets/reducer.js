@@ -176,6 +176,18 @@ export const reducer = (state, action) => {
                 errPassword: state.errPassword = false
             }
         }
+        case "ERR_IMAGE": {
+            return {
+                ...state,
+                errImage: state.errImage = true
+            }
+        }
+        case "ERR_IMAGE_RETURN": {
+            return {
+                ...state,
+                errImage: state.errImage = false
+            }
+        }
         default:
             return;
     }

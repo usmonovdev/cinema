@@ -1,3 +1,31 @@
+.err {
+    animation-name: shake, glow;
+    animation-duration: 0.5s, 0.35s;
+    animation-iteration-count: 1, 2;
+}
+@keyframes shake {
+    0%, 40%, 80% {
+        transform: translateX(8px);
+    }
+    20%, 60%, 100% {
+        transform: translateX(-8px);
+    }
+}
+@keyframes glow {
+    50% {
+      border-color: red;
+    }
+}
+
+.spin {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    border: .15rem solid var(--white);
+    border-top-color: var(--yellow);
+    animation: spin 1s infinite linear;
+}
+
 .container {
     .register-page {
         width: 100%;
@@ -50,24 +78,6 @@
                         color: var(--white);
                         &:focus, &:hover {
                             border: 2px solid var(--yellow);
-                        }
-                    }
-                    .err {
-                        animation-name: shake, glow;
-                        animation-duration: 0.5s, 0.35s;
-                        animation-iteration-count: 1, 2;
-                    }
-                    @keyframes shake {
-                        0%, 40%, 80% {
-                            transform: translateX(8px);
-                        }
-                        20%, 60%, 100% {
-                            transform: translateX(-8px);
-                        }
-                    }
-                    @keyframes glow {
-                        50% {
-                          border-color: red;
                         }
                     }
                     #password, #passwordd {

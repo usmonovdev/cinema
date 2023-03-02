@@ -19,7 +19,6 @@ function Avatar() {
 
     const handleUpdatePhoto = (e) => {
         const file = e.target.files[0]
-        console.log(file)
         if (file !== undefined || null) {
             const storageRef = ref(storage, currentUser.photoURL);
             const uploadTask = uploadBytesResumable(storageRef, file);

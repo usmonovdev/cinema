@@ -3,19 +3,23 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
-import { message } from 'antd'
+import { ConfigProvider, message, Progress } from 'antd'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../context/AuthContext/Firebase'
 import Navbar from '../navbar/Navbar'
 import Footer from "../footer/Footer"
-import "./registration.scss"
 import { reducer } from '../../assets/reducer'
+import "./registration.scss"
+import { useMovieContext } from '../../context/MovieContex/MovieContex'
 
 function SignIn() {
+    const { colorState } = useMovieContext()
     const [password, setPassword] = useState(true)
+    const [progress, setProgress] = useState(10)
     const initialState = {
         errEmail: false,
-        errPassword: false
+        errPassword: false,
+        loading: false
     }
     const [state, dispatch] = useReducer(reducer, initialState)
 
@@ -37,15 +41,19 @@ function SignIn() {
         const email = e.target[0].value;
         const password = e.target[1].value;
 
+        dispatch({
+            type: "LOADING"
+        })
+        setProgress(10)
+
         signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                console.log(user)
-                navigate("/")
+            .then(() => {
+                setProgress(99)
+                setTimeout(() => {
+                    navigate("/")
+                }, 400);
             })
             .catch((error) => {
-                const errorCode = error.code;
-                console.log(errorCode)
                 if (error.code == "auth/invalid-email" || error.code == "auth/user-not-found") {
                     dispatch({
                         type: "ERR_EMAIL"
@@ -58,7 +66,7 @@ function SignIn() {
                 }
                 messageApi.open({
                     type: 'error',
-                    content: `Error! ${errorCode?.slice(5).replaceAll("-", " ")}`,
+                    content: `Error! ${error.code?.slice(5).replaceAll("-", " ")}`,
                     duration: 5
                 });
             });
@@ -106,13 +114,34 @@ function SignIn() {
                             </div>
                             <div className="reg-box">
                                 <form onSubmit={handleSubmit}>
-                                    <input type="text" placeholder='Email' className={`${state.errEmail ? "err" : ""}`} />
+                                    <input type="email" placeholder='Email' className={`${state.errEmail ? "err" : ""}`} />
                                     <label htmlFor="#password">
                                         <input type="password" id='passwordd' placeholder='Password' className={`${state.errPassword ? "err" : ""}`} />
                                         {password ? <AiOutlineEye onClick={code} /> : <AiOutlineEyeInvisible onClick={code} />}
                                     </label>
                                     <p className='forgot'><Link to="/reset-password">Forgot Password?</Link></p>
-                                    <button>Continue <MdKeyboardArrowRight /></button>
+                                    {!state.loading ?
+                                        <button>
+                                            Continue <MdKeyboardArrowRight />
+                                        </button>
+                                        :
+                                        <ConfigProvider
+                                            theme={{
+                                                token: {
+                                                    colorTextBase: "#fff",
+                                                }
+                                            }}
+                                        >
+                                            <Progress
+                                                percent={progress}
+                                                status="active"
+                                                strokeColor={colorState.color}
+                                                strokeWidth={"40px"}
+                                                showInfo={false}
+                                                strokeLinecap="butt"
+                                            />
+                                        </ConfigProvider>
+                                    }
                                     <p className='already'>You need Account? <span><Link to="/sign-up">Sign Up</Link></span></p>
                                 </form>
                             </div>

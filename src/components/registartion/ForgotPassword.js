@@ -29,7 +29,6 @@ function ForgotPassword() {
                     .then(() => {
                         setLoading(true)
                         setIsProgress(100)
-                        console.log("Check your account!")
                     })
                     .catch((error) => {
                         console.log("error!")
