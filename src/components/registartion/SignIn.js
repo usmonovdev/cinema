@@ -42,17 +42,16 @@ function SignIn() {
         const password = e.target[1].value;
 
         try {
-
+            // setProgress(10)
             signInWithEmailAndPassword(auth, email, password)
             .then(() => {
-                setProgress(10)
                 dispatch({
                     type: "LOADING"
                 })
                 setTimeout(() => {
-                    setProgress(99)
+                    // setProgress(99)
                     navigate("/")
-                }, 400);
+                }, 1400);
             })
             .catch((error) => {
                 if (error.code == "auth/invalid-email" || error.code == "auth/user-not-found") {
@@ -129,22 +128,23 @@ function SignIn() {
                                             Continue <MdKeyboardArrowRight />
                                         </button>
                                         :
-                                        <ConfigProvider
-                                            theme={{
-                                                token: {
-                                                    colorTextBase: "#fff",
-                                                }
-                                            }}
-                                        >
-                                            <Progress
-                                                percent={progress}
-                                                status="active"
-                                                strokeColor={colorState.color}
-                                                strokeWidth={"40px"}
-                                                showInfo={false}
-                                                strokeLinecap="butt"
-                                            />
-                                        </ConfigProvider>
+                                        // <ConfigProvider
+                                        //     theme={{
+                                        //         token: {
+                                        //             colorTextBase: "#fff",
+                                        //         }
+                                        //     }}
+                                        // >
+                                        //     <Progress
+                                        //         percent={progress}
+                                        //         status="active"
+                                        //         strokeColor={colorState.color}
+                                        //         strokeWidth={"40px"}
+                                        //         showInfo={false}
+                                        //         strokeLinecap="butt"
+                                        //     />
+                                        // </ConfigProvider>
+                                        <div className="progress"></div>
                                     }
                                     <p className='already'>You need Account? <span><Link to="/sign-up">Sign Up</Link></span></p>
                                 </form>
