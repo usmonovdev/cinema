@@ -92,25 +92,25 @@ function SignUp() {
         }
     }
 
-    useEffect(() => {
-        setTimeout(() => {
-            if (state.errEmail == true) {
-                dispatch({
-                    type: "ERR_EMAIL_RETURN"
-                })
-            }
-        }, 1000);
-    }, [state.errEmail])
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         if (state.errEmail == true) {
+    //             dispatch({
+    //                 type: "ERR_EMAIL_RETURN"
+    //             })
+    //         }
+    //     }, 1000);
+    // }, [state.errEmail])
 
-    useEffect(() => {
-        setTimeout(() => {
-            if (state.errPassword == true) {
-                dispatch({
-                    type: "ERR_PASSWORD_RETURN"
-                })
-            }
-        }, 1000);
-    }, [state.errPassword])
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         if (state.errPassword == true) {
+    //             dispatch({
+    //                 type: "ERR_PASSWORD_RETURN"
+    //             })
+    //         }
+    //     }, 1000);
+    // }, [state.errPassword])
     return (
         <>
             {contextHolder}

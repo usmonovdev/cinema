@@ -11,17 +11,23 @@ import { useMovieContext } from '../../context/MovieContex/MovieContex'
 import { ConfigProvider, message, Progress } from 'antd'
 import { sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../context/AuthContext/Firebase'
+import { useEffect } from 'react'
+import { useReducer } from 'react'
+import { reducer } from '../../assets/reducer'
 
 function ForgotPassword() {
     const { colorState } = useMovieContext()
     const [messageApi, contextHolder] = message.useMessage();
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [isProgress, setIsProgress] = useState(0)
+    const navigate = useNavigate()
+    const initialState = {
+        errEmail: false
+    }
+    const [state, dispatch] = useReducer(reducer, initialState)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setLoading(false)
-        setIsProgress(0)
         const email = e.target[0].value;
         setTimeout(() => {
             try {
@@ -29,18 +35,42 @@ function ForgotPassword() {
                     .then(() => {
                         setLoading(true)
                         setIsProgress(100)
+                        messageApi.open({
+                            type: 'success',
+                            content: 'Check your email.',
+                            duration: 5
+                        });
+                        setTimeout(() => {
+                            navigate("/sign-in")
+                        }, 1600);
                     })
                     .catch((error) => {
-                        console.log("error!")
+                        dispatch({ type: "ERR_EMAIL" })
+                        messageApi.open({
+                            type: 'error',
+                            content: `Error! ${error.code?.slice(5).replaceAll("-", " ")}`,
+                            duration: 5
+                        });
                     });
-            } catch (err) {
+            } catch {
                 messageApi.open({
                     type: 'error',
-                    content: 'Failed in create account!',
+                    content: 'Error in reset password!',
                 });
             }
         }, 2300);
     }
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (state.errEmail == true) {
+                dispatch({
+                    type: "ERR_EMAIL_RETURN"
+                })
+            }
+        }, 1000);
+    }, [state.errEmail])
+
     return (
         <>
             {contextHolder}
@@ -64,28 +94,13 @@ function ForgotPassword() {
                             </div>
                             <div className="reg-box">
                                 <form onSubmit={handleSubmit}>
-                                    <input type="text" placeholder='Email' />
-                                    {loading ?
+                                    <input type="text" placeholder='Email' className={`${state.errEmail ? "err" : ""}`}/>
+                                    {!loading ?
                                         <button>
                                             Reset Password <MdKeyboardArrowRight />
                                         </button>
                                         :
-                                        <ConfigProvider
-                                            theme={{
-                                                token: {
-                                                    colorTextBase: "#fff",
-                                                }
-                                            }}
-                                        >
-                                            <Progress
-                                                percent={isProgress}
-                                                status="active"
-                                                strokeColor={colorState.color}
-                                                strokeWidth={"40px"}
-                                                showInfo={false}
-                                                strokeLinecap="butt"
-                                            />
-                                        </ConfigProvider>
+                                        <div className="progress"></div>
                                     }
                                     <p className='already'><span><Link to="/sign-in">Login</Link></span></p>
                                     <p className='already'>You need Account? <span><Link to="/sign-up">Sign Up</Link></span></p>
