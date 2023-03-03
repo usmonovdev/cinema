@@ -41,15 +41,16 @@ function SignIn() {
         const email = e.target[0].value;
         const password = e.target[1].value;
 
-        dispatch({
-            type: "LOADING"
-        })
-        setProgress(10)
+        try {
 
-        signInWithEmailAndPassword(auth, email, password)
+            signInWithEmailAndPassword(auth, email, password)
             .then(() => {
-                setProgress(99)
+                setProgress(10)
+                dispatch({
+                    type: "LOADING"
+                })
                 setTimeout(() => {
+                    setProgress(99)
                     navigate("/")
                 }, 400);
             })
@@ -70,6 +71,9 @@ function SignIn() {
                     duration: 5
                 });
             });
+        } catch {
+            dispatch({ type: "LOADING_FALSE" })
+        }
     }
 
     useEffect(() => {

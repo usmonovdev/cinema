@@ -1,37 +1,38 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useReducer, useState, useContext } from 'react'
+import { ConfigProvider, message, Progress } from 'antd'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import { BiImage } from 'react-icons/bi'
 import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { ConfigProvider, message, Progress } from 'antd'
-import { auth, db, storage } from '../../context/AuthContext/Firebase'
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
+import { auth, db, storage } from '../../context/AuthContext/Firebase'
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
 import { reducer } from '../../assets/reducer'
 import Navbar from '../navbar/Navbar'
 import Footer from "../footer/Footer"
-import image from "../../assets/user-not-downloaded.jpg"
-import "./registration.scss"
-import { useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext/AuthContext'
+import "./registration.scss"
 
 function SignUp() {
     const { currentUser } = useContext(AuthContext)
     const { colorState } = useMovieContext()
-    const navigate = useNavigate()
     const [messageApi, contextHolder] = message.useMessage();
     const [password, setPassword] = useState(true)
     const [isProgress, setIsProgress] = useState()
+    const navigate = useNavigate()
+
     const initialState = {
         errEmail: false,
         errPassword: false,
         loading: false
     }
     const [state, dispatch] = useReducer(reducer, initialState)
-    console.log(state.loading)
+
+    // SEE PASSWORD FUNCTION
+    // CHANGE INPUT TYPE IN PASSWORD TO TEXT
     const code = () => {
         if (document.getElementById("password").type === "password") {
             setPassword(false)
@@ -56,19 +57,14 @@ function SignUp() {
                 (snapshot) => {
                     const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     setIsProgress(progress)
-                    console.log('Upload is ' + progress + '% done');
                     progress >= "0" ? dispatch({ type: "LOADING" }) : dispatch({ type: "LOADING_FALSE" })
-                    switch (snapshot.state) {
-                        case 'paused':
-                            console.log('Upload is paused');
-                            break;
-                        case 'running':
-                            console.log('Upload is running');
-                            break;
-                    }
                 },
                 () => {
-                    console.log("Image not uploaded!")
+                    messageApi.open({
+                        type: 'error',
+                        content: 'Image not uploaded! Check your network.',
+                        duration: 5
+                    });
                 },
                 () => {
                     getDownloadURL(storageRef).then(async (downloadURL) => {
@@ -88,7 +84,11 @@ function SignUp() {
                 });
         } catch (err) {
             dispatch({ type: "LOADING_FALSE" })
-            console.log("Error")
+            messageApi.open({
+                type: 'error',
+                content: 'Failed to create an account!',
+                duration: 5
+            });
         }
     }
 
