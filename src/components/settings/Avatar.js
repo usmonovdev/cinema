@@ -12,7 +12,7 @@ function Avatar() {
     const [photo, setPhoto] = useState(currentUser.photoURL)
     const [loading, setLoading] = useState(false)
     const [isProgress, setIsProgress] = useState()
-
+    console.log(currentUser.photoURL)
     setInterval(() => {
         setPhoto(currentUser.photoURL)
     }, 1000);

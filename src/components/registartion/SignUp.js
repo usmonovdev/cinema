@@ -24,7 +24,6 @@ function SignUp() {
     const navigate = useNavigate()
     const [messageApi, contextHolder] = message.useMessage();
     const [password, setPassword] = useState(true)
-    // const [loading, setLoading] = useState(true)
     const [isProgress, setIsProgress] = useState()
     const initialState = {
         errEmail: false,
@@ -32,6 +31,7 @@ function SignUp() {
         loading: false
     }
     const [state, dispatch] = useReducer(reducer, initialState)
+    console.log(state.loading)
     const code = () => {
         if (document.getElementById("password").type === "password") {
             setPassword(false)
@@ -47,36 +47,49 @@ function SignUp() {
         const displayName = e.target[0].value;
         const email = e.target[1].value;
         const password = e.target[2].value;
-
+        const file = e.target[3].files[0]
         try {
             const res = await createUserWithEmailAndPassword(auth, email, password);
             const storageRef = ref(storage, displayName);
-            await uploadBytesResumable(storageRef, displayName).then(() => {
-                getDownloadURL(storageRef).then(async (downloadURL) => {
-                    await updateProfile(res.user, {
-                        displayName,
-                        photoURL: downloadURL,
+            const uploadTask = uploadBytesResumable(storageRef, file);
+            uploadTask.on('state_changed',
+                (snapshot) => {
+                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    setIsProgress(progress)
+                    console.log('Upload is ' + progress + '% done');
+                    progress >= "0" ? dispatch({ type: "LOADING" }) : dispatch({ type: "LOADING_FALSE" })
+                    switch (snapshot.state) {
+                        case 'paused':
+                            console.log('Upload is paused');
+                            break;
+                        case 'running':
+                            console.log('Upload is running');
+                            break;
+                    }
+                },
+                () => {
+                    console.log("Image not uploaded!")
+                },
+                () => {
+                    getDownloadURL(storageRef).then(async (downloadURL) => {
+                        await updateProfile(res.user, {
+                            displayName,
+                            photoURL: downloadURL,
+                        });
+                        await setDoc(doc(db, "users", res.user.uid), {
+                            uid: res.user.uid,
+                            displayName,
+                            email,
+                            photoURL: downloadURL,
+                        });
+                        await setDoc(doc(db, "userMovies", res.user.uid), {})
+                        navigate("/")
                     });
-                    await setDoc(doc(db, "users", res.user.uid), {
-                        uid: res.user.uid,
-                        displayName,
-                        email,
-                        photoURL: downloadURL,
-                    });
-                    await setDoc(doc(db, "userMovies", res.user.uid), {
-                        uid: res.user.uid,
-                        displayName,
-                        email,
-                        photoURL: downloadURL,
-                        like: "like"
-                    });
-                    navigate("/")
                 });
-            });
         } catch (err) {
+            dispatch({ type: "LOADING_FALSE" })
             console.log("Error")
         }
-
     }
 
     useEffect(() => {
@@ -127,9 +140,33 @@ function SignUp() {
                                         <input type="password" id='password' className={`${state.errPassword ? "err" : ""}`} placeholder='Password' />
                                         {password ? <AiOutlineEye onClick={code} /> : <AiOutlineEyeInvisible onClick={code} />}
                                     </label>
-                                    <button>
-                                        {state.loading ? <div className='spin'></div> : <>Continue <MdKeyboardArrowRight /></>}
-                                    </button>
+                                    <label className='label' htmlFor="image">
+                                        <input type="file" accept='image/*' id='image' />
+                                        <p>Profile Photo</p>
+                                        <BiImage />
+                                    </label>
+                                    {!state.loading ?
+                                        <button>
+                                            Continue <MdKeyboardArrowRight />
+                                        </button>
+                                        :
+                                        <ConfigProvider
+                                            theme={{
+                                                token: {
+                                                    colorTextBase: "#fff",
+                                                }
+                                            }}
+                                        >
+                                            <Progress
+                                                percent={isProgress}
+                                                status="active"
+                                                strokeColor={colorState.color}
+                                                strokeWidth={"40px"}
+                                                showInfo={false}
+                                                strokeLinecap="butt"
+                                            />
+                                        </ConfigProvider>
+                                    }
                                 </form>
                                 <p className='already'>Already registered? <span><Link to="/sign-in">Sign In</Link></span></p>
                             </div>
