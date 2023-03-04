@@ -75,6 +75,16 @@
                     font-weight: 600;
                     padding: 2px;
                     cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    svg {
+                        opacity: .5;
+                        transition: 200ms;
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
                     a {
                         color: unset;
                         text-decoration: none;

@@ -38,16 +38,18 @@ function Email() {
     }
 
     return (
-        <div className='name'>
-            <div onClick={edit}>
-                <p>Email: {currentUser.email}</p>
-                <HiPencil />
+        <>
+            <h3>Email</h3>
+            <div className='name'>
+                <div>
+                    <p><span>Your Email is:</span> {currentUser.email}</p>
+                </div>
+                <div>
+                    <input placeholder='New email address' type="text" onChange={(e) => setNewEmail(e.target.value)} value={newEmail} />
+                    <button onClick={handleChangeName}>Save</button>
+                </div>
             </div>
-            <div className={`editBox ${openEdit ? "active" : ""}`}>
-                <input placeholder='New email address' type="text" onChange={(e) => setNewEmail(e.target.value)} value={newEmail} />
-                <button onClick={handleChangeName}>Save</button>
-            </div>
-        </div>
+        </>
     )
 }
 

@@ -3,19 +3,16 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
-import { ConfigProvider, message, Progress } from 'antd'
+import { message } from 'antd'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../context/AuthContext/Firebase'
 import Navbar from '../navbar/Navbar'
 import Footer from "../footer/Footer"
 import { reducer } from '../../assets/reducer'
 import "./registration.scss"
-import { useMovieContext } from '../../context/MovieContex/MovieContex'
 
 function SignIn() {
-    const { colorState } = useMovieContext()
     const [password, setPassword] = useState(true)
-    const [progress, setProgress] = useState(10)
     const initialState = {
         errEmail: false,
         errPassword: false,

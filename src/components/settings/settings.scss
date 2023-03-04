@@ -46,6 +46,7 @@ $mobile: 480px;
 
 .container {
     .settings-container {
+        width: fit-content;
         @media screen and (max-width: $mobile) {
             width: 90%;
             margin: 0 auto;
@@ -71,13 +72,11 @@ $mobile: 480px;
     }
     .info {
         color: var(--white);
-        margin-bottom: 30px;
     }
     .settings {
-        width: fit-content;
         color: var(--white);
         li {
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             list-style: none;
             .text-info {
                 margin: 6px 0 4px 0;
@@ -165,19 +164,17 @@ $mobile: 480px;
                 }
             }
             .name {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
                 div {
                     display: flex;
                     flex-direction: row;
                     align-items: center;
-                    margin-top: 10px;
                     gap: 10px;
-                    svg {
-                        color: var(--white);
-                        cursor: pointer;
-                        opacity: .5;
-                        transition: 200ms;
-                        &:hover {
-                            opacity: 1;
+                    p {
+                        span {
+                            opacity: .5;
                         }
                     }
                     input {
@@ -199,28 +196,14 @@ $mobile: 480px;
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        padding: 4px;
+                        padding: 4px 12px;
                         height: 32px;
-                        border: 2px solid var(--yellow);
+                        border: none;
                         color: var(--white);
-                        background-color: transparent;
+                        background-color: var(--yellow);
                         cursor: pointer;
                         transition: 200ms;
-                        &:hover {
-                            background-color: var(--yellow);
-                        }
                     }
-                }
-                .editBox {
-                    transform: translateX(100px);
-                    transition: 200ms;
-                    opacity: 0;
-                    display: none;
-                }
-                .editBox.active {
-                    transform: translateX(0);
-                    opacity: 1;
-                    display: flex;
                 }
             }
             .setting-title {

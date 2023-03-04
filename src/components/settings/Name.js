@@ -40,16 +40,18 @@ function Name() {
     }
 
     return (
+        <>
+        <h3>Name</h3>
         <div className='name'>
-            <div onClick={edit}>
-                <p>Name: {lastName}</p>
-                <HiPencil />
+            <div>
+                <p><span>Your Name is:</span> {lastName}</p>
             </div>
-            <div className={`editBox ${openEdit ? "active" : ""}`}>
-                <input placeholder='New display name' type="text" onChange={(e) => setNewName(e.target.value)} value={newName} />
+            <div>
+                <input placeholder='New name' type="text" onChange={(e) => setNewName(e.target.value)} value={newName} />
                 <button onClick={handleChangeName}>Save</button>
             </div>
         </div>
+        </>
     )
 }
 

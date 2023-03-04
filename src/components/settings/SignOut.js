@@ -3,22 +3,27 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth } from '../../context/AuthContext/Firebase'
 import { TbLogout } from "react-icons/tb"
+import { message } from 'antd'
 
 function SignOut() {
+    const [messageApi, contextHolder] = message.useMessage();
     const navigate = useNavigate()
     const handleSignOut = () => {
         setTimeout(() => {
             signOut(auth).then(() => {
-                console.log("Sign-out succesful")
                 navigate("/")
-            }).catch((error) => {
-                console.log(error, "error")
+            }).catch(() => {
+                messageApi.open({
+                    type: 'error',
+                    content: "Error in sign out!",
+                    duration: 5
+                });
             });
-        }, 2300);
-
+        }, 800);
     }
     return (
         <div className='signOut'>
+            {contextHolder}
             <p>Sign Out</p>
             <TbLogout onClick={handleSignOut} />
         </div>

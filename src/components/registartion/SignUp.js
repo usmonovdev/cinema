@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState, useContext } from 'react'
+import React, { useReducer, useState } from 'react'
 import { ConfigProvider, message, Progress } from 'antd'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { MdKeyboardArrowRight } from 'react-icons/md'
@@ -13,11 +13,9 @@ import { useMovieContext } from '../../context/MovieContex/MovieContex'
 import { reducer } from '../../assets/reducer'
 import Navbar from '../navbar/Navbar'
 import Footer from "../footer/Footer"
-import { AuthContext } from '../../context/AuthContext/AuthContext'
 import "./registration.scss"
 
 function SignUp() {
-    const { currentUser } = useContext(AuthContext)
     const { colorState } = useMovieContext()
     const [messageApi, contextHolder] = message.useMessage();
     const [password, setPassword] = useState(true)
@@ -91,26 +89,6 @@ function SignUp() {
             });
         }
     }
-
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         if (state.errEmail == true) {
-    //             dispatch({
-    //                 type: "ERR_EMAIL_RETURN"
-    //             })
-    //         }
-    //     }, 1000);
-    // }, [state.errEmail])
-
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         if (state.errPassword == true) {
-    //             dispatch({
-    //                 type: "ERR_PASSWORD_RETURN"
-    //             })
-    //         }
-    //     }, 1000);
-    // }, [state.errPassword])
     return (
         <>
             {contextHolder}

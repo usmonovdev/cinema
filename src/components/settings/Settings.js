@@ -58,6 +58,14 @@ function Settings() {
                 }
                 {!tab ?
                     <div className="settings-container">
+                        <div className="set-title">
+                            <h1>
+                                <span>#</span>
+                                User settings
+                            </h1>
+                        </div>
+                        <p className='info'>You can change your information <br /> from this section.</p>
+                        <hr style={{ opacity: "0.2", marginBottom: "20px" }} />
                         <ul className='settings'>
                             <li>
                                 <Avatar />
@@ -85,6 +93,7 @@ function Settings() {
                             </h1>
                         </div>
                         <p className='info'>You can set the settings for yourself in this <br /> section you can make it comfortable.</p>
+                        <hr style={{ opacity: "0.2", marginBottom: "20px" }} />
                         <ul className='settings'>
                             <li>
                                 <ImageSize />

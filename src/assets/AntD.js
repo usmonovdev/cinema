@@ -27,3 +27,11 @@ export const DeleteAccount = () => {
         </div>
     )
 }
+
+export const ResetPasswordMethod = () => {
+    return (
+        <div className="popoverTitleContainer">
+            <p style={{opacity: ".8", fontWeight: "400"}}>After entering your email <br /> address, check your email messages.</p>
+        </div>
+    )
+}

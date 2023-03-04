@@ -58,7 +58,7 @@ function Avatar() {
     }
     return (
         <>
-            <p className='text-info'>Your avatar</p>
+            <h3 className='text-info'>Your avatar</h3>
             <div className='user-photo-settings'>
                 <div className="avatar">
                     {loading ?
