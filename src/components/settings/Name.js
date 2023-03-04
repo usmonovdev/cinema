@@ -4,13 +4,13 @@ import { doc, setDoc } from 'firebase/firestore'
 import { ref, uploadBytesResumable } from 'firebase/storage'
 import { AuthContext } from '../../context/AuthContext/AuthContext'
 import { db, storage } from '../../context/AuthContext/Firebase'
-import { HiPencil } from 'react-icons/hi'
+import { message } from 'antd'
 
 function Name() {
+    const [messageApi, contextHolder] = message.useMessage();
     const { currentUser } = useContext(AuthContext)
     const [newName, setNewName] = useState("")
     const [lastName, setLastName] = useState(currentUser.displayName)
-    const [openEdit, setOpenEdit] = useState(false)
 
     setInterval(() => {
         setLastName(currentUser.displayName)
@@ -24,6 +24,18 @@ function Name() {
                 updateProfile(currentUser, {
                     displayName: newName,
                     photoURL: currentUser.photoURL
+                }).then(() => {
+                    messageApi.open({
+                        type: 'success',
+                        content: 'Name updated successful!',
+                        duration: 5
+                    });
+                }).catch((error) => {
+                    messageApi.open({
+                        type: 'error',
+                        content: `Error! ${error.code?.slice(5).replaceAll("-", " ")}`,
+                        duration: 5
+                    });
                 });
                 setDoc(doc(db, "users", currentUser.uid), {
                     uid: currentUser.uid,
@@ -35,22 +47,19 @@ function Name() {
         );
     }
 
-    const edit = () => {
-        setOpenEdit(!openEdit)
-    }
-
     return (
         <>
-        <h3>Name</h3>
-        <div className='name'>
-            <div>
-                <p><span>Your Name is:</span> {lastName}</p>
+            {contextHolder}
+            <h3>Name</h3>
+            <div className='name'>
+                <div>
+                    <p><span>Your Name is:</span> {lastName}</p>
+                </div>
+                <div>
+                    <input placeholder='New name' type="text" onChange={(e) => setNewName(e.target.value)} value={newName} />
+                    <button onClick={handleChangeName}>Save</button>
+                </div>
             </div>
-            <div>
-                <input placeholder='New name' type="text" onChange={(e) => setNewName(e.target.value)} value={newName} />
-                <button onClick={handleChangeName}>Save</button>
-            </div>
-        </div>
         </>
     )
 }

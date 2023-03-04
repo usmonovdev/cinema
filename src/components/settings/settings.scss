@@ -28,7 +28,7 @@ $mobile: 480px;
         align-items: center;
         gap: 6px;
         padding: 4px;
-        background-color: transparent;
+        background-color: #252525;
         border: 2px solid var(--yellow);
         color: var(--white);
         cursor: pointer;
@@ -120,7 +120,7 @@ $mobile: 480px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    .progress {
+                    .progresss {
                         animation: spin 1.3s infinite linear;
                     }
                     img {
@@ -180,12 +180,14 @@ $mobile: 480px;
                     input {
                         display: inline;
                         box-sizing: border-box;
-                        width: 170px;
+                        width: 190px;
                         height: 32px;
                         outline: none;
-                        background-color: transparent;
+                        background-color: #252525;
                         padding: 4px;
                         border: 2px solid var(--white);
+                        border-radius: 0;
+                        font-size: 16px;
                         color: var(--white);
                         transition: 200ms;
                         &:focus {

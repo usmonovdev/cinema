@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Image, Progress } from 'antd'
+import { Image, message, Progress } from 'antd'
 import { updateProfile } from 'firebase/auth'
 import { doc, setDoc } from 'firebase/firestore'
 import { HiOutlineCamera } from "react-icons/hi"
@@ -8,11 +8,11 @@ import { AuthContext } from '../../context/AuthContext/AuthContext'
 import { db, storage } from '../../context/AuthContext/Firebase'
 
 function Avatar() {
+    const [messageApi, contextHolder] = message.useMessage();
     const { currentUser } = useContext(AuthContext)
     const [photo, setPhoto] = useState(currentUser.photoURL)
     const [loading, setLoading] = useState(false)
     const [isProgress, setIsProgress] = useState()
-    console.log(currentUser.photoURL)
     setInterval(() => {
         setPhoto(currentUser.photoURL)
     }, 1000);
@@ -44,6 +44,18 @@ function Avatar() {
                         await updateProfile(currentUser, {
                             displayName: currentUser.displayName,
                             photoURL: downloadURL
+                        }).then(() => {
+                            messageApi.open({
+                                type: 'success',
+                                content: 'Avatar updated successful!',
+                                duration: 5
+                            });
+                        }).catch((error) => {
+                            messageApi.open({
+                                type: 'error',
+                                content: `Error! ${error.code?.slice(5).replaceAll("-", " ")}`,
+                                duration: 5
+                            });
                         });
                         await setDoc(doc(db, "users", currentUser.uid), {
                             uid: currentUser.uid,
@@ -58,12 +70,13 @@ function Avatar() {
     }
     return (
         <>
+            {contextHolder}
             <h3 className='text-info'>Your avatar</h3>
             <div className='user-photo-settings'>
                 <div className="avatar">
                     {loading ?
                         <Progress
-                            className='progress'
+                            className='progresss'
                             type="circle"
                             percent={isProgress}
                             strokeWidth={16}
