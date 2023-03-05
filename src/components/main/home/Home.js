@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import "./home.scss"
 import Navbar from '../../navbar/Navbar'
@@ -72,7 +72,7 @@ function Home() {
                         return (
                             <div
                                 className={`bg-image ${slide}`} key={id} style={{
-                                    backgroundImage: `url("https://image.tmdb.org/t/p/${imgState.size}/${backdrop_path}")`
+                                    backgroundImage: `url("https://image.tmdb.org/t/p/original/${backdrop_path}")`
                                 }}
                             >
                                 <div className='top-popular-home'>

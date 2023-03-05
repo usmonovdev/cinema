@@ -46,7 +46,6 @@ function SignIn() {
                     type: "LOADING"
                 })
                 setTimeout(() => {
-                    // setProgress(99)
                     navigate("/")
                 }, 1400);
             })

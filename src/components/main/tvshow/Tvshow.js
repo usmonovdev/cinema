@@ -56,7 +56,7 @@ function Tvshow() {
                                         variants={container}
                                         initial="hidden"
                                         animate="visible"
-                                        style={{ marginBottom: "50px" }}
+                                        // style={{ marginBottom: "50px" }}
                                     >
                                         {show.results?.map((data) => {
                                             const { id, poster_path, name, vote_average } = data

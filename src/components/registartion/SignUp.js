@@ -76,7 +76,7 @@ function SignUp() {
                             email,
                             photoURL: downloadURL,
                         });
-                        await setDoc(doc(db, "userMovies", res.user.uid), {})
+                        await setDoc(doc(db, "likes", res.user.uid), {})
                         navigate("/")
                     });
                 });
