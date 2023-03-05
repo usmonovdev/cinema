@@ -17,9 +17,11 @@ function Name() {
     }, 1000);
 
     const handleChangeName = () => {
-        const storageRef = ref(storage, currentUser.displayName);
-        const uploadTask = uploadBytesResumable(storageRef, newName);
-        uploadTask.on('state_changed',
+        if (newName.length > 3) {
+
+            const storageRef = ref(storage, currentUser.displayName);
+            const uploadTask = uploadBytesResumable(storageRef, newName);
+            uploadTask.on('state_changed',
             () => {
                 updateProfile(currentUser, {
                     displayName: newName,
@@ -44,7 +46,14 @@ function Name() {
                     photoURL: currentUser.photoURL,
                 });
             }
-        );
+            );
+        } else {
+            messageApi.open({
+                type: 'error',
+                content: "The length of the name must not be less than 4!",
+                duration: 5
+            });
+        }
     }
 
     return (

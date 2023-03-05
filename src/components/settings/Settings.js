@@ -15,27 +15,29 @@ import SignOut from './SignOut'
 import { useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext/AuthContext'
 import DeleteUser from './DeleteUser'
+import { message } from 'antd'
 
 function Settings() {
     const [tab, setTab] = useState(true)
     const { currentUser } = useContext(AuthContext)
-    // console.log(currentUser)
-
-    // useEffect(() => {
-    //     window.addEventListener("keyup", e => {
-    //         console.log(e)
-    //         if (e.key === "m", e.key === "Tab") {
-    //             setTab(!tab)
-    //         }
-    //     })
-    // }, [])
-
+    const [messageApi, contextHolder] = message.useMessage()
+    console.log(currentUser)
     useEffect(() => {
         document.title = "Cinema App - Settings"
-    })
+    }, [])
+
+    const copy = (e) => {
+        navigator.clipboard.writeText(e)
+        messageApi.open({
+            type: 'success',
+            content: 'Copied to clipboard!',
+            duration: 3
+        });
+    }
 
     return (
         <>
+            {contextHolder}
             <Navbar />
             <div className='container'>
                 {currentUser == null ? "" :
@@ -65,6 +67,7 @@ function Settings() {
                             </h1>
                         </div>
                         <p className='info'>You can change your information <br /> from this section.</p>
+                        <p className='info'>Your id: <span onClick={e => copy(e.target.innerText)}>{currentUser.uid}</span></p>
                         <hr style={{ opacity: "0.2", marginBottom: "20px" }} />
                         <ul className='settings'>
                             <li>
