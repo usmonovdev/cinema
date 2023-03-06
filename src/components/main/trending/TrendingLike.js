@@ -6,26 +6,15 @@ import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import ImageLoading from "../../loading/image/Image"
 import movieImage from "../../../assets/movie-photo-not-downloaded.jpg"
 import { AuthContext } from '../../../context/AuthContext/AuthContext'
-import { collection, doc, serverTimestamp, setDoc } from 'firebase/firestore'
+import { collection, deleteDoc, doc, serverTimestamp, setDoc } from 'firebase/firestore'
 import { db } from '../../../context/AuthContext/Firebase'
 import { useCollectionData } from "react-firebase-hooks/firestore"
 
 function TrendingLike({ data }) {
     const { currentUser } = useContext(AuthContext)
     const { likeMovieDispatch, likeMovie, imgState } = useMovieContext()
-    // const { c_id } = likeMovie.localMovie[0]
     const { poster_path, media_type, id, title } = data
     const [removeLike, setRemoveLike] = useState()
-    const [newId, setNewId] = useState()
-
-    useEffect(() => {
-        {likeMovie.localMovie?.map((data) => {
-            setNewId(data.c_id)
-        })}
-    }, [likeMovie.localMovie])
-
-    console.log("Like id", newId)
-    console.log("Local like id", id)
 
     const query = collection(db, `likes/${currentUser?.uid}/children`)
     const [docs, loading, error] = useCollectionData(query)
@@ -36,17 +25,21 @@ function TrendingLike({ data }) {
         const docRef = doc(db, `likes/${currentUser?.uid}/children`, newName)
         await setDoc(docRef, {
             c_id: e.id,
-            name: newName,
-            media_type: e.media_type,
-            poster_path: e.poster_path,
-            vote_average: e.vote_average,
+            c_name: newName,
+            c_media_type: e.media_type,
+            c_poster_path: e.poster_path,
+            c_vote_average: e.vote_average,
             timestamp: serverTimestamp()
         });
     }
 
-    const deleteLike = () => {
+    console.log(likeMovie.localMovie)
+
+    const deleteLike = async (e) => {
         setRemoveLike(false)
-        console.log("delete")
+        const newName = `${e.title == undefined ? e.name : e.title}`
+        const docRef = doc(db, `likes/${currentUser?.uid}/children`, newName)
+        await deleteDoc(docRef);
     }
 
     useEffect(() => {

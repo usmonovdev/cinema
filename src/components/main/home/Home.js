@@ -45,14 +45,14 @@ function Home() {
     }, [firstPage, index]);
 
     // AUTO ANIMATION
-    useEffect(() => {
-        const time = setInterval(() => {
-            setIndex(index + 1)
-        }, speedState.speed);
-        return () => {
-            clearInterval(time)
-        }
-    }, [index]);
+    // useEffect(() => {
+    //     const time = setInterval(() => {
+    //         setIndex(index + 1)
+    //     }, speedState.speed);
+    //     return () => {
+    //         clearInterval(time)
+    //     }
+    // }, [index]);
     return (
         <>
             {loading ? <>
