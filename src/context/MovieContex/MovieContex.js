@@ -21,7 +21,9 @@ const MovieContextProvider = ({ children }) => {
     // STATE FOR THEME SETTINGS 
     const [colorState, colorDispatch] = useReducer(reducer, initial)
 
-    // Get Single Movie by APi and id
+    // STATE FOR LIKED MOVIES
+    const [likeMovie, likeMovieDispatch] = useReducer(reducer, initial)
+
     // GET SINGLE MOVIE BY API AND ID
     const getMovie = (url) => {
         try {
@@ -52,7 +54,9 @@ const MovieContextProvider = ({ children }) => {
                 colorState,
                 colorDispatch,
                 speedState,
-                speedDispatch
+                speedDispatch,
+                likeMovie,
+                likeMovieDispatch
             }}
         >
             {children}

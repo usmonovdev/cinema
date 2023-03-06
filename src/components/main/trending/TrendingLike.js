@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Image } from 'antd'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
@@ -12,24 +12,50 @@ import { useCollectionData } from "react-firebase-hooks/firestore"
 
 function TrendingLike({ data }) {
     const { currentUser } = useContext(AuthContext)
+    const { likeMovieDispatch, likeMovie, imgState } = useMovieContext()
+    // const { c_id } = likeMovie.localMovie[0]
     const { poster_path, media_type, id, title } = data
-    const { imgState } = useMovieContext()
-    const [addLike, setAddLike] = useState(false)
+    const [removeLike, setRemoveLike] = useState()
+    const [newId, setNewId] = useState()
+
+    useEffect(() => {
+        {likeMovie.localMovie?.map((data) => {
+            setNewId(data.c_id)
+        })}
+    }, [likeMovie.localMovie])
+
+    console.log("Like id", newId)
+    console.log("Local like id", id)
 
     const query = collection(db, `likes/${currentUser?.uid}/children`)
     const [docs, loading, error] = useCollectionData(query)
     const like = async (e) => {
+        setRemoveLike(true)
+        console.log("like")
         const newName = `${e.title == undefined ? e.name : e.title}`
         const docRef = doc(db, `likes/${currentUser?.uid}/children`, newName)
         await setDoc(docRef, {
-            id: e.id,
+            c_id: e.id,
             name: newName,
             media_type: e.media_type,
             poster_path: e.poster_path,
             vote_average: e.vote_average,
             timestamp: serverTimestamp()
-        })
+        });
     }
+
+    const deleteLike = () => {
+        setRemoveLike(false)
+        console.log("delete")
+    }
+
+    useEffect(() => {
+        likeMovieDispatch({
+            type: "LIKE",
+            newLocalMovie: docs
+        });
+    }, [docs])
+
     return (
         <div className="trending-movie-box">
             <Image
@@ -43,9 +69,15 @@ function TrendingLike({ data }) {
             />
             <div className="trending-movie-info">
                 <div className="like-and-open">
-                    <div className='icon' onClick={() => like(data)}>
-                        {addLike ? <AiFillHeart /> : <AiOutlineHeart />}
-                    </div>
+                    {removeLike ?
+                        <div className='icon' onClick={() => deleteLike(data)}>
+                            <AiFillHeart />
+                        </div>
+                        :
+                        <div className='icon' onClick={() => like(data)}>
+                            <AiOutlineHeart />
+                        </div>
+                    }
                     <Link to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}>
                         <div className='play'>
                             <p>Play</p>

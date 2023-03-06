@@ -6,17 +6,20 @@ import { motion } from 'framer-motion';
 import { ConfigProvider, Image, Pagination } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
 import axios from 'axios'
-import "../trending/trending.scss"
 import Navbar from "../../navbar/Navbar"
 import Footer from "../../footer/Footer"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import MovieLoad from '../../loading/movie/Movie';
 import ImageLoading from "../../loading/image/Image"
+import "../trending/trending.scss"
 const API = "https://api.themoviedb.org/3/movie/popular?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Movies() {
-    const { imgState, colorState } = useMovieContext()
+    const { imgState, colorState, likeMovie } = useMovieContext()
+    useEffect(() => {
+        console.log(likeMovie.localMovie)
+    }, [likeMovie.localMovie])
     const [movie, setMovie] = useState([]);
     const [loading, setLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
