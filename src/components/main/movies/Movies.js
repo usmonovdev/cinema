@@ -12,6 +12,8 @@ import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import MovieLoad from '../../loading/movie/Movie';
 import ImageLoading from "../../loading/image/Image"
 import "../trending/trending.scss"
+import "./liked.scss"
+import Liked from './Liked';
 const API = "https://api.themoviedb.org/3/movie/popular?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
@@ -50,11 +52,16 @@ function Movies() {
                 <MovieLoad />
             </> : <>
                 <Navbar />
+                <Liked />
                 <div className='container'>
-                    <div 
+                    <div
                         className="movies-box"
                         style={{ marginTop: "0px" }}
                     >
+                        <div className="title-info">
+                            <h1><span>#</span>All Movies</h1>
+                            <p>+ 500 000 movies</p>
+                        </div>
                         {movie.results?.length !== 0 ?
                             <>
                                 <motion.ul

@@ -102,7 +102,7 @@ $large-screens: 1200px;
         width: 100%;
         height: fit-content;
         display: grid;
-        grid-template-columns: auto auto auto auto;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
         gap: 14px;
         box-sizing: border-box;
         transition: 200ms;

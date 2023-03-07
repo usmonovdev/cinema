@@ -14,7 +14,7 @@ function TrendingLike({ data }) {
     const { currentUser } = useContext(AuthContext)
     const { likeMovieDispatch, likeMovie, imgState } = useMovieContext()
     const { poster_path, media_type, id, title } = data
-    const [removeLike, setRemoveLike] = useState()
+    const [removeLike, setRemoveLike] = useState(false)
 
     const query = collection(db, `likes/${currentUser?.uid}/children`)
     const [docs, loading, error] = useCollectionData(query)
@@ -33,7 +33,7 @@ function TrendingLike({ data }) {
         });
     }
 
-    console.log(likeMovie.localMovie)
+    console.log(docs)
 
     const deleteLike = async (e) => {
         setRemoveLike(false)
