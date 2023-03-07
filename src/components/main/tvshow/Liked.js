@@ -12,13 +12,12 @@ import { AuthContext } from '../../../context/AuthContext/AuthContext'
 import { collection, deleteDoc, doc } from 'firebase/firestore'
 import { db } from '../../../context/AuthContext/Firebase'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
-import "./liked.scss"
+import "../movies/liked.scss"
 
 function Liked() {
     const { currentUser } = useContext(AuthContext)
     const { likeMovieDispatch, likeMovie, imgState } = useMovieContext()
-
-    const filter = likeMovie.localMovie?.filter((data) => data.c_media_type == "movie");
+    const filter = likeMovie.localMovie?.filter((data) => data.c_media_type == "tv");
 
     const query = collection(db, `likes/${currentUser?.uid}/children`)
     const [docs, loading, error] = useCollectionData(query)
@@ -44,7 +43,7 @@ function Liked() {
                     >
                         <div className="title-info">
                             <h1><span>#</span>Liked</h1>
-                            <p>You liked these movies</p>
+                            <p>You liked these tv movies</p>
                         </div>
                         <motion.ul
                             className="trending"
@@ -52,7 +51,7 @@ function Liked() {
                             initial="hidden"
                             animate="visible"
                         >
-                            {filter?.map((data) => {
+                            {filter.map((data) => {
                                 const { c_id, c_poster_path, c_vote_average, c_name } = data
                                 return (
                                     <motion.li

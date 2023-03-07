@@ -51,6 +51,8 @@ function Trending() {
         }
     }, []);
 
+    // console.log(movie)
+
     return (
         <>
             {loading ? <>

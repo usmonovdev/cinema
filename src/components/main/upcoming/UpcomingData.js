@@ -1,18 +1,14 @@
 import React, { useReducer } from 'react'
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { container, item } from '../../../assets/Framer'
-import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
+import { AiFillStar } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md"
 import { RiMovie2Line } from "react-icons/ri"
 import { reducer } from '../../../assets/reducer';
 import { slice } from 'lodash';
-import { useMovieContext } from '../../../context/MovieContex/MovieContex';
-import { Image } from 'antd';
-import movieImage from "../../../assets/movie-photo-not-downloaded.jpg"
+import UpcomingLike from './UpcomingLike';
 
 function UpcomingData({ filter }) {
-    const { imgState } = useMovieContext()
     const initialState = {
         completed: false,
         index: 4,
@@ -45,33 +41,14 @@ function UpcomingData({ filter }) {
                         animate="visible"
                     >
                         {upcoming.map((data) => {
-                            const { id, poster_path, name, vote_average, title } = data
+                            const { id, vote_average, title } = data
                             return (
                                 <motion.li
                                     className="trending-movie-container"
                                     variants={item}
                                     key={id}
                                 >
-                                    <div className="trending-movie-box">
-                                        <Image 
-                                            preview={false}
-                                            src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`} 
-                                            alt={name} 
-                                            fallback={movieImage}
-                                        />
-                                        <div className="trending-movie-info">
-                                            <div className="like-and-open">
-                                                <div className='icon'>
-                                                    <AiOutlineHeart />
-                                                </div>
-                                                <Link to={`/movie/${id}`}>
-                                                    <div className='play'>
-                                                        <p>Play</p>
-                                                    </div>
-                                                </Link>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <UpcomingLike data={data}/>
                                     <div className='info'>
                                         <div className='text-anim'>
                                             <p className={`${title?.length > "10" ? "anim" : ""}`}>{title}</p>

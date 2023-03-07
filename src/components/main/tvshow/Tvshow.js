@@ -13,6 +13,7 @@ import showImage from "../../../assets/actor-photo-not-downloaded.jpg"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import TvLoad from "../../loading/movie/Movie"
 import ImageLoading from "../../loading/image/Image"
+import Liked from './Liked';
 const API = "https://api.themoviedb.org/3/tv/popular?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
@@ -47,8 +48,13 @@ function Tvshow() {
                     <TvLoad />
                 </> : <>
                     <Navbar />
+                    <Liked />
                     <div className='container'>
                         <div className="movies-box">
+                            <div className="title-info">
+                                <h1><span>#</span>All Tv Shows</h1>
+                                <p>+ 500 000 tv movies</p>
+                            </div>
                             {show.results?.length !== 0 ?
                                 <>
                                     <motion.ul
@@ -56,7 +62,7 @@ function Tvshow() {
                                         variants={container}
                                         initial="hidden"
                                         animate="visible"
-                                        // style={{ marginBottom: "50px" }}
+                                    // style={{ marginBottom: "50px" }}
                                     >
                                         {show.results?.map((data) => {
                                             const { id, poster_path, name, vote_average } = data

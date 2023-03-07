@@ -31,7 +31,7 @@ function ShowOpen() {
                     setLoading(false)
                 })
         } catch (error) {
-            console.log("Api error", error)
+            console.log("Api error")
         }
     }, [showId])
 

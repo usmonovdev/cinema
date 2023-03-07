@@ -10,14 +10,14 @@ import { collection, deleteDoc, doc, serverTimestamp, setDoc } from 'firebase/fi
 import { db } from '../../../context/AuthContext/Firebase'
 import { useCollectionData } from "react-firebase-hooks/firestore"
 
-function TrendingLike({ data }) {
+function UpcomingLike({ data }) {
     const { currentUser } = useContext(AuthContext)
-    const { likeMovieDispatch, likeMovie, imgState } = useMovieContext()
-    const { poster_path, media_type, id, title } = data
+    const { likeMovieDispatch, imgState } = useMovieContext()
+    const { poster_path, id, title } = data
     const [removeLike, setRemoveLike] = useState(false)
 
     const query = collection(db, `likes/${currentUser?.uid}/children`)
-    const [docs, loading, error] = useCollectionData(query)
+    const [docs] = useCollectionData(query)
     const like = async (e) => {
         setRemoveLike(true)
         console.log("like")
@@ -26,15 +26,15 @@ function TrendingLike({ data }) {
         await setDoc(docRef, {
             c_id: e.id,
             c_name: newName,
-            c_media_type: e.media_type,
+            c_media_type: "movie",
             c_poster_path: e.poster_path,
             c_vote_average: e.vote_average,
             timestamp: serverTimestamp()
         });
     }
 
-    // console.log(docs)
-
+    // DELETING LIKED MOVIES IN DATABASE
+    // USING DELETE DOC AND MOVIE LOATION
     const deleteLike = async (e) => {
         setRemoveLike(false)
         const newName = `${e.title == undefined ? e.name : e.title}`
@@ -71,7 +71,7 @@ function TrendingLike({ data }) {
                             <AiOutlineHeart />
                         </div>
                     }
-                    <Link to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}>
+                    <Link to={`/movie/${id}`}>
                         <div className='play'>
                             <p>Play</p>
                         </div>
@@ -82,4 +82,4 @@ function TrendingLike({ data }) {
     )
 }
 
-export default TrendingLike
+export default UpcomingLike

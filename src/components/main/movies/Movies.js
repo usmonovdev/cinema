@@ -19,9 +19,9 @@ const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Movies() {
     const { imgState, colorState, likeMovie } = useMovieContext()
-    useEffect(() => {
-        console.log(likeMovie.localMovie)
-    }, [likeMovie.localMovie])
+    // useEffect(() => {
+    //     console.log(likeMovie.localMovie)
+    // }, [likeMovie.localMovie])
     const [movie, setMovie] = useState([]);
     const [loading, setLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
