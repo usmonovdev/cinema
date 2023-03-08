@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Popover } from 'antd'
 import { GiSettingsKnobs } from "react-icons/gi"
-import Filter from './Filter'
 import { PopoverTitleTrending } from "../../../assets/AntD"
+import { useMovieContext } from '../../../context/MovieContex/MovieContex'
+import { LoadHome } from "../../index"
+import Filter from './Filter'
 import axios from 'axios'
 import TrendingData from './TrendingData'
-import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import "./trending.scss"
-import Homemovie from '../../loading/homeMovie/Homemovie'
 const API = "https://api.themoviedb.org/3/trending/all/day?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
@@ -56,7 +56,7 @@ function Trending() {
     return (
         <>
             {loading ? <>
-                <Homemovie />
+                <LoadHome />
             </> : <>
                 <div className='container'>
                     <div className="movies-box">

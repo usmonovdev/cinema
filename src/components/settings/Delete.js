@@ -1,6 +1,5 @@
+import React, { useContext } from 'react'
 import { deleteUser } from 'firebase/auth';
-import React from 'react'
-import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext/AuthContext';
 
@@ -11,7 +10,7 @@ function Delete({ hide }) {
         deleteUser(currentUser).then(() => {
             console.log("Account deleted!")
             navigate("/")
-        }).catch((error) => {
+        }).catch(() => {
             console.log("error")
         });
     }

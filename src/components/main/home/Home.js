@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import "./home.scss"
-import Navbar from '../../navbar/Navbar'
 import { AiFillStar } from "react-icons/ai"
 import { BiLeftArrowAlt, BiPlay, BiRightArrowAlt } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
-import Trending from '../trending/Trending'
-import Upcoming from '../upcoming/Upcoming'
-import TopRated from '../topRated/TopRated'
-import Footer from '../../footer/Footer'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
-import HomeSlider from '../../loading/homeSlider/HomeSlider'
+import { Navbar, Footer, LoadHomeSlider, HomeTrending, HomeTopRated, HomeUpcoming } from "../../index"
+import axios from 'axios'
+import "./home.scss"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Home() {
-    const { imgState, speedState } = useMovieContext()
+    const { speedState } = useMovieContext()
     const [firstPage, setFirstPage] = useState([])
     const [index, setIndex] = useState(0)
     const [loading, setLoading] = useState(true)
@@ -56,7 +51,7 @@ function Home() {
     return (
         <>
             {loading ? <>
-                <HomeSlider />
+                <LoadHomeSlider />
             </> : <>
                 <Navbar />
                 <div className="ads">
@@ -109,9 +104,9 @@ function Home() {
                     })}
                 </div>
             </>}
-            <Trending />
-            <TopRated />
-            <Upcoming />
+            <HomeTrending />
+            <HomeTopRated />
+            <HomeUpcoming />
             {loading ? "" : <Footer />}
         </>
     )

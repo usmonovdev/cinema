@@ -3,12 +3,12 @@ import { Image } from 'antd'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
-import ImageLoading from "../../loading/image/Image"
-import movieImage from "../../../assets/movie-photo-not-downloaded.jpg"
 import { AuthContext } from '../../../context/AuthContext/AuthContext'
 import { collection, deleteDoc, doc, serverTimestamp, setDoc } from 'firebase/firestore'
 import { db } from '../../../context/AuthContext/Firebase'
 import { useCollectionData } from "react-firebase-hooks/firestore"
+import { LoadImage } from "../../index";
+import movieImage from "../../../assets/movie-photo-not-downloaded.jpg"
 
 function UpcomingLike({ data }) {
     const { currentUser } = useContext(AuthContext)
@@ -57,7 +57,7 @@ function UpcomingLike({ data }) {
                 alt={title}
                 fallback={movieImage}
                 placeholder={
-                    <ImageLoading />
+                    <LoadImage />
                 }
             />
             <div className="trending-movie-info">

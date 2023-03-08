@@ -1,5 +1,5 @@
-import { Select, ConfigProvider } from 'antd'
 import React from 'react'
+import { Select, ConfigProvider } from 'antd'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import "../trending/filter.scss"
 

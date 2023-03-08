@@ -1,8 +1,8 @@
 import React from 'react'
 import { MdBackHand } from 'react-icons/md'
 import { Link } from 'react-router-dom'
-import "./bannedContent.scss"
 import { motion } from 'framer-motion'
+import "./bannedContent.scss"
 
 function LimitedContent() {
     return (

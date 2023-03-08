@@ -1,9 +1,9 @@
 import React from 'react'
-import "../navbar/navbar.scss"
-import "./footer.scss"
 import { AiOutlineWarning } from "react-icons/ai"
 import { Link } from 'react-router-dom'
 import GitHubButton from 'react-github-btn'
+import "../navbar/navbar.scss"
+import "./footer.scss"
 
 function Footer() {
     return (

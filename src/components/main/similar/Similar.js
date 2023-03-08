@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Popover } from 'antd'
 import { GiSettingsKnobs } from "react-icons/gi"
+import { PopoverTitleTrending } from "../../../assets/AntD"
+import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import Filter from './Filter'
 import axios from 'axios'
 import SimilarData from './SimilarData'
-import { PopoverTitleTrending } from "../../../assets/AntD"
-import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import "./trending.scss"
 const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"

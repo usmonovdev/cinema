@@ -11,8 +11,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { auth, db, storage } from '../../context/AuthContext/Firebase'
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
 import { reducer } from '../../assets/reducer'
-import Navbar from '../navbar/Navbar'
-import Footer from "../footer/Footer"
+import { Navbar, Footer } from "../index"
 import "./registration.scss"
 
 function SignUp() {

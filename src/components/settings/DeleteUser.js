@@ -1,6 +1,5 @@
+import React, { useState } from 'react'
 import { Popover } from 'antd'
-import React from 'react'
-import { useState } from 'react'
 import { MdOutlineDelete } from 'react-icons/md'
 import { DeleteAccount } from '../../assets/AntD'
 import Delete from './Delete'

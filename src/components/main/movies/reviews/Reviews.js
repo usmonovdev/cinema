@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import image from "../../../../assets/user-not-downloaded.jpg"
-import Comment from './Comment'
 import { Image } from 'antd'
 import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
+import { LoadImage } from "../../../index"
+import axios from 'axios'
+import Comment from './Comment'
+import image from "../../../../assets/user-not-downloaded.jpg"
 import "../../../navbar/navbar.scss"
 import "./reviews.scss"
 import "../../../../assets/slick.css"
-import ImageLoading from "../../../loading/image/Image"
 
 function Reviews({ moviesId, type }) {
     const { imgState } = useMovieContext()
@@ -43,7 +43,7 @@ function Reviews({ moviesId, type }) {
                                             alt={author}
                                             fallback={image}
                                             placeholder={
-                                                <ImageLoading />
+                                                <LoadImage />
                                             }
                                         />
                                     </div>

@@ -1,22 +1,22 @@
-import axios from 'axios'
 import React, { useEffect, useState, useRef } from 'react'
+import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
+import { Image } from 'antd'
+import { Link } from 'react-router-dom'
+import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
+import { LoadImage } from "../../../index"
+import Slider from 'react-slick'
+import actor from "../../../../assets/actor-photo-not-downloaded.jpg"
+import axios from 'axios'
 import "./actors.scss"
 import "../../../navbar/navbar.scss"
 import "../../../../assets/slick.css"
-import Slider from 'react-slick'
-import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
-import { Image } from 'antd'
-import actor from "../../../../assets/actor-photo-not-downloaded.jpg"
-import { Link } from 'react-router-dom'
-import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
-import ImageLoading from "../../../loading/image/Image"
+const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Actors({ moviesId, type }) {
     const { imgState } = useMovieContext()
 
     // CHANGE API LINK WITH TYPE
     const API = `https://api.themoviedb.org/3/${type == "movie" ? "movie" : "tv"}/`
-    const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
     const [actors, setActors] = useState([]);
 
     const customeSlider = useRef(null);
@@ -119,7 +119,7 @@ function Actors({ moviesId, type }) {
                                                 alt={data.name}
                                                 fallback={actor}
                                                 placeholder={
-                                                    <ImageLoading />
+                                                    <LoadImage />
                                                 }
                                             />
                                             <div className='actor-name-box'>

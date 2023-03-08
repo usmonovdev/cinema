@@ -1,29 +1,21 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
+import { AiFillStar } from 'react-icons/ai'
 import { container, item } from '../../../assets/Framer'
 import { motion } from 'framer-motion';
-import { ConfigProvider, Image, Pagination } from 'antd';
+import { ConfigProvider, Pagination } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
+import { Navbar, Footer, LoadAllMovies, TvLiked, TvAllLike } from "../../index"
 import axios from 'axios'
-import Navbar from "../../navbar/Navbar"
-import Footer from "../../footer/Footer"
-import showImage from "../../../assets/actor-photo-not-downloaded.jpg"
-import TvLoad from "../../loading/movie/Movie"
-import ImageLoading from "../../loading/image/Image"
-import Liked from './Liked';
 import "../trending/trending.scss"
 const API = "https://api.themoviedb.org/3/tv/popular?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Tvshow() {
-    const { imgState, colorState } = useMovieContext()
+    const { colorState } = useMovieContext()
     const [show, setShow] = useState([]);
     const [loading, setLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
-
-    console.log(show)
 
     useEffect(() => {
         try {
@@ -36,6 +28,7 @@ function Tvshow() {
             console.log("Error in API", error)
         }
     }, [currentPage]);
+
     const onChange = (page) => {
         setCurrentPage(page)
     }
@@ -47,10 +40,10 @@ function Tvshow() {
         <>
             {loading ?
                 <>
-                    <TvLoad />
+                    <LoadAllMovies />
                 </> : <>
                     <Navbar />
-                    <Liked />
+                    <TvLiked />
                     <div className='container'>
                         <div className="movies-box">
                             <div className="title-info">
@@ -64,39 +57,16 @@ function Tvshow() {
                                         variants={container}
                                         initial="hidden"
                                         animate="visible"
-                                    // style={{ marginBottom: "50px" }}
                                     >
                                         {show.results?.map((data) => {
-                                            const { id, poster_path, name, vote_average } = data
+                                            const { id, name, vote_average } = data
                                             return (
                                                 <motion.li
                                                     className="trending-movie-container"
                                                     variants={item}
                                                     key={id}
                                                 >
-                                                    <div className="trending-movie-box">
-                                                        <Image
-                                                            preview={false}
-                                                            src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
-                                                            alt={name}
-                                                            fallback={showImage}
-                                                            placeholder={
-                                                                <ImageLoading />
-                                                            }
-                                                        />
-                                                        <div className="trending-movie-info">
-                                                            <div className="like-and-open">
-                                                                <div className='icon'>
-                                                                    <AiOutlineHeart />
-                                                                </div>
-                                                                <Link to={`/show/${id}`}>
-                                                                    <div className='play'>
-                                                                        <p>Play</p>
-                                                                    </div>
-                                                                </Link>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <TvAllLike data={data}/>
                                                     <div className='info'>
                                                         <div className='text-anim'>
                                                             <p className={`${name?.length > "10" ? "anim" : ""}`}>{name}</p>

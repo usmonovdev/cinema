@@ -1,19 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
-import Navbar from '../../navbar/Navbar'
-import BannedContent from "../../BannedContent/BannedContent"
-import RightInfo from '../tvshow/rightInfo/RightInfo'
-import LeftInfo from '../tvshow/leftInfo/LeftInfo'
-import Footer from '../../footer/Footer'
-import Reviews from '../movies/reviews/Reviews'
-import MovieImages from '../movies/movieImages/MovieImages'
-import Actors from '../movies/actors/Actors'
-import Similar from '../similar/Similar'
+import { 
+    Navbar, Footer, BannedContent, TvRightInfo, TvLeftInfo, TvReviews, 
+    TvImages, TvActors, TvSimilar, LoadSimilar, LoadMovie, LoadPhoto 
+} from "../../index"
 import axios from 'axios'
-import SimilarLoad from '../../loading/similar/Similar'
-import Movie from '../../loading/movieOpen/Movie'
-import Photo from '../../loading/photo/Photo'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function ShowOpen() {
@@ -48,11 +40,11 @@ function ShowOpen() {
 
     return (
         <>
-            {loading ? 
+            {loading ?
                 <>
-                    <Movie/>
-                    <Photo/>
-                    <SimilarLoad />
+                    <LoadMovie />
+                    <LoadPhoto />
+                    <LoadSimilar />
                 </> :
                 <>
                     {!adult ? <>
@@ -63,15 +55,15 @@ function ShowOpen() {
                                 backgroundImage: `url("https://image.tmdb.org/t/p/${imgState.size}/${backdrop_path}")`
                             }}>
                                 <div className="opened-movie-backdrop">
-                                    <LeftInfo show={show} />
-                                    <RightInfo show={show} />
+                                    <TvLeftInfo show={show} />
+                                    <TvRightInfo show={show} />
                                 </div>
                             </div>
                         </div>
-                        <Actors moviesId={showId} type="tv" />
-                        <MovieImages moviesId={showId} type="tv" />
-                        <Reviews moviesId={showId} type="tv" />
-                        <Similar moviesId={showId} type="tv" />
+                        <TvActors moviesId={showId} type="tv" />
+                        <TvImages moviesId={showId} type="tv" />
+                        <TvReviews moviesId={showId} type="tv" />
+                        <TvSimilar moviesId={showId} type="tv" />
                         <Footer />
                     </> : <>
                         <BannedContent />

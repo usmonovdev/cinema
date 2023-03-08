@@ -1,9 +1,8 @@
-import "./App.css"
 import { Route, Routes } from "react-router-dom";
+import { MovieContextProvider } from "./context/MovieContex/MovieContex";
 import Home from "./components/main/home/Home";
 import MoviesOpen from "./components/main/movies/MoviesOpen";
 import Movies from "./components/main/movies/Movies";
-import { MovieContextProvider } from "./context/MovieContex/MovieContex";
 import Tvshow from "./components/main/tvshow/Tvshow";
 import ShowOpen from "./components/main/tvshow/ShowOpen";
 import Actor from "./components/main/actor/Actor";
@@ -13,6 +12,7 @@ import Settings from "./components/settings/Settings";
 import SignUp from "./components/registartion/SignUp";
 import SignIn from "./components/registartion/SignIn";
 import ForgotPassword from "./components/registartion/ForgotPassword";
+import "./App.css"
 
 function App() {
     // SET THEME COLOR USING LOCALSTORAGE

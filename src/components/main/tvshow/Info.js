@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react'
+import axios from 'axios';
 import "./info.scss"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 

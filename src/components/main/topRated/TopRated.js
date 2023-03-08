@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Popover } from 'antd'
 import { GiSettingsKnobs } from "react-icons/gi"
-import Filter from './Filter'
 import { PopoverTitleTop } from "../../../assets/AntD"
-import axios from 'axios'
-import TopRatedData from './TopRatedData'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
-import Homemovie from '../../loading/homeMovie/Homemovie'
+import { LoadHome } from "../../index"
+import axios from 'axios'
+import Filter from './Filter'
+import TopRatedData from './TopRatedData'
 import "../trending/trending.scss"
 const API = "https://api.themoviedb.org/3/movie/top_rated?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
@@ -51,7 +51,7 @@ function TopRated() {
     return (
         <>
             {loading ? <>
-                <Homemovie />
+                <LoadHome />
             </> : <>
                 <div className='container'>
                     <div className="movies-box">

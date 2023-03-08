@@ -3,30 +3,29 @@ import { Image } from 'antd'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
-import { LoadImage } from "../../index"
 import { AuthContext } from '../../../context/AuthContext/AuthContext'
 import { collection, deleteDoc, doc, serverTimestamp, setDoc } from 'firebase/firestore'
 import { db } from '../../../context/AuthContext/Firebase'
 import { useCollectionData } from "react-firebase-hooks/firestore"
+import { LoadImage } from "../../index"
 import movieImage from "../../../assets/movie-photo-not-downloaded.jpg"
 
-function SimilarLike({ data }) {
+function AllShowLike({ data }) {
     const { currentUser } = useContext(AuthContext)
     const { likeMovieDispatch, imgState } = useMovieContext()
-    const { poster_path, id, title } = data
+    const { poster_path, media_type, id, title } = data
     const [removeLike, setRemoveLike] = useState(false)
 
     const query = collection(db, `likes/${currentUser?.uid}/children`)
     const [docs] = useCollectionData(query)
     const like = async (e) => {
         setRemoveLike(true)
-        console.log("like")
         const newName = `${e.title == undefined ? e.name : e.title}`
         const docRef = doc(db, `likes/${currentUser?.uid}/children`, newName)
         await setDoc(docRef, {
             c_id: e.id,
             c_name: newName,
-            c_media_type: "movie",
+            c_media_type: "tv",
             c_poster_path: e.poster_path,
             c_vote_average: e.vote_average,
             timestamp: serverTimestamp()
@@ -69,7 +68,7 @@ function SimilarLike({ data }) {
                             <AiOutlineHeart />
                         </div>
                     }
-                    <Link to={`/movie/${id}`}>
+                    <Link to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}>
                         <div className='play'>
                             <p>Play</p>
                         </div>
@@ -80,4 +79,4 @@ function SimilarLike({ data }) {
     )
 }
 
-export default SimilarLike
+export default AllShowLike

@@ -1,8 +1,7 @@
 import React, {useEffect, useReducer, useState } from 'react'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
 import { MdKeyboardArrowRight } from 'react-icons/md'
-import Navbar from '../navbar/Navbar'
-import Footer from "../footer/Footer"
+import { Navbar, Footer } from "../index"
 import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
 import { message, Popover } from 'antd'

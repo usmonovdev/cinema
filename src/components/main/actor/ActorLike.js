@@ -7,13 +7,13 @@ import { AuthContext } from '../../../context/AuthContext/AuthContext'
 import { collection, deleteDoc, doc, serverTimestamp, setDoc } from 'firebase/firestore'
 import { db } from '../../../context/AuthContext/Firebase'
 import { useCollectionData } from "react-firebase-hooks/firestore"
-import ImageLoading from "../../loading/image/Image"
+import { LoadImage } from '../../index'
 import movieImage from "../../../assets/movie-photo-not-downloaded.jpg"
 
 function ActorLike({ data }) {
     const { currentUser } = useContext(AuthContext)
     const { likeMovieDispatch, imgState } = useMovieContext()
-    const { profile_path, media_type, id, title } = data
+    const { profile_path, id, title } = data
     const [removeLike, setRemoveLike] = useState(false)
 
     const query = collection(db, `likes/${currentUser?.uid}/children`)
@@ -51,7 +51,7 @@ function ActorLike({ data }) {
                 alt={title}
                 fallback={movieImage}
                 placeholder={
-                    <ImageLoading />
+                    <LoadImage />
                 }
             />
             <div className="trending-movie-info">

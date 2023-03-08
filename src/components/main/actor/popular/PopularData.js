@@ -1,5 +1,4 @@
-import React from 'react'
-import { useReducer } from 'react'
+import React, { useReducer } from 'react'
 import { initial, reducer } from '../../../../assets/reducer'
 import { motion } from 'framer-motion'
 import { slice } from 'lodash'
@@ -8,9 +7,9 @@ import { Image } from 'antd'
 import { RiMovie2Line } from 'react-icons/ri'
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { Link } from 'react-router-dom'
-import actorImage from "../../../../assets/actor-photo-not-downloaded.jpg"
 import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
-import ImageLoading from "../../../loading/image/Image"
+import { LoadImage } from "../../../index"
+import actorImage from "../../../../assets/actor-photo-not-downloaded.jpg"
 
 function PopularData({ popular }) {
     // GET THE INITIAL STATES
@@ -70,7 +69,7 @@ function PopularData({ popular }) {
                                                 preview={false}
                                                 fallback={actorImage}
                                                 placeholder={
-                                                    <ImageLoading />
+                                                    <LoadImage />
                                                 }
                                             />
                                             <p className='actor-name'>{name}</p>

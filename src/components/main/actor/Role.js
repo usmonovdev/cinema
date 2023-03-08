@@ -1,11 +1,11 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import "./Role.scss"
+const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Role() {
     const { actorId } = useParams(null)
-    const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
     const [role, setRole] = useState([])
     useEffect(() => {
         try {

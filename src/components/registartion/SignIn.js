@@ -6,8 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { message } from 'antd'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../context/AuthContext/Firebase'
-import Navbar from '../navbar/Navbar'
-import Footer from "../footer/Footer"
+import { Navbar, Footer } from "../index";
 import { reducer } from '../../assets/reducer'
 import "./registration.scss"
 

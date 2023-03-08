@@ -3,15 +3,15 @@ import { container, item } from '../../../assets/Framer'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import { motion } from 'framer-motion'
 import { Image } from 'antd'
-import movie from "../../../assets/movie-photo-not-downloaded.jpg"
 import { AiFillStar } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
-import ImageLoading from "../../loading/image/Image"
+import { LoadImage } from "../../index"
 import { MdDeleteOutline } from 'react-icons/md'
 import { AuthContext } from '../../../context/AuthContext/AuthContext'
 import { collection, deleteDoc, doc } from 'firebase/firestore'
 import { db } from '../../../context/AuthContext/Firebase'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
+import movie from "../../../assets/movie-photo-not-downloaded.jpg"
 import "../movies/liked.scss"
 
 function Liked() {
@@ -20,7 +20,7 @@ function Liked() {
     const filter = likeMovie.localMovie?.filter((data) => data.c_media_type == "tv");
 
     const query = collection(db, `likes/${currentUser?.uid}/children`)
-    const [docs, loading, error] = useCollectionData(query)
+    const [docs] = useCollectionData(query)
     const deleteLike = async (e) => {
         const docRef = doc(db, `likes/${currentUser?.uid}/children`, e)
         await deleteDoc(docRef);
@@ -66,7 +66,7 @@ function Liked() {
                                                 alt={c_name}
                                                 fallback={movie}
                                                 placeholder={
-                                                    <ImageLoading />
+                                                    <LoadImage />
                                                 }
                                             />
                                             <div className="trending-movie-info">
@@ -74,7 +74,7 @@ function Liked() {
                                                     <div className='icon' onClick={() => deleteLike(c_name)}>
                                                         <MdDeleteOutline />
                                                     </div>
-                                                    <Link to={`/movie/${c_id}`}>
+                                                    <Link to={`/show/${c_id}`}>
                                                         <div className='play'>
                                                             <p>Play</p>
                                                         </div>

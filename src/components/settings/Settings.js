@@ -1,21 +1,13 @@
-import React, { useEffect } from 'react'
-import Navbar from "../navbar/Navbar"
-import Footer from "../footer/Footer"
-import ImageSize from './ImageSize'
-import SliderSpeed from './SliderSpeed'
-import ThemeColor from './ThemeColor'
-import Avatar from './Avatar'
-import "./settings.scss"
-import { useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { MdAccountCircle } from 'react-icons/md'
 import { HiPencil } from 'react-icons/hi'
-import Name from './Name'
-import Email from './Email'
-import SignOut from './SignOut'
-import { useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext/AuthContext'
-import DeleteUser from './DeleteUser'
 import { message } from 'antd'
+import {
+    Navbar, Footer, SetAvatar, SetDeleteUser, SetEmail,
+    SetImageSize, SetSliderSpeed, SetTheme, SetName, SetOut
+} from "../index";
+import "./settings.scss"
 
 function Settings() {
     const [tab, setTab] = useState(true)
@@ -71,19 +63,19 @@ function Settings() {
                         <hr style={{ opacity: "0.2", marginBottom: "20px" }} />
                         <ul className='settings'>
                             <li>
-                                <Avatar />
+                                <SetAvatar />
                             </li>
                             <li>
-                                <Name />
+                                <SetName />
                             </li>
                             <li>
-                                <Email />
+                                <SetEmail />
                             </li>
                             <li>
-                                <SignOut />
+                                <SetOut />
                             </li>
                             <li>
-                                <DeleteUser />
+                                <SetDeleteUser />
                             </li>
                         </ul>
                     </div>
@@ -99,13 +91,13 @@ function Settings() {
                         <hr style={{ opacity: "0.2", marginBottom: "20px" }} />
                         <ul className='settings'>
                             <li>
-                                <ImageSize />
+                                <SetImageSize />
                             </li>
                             <li>
-                                <SliderSpeed />
+                                <SetSliderSpeed />
                             </li>
                             <li>
-                                <ThemeColor />
+                                <SetTheme />
                             </li>
                         </ul>
                     </div>

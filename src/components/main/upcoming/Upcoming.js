@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Popover } from 'antd';
-import axios from 'axios';
 import { GiSettingsKnobs } from 'react-icons/gi';
 import { PopoverTitleUpcoming } from '../../../assets/AntD';
+import { useMovieContext } from '../../../context/MovieContex/MovieContex';
+import { LoadHome } from '../../index';
+import axios from 'axios';
 import Filter from './Filter';
 import UpcomingData from './UpcomingData';
-import { useMovieContext } from '../../../context/MovieContex/MovieContex';
-import Homemovie from '../../loading/homeMovie/Homemovie';
 const API = "https://api.themoviedb.org/3/movie/upcoming?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
@@ -49,7 +49,7 @@ function Upcoming() {
     return (
         <>
             {loading ? <>
-                <Homemovie />
+                <LoadHome />
             </> : <>
                 <div className='container'>
                     <div className="movies-box">

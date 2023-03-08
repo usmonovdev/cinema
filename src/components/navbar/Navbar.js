@@ -1,16 +1,16 @@
 import React, { useState, useContext, useReducer, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import logo from "../../assets/logo-white.png"
 import { BiSearch } from "react-icons/bi"
 import { RiMovie2Line, RiBearSmileLine, RiHome2Line, RiSettingsLine } from "react-icons/ri"
 import { MdSlideshow } from "react-icons/md"
-import Hamburger from 'hamburger-react'
 import { motion } from "framer-motion"
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
-import Search from './Search'
 import { Drawer, Image } from 'antd'
 import { reducer } from '../../assets/reducer'
 import { AuthContext } from '../../context/AuthContext/AuthContext'
+import Hamburger from 'hamburger-react'
+import logo from "../../assets/logo-white.png"
+import Search from './Search'
 import "./navbar.scss"
 
 function Navbar() {

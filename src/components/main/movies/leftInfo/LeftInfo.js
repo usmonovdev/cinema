@@ -1,9 +1,9 @@
 import React from 'react'
-import "../leftInfo/leftinfo.scss"
+import { LoadImage } from "../../../index"
 import { Image } from 'antd';
-import movieNotLoaded from "../../../../assets/movie-photo-not-downloaded.jpg"
 import { useMovieContext } from '../../../../context/MovieContex/MovieContex';
-import ImageLoading from "../../../loading/image/Image"
+import movieNotLoaded from "../../../../assets/movie-photo-not-downloaded.jpg"
+import "../leftInfo/leftinfo.scss"
 
 function LeftInfo({ movie }) {
     const { imgState } = useMovieContext()
@@ -17,7 +17,7 @@ function LeftInfo({ movie }) {
                         alt={movie.original_title}
                         fallback={movieNotLoaded}
                         placeholder={
-                            <ImageLoading />
+                            <LoadImage />
                         }
                     />
                 </div>

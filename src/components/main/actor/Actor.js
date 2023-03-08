@@ -4,14 +4,10 @@ import { motion } from 'framer-motion';
 import { ConfigProvider, Pagination } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
+import { Navbar, Footer, LoadAllMovies, ActorLike, ActorLiked } from "../../index"
 import axios from 'axios'
-import Navbar from "../../navbar/Navbar"
-import Footer from "../../footer/Footer"
-import ActorLoad from "../../loading/movie/Movie"
-import ActorLike from './ActorLike';
 import "../trending/trending.scss"
 import "../movies/liked.scss"
-import Liked from './Liked';
 const API = "https://api.themoviedb.org/3/person/popular?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
@@ -45,10 +41,10 @@ function Actor() {
     return (
         <>
             {loading ? <>
-                <ActorLoad />
+                <LoadAllMovies />
             </> : <>
                 <Navbar />
-                <Liked/>
+                <ActorLiked />
                 <div className='container'>
                     <div className="movies-box">
                         <div className="title-info">

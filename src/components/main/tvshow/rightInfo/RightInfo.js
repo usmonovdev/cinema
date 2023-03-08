@@ -1,13 +1,11 @@
-import React from 'react'
-import "./rightInfo.scss"
+import React, { useReducer } from 'react'
 import { Button, ConfigProvider, Drawer, Space } from 'antd';
-import { AiOutlineHeart, AiOutlineInfoCircle, AiOutlineStar } from 'react-icons/ai';
-import Info from '../Info';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { TvInfo, TvShowLike } from "../../../index"
 import { RxShare1 } from 'react-icons/rx';
 import { reducer } from '../../../../assets/reducer';
-import { useReducer } from 'react';
 import { useMovieContext } from '../../../../context/MovieContex/MovieContex';
-import ShowLike from '../ShowLike';
+import "./rightInfo.scss"
 
 function RightInfo({ show }) {
     const { colorState } = useMovieContext()
@@ -79,11 +77,11 @@ function RightInfo({ show }) {
                             </Space>
                         }
                     >
-                        <Info show={show} />
+                        <TvInfo show={show} />
                     </Drawer>
                 </ConfigProvider> : ""}
                 <div className="events-box">
-                    <ShowLike data={show}/>
+                    <TvShowLike data={show}/>
                     <AiOutlineInfoCircle className='events allInfo' onClick={allInfo} />
                     <RxShare1 className='events' onClick={share} />
                 </div>

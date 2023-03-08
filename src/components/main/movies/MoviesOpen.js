@@ -1,23 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useMovieContext } from '../../../context/MovieContex/MovieContex'
+import { 
+    Navbar, Footer, LoadSimilar, LoadPhoto, BannedContent, LoadMovie, MovieRight, 
+    MovieLeft, MovieActors, MovieImages, MovieReview, MovieSimilar
+} from "../../index";
 import axios from "axios"
 import "../home/home.scss"
 import "./moviesOpen.scss"
 import "../movies/moviesOpen.scss"
 import "../movies/actors/actors.scss"
-import { useMovieContext } from '../../../context/MovieContex/MovieContex'
-import Navbar from '../../navbar/Navbar'
-import BannedContent from "../../BannedContent/BannedContent"
-import RightInfo from "./rightInfo/RightInfo"
-import LeftInfo from "./leftInfo/LeftInfo"
-import Footer from "../../footer/Footer"
-import Actors from "./actors/Actors"
-import MovieImages from "./movieImages/MovieImages"
-import Reviews from "./reviews/Reviews"
-import Similar from "../similar/Similar"
-import MovieLoad from "../../loading/movieOpen/Movie"
-import PhotoLoad from "../../loading/photo/Photo"
-import SimilarLoad from "../../loading/similar/Similar"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Movies() {
@@ -52,9 +44,9 @@ function Movies() {
         <>
             {loading ?
                 <>
-                    <MovieLoad />
-                    <PhotoLoad />
-                    <SimilarLoad />
+                    <LoadMovie />
+                    <LoadPhoto />
+                    <LoadSimilar />
                 </> :
                 <>
                     {!adult ? <>
@@ -65,15 +57,15 @@ function Movies() {
                                 backgroundImage: `url("https://image.tmdb.org/t/p/${imgState.size}/${backdrop_path}")`
                             }}>
                                 <div className="opened-movie-backdrop">
-                                    <LeftInfo movie={movie} />
-                                    <RightInfo movie={movie} />
+                                    <MovieLeft movie={movie} />
+                                    <MovieRight movie={movie} />
                                 </div>
                             </div>
                         </div>
-                        <Actors moviesId={moviesId} type="movie" />
+                        <MovieActors moviesId={moviesId} type="movie" />
                         <MovieImages moviesId={moviesId} type="movie" />
-                        <Reviews moviesId={moviesId} type="movie" />
-                        <Similar moviesId={moviesId} type="movie" />
+                        <MovieReview moviesId={moviesId} type="movie" />
+                        <MovieSimilar moviesId={moviesId} type="movie" />
                         <Footer />
                     </> : <>
                         <BannedContent />

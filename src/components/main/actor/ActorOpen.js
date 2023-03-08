@@ -2,15 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import { useParams } from 'react-router-dom'
 import { Image } from 'antd'
+import { Footer, Navbar, LoadMovie, ActorRight, ActorPopular, LoadSimilar, LoadImage } from "../../index"
 import axios from 'axios'
-import Footer from "../../footer/Footer"
-import Navbar from '../../navbar/Navbar'
-import Right from './Right'
-import Popular from './popular/Popular'
 import notDownloaded from "../../../assets/actor-photo-not-downloaded.jpg"
-import ActorLoader from "../../loading/movieOpen/Movie"
-import SimilarLoader from "../../loading/similar/Similar"
-import ImageLoading from "../../loading/image/Image"
 import "./actors.scss"
 
 function ActorOpen() {
@@ -38,8 +32,8 @@ function ActorOpen() {
     return (
         <div>
             {loading ? <>
-                <ActorLoader />
-                <SimilarLoader/>
+                <LoadMovie />
+                <LoadSimilar />
             </> : <>
                 <Navbar />
                 <div className="bg-image"
@@ -57,16 +51,16 @@ function ActorOpen() {
                                         src={`https://image.tmdb.org/t/p/${imgState.size}/${profile_path}`}
                                         fallback={notDownloaded}
                                         placeholder={
-                                            <ImageLoading />
+                                            <LoadImage />
                                         }
                                     />
                                 </div>
-                                <Right actor={actor} />
+                                <ActorRight actor={actor} />
                             </div>
                         </div>
                     </div>
                 </div>
-                <Popular />
+                <ActorPopular />
                 <Footer />
             </>}
         </div>

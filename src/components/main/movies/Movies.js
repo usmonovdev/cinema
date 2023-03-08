@@ -1,27 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import { AiFillStar, AiOutlineHeart } from 'react-icons/ai'
+import { AiFillStar } from 'react-icons/ai'
 import { container, item } from '../../../assets/Framer'
 import { motion } from 'framer-motion';
-import { ConfigProvider, Image, Pagination } from 'antd';
+import { ConfigProvider, Pagination } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
-import axios from 'axios'
-import Navbar from "../../navbar/Navbar"
-import Footer from "../../footer/Footer"
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
+import { Navbar, Footer } from "../../index"
 import MovieLoad from '../../loading/movie/Movie';
-import ImageLoading from "../../loading/image/Image"
+import axios from 'axios'
+import Liked from './Liked';
+import AllMoviesLike from './AllMoviesLike';
 import "../trending/trending.scss"
 import "./liked.scss"
-import Liked from './Liked';
 const API = "https://api.themoviedb.org/3/movie/popular?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Movies() {
-    const { imgState, colorState, likeMovie } = useMovieContext()
-    // useEffect(() => {
-    //     console.log(likeMovie.localMovie)
-    // }, [likeMovie.localMovie])
+    const { colorState } = useMovieContext()
     const [movie, setMovie] = useState([]);
     const [loading, setLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
@@ -71,36 +66,14 @@ function Movies() {
                                     animate="visible"
                                 >
                                     {movie.results?.map((data) => {
-                                        const { id, poster_path, title, vote_average } = data
+                                        const { id, title, vote_average } = data
                                         return (
                                             <motion.li
                                                 className="trending-movie-container"
                                                 variants={item}
                                                 key={id}
                                             >
-                                                <div className="trending-movie-box">
-                                                    <Image
-                                                        preview={false}
-                                                        src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
-                                                        alt={title}
-                                                        fallback={movie}
-                                                        placeholder={
-                                                            <ImageLoading />
-                                                        }
-                                                    />
-                                                    <div className="trending-movie-info">
-                                                        <div className="like-and-open">
-                                                            <div className='icon'>
-                                                                <AiOutlineHeart />
-                                                            </div>
-                                                            <Link to={`/movie/${id}`}>
-                                                                <div className='play'>
-                                                                    <p>Play</p>
-                                                                </div>
-                                                            </Link>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <AllMoviesLike data={data}/>
                                                 <div className='info'>
                                                     <div className='text-anim'>
                                                         <p className={`${title.length > "10" ? "anim" : ""}`}>{title}</p>

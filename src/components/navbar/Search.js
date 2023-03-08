@@ -1,13 +1,13 @@
 import React, { useEffect, useReducer } from 'react'
-import axios from 'axios'
 import { reducer } from '../../assets/reducer'
 import { RiMicLine, RiMicOffLine, RiMovie2Line } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 import { AiOutlineStar } from 'react-icons/ai'
 import { BiDollar } from "react-icons/bi"
 import { VscPlay } from "react-icons/vsc"
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { motion } from 'framer-motion'
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import axios from 'axios'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Search() {

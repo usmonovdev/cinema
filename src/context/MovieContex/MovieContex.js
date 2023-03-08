@@ -1,6 +1,6 @@
-import axios from "axios";
 import { createContext, useContext, useReducer, useState } from "react"
 import { initial, reducer } from "../../assets/reducer";
+import axios from "axios";
 
 const MovieContext = createContext();
 
