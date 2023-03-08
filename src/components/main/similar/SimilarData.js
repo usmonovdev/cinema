@@ -11,6 +11,7 @@ import { reducer } from "../../../assets/reducer"
 import { Image } from 'antd'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import ImageLoading from "../../loading/image/Image"
+import SimilarLike from "./SimilarLike"
 
 function SimilarData({ filter }) {
     const { imgState } = useMovieContext()
@@ -55,7 +56,8 @@ function SimilarData({ filter }) {
                                     variants={item}
                                     key={id}
                                 >
-                                    <div className="trending-movie-box">
+                                    <SimilarLike data={data}/>
+                                    {/* <div className="trending-movie-box">
                                         <Image
                                             preview={false}
                                             src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
@@ -79,7 +81,7 @@ function SimilarData({ filter }) {
                                                 </Link>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                     <div className='info'>
                                         <div className='text-anim'>
                                             <p className={`${title?.length > "10" ? "anim" : ""}`}>{title}</p>

@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
-import { AiOutlineHeart } from 'react-icons/ai'
 import { container, item } from '../../../assets/Framer'
 import { motion } from 'framer-motion';
-import { ConfigProvider, Image, Pagination } from 'antd';
+import { ConfigProvider, Pagination } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
+import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import axios from 'axios'
 import Navbar from "../../navbar/Navbar"
 import Footer from "../../footer/Footer"
-import actorImage from "../../../assets/actor-photo-not-downloaded.jpg"
 import ActorLoad from "../../loading/movie/Movie"
-import { useMovieContext } from '../../../context/MovieContex/MovieContex';
-import ImageLoading from "../../loading/image/Image"
+import ActorLike from './ActorLike';
 import "../trending/trending.scss"
+import "../movies/liked.scss"
+import Liked from './Liked';
 const API = "https://api.themoviedb.org/3/person/popular?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Actor() {
-    const { imgState, colorState } = useMovieContext()
+    const { colorState } = useMovieContext()
     const [actor, setActor] = useState([]);
     const [loading, setLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
@@ -49,8 +48,13 @@ function Actor() {
                 <ActorLoad />
             </> : <>
                 <Navbar />
+                <Liked/>
                 <div className='container'>
                     <div className="movies-box">
+                        <div className="title-info">
+                            <h1><span>#</span>All Actors</h1>
+                            <p>+ 10 000 actors</p>
+                        </div>
                         {actor.results?.length !== 0 ?
                             <>
                                 <motion.ul
@@ -60,36 +64,14 @@ function Actor() {
                                     animate="visible"
                                 >
                                     {actor.results?.map((data) => {
-                                        const { id, profile_path, title, name, popularity } = data
+                                        const { id, name } = data
                                         return (
                                             <motion.li
                                                 className="trending-movie-container"
                                                 variants={item}
                                                 key={id}
                                             >
-                                                <div className="trending-movie-box">
-                                                    <Image
-                                                        preview={false}
-                                                        src={`https://image.tmdb.org/t/p/${imgState.size}/${profile_path}`}
-                                                        alt={title}
-                                                        fallback={actorImage}
-                                                        placeholder={
-                                                            <ImageLoading />
-                                                        }
-                                                    />
-                                                    <div className="trending-movie-info">
-                                                        <div className="like-and-open">
-                                                            <div className='icon'>
-                                                                <AiOutlineHeart />
-                                                            </div>
-                                                            <Link to={`/actor/${id}`}>
-                                                                <div className='play'>
-                                                                    <p>View</p>
-                                                                </div>
-                                                            </Link>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <ActorLike data={data} />
                                                 <div className='info'>
                                                     <div className='text-anim actor'>
                                                         <p className={`${name.length > "14" ? "anim" : ""}`}>{name}</p>

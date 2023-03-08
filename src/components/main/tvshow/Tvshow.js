@@ -5,15 +5,15 @@ import { container, item } from '../../../assets/Framer'
 import { motion } from 'framer-motion';
 import { ConfigProvider, Image, Pagination } from 'antd';
 import { RiMovie2Line } from "react-icons/ri"
+import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import axios from 'axios'
-import "../trending/trending.scss"
 import Navbar from "../../navbar/Navbar"
 import Footer from "../../footer/Footer"
 import showImage from "../../../assets/actor-photo-not-downloaded.jpg"
-import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import TvLoad from "../../loading/movie/Movie"
 import ImageLoading from "../../loading/image/Image"
 import Liked from './Liked';
+import "../trending/trending.scss"
 const API = "https://api.themoviedb.org/3/tv/popular?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
@@ -22,6 +22,8 @@ function Tvshow() {
     const [show, setShow] = useState([]);
     const [loading, setLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
+
+    console.log(show)
 
     useEffect(() => {
         try {
@@ -53,7 +55,7 @@ function Tvshow() {
                         <div className="movies-box">
                             <div className="title-info">
                                 <h1><span>#</span>All Tv Shows</h1>
-                                <p>+ 500 000 tv movies</p>
+                                <p>+ 145 000 tv movies</p>
                             </div>
                             {show.results?.length !== 0 ?
                                 <>

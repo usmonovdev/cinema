@@ -10,10 +10,10 @@ import { collection, deleteDoc, doc, serverTimestamp, setDoc } from 'firebase/fi
 import { db } from '../../../context/AuthContext/Firebase'
 import { useCollectionData } from "react-firebase-hooks/firestore"
 
-function TrendingLike({ data }) {
+function SimilarLike({ data }) {
     const { currentUser } = useContext(AuthContext)
     const { likeMovieDispatch, imgState } = useMovieContext()
-    const { poster_path, media_type, id, title } = data
+    const { poster_path, id, title } = data
     const [removeLike, setRemoveLike] = useState(false)
 
     const query = collection(db, `likes/${currentUser?.uid}/children`)
@@ -26,7 +26,7 @@ function TrendingLike({ data }) {
         await setDoc(docRef, {
             c_id: e.id,
             c_name: newName,
-            c_media_type: e.media_type,
+            c_media_type: "movie",
             c_poster_path: e.poster_path,
             c_vote_average: e.vote_average,
             timestamp: serverTimestamp()
@@ -69,7 +69,7 @@ function TrendingLike({ data }) {
                             <AiOutlineHeart />
                         </div>
                     }
-                    <Link to={`/${media_type == "movie" ? "movie" : "show"}/${id}`}>
+                    <Link to={`/movie/${id}`}>
                         <div className='play'>
                             <p>Play</p>
                         </div>
@@ -80,4 +80,4 @@ function TrendingLike({ data }) {
     )
 }
 
-export default TrendingLike
+export default SimilarLike

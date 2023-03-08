@@ -7,6 +7,7 @@ import { RxShare1 } from 'react-icons/rx';
 import { reducer } from '../../../../assets/reducer';
 import { useReducer } from 'react';
 import { useMovieContext } from '../../../../context/MovieContex/MovieContex';
+import ShowLike from '../ShowLike';
 
 function RightInfo({ show }) {
     const { colorState } = useMovieContext()
@@ -82,8 +83,7 @@ function RightInfo({ show }) {
                     </Drawer>
                 </ConfigProvider> : ""}
                 <div className="events-box">
-                    <AiOutlineHeart className='events' />
-                    <AiOutlineStar className='events' />
+                    <ShowLike data={show}/>
                     <AiOutlineInfoCircle className='events allInfo' onClick={allInfo} />
                     <RxShare1 className='events' onClick={share} />
                 </div>

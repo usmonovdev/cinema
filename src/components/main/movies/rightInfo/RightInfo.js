@@ -1,11 +1,12 @@
 import React, { useReducer } from 'react'
-import "./rightInfo.scss"
 import { Button, ConfigProvider, Drawer, Space } from 'antd';
-import { AiOutlineHeart, AiOutlineInfoCircle, AiOutlineStar } from 'react-icons/ai';
-import Info from '../Info';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { RxShare1 } from 'react-icons/rx';
 import { reducer } from '../../../../assets/reducer';
 import { useMovieContext } from '../../../../context/MovieContex/MovieContex';
+import Info from '../Info';
+import MoviesLike from '../MoviesLike';
+import "./rightInfo.scss"
 
 function RightInfo({ movie }) {
     const { colorState } = useMovieContext()
@@ -85,8 +86,7 @@ function RightInfo({ movie }) {
                     </Drawer>
                 </ConfigProvider> : ""}
                 <div className="events-box">
-                    <AiOutlineHeart className='events' />
-                    <AiOutlineStar className='events' />
+                    <MoviesLike data={movie}/>
                     <AiOutlineInfoCircle className='events allInfo' onClick={allInfo} />
                     <RxShare1 className='events' onClick={share} />
                 </div>
