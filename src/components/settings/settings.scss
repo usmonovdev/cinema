@@ -10,6 +10,7 @@ $mobile: 480px;
         border: none;
         background-color: transparent;
         cursor: pointer;
+        border-radius: 4px;
         &:nth-child(1) {
             background-color: var(--yellow);
             color: var(--white);
@@ -23,6 +24,7 @@ $mobile: 480px;
     gap: 10px;
     margin: 0 0 10px 0;
     .tab {
+        border-radius: 4px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -102,6 +104,7 @@ $mobile: 480px;
                 }
             }
             .delete {
+                border-radius: 4px;
                 padding: 5px;
                 width: fit-content;
                 background-color: rgba(255, 255, 255, 0.11);
@@ -116,6 +119,7 @@ $mobile: 480px;
                 display: flex;
                 flex-direction: row;
                 .avatar {
+                    border-radius: 10px;
                     cursor: pointer;
                     width: 70px;
                     height: 70px;
@@ -128,6 +132,7 @@ $mobile: 480px;
                         animation: spin 1.3s infinite linear;
                     }
                     img {
+                        border-radius: 10px;
                         aspect-ratio: 4 / 4;
                     }
                 }
@@ -150,6 +155,7 @@ $mobile: 480px;
                         display: none;
                     }
                     label {
+                        border-radius: 10px;
                         transition: 200ms;
                         position: absolute;
                         width: 74px;
@@ -182,6 +188,7 @@ $mobile: 480px;
                         }
                     }
                     input {
+                        border-radius: 4px !important;
                         display: inline;
                         box-sizing: border-box;
                         width: 190px;
@@ -199,6 +206,7 @@ $mobile: 480px;
                         }
                     }
                     button {
+                        border-radius: 4px;
                         display: flex;
                         align-items: center;
                         justify-content: center;

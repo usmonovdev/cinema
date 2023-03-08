@@ -8,6 +8,7 @@ import Filter from './Filter'
 import axios from 'axios'
 import TrendingData from './TrendingData'
 import "./trending.scss"
+import "../movies/liked.scss"
 const API = "https://api.themoviedb.org/3/trending/all/day?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
@@ -51,8 +52,6 @@ function Trending() {
         }
     }, []);
 
-    // console.log(movie)
-
     return (
         <>
             {loading ? <>
@@ -61,7 +60,10 @@ function Trending() {
                 <div className='container'>
                     <div className="movies-box">
                         <div className="title-settings-box">
-                            <h1 className='title'><span className='sharp'>#</span> Trending</h1>
+                            <div className="title-info home">
+                                <h1><span>#</span>Trend</h1>
+                                <p>Movies trending today</p>
+                            </div>
                             <Popover
                                 placement="topRight"
                                 content={<Filter />}

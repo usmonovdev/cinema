@@ -84,8 +84,7 @@ function Tvshow() {
                                             theme={{
                                                 token: {
                                                     colorPrimary: colorState.color,
-                                                    colorTextBase: "#fff",
-                                                    borderRadius: "0"
+                                                    colorTextBase: "#fff"
                                                 }
                                             }}
                                         >

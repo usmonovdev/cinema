@@ -27,10 +27,10 @@ function Reviews({ moviesId, type }) {
                 <div className='container'>
                     <div className="actors-box">
                         <div className="actors-title">
-                            <h1 className='title'>
-                                <span className='sharp'>#</span>
-                                Comments
-                            </h1>
+                            <div className="title-info" style={{ margin: "0" }}>
+                                <h1><span>#</span>Liked</h1>
+                                <p>You liked these actors</p>
+                            </div>
                         </div>
                         {reviews.results?.map((data) => {
                             const { author, author_details, id, created_at, content } = data

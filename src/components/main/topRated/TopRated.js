@@ -56,7 +56,10 @@ function TopRated() {
                 <div className='container'>
                     <div className="movies-box">
                         <div className="title-settings-box">
-                            <h1 className='title'><span className='sharp'>#</span> Top Rated</h1>
+                            <div className="title-info home">
+                                <h1><span>#</span>Top rated</h1>
+                                <p>Top rated movies</p>
+                            </div>
                             <Popover
                                 placement="topRight"
                                 content={<Filter />}

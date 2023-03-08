@@ -25,7 +25,10 @@ function Popular() {
         <div className='container'>
             <div className="movies-box">
                 <div className="title-settings-box">
-                    <h1 className='title'><span className='sharp'>#</span> Popular Actors</h1>
+                    <div className="title-info">
+                        <h1><span>#</span>Actors</h1>
+                        <p>Popular actors</p>
+                    </div>
                 </div>
                 <PopularData popular={popular} />
             </div>

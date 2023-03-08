@@ -9,12 +9,13 @@ import MoviesLike from '../MoviesLike';
 import "./rightInfo.scss"
 
 function RightInfo({ movie }) {
-    const { colorState } = useMovieContext()
+    const { colorState, likeMovie } = useMovieContext()
     const initialState = {
         info: false
     }
     const [state, dispatch] = useReducer(reducer, initialState)
     const { title, release_date, runtime, tagline, overview, production_countries, name } = movie;
+    const likedOrNot = likeMovie.localMovie?.find(e => e.c_name === movie.title)
 
     const countries = production_countries || []
     const first = countries[0]?.iso_3166_1
@@ -86,7 +87,7 @@ function RightInfo({ movie }) {
                     </Drawer>
                 </ConfigProvider> : ""}
                 <div className="events-box">
-                    <MoviesLike data={movie}/>
+                    <MoviesLike data={movie} likedOrNot={likedOrNot}/>
                     <AiOutlineInfoCircle className='events allInfo' onClick={allInfo} />
                     <RxShare1 className='events' onClick={share} />
                 </div>

@@ -48,9 +48,12 @@ function Similar({ moviesId }) {
         <>
             {movie?.length !== 0 ? <>
                 <div className='container'>
-                    <div className="movies-box">
+                    <div className="movies-box" style={{ marginTop: "0" }}>
                         <div className="title-settings-box">
-                            <h1 className='title-similar'><span className='sharp'>#</span> Similar Movies</h1>
+                            <div className="title-info">
+                                <h1><span>#</span>Similar</h1>
+                                <p>Similar to the movie above</p>
+                            </div>
                             <Popover
                                 placement="topRight"
                                 content={<Filter />}

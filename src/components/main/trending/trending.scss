@@ -66,7 +66,9 @@ $large-screens: 1200px;
 }
 
 .title-settings-box {
+    padding: 0 5px 0 5px;
     color: var(--white);
+    border-radius: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -154,7 +156,6 @@ $large-screens: 1200px;
                 &:hover .trending-movie-info {
                     left: 0;
                     opacity: 1;
-                    
                 }
                 .trending-movie-info {
                     box-sizing: border-box;
@@ -193,6 +194,7 @@ $large-screens: 1200px;
                         transition: 200ms;
                         transition-delay: 300ms;
                         .icon {
+                            border-radius: 10px;
                             width: 20px;
                             height: 20px;
                             display: flex;
@@ -212,6 +214,7 @@ $large-screens: 1200px;
                             color: var(--white);
                         }
                         .play {
+                            border-radius: 10px;
                             height: 20px;
                             display: flex;
                             justify-content: center;

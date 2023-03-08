@@ -85,7 +85,7 @@ function ThemeColor() {
                         value={"#e6b31e"}
                     />
                     <label
-                        style={{ backgroundColor: "#e6b31e" }}
+                        style={{ backgroundColor: "#e6b31e", borderRadius: "10px" }}
                         htmlFor="radio1"
                         onClick={info}
                     ></label>
@@ -98,7 +98,7 @@ function ThemeColor() {
                         value={"#bb86fc"}
                     />
                     <label
-                        style={{ backgroundColor: "#bb86fc" }}
+                        style={{ backgroundColor: "#bb86fc", borderRadius: "10px" }}
                         htmlFor="radio2"
                         onClick={info}
                     ></label>
@@ -111,7 +111,7 @@ function ThemeColor() {
                         value={"#03dac5"}
                     />
                     <label
-                        style={{ backgroundColor: "#03dac5" }}
+                        style={{ backgroundColor: "#03dac5", borderRadius: "10px" }}
                         htmlFor="radio3"
                         onClick={info}
                     ></label>
@@ -124,7 +124,7 @@ function ThemeColor() {
                         value={"#e300ac"}
                     />
                     <label
-                        style={{ backgroundColor: "#e300ac" }}
+                        style={{ backgroundColor: "#e300ac", borderRadius: "10px" }}
                         htmlFor="radio4"
                         onClick={info}
                     ></label>

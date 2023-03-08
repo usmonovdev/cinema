@@ -83,8 +83,7 @@ function Actor() {
                                         theme={{
                                             token: {
                                                 colorPrimary: colorState.color,
-                                                colorTextBase: "#fff",
-                                                borderRadius: "0"
+                                                colorTextBase: "#fff"
                                             }
                                         }}
                                     >

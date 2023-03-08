@@ -6,23 +6,31 @@ import { collection, deleteDoc, doc, serverTimestamp, setDoc } from 'firebase/fi
 import { db } from '../../../context/AuthContext/Firebase'
 import { useCollectionData } from "react-firebase-hooks/firestore"
 
-function MoviesLike({ data, likedOrNot }) {
+function ActorsLike({ data, likedOrNot }) {
     const { currentUser } = useContext(AuthContext)
     const { likeMovieDispatch } = useMovieContext()
+
     const [removeLike, setRemoveLike] = useState(false)
+
+    useEffect(() => {
+        if(likedOrNot !== undefined) {
+            setRemoveLike(true)
+        }
+        else {
+            setRemoveLike(false)
+        }
+    }, [setRemoveLike])
 
     const query = collection(db, `likes/${currentUser?.uid}/children`)
     const [docs] = useCollectionData(query)
     const like = async (e) => {
         setRemoveLike(true)
-        const newName = `${e.title == undefined ? e.name : e.title}`
-        const docRef = doc(db, `likes/${currentUser?.uid}/children`, newName)
+        const docRef = doc(db, `likes/${currentUser?.uid}/children`, e.name)
         await setDoc(docRef, {
             c_id: e.id,
-            c_name: newName,
-            c_media_type: "movie",
-            c_poster_path: e.poster_path,
-            c_vote_average: e.vote_average,
+            c_name: e.name,
+            c_media_type: "actor",
+            c_poster_path: e.profile_path,
             timestamp: serverTimestamp()
         });
     }
@@ -33,15 +41,6 @@ function MoviesLike({ data, likedOrNot }) {
         const docRef = doc(db, `likes/${currentUser?.uid}/children`, newName)
         await deleteDoc(docRef);
     }
-
-    useEffect(() => {
-        if(likedOrNot !== undefined) {
-            setRemoveLike(true)
-        }
-        else {
-            setRemoveLike(false)
-        }
-    }, [setRemoveLike])
 
     useEffect(() => {
         likeMovieDispatch({
@@ -65,4 +64,4 @@ function MoviesLike({ data, likedOrNot }) {
     )
 }
 
-export default MoviesLike
+export default ActorsLike

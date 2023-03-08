@@ -9,6 +9,7 @@ import "./actors.scss"
 
 function ActorOpen() {
     const { imgState } = useMovieContext()
+
     const { actorId } = useParams()
     const API = "https://api.themoviedb.org/3/person/"
     const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"

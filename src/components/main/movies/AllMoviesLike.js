@@ -13,7 +13,7 @@ import movieImage from "../../../assets/movie-photo-not-downloaded.jpg"
 function AllMoviesLike({ data }) {
     const { currentUser } = useContext(AuthContext)
     const { likeMovieDispatch, imgState } = useMovieContext()
-    const { poster_path, media_type, id, title } = data
+    const { poster_path, id, title } = data
     const [removeLike, setRemoveLike] = useState(false)
 
     const query = collection(db, `likes/${currentUser?.uid}/children`)

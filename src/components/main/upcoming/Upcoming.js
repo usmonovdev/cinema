@@ -54,7 +54,10 @@ function Upcoming() {
                 <div className='container'>
                     <div className="movies-box">
                         <div className="title-settings-box">
-                            <h1 className='title'><span className='sharp'>#</span> Upcoming</h1>
+                            <div className="title-info home">
+                                <h1><span>#</span>Upcoming</h1>
+                                <p>Upcoming movies</p>
+                            </div>
                             <Popover
                                 placement="topRight"
                                 content={<Filter />}

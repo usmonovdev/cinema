@@ -1,13 +1,15 @@
 import React, { useEffect, useReducer } from 'react'
 import { Button, ConfigProvider, Drawer, Space } from 'antd';
-import { AiOutlineHeart, AiOutlineInfoCircle, AiOutlineStar } from 'react-icons/ai';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { RxShare1 } from 'react-icons/rx';
 import { reducer } from '../../../assets/reducer';
 import { useMovieContext } from '../../../context/MovieContex/MovieContex';
+import ActorsLike from "./ActorsLike";
 import Role from './Role';
 
 function Right({ actor }) {
-    const { colorState } = useMovieContext()
+    const { colorState, likeMovie } = useMovieContext()
+    const likedOrNot = likeMovie.localMovie?.find(e => e.c_name === actor.name)
     const initialState = {
         info: false
     }
@@ -73,8 +75,7 @@ function Right({ actor }) {
                 </Drawer>
             </ConfigProvider> : ""}
             <div className="events-box">
-                <AiOutlineHeart className='events' />
-                <AiOutlineStar className='events' />
+                <ActorsLike data={actor} likedOrNot={likedOrNot}/>
                 <AiOutlineInfoCircle className='events allInfo' onClick={allInfo} />
                 <RxShare1 className='events' onClick={share} />
             </div>

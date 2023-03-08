@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi'
 import { Image } from 'antd'
 import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
@@ -9,6 +9,7 @@ import logo from "../../../../assets/movie-photo-not-downloaded.jpg"
 import "../../../navbar/navbar.scss"
 import "./movieImages.scss"
 import "../../../../assets/slick.css"
+import "../liked.scss"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function MovieImages({ moviesId, type }) {
@@ -73,17 +74,17 @@ function MovieImages({ moviesId, type }) {
     const next = () => {
         slider.current.slickPrev()
     }
-    
+
     return (
         <>
             {photos.length > 4 ?
                 <div className='container'>
                     <div className="actors-box">
                         <div className="actors-title">
-                            <h1 className='title'>
-                                <span className='sharp'>#</span>
-                                Photos
-                            </h1>
+                            <div className="title-info">
+                                <h1><span>#</span>Photos</h1>
+                                <p>Pictures from this movie</p>
+                            </div>
                             <div className='slider-buttons'>
                                 <button className='buttonSlider right' onClick={next} >
                                     <BiLeftArrowAlt />

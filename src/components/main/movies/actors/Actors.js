@@ -10,6 +10,7 @@ import axios from 'axios'
 import "./actors.scss"
 import "../../../navbar/navbar.scss"
 import "../../../../assets/slick.css"
+import "../liked.scss"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Actors({ moviesId, type }) {
@@ -88,10 +89,10 @@ function Actors({ moviesId, type }) {
                 <div className='container'>
                     <div className="actors-box">
                         <div className="actors-title">
-                            <h1 className='title'>
-                                <span className='sharp'>#</span>
-                                Actors
-                            </h1>
+                            <div className="title-info">
+                                <h1><span>#</span>Actors</h1>
+                                <p>Actors of this movie</p>
+                            </div>
                             <div className='slider-buttons'>
                                 <button className='buttonSlider right' onClick={next} >
                                     <BiLeftArrowAlt />

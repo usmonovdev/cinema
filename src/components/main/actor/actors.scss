@@ -19,12 +19,10 @@ $large-screens: 1200px;
                 flex-direction: row;
                 gap: 20px;
                 color: $white;
-
                 @media screen and (max-width: $tablet) {
                     display: flex;
                     flex-direction: column;
                 }
-
                 .left {
                     box-sizing: border-box;
                     padding: 20px 0 20px 0;
@@ -41,7 +39,6 @@ $large-screens: 1200px;
                     @media screen and (max-width: $mobile) {
                         padding: 20px 20px 0 20px;
                     }
-
                     .ant-image {
                         width: 100% !important;
                         @media screen and (max-width: $tablet) {
@@ -51,12 +48,13 @@ $large-screens: 1200px;
                             width: 100% !important;
                         }
                         img {
+                            aspect-ratio: 10 / 16;
+                            border-radius: 10px !important;
                             width: 100%;
                             height: 100%;
                         }
                     }
                 }
-
                 .right {
                     box-sizing: border-box;
                     padding: 20px 0 20px 0;
@@ -71,6 +69,7 @@ $large-screens: 1200px;
                         padding: 0 20px 20px;
                     }
                     .birthday {
+                        border-radius: 4px;
                         width: fit-content;
                         background-color: var(--yellow);
                         padding: 2px;
