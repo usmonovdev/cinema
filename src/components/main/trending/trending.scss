@@ -20,6 +20,7 @@ $large-screens: 1200px;
 }
 
 .load-more {
+    border-radius: 10px;
     width: 100%;
     height: 40px;
     border: none;
@@ -132,6 +133,8 @@ $large-screens: 1200px;
             margin: 0 auto;
         }
         .trending-movie-container {
+            border-radius: 10px;
+            overflow: hidden;
             min-width: 24%;
             list-style: none;
             height: fit-content;
@@ -306,4 +309,11 @@ $large-screens: 1200px;
             opacity: .5;
         }
     }
+}
+
+.actor-name {
+    background-color: var(--yellow);
+    padding: 5px;
+    color: var(--white);
+    width: 100%;
 }

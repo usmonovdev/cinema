@@ -14,6 +14,7 @@ $tablet: 768px;
         flex-direction: row;
         gap: 10px;
         p {
+            border-radius: 4px;
             background-color: var(--yellow);
             padding: 2px;
         }
@@ -35,6 +36,7 @@ $tablet: 768px;
         margin-top: 10px;
         box-sizing: border-box;
         .events {
+            border-radius: 4px;
             font-size: 1.7rem;
             cursor: pointer;
             margin: 0 10px 0 0;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import PopularData from './PopularData';
 import "./popular.scss"
+import "../../trending/trending.scss"
 
 function Popular() {
     const API = "https://api.themoviedb.org/3/person/popular?api_key="

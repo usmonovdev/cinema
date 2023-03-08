@@ -147,7 +147,8 @@ body {
                     background-color: var(--yellow);
                 }
                 .user-photo {
-                    width: 40px;
+                    width: 60px;
+                    border-radius: 20%;
                     background-color: var(--yellow);
                 }
                 .user-name {
@@ -223,6 +224,7 @@ body {
                 }
             }
             .user {
+                border-radius: 10px;
                 width: 90%;
                 margin: 0 auto;
                 position: relative;

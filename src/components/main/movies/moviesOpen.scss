@@ -101,6 +101,8 @@ $large-screens: 1200px;
             width: 100%;
         }
         .poster-image-box {
+            aspect-ratio: 10 / 16;
+            border-radius: 10px;
             height: 100%;
             display: flex;
             overflow: hidden;

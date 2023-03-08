@@ -7,6 +7,7 @@ import { useMovieContext } from '../../../context/MovieContex/MovieContex';
 import { Navbar, Footer, LoadAllMovies, ActorLike, ActorLiked } from "../../index"
 import axios from 'axios'
 import "../trending/trending.scss"
+// import "../similar/trending.scss"
 import "../movies/liked.scss"
 const API = "https://api.themoviedb.org/3/person/popular?api_key="
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"

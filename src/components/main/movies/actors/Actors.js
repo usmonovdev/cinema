@@ -20,7 +20,6 @@ function Actors({ moviesId, type }) {
     const [actors, setActors] = useState([]);
 
     const customeSlider = useRef(null);
-
     // FILTER ACTORS WITH PROFILE PATH
     const filterActors = actors?.filter(data => {
         return data.profile_path !== null
