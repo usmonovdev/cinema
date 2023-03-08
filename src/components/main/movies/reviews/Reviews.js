@@ -4,7 +4,7 @@ import { useMovieContext } from '../../../../context/MovieContex/MovieContex'
 import { LoadImage } from "../../../index"
 import axios from 'axios'
 import Comment from './Comment'
-import image from "../../../../assets/user-not-downloaded.jpg"
+import image from "../../../../assets/user-not-downloaded-color.png"
 import "../../../navbar/navbar.scss"
 import "./reviews.scss"
 import "../../../../assets/slick.css"

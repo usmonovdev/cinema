@@ -6,7 +6,7 @@ import { useMovieContext } from '../../../context/MovieContex/MovieContex'
 import Filter from './Filter'
 import axios from 'axios'
 import SimilarData from './SimilarData'
-import "./trending.scss"
+import "../trending/trending.scss"
 const API = "https://api.themoviedb.org/3/movie/"
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 

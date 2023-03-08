@@ -46,20 +46,23 @@ $large-screens: 1200px;
         background-color: $black-footer;
         padding: 10px;
         .user {
-            width: 100px;
+            width: 5%;
             height: 100px;
             @media screen and (max-width: $mobile) {
-                width: 70px;
+                width: 10%;
                 height: 70px;
             }
             img {
+                border-radius: 20%;
+                background-color: var(--yellow);
+                aspect-ratio: 4 / 4;
                 object-fit: cover;
                 width: 100%;
                 height: 100%;
             }
         }
         .commit {
-            width: 100%;
+            width: 95%;
             padding: 0 10px;
             .info {
                 display: flex;

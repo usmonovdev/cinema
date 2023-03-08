@@ -22,8 +22,6 @@ $large-screens: 1200px;
 .load-more {
     width: 100%;
     height: 40px;
-    // position: relative;
-    // top: 60px;
     border: none;
     padding: 10px;
     background-color: var(--yellow);
@@ -68,8 +66,6 @@ $large-screens: 1200px;
 
 .title-settings-box {
     color: var(--white);
-    // position: relative;
-    // top: 30px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -96,6 +92,19 @@ $large-screens: 1200px;
             opacity: 1;
         }
     }
+    .title-similar {
+        @media screen and (max-width: $mobile) {
+            font-size: 20px;
+        }
+        &:hover .sharp {
+            opacity: 1;
+        }
+    }
+    svg {
+        cursor: pointer;
+        font-size: 1.7rem;
+        transform: rotate(-90deg);
+    }
     svg {
         cursor: pointer;
         font-size: 1.7rem;
@@ -118,7 +127,7 @@ $large-screens: 1200px;
         transition: 200ms;
         @media screen and (max-width: $mobile) {
             display: grid;
-            grid-template-columns: auto auto;
+            grid-template-columns: 1fr 1fr;
             width: 90%;
             margin: 0 auto;
         }
@@ -134,7 +143,7 @@ $large-screens: 1200px;
                 align-items: flex-end;
                 overflow: hidden;
                 transition: 200ms;
-                .ant-image {
+                .ant-image, img {
                     aspect-ratio: 10 / 16;
                     object-fit: cover;
                     height: 100%;
@@ -155,7 +164,7 @@ $large-screens: 1200px;
                     color: var(--white);
                     display: flex;
                     flex-direction: column;
-                    justify-content: space-between;
+                    justify-content: flex-end;
                     background-color: $second-black;
                     backdrop-filter: blur(3px);
                     transition: 200ms;

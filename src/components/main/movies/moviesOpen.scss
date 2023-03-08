@@ -5,6 +5,30 @@ $tablet: 768px;
 $small-screens: 992px;
 $large-screens: 1200px;
 
+.class-for-actors {
+    @media screen and (max-width: $small-screens) {
+        height: 400px;
+    }
+    @media screen and (max-width: $tablet) {
+        height: 540px;
+    }
+    @media screen and (max-width: 600px) {
+        height: 560px;
+    }
+    @media screen and (max-width: 510px) {
+        height: 670px;
+    }
+    @media screen and (max-width: $mobile) {
+        height: 560px;
+    }
+    @media screen and (max-width: 450px) {
+        height: 580px;
+    }
+    @media screen and (max-width: 415px) {
+        height: 600px;
+    }
+}
+
 .movies-open-media {
     @media screen and (max-width: $tablet) {
         background-image: unset !important;
