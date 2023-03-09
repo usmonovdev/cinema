@@ -14,8 +14,7 @@ function Settings() {
     const { currentUser } = useContext(AuthContext)
     const [messageApi, contextHolder] = message.useMessage()
 
-    const createdToDate = new Date(currentUser.metadata?.creationTime).toString().slice(4, 21)
-    console.log(createdToDate)
+    const createdToDate = new Date(currentUser?.metadata?.creationTime).toString().slice(4, 21)
 
     useEffect(() => {
         document.title = "Cinema App - Settings"
@@ -63,7 +62,7 @@ function Settings() {
                         </div>
                         <p className='info'>You can change your information <br /> from this section.</p>
                         <p className='info' style={{ marginBottom: "0" }}>Account created in: <span>{createdToDate}</span></p>
-                        <p className='info'>Your id: <span onClick={e => copy(e.target.innerText)}>{currentUser.uid}</span></p>
+                        <p className='info'>Your id: <span onClick={e => copy(e.target.innerText)}>{currentUser?.uid}</span></p>
                         <hr style={{ opacity: "0.2", marginBottom: "20px" }} />
                         <ul className='settings'>
                             <li>

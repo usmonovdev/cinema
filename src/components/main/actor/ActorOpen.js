@@ -28,6 +28,10 @@ function ActorOpen() {
         }
     }, [actorId])
 
+    useEffect(() => {
+        document.title = `Actor - ${actor.name}`
+    }, [])
+
     const { profile_path } = actor
 
     return (
