@@ -15,6 +15,8 @@ function RightInfo({ movie }) {
     }
     const [state, dispatch] = useReducer(reducer, initialState)
     const { title, release_date, runtime, tagline, overview, production_countries, name } = movie;
+
+    // FIND LIKE OR NOT. USING FIND() METHOD
     const likedOrNot = likeMovie.localMovie?.find(e => e.c_name === movie.title)
 
     const countries = production_countries || []

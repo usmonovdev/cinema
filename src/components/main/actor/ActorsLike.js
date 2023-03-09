@@ -12,15 +12,6 @@ function ActorsLike({ data, likedOrNot }) {
 
     const [removeLike, setRemoveLike] = useState(false)
 
-    useEffect(() => {
-        if(likedOrNot !== undefined) {
-            setRemoveLike(true)
-        }
-        else {
-            setRemoveLike(false)
-        }
-    }, [setRemoveLike])
-
     const query = collection(db, `likes/${currentUser?.uid}/children`)
     const [docs] = useCollectionData(query)
     const like = async (e) => {
@@ -42,6 +33,16 @@ function ActorsLike({ data, likedOrNot }) {
         await deleteDoc(docRef);
     }
 
+    useEffect(() => {
+        if(likedOrNot !== undefined) {
+            setRemoveLike(true)
+        }
+        else {
+            setRemoveLike(false)
+        }
+    }, [setRemoveLike])
+
+    // UPDATING LIKED MOVIES
     useEffect(() => {
         likeMovieDispatch({
             type: "LIKE",

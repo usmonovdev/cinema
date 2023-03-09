@@ -34,6 +34,8 @@ function MoviesLike({ data, likedOrNot }) {
         await deleteDoc(docRef);
     }
 
+    // IF THIS MOVIE LIKED ICON IS OUTLINED
+    // ELSE ICON IS FILL
     useEffect(() => {
         if(likedOrNot !== undefined) {
             setRemoveLike(true)
@@ -43,6 +45,7 @@ function MoviesLike({ data, likedOrNot }) {
         }
     }, [setRemoveLike])
 
+    // UPDATE LIKED MOVIES
     useEffect(() => {
         likeMovieDispatch({
             type: "LIKE",

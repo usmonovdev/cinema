@@ -6,7 +6,7 @@ import { collection, deleteDoc, doc, serverTimestamp, setDoc } from 'firebase/fi
 import { db } from '../../../context/AuthContext/Firebase'
 import { useCollectionData } from "react-firebase-hooks/firestore"
 
-function ShowLike({ data }) {
+function ShowLike({ data, likedOrNot }) {
     const { currentUser } = useContext(AuthContext)
     const { likeMovieDispatch } = useMovieContext()
     const [removeLike, setRemoveLike] = useState(false)
@@ -33,6 +33,15 @@ function ShowLike({ data }) {
         const docRef = doc(db, `likes/${currentUser?.uid}/children`, newName)
         await deleteDoc(docRef);
     }
+
+    useEffect(() => {
+        if(likedOrNot !== undefined) {
+            setRemoveLike(true)
+        }
+        else {
+            setRemoveLike(false)
+        }
+    }, [setRemoveLike])
 
     useEffect(() => {
         likeMovieDispatch({

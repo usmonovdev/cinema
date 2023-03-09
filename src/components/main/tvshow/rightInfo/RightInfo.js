@@ -8,7 +8,7 @@ import { useMovieContext } from '../../../../context/MovieContex/MovieContex';
 import "./rightInfo.scss"
 
 function RightInfo({ show }) {
-    const { colorState } = useMovieContext()
+    const { colorState, likeMovie } = useMovieContext()
     const initialState = {
         info: false
     }
@@ -18,6 +18,8 @@ function RightInfo({ show }) {
     // GET THE PRODUCTION COUNTRIES WITH ARRAY
     const countries = production_countries || []
     const first = countries[0]?.iso_3166_1
+
+    const likedOrNot = likeMovie.localMovie?.find(e => e.c_name === show.name)
 
     // OPEN ALL INFO MOVIE
     const allInfo = () => {
@@ -81,7 +83,7 @@ function RightInfo({ show }) {
                     </Drawer>
                 </ConfigProvider> : ""}
                 <div className="events-box">
-                    <TvShowLike data={show}/>
+                    <TvShowLike data={show} likedOrNot={likedOrNot}/>
                     <AiOutlineInfoCircle className='events allInfo' onClick={allInfo} />
                     <RxShare1 className='events' onClick={share} />
                 </div>
