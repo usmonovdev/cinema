@@ -53,6 +53,7 @@ function Liked() {
                             animate="visible"
                         >
                             {filter?.map((data) => {
+                                // console.log(new Date(data.timestamp?.seconds*1000))
                                 const { c_id, c_poster_path, c_vote_average, c_name } = data
                                 return (
                                     <motion.li

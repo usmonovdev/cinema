@@ -29,6 +29,7 @@
             padding: 0;
         }
         .image {
+            border-radius: 10px;
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.06);
@@ -68,6 +69,7 @@
             padding: 0 20px 20px 20px;
         }
         .big-text {
+            border-radius: 10px;
             overflow: hidden;
             width: 200px;
             height: 48px;
@@ -86,6 +88,7 @@
             }
         }
         .small-text {
+            border-radius: 10px;
             overflow: hidden;
             width: 400px;
             height: 28px;
@@ -108,6 +111,7 @@
             flex-direction: row;
             gap: 10px;
             li {
+                border-radius: 10px;
                 width: 38px;
                 height: 38px;
                 list-style: none;
