@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Image } from 'antd'
+import { Image, message } from 'antd'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
@@ -13,15 +13,18 @@ import movieImage from "../../../assets/movie-photo-not-downloaded.jpg"
 function TopRatedLike({ data }) {
     const { currentUser } = useContext(AuthContext)
     const { likeMovieDispatch, imgState } = useMovieContext()
-    const { poster_path, media_type, id, title } = data
+    const [messageApi, contextHolder] = message.useMessage()
+
+    const { poster_path, id, title } = data
     const [removeLike, setRemoveLike] = useState(false)
 
     const query = collection(db, `likes/${currentUser?.uid}/children`)
     const [docs] = useCollectionData(query)
 
     const like = async (e) => {
+        // IF NOT USER NAVIGATE TO REGISTER PAGE FUNCTION
+        if (currentUser !== null) {
         setRemoveLike(true)
-        console.log(e)
         const newName = `${e.title == undefined ? e.name : e.title}`
         const docRef = doc(db, `likes/${currentUser?.uid}/children`, newName)
         await setDoc(docRef, {
@@ -32,6 +35,13 @@ function TopRatedLike({ data }) {
             c_vote_average: e.vote_average,
             timestamp: serverTimestamp()
         });
+        } else {
+            messageApi.open({
+                type: "error",
+                content: "You not user! Register now!",
+                duration: 4
+            })
+        }
     }
 
     const deleteLike = async (e) => {
@@ -50,6 +60,7 @@ function TopRatedLike({ data }) {
 
     return (
         <div className="trending-movie-box">
+            {contextHolder}
             <Image
                 preview={false}
                 src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}

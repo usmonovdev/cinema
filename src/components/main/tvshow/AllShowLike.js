@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Image } from 'antd'
+import { Image, message } from 'antd'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
@@ -16,20 +16,30 @@ function AllShowLike({ data }) {
     const { poster_path, media_type, id, title } = data
     const [removeLike, setRemoveLike] = useState(false)
 
+    const [messageApi, contextHolder] = message.useMessage()
+
     const query = collection(db, `likes/${currentUser?.uid}/children`)
     const [docs] = useCollectionData(query)
     const like = async (e) => {
-        setRemoveLike(true)
-        const newName = `${e.title == undefined ? e.name : e.title}`
-        const docRef = doc(db, `likes/${currentUser?.uid}/children`, newName)
-        await setDoc(docRef, {
-            c_id: e.id,
-            c_name: newName,
-            c_media_type: "tv",
-            c_poster_path: e.poster_path,
-            c_vote_average: e.vote_average,
-            timestamp: serverTimestamp()
-        });
+        if (currentUser !== null) {
+            setRemoveLike(true)
+            const newName = `${e.title == undefined ? e.name : e.title}`
+            const docRef = doc(db, `likes/${currentUser?.uid}/children`, newName)
+            await setDoc(docRef, {
+                c_id: e.id,
+                c_name: newName,
+                c_media_type: "tv",
+                c_poster_path: e.poster_path,
+                c_vote_average: e.vote_average,
+                timestamp: serverTimestamp()
+            });
+        } else {
+            messageApi.open({
+                type: "error",
+                content: "You not user! Register now!",
+                duration: 4
+            })
+        }
     }
 
     const deleteLike = async (e) => {
@@ -48,6 +58,7 @@ function AllShowLike({ data }) {
 
     return (
         <div className="trending-movie-box">
+            {contextHolder}
             <Image
                 preview={false}
                 src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}

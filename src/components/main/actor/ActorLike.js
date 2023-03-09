@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { Image } from 'antd'
+import { Image, message } from 'antd'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { useMovieContext } from '../../../context/MovieContex/MovieContex'
@@ -16,18 +16,28 @@ function ActorLike({ data }) {
     const { profile_path, id, title } = data
     const [removeLike, setRemoveLike] = useState(false)
 
+    const [messageApi, contextHolder] = message.useMessage()
+
     const query = collection(db, `likes/${currentUser?.uid}/children`)
     const [docs] = useCollectionData(query)
     const like = async (e) => {
-        setRemoveLike(true)
-        const docRef = doc(db, `likes/${currentUser?.uid}/children`, e.name)
-        await setDoc(docRef, {
-            c_id: e.id,
-            c_name: e.name,
-            c_media_type: "actor",
-            c_poster_path: e.profile_path,
-            timestamp: serverTimestamp()
-        });
+        if (currentUser !== null) {
+            setRemoveLike(true)
+            const docRef = doc(db, `likes/${currentUser?.uid}/children`, e.name)
+            await setDoc(docRef, {
+                c_id: e.id,
+                c_name: e.name,
+                c_media_type: "actor",
+                c_poster_path: e.profile_path,
+                timestamp: serverTimestamp()
+            });
+        } else {
+            messageApi.open({
+                type: "error",
+                content: "You not user! Register now!",
+                duration: 4
+            })
+        }
     }
 
     const deleteLike = async (e) => {
@@ -45,6 +55,7 @@ function ActorLike({ data }) {
 
     return (
         <div className="trending-movie-box">
+            {contextHolder}
             <Image
                 preview={false}
                 src={`https://image.tmdb.org/t/p/${imgState.size}/${profile_path}`}
