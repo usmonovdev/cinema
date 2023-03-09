@@ -13,7 +13,7 @@ function Settings() {
     const [tab, setTab] = useState(true)
     const { currentUser } = useContext(AuthContext)
     const [messageApi, contextHolder] = message.useMessage()
-    
+
     useEffect(() => {
         document.title = "Cinema App - Settings"
     }, [])

@@ -1,6 +1,5 @@
+import React, { useEffect } from 'react'
 import { message } from 'antd'
-import React from 'react'
-import { useEffect } from 'react'
 import { MdRefresh } from 'react-icons/md'
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
 
