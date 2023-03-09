@@ -27,9 +27,9 @@ function Reviews({ moviesId, type }) {
                 <div className='container'>
                     <div className="actors-box">
                         <div className="actors-title">
-                            <div className="title-info" style={{ margin: "0" }}>
-                                <h1><span>#</span>Liked</h1>
-                                <p>You liked these actors</p>
+                            <div className="title-info">
+                                <h1><span>#</span>Comments</h1>
+                                <p>Thoughts on this movie</p>
                             </div>
                         </div>
                         {reviews.results?.map((data) => {

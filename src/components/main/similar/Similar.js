@@ -48,7 +48,7 @@ function Similar({ moviesId }) {
         <>
             {movie?.length !== 0 ? <>
                 <div className='container'>
-                    <div className="movies-box" style={{ marginTop: "0" }}>
+                    <div className="movies-box">
                         <div className="title-settings-box">
                             <div className="title-info">
                                 <h1><span>#</span>Similar</h1>

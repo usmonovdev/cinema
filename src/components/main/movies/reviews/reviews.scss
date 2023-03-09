@@ -46,6 +46,9 @@ $large-screens: 1200px;
         color: var(--white);
         background-color: $black-footer;
         padding: 10px;
+        &:nth-last-child(1) {
+            margin-bottom: 0;
+        }
         .user {
             width: 5%;
             height: 100px;

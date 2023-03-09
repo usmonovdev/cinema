@@ -66,6 +66,8 @@ function TrendingLike({ data }) {
                     src={`https://image.tmdb.org/t/p/${imgState.size}/${poster_path}`}
                     alt={title}
                     fallback={movieImage}
+                    width="100%"
+                    height="100%"
                     placeholder={
                         <LoadImage />
                     }

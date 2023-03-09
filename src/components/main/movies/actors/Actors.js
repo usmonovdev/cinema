@@ -11,6 +11,7 @@ import "./actors.scss"
 import "../../../navbar/navbar.scss"
 import "../../../../assets/slick.css"
 import "../liked.scss"
+import Photo from '../../../loading/photo/Photo'
 const API_KEY = "917c387c9e20da3ba121bafdd8e7df79"
 
 function Actors({ moviesId, type }) {
@@ -19,6 +20,7 @@ function Actors({ moviesId, type }) {
     // CHANGE API LINK WITH TYPE
     const API = `https://api.themoviedb.org/3/${type == "movie" ? "movie" : "tv"}/`
     const [actors, setActors] = useState([]);
+    const [loading, setLoading] = useState(true)
 
     const customeSlider = useRef(null);
     // FILTER ACTORS WITH PROFILE PATH
@@ -30,6 +32,7 @@ function Actors({ moviesId, type }) {
         axios.get(`${API}${moviesId}/credits?api_key=${API_KEY}`)
             .then((data) => {
                 setActors(data.data.cast)
+                setLoading(false)
             });
     }, [moviesId]);
 
@@ -85,55 +88,59 @@ function Actors({ moviesId, type }) {
 
     return (
         <>
-            {actors.length > 4 ?
-                <div className='container'>
-                    <div className="actors-box">
-                        <div className="actors-title">
-                            <div className="title-info">
-                                <h1><span>#</span>Actors</h1>
-                                <p>Actors of this movie</p>
-                            </div>
-                            <div className='slider-buttons'>
-                                <button className='buttonSlider right' onClick={next} >
-                                    <BiLeftArrowAlt />
-                                </button>
-                                <button className='buttonSlider left' onClick={previous}>
-                                    <BiRightArrowAlt />
-                                </button>
-                            </div>
-                        </div>
-                        <Slider {...settings} ref={customeSlider}>
-                            {filterActors?.map((data) => {
-                                return (
-                                    <Link
-                                        to={`/actor/${data.id}`}
-                                        key={data.id}
-                                        className="actorLink"
-                                    >
-                                        <div className="actor">
-                                            <Image
-                                                preview={false}
-                                                style={{ width: "100%" }}
-                                                id='actorImage'
-                                                src={`https://image.tmdb.org/t/p/${imgState.size}/${data.profile_path}`}
-                                                alt={data.name}
-                                                fallback={actor}
-                                                placeholder={
-                                                    <LoadImage />
-                                                }
-                                            />
-                                            <div className='actor-name-box'>
-                                                <p className={`${data.name?.length > "18" ? "anim" : ""}`}>{data.name}</p>
-                                            </div>
-                                        </div>
-                                    </Link>
+            {!loading ?
+                <>
+                    {actors.length > 4 ?
+                        <div className='container'>
+                            <div className="actors-box">
+                                <div className="actors-title">
+                                    <div className="title-info">
+                                        <h1><span>#</span>Actors</h1>
+                                        <p>Actors of this movie</p>
+                                    </div>
+                                    <div className='slider-buttons'>
+                                        <button className='buttonSlider right' onClick={next} >
+                                            <BiLeftArrowAlt />
+                                        </button>
+                                        <button className='buttonSlider left' onClick={previous}>
+                                            <BiRightArrowAlt />
+                                        </button>
+                                    </div>
+                                </div>
+                                <Slider {...settings} ref={customeSlider}>
+                                    {filterActors?.map((data) => {
+                                        return (
+                                            <Link
+                                                to={`/actor/${data.id}`}
+                                                key={data.id}
+                                                className="actorLink"
+                                            >
+                                                <div className="actor">
+                                                    <Image
+                                                        preview={false}
+                                                        width="100%"
+                                                        height="100%"
+                                                        id='actorImage'
+                                                        src={`https://image.tmdb.org/t/p/${imgState.size}/${data.profile_path}`}
+                                                        alt={data.name}
+                                                        fallback={actor}
+                                                        placeholder={
+                                                            <LoadImage />
+                                                        }
+                                                    />
+                                                    <div className='actor-name-box'>
+                                                        <p className={`${data.name?.length > "18" ? "anim" : ""}`}>{data.name}</p>
+                                                    </div>
+                                                </div>
+                                            </Link>
 
-                                )
-                            })}
-                        </Slider>
-                    </div>
-                </div> : ""
-            }
+                                        )
+                                    })}
+                                </Slider>
+                            </div>
+                        </div> : ""
+                    }</>
+                : <Photo />}
         </>
     )
 }

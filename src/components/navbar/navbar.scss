@@ -147,6 +147,7 @@ body {
                     background-color: var(--yellow);
                 }
                 .user-photo {
+                    border: 2px solid var(--yellow);
                     width: 60px;
                     border-radius: 20%;
                     background-color: var(--yellow);
@@ -249,6 +250,7 @@ body {
                     }
                 }
                 .sign-in {
+                    border-radius: 10px;
                     width: 100%;
                     height: 40px;
                     padding: 0;
