@@ -46,44 +46,53 @@ function SignUp() {
         const email = e.target[1].value;
         const password = e.target[2].value;
         const file = e.target[3].files[0]
-        try {
-            const res = await createUserWithEmailAndPassword(auth, email, password);
-            const storageRef = ref(storage, displayName);
-            const uploadTask = uploadBytesResumable(storageRef, file);
-            uploadTask.on('state_changed',
-                (snapshot) => {
-                    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    setIsProgress(progress)
-                    progress >= "0" ? dispatch({ type: "LOADING" }) : dispatch({ type: "LOADING_FALSE" })
-                },
-                () => {
-                    messageApi.open({
-                        type: 'error',
-                        content: 'Image not uploaded! Check your network.',
-                        duration: 5
-                    });
-                },
-                () => {
-                    getDownloadURL(storageRef).then(async (downloadURL) => {
-                        await updateProfile(res.user, {
-                            displayName,
-                            photoURL: downloadURL,
+        // console.log(file)
+        if (file !== undefined) {
+            try {
+                const res = await createUserWithEmailAndPassword(auth, email, password);
+                const storageRef = ref(storage, displayName);
+                const uploadTask = uploadBytesResumable(storageRef, file);
+                uploadTask.on('state_changed',
+                    (snapshot) => {
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        setIsProgress(progress)
+                        progress >= "0" ? dispatch({ type: "LOADING" }) : dispatch({ type: "LOADING_FALSE" })
+                    },
+                    () => {
+                        messageApi.open({
+                            type: 'error',
+                            content: 'Image not uploaded! Check your network.',
+                            duration: 5
                         });
-                        await setDoc(doc(db, "users", res.user.uid), {
-                            uid: res.user.uid,
-                            displayName,
-                            email,
-                            photoURL: downloadURL,
+                    },
+                    () => {
+                        getDownloadURL(storageRef).then(async (downloadURL) => {
+                            await updateProfile(res.user, {
+                                displayName,
+                                photoURL: downloadURL,
+                            });
+                            await setDoc(doc(db, "users", res.user.uid), {
+                                uid: res.user.uid,
+                                displayName,
+                                email,
+                                photoURL: downloadURL,
+                            });
+                            await setDoc(doc(db, "likes", res.user.uid), {})
+                            navigate("/")
                         });
-                        await setDoc(doc(db, "likes", res.user.uid), {})
-                        navigate("/")
                     });
+            } catch (err) {
+                dispatch({ type: "LOADING_FALSE" })
+                messageApi.open({
+                    type: 'error',
+                    content: 'Failed to create an account!',
+                    duration: 5
                 });
-        } catch (err) {
-            dispatch({ type: "LOADING_FALSE" })
+            }
+        } else {
             messageApi.open({
                 type: 'error',
-                content: 'Failed to create an account!',
+                content: "No profile photo!",
                 duration: 5
             });
         }
