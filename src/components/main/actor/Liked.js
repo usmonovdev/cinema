@@ -43,7 +43,7 @@ function Liked() {
                     >
                         <div className="title-info">
                             <h1><span>#</span>Liked</h1>
-                            <p>You liked these actors</p>
+                            <p>You liked these actors <span>{filter.length}</span></p>
                         </div>
                         <motion.ul
                             className="trending"

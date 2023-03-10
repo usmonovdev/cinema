@@ -1,6 +1,7 @@
 import React, { useReducer, useState } from 'react'
 import { ConfigProvider, message, Progress } from 'antd'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
+import { BsArrowLeftShort } from "react-icons/bs"
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import { BiImage } from 'react-icons/bi'
 import { motion } from 'framer-motion'
@@ -102,6 +103,7 @@ function SignUp() {
             {contextHolder}
             <div className="for-bg-image" style={{ backgroundImage: `url('${signUpBg}')` }}>
                 <div className="for-bg-color">
+                    <div className='back'><Link to="/"><BsArrowLeftShort />Home</Link></div>
                     <div className="container">
                         <motion.div
                             initial={{ x: 100, opacity: 0 }}
@@ -140,7 +142,7 @@ function SignUp() {
                                                 <ConfigProvider
                                                     theme={{
                                                         token: {
-                                                            colorTextBase: "#fff",
+                                                            colorTextBase: "#fff"
                                                         }
                                                     }}
                                                 >
@@ -150,7 +152,6 @@ function SignUp() {
                                                         strokeColor={colorState.color}
                                                         strokeWidth={"50px"}
                                                         showInfo={false}
-                                                        strokeLinecap="butt"
                                                     />
                                                 </ConfigProvider>
                                             }

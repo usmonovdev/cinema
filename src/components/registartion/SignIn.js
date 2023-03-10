@@ -1,6 +1,7 @@
 import React, { useReducer, useState, useEffect } from 'react'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { MdKeyboardArrowRight } from 'react-icons/md'
+import { BsArrowLeftShort } from "react-icons/bs"
 import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
 import { message } from 'antd'
@@ -95,6 +96,7 @@ function SignIn() {
             {contextHolder}
             <div className="for-bg-image" style={{ backgroundImage: `url('${signUpBg}')` }}>
                 <div className="for-bg-color">
+                    <div className='back'><Link to="/"><BsArrowLeftShort />Home</Link></div>
                     <div className="container">
                         <motion.div
                             initial={{ x: 100, opacity: 0 }}

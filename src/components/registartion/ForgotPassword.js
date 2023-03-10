@@ -1,7 +1,8 @@
 import React, { useEffect, useReducer, useState } from 'react'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
 import { MdKeyboardArrowRight } from 'react-icons/md'
-import { Navbar, Footer } from "../index"
+import { BsArrowLeftShort } from "react-icons/bs"
+import { Footer } from "../index"
 import { motion } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
 import { message, Popover } from 'antd'
@@ -68,8 +69,9 @@ function ForgotPassword() {
     return (
         <>
             {contextHolder}
-            <div className="for-bg-image"  style={{ backgroundImage: `url('${forgot}')` }}>
+            <div className="for-bg-image" style={{ backgroundImage: `url('${forgot}')` }}>
                 <div className="for-bg-color">
+                    <div className='back'><Link to="/"><BsArrowLeftShort />Home</Link></div>
                     <div className="container">
                         <motion.div
                             initial={{ x: 100, opacity: 0 }}

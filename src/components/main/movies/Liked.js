@@ -44,7 +44,7 @@ function Liked() {
                     >
                         <div className="title-info">
                             <h1><span>#</span>Liked</h1>
-                            <p>You liked these movies</p>
+                            <p>You liked these movies <span>{filter.length}</span></p>
                         </div>
                         <motion.ul
                             className="trending"
@@ -53,7 +53,6 @@ function Liked() {
                             animate="visible"
                         >
                             {filter?.map((data) => {
-                                // console.log(new Date(data.timestamp?.seconds*1000))
                                 const { c_id, c_poster_path, c_vote_average, c_name } = data
                                 return (
                                     <motion.li

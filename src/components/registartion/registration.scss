@@ -18,11 +18,13 @@
 }
 
 .progress {
-    width: 300px;
-    height: 40px;
+    border-radius: 10px;
+    width: 330px;
+    height: 50px;
     background-color: rgba(255, 255, 255, 0.06);
     &::before {
         content: "";
+        border-radius: 10px;
         width: 100%;
         height: 100%;
         background-color: var(--yellow);
@@ -61,10 +63,29 @@
         width: 100vw;
         height: 100vh;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         background-color: #252525d9;
         backdrop-filter: blur(6px);
+        .back {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100vw;
+            a {
+                display: flex;
+                align-items: center;
+                color: var(--white);
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+                svg {
+                    font-size: 1.6rem;
+                }
+            }
+        }
         .container {
             .register-page {
                 width: 100%;
@@ -164,11 +185,12 @@
                             text-align: right;
                             color: var(--yellow);
                             cursor: pointer;
-                            &:hover {
-                                text-decoration: underline;
-                            }
                             a {
                                 color: var(--yellow);
+                                text-decoration: none;
+                                &:hover {
+                                    text-decoration: underline;
+                                }
                             }
                         }
                         .already {
