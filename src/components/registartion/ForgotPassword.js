@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import { Navbar, Footer } from "../index"
@@ -9,6 +9,7 @@ import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from '../../context/AuthContext/Firebase'
 import { reducer } from '../../assets/reducer'
 import { ResetPasswordMethod } from '../../assets/AntD'
+import forgot from "../../assets/sign-in-bg.jpg"
 import "./registration.scss"
 
 function ForgotPassword() {
@@ -67,50 +68,53 @@ function ForgotPassword() {
     return (
         <>
             {contextHolder}
-            <Navbar />
-            <div className="container">
-                <motion.div
-                    initial={{ x: 100, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{
-                        delay: 0,
-                        type: "spring",
-                        stiffness: 260,
-                        damping: 20
-                    }}
-                    exit={{ opacity: 0, x: 100, transition: { duration: 0 } }}
-                >
-                    <div className="register-page">
-                        <div className="box">
-                            <div className='links'>
-                                <button>
-                                    Reset Password 
-                                    <Popover
-                                        content={<ResetPasswordMethod/>}
-                                        title="Reset method"
-                                        trigger="click"
-                                    >
-                                        <AiOutlineInfoCircle/>
-                                    </Popover>
-                                </button>
-                            </div>
-                            <div className="reg-box">
-                                <form onSubmit={handleSubmit}>
-                                    <input type="text" placeholder='Email' className={`${state.errEmail ? "err" : ""}`}/>
-                                    {!loading ?
+            <div className="for-bg-image"  style={{ backgroundImage: `url('${forgot}')` }}>
+                <div className="for-bg-color">
+                    <div className="container">
+                        <motion.div
+                            initial={{ x: 100, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            transition={{
+                                delay: 0,
+                                type: "spring",
+                                stiffness: 260,
+                                damping: 20
+                            }}
+                            exit={{ opacity: 0, x: 100, transition: { duration: 0 } }}
+                        >
+                            <div className="register-page">
+                                <div className="box">
+                                    <div className='links'>
                                         <button>
-                                            Reset Password <MdKeyboardArrowRight />
+                                            Reset Password
+                                            <Popover
+                                                content={<ResetPasswordMethod />}
+                                                title="Reset method"
+                                                trigger="click"
+                                            >
+                                                <AiOutlineInfoCircle />
+                                            </Popover>
                                         </button>
-                                        :
-                                        <div className="progress"></div>
-                                    }
-                                    <p className='already'><span><Link to="/sign-in">Login</Link></span></p>
-                                    <p className='already'>You need Account? <span><Link to="/sign-up">Sign Up</Link></span></p>
-                                </form>
+                                    </div>
+                                    <div className="reg-box">
+                                        <form onSubmit={handleSubmit}>
+                                            <input type="text" placeholder='Email' className={`${state.errEmail ? "err" : ""}`} />
+                                            {!loading ?
+                                                <button>
+                                                    Reset Password <MdKeyboardArrowRight />
+                                                </button>
+                                                :
+                                                <div className="progress"></div>
+                                            }
+                                            <p className='already'><span><Link to="/sign-in">Login</Link></span></p>
+                                            <p className='already'>You need Account? <span><Link to="/sign-up">Sign Up</Link></span></p>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
-                </motion.div>
+                </div>
             </div>
             <Footer />
         </>

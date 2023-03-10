@@ -6,7 +6,6 @@ import { useMovieContext } from '../../context/MovieContex/MovieContex'
 function SliderSpeed() {
     const { speedDispatch, colorState, speedState } = useMovieContext()
     const [messageApi, contextHolder] = message.useMessage()
-    // console.log(color)
     const key = "updatable"
 
     // CHANGE SLIDER SPEED FUNCTION

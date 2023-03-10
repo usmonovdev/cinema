@@ -49,159 +49,177 @@
     border-top-color: var(--yellow);
     animation: spin 1s infinite linear;
 }
-
-.container {
-    .register-page {
-        width: 100%;
-        height: 380px;
+.for-bg-image {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+    .for-bg-color {
+        width: 100vw;
+        height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-direction: column;
-        color: var(--white);
-        box-sizing: border-box;
-        .box {
-            display: flex;
-            gap: 10px;
-            flex-direction: column;
-            .links {
+        background-color: #252525d9;
+        backdrop-filter: blur(6px);
+        .container {
+            .register-page {
                 width: 100%;
-                button {
-                    color: var(--white);
-                    background-color: transparent;
-                    border: none;
-                    font-size: 20px;
-                    text-transform: capitalize;
-                    font-weight: 600;
-                    padding: 2px;
-                    cursor: pointer;
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                    svg {
-                        opacity: .5;
-                        transition: 200ms;
-                        &:hover {
-                            opacity: 1;
-                        }
-                    }
-                    a {
-                        color: unset;
-                        text-decoration: none;
-                    }
-                }
-            }
-            .reg-box {
+                height: 380px;
                 display: flex;
+                align-items: center;
+                justify-content: center;
                 flex-direction: column;
-                gap: 10px;
-                form {
+                color: var(--white);
+                box-sizing: border-box;
+                .box {
                     display: flex;
-                    flex-direction: column;
                     gap: 10px;
-                    input {
-                        transition: 200ms;
-                        box-sizing: border-box;
-                        width: 300px;
-                        height: 40px;
-                        padding: 6px;
-                        outline: none;
-                        background-color: #252525;
-                        border: 2px solid var(--white);
-                        border-radius: 0;
-                        color: var(--white);
-                        &:focus, &:hover {
-                            border: 2px solid var(--yellow);
-                        }
-                    }
-                    #password, #passwordd {
-                        padding: 6px 40px 6px 6px;
-                    }
-                    label {
-                        display: flex;
-                        align-items: center;
-                        justify-content: flex-end;
-                        svg {
-                            padding: 0 10px 0 0;
-                            font-size: 1.5rem;
-                            position: absolute;
+                    flex-direction: column;
+                    .links {
+                        width: 100%;
+                        button {
+                            color: var(--white);
+                            background-color: transparent;
+                            border: none;
+                            font-size: 20px;
+                            text-transform: capitalize;
+                            font-weight: 600;
+                            padding: 2px;
                             cursor: pointer;
-                            &:hover {
-                                color: var(--yellow);
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+                            svg {
+                                opacity: .5;
+                                transition: 200ms;
+                                &:hover {
+                                    opacity: 1;
+                                }
+                            }
+                            a {
+                                color: unset;
+                                text-decoration: none;
                             }
                         }
                     }
-                    .label {
+                    .reg-box {
                         display: flex;
-                        justify-content: left;
-                        p {
-                            position: relative;
-                            left: 30px;
-                            text-align: left;
+                        flex-direction: column;
+                        gap: 10px;
+                        form {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+                            input {
+                                transition: 200ms;
+                                box-sizing: border-box;
+                                width: 330px;
+                                height: 50px;
+                                padding: 8px;
+                                outline: none;
+                                background-color: #252525;
+                                border: 2px solid var(--white);
+                                border-radius: 10px;
+                                color: var(--white);
+                                &:focus, &:hover {
+                                    border: 2px solid var(--yellow);
+                                }
+                            }
+                            #password, #passwordd {
+                                padding: 6px 40px 6px 8px;
+                            }
+                            label {
+                                display: flex;
+                                align-items: center;
+                                justify-content: flex-end;
+                                svg {
+                                    padding: 0 10px 0 0;
+                                    font-size: 1.5rem;
+                                    position: absolute;
+                                    cursor: pointer;
+                                    &:hover {
+                                        color: var(--yellow);
+                                    }
+                                }
+                            }
+                            .label {
+                                display: flex;
+                                justify-content: left;
+                                p {
+                                    position: relative;
+                                    left: 30px;
+                                    text-align: left;
+                                    cursor: pointer;
+                                }
+                                #image {
+                                    display: none;
+                                }
+                            }
+                        }
+                        .forgot {
+                            text-align: right;
+                            color: var(--yellow);
                             cursor: pointer;
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                            a {
+                                color: var(--yellow);
+                            }
                         }
-                        #image {
-                            display: none;
+                        .already {
+                            text-align: center;
+                            span {
+                                color: var(--yellow);
+                                cursor: pointer;
+                                &:hover {
+                                    text-decoration: underline;
+                                }
+                                a {
+                                    text-decoration: none;
+                                    color: unset;
+                                }
+                            }
+                        }
+                        button {
+                            border-radius: 10px;
+                            width: 330px;
+                            height: 50px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            color: var(--white);
+                            background-color: var(--yellow);
+                            border: none;
+                            cursor: pointer;
+                            font-size: 16px;
+                            &:hover svg{
+                                animation: continue 800ms forwards;
+                            }
+                            @keyframes continue {
+                                0% {
+                                    transform: translateX(0);
+                                }
+                                50% {
+                                    transform: translateX(10px);
+                                }
+                                100% {
+                                    transform: translateX(0);
+                                }
+                            }
+                            svg {
+                                font-size: 1.5rem;
+                            }
                         }
                     }
                 }
-                .forgot {
-                    text-align: right;
-                    color: var(--yellow);
-                    cursor: pointer;
-                    &:hover {
-                        text-decoration: underline;
-                    }
-                    a {
-                        color: var(--yellow);
-                    }
-                }
-                .already {
-                    text-align: center;
-                    span {
-                        color: var(--yellow);
-                        cursor: pointer;
-                        &:hover {
-                            text-decoration: underline;
-                        }
-                        a {
-                            text-decoration: none;
-                            color: unset;
-                        }
-                    }
-                }
-                button {
-                    width: 300px;
-                    height: 40px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    color: var(--white);
-                    background-color: var(--yellow);
-                    border: none;
-                    cursor: pointer;
-                    font-size: 16px;
-                    &:hover svg{
-                        animation: continue 800ms forwards;
-                    }
-                    @keyframes continue {
-                        0% {
-                            transform: translateX(0);
-                        }
-                        50% {
-                            transform: translateX(10px);
-                        }
-                        100% {
-                            transform: translateX(0);
-                        }
-                    }
-                    svg {
-                        font-size: 1.5rem;
-                    }
-                }
+                
             }
+            
         }
-        
     }
-    
 }

@@ -11,7 +11,8 @@ import { doc, setDoc } from "firebase/firestore";
 import { auth, db, storage } from '../../context/AuthContext/Firebase'
 import { useMovieContext } from '../../context/MovieContex/MovieContex'
 import { reducer } from '../../assets/reducer'
-import { Navbar, Footer } from "../index"
+import { Footer } from "../index"
+import signUpBg from "../../assets/sign-up-bg.jpg"
 import "./registration.scss"
 
 function SignUp() {
@@ -46,7 +47,6 @@ function SignUp() {
         const email = e.target[1].value;
         const password = e.target[2].value;
         const file = e.target[3].files[0]
-        // console.log(file)
         if (file !== undefined) {
             try {
                 const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -100,66 +100,68 @@ function SignUp() {
     return (
         <>
             {contextHolder}
-            <Navbar />
-            <div className="container">
-                <motion.div
-                    initial={{ x: 100, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{
-                        delay: 0,
-                        type: "spring",
-                        stiffness: 260,
-                        damping: 20
-                    }}
-                    exit={{ opacity: 0, x: 100, transition: { duration: 0 } }}
-                >
-                    <div className="register-page">
-                        <div className="box">
-                            <div className='links'>
-                                <button><Link to="/sign-in">Sign Up</Link></button>
+            <div className="for-bg-image" style={{ backgroundImage: `url('${signUpBg}')` }}>
+                <div className="for-bg-color">
+                    <div className="container">
+                        <motion.div
+                            initial={{ x: 100, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            transition={{
+                                delay: 0,
+                                type: "spring",
+                                stiffness: 260,
+                                damping: 20
+                            }}
+                            exit={{ opacity: 0, x: 100, transition: { duration: 0 } }}
+                        >
+                            <div className="register-page">
+                                <div className="box">
+                                    <div className='links'>
+                                        <button><Link to="/sign-in">Sign Up</Link></button>
+                                    </div>
+                                    <div className="reg-box">
+                                        <form onSubmit={handleSubmit}>
+                                            <input type="text" placeholder='Username' />
+                                            <input type="email" placeholder='Email' className={`${state.errEmail ? "err" : ""}`} />
+                                            <label htmlFor="#password">
+                                                <input type="password" id='password' className={`${state.errPassword ? "err" : ""}`} placeholder='Password' />
+                                                {password ? <AiOutlineEye onClick={code} /> : <AiOutlineEyeInvisible onClick={code} />}
+                                            </label>
+                                            <label className='label' htmlFor="image">
+                                                <input type="file" accept='image/*' id='image' />
+                                                <p>Profile Photo</p>
+                                                <BiImage />
+                                            </label>
+                                            {!state.loading ?
+                                                <button>
+                                                    Continue <MdKeyboardArrowRight />
+                                                </button>
+                                                :
+                                                <ConfigProvider
+                                                    theme={{
+                                                        token: {
+                                                            colorTextBase: "#fff",
+                                                        }
+                                                    }}
+                                                >
+                                                    <Progress
+                                                        percent={isProgress}
+                                                        status="active"
+                                                        strokeColor={colorState.color}
+                                                        strokeWidth={"50px"}
+                                                        showInfo={false}
+                                                        strokeLinecap="butt"
+                                                    />
+                                                </ConfigProvider>
+                                            }
+                                        </form>
+                                        <p className='already'>Already registered? <span><Link to="/sign-in">Sign In</Link></span></p>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="reg-box">
-                                <form onSubmit={handleSubmit}>
-                                    <input type="text" placeholder='Username' />
-                                    <input type="email" placeholder='Email' className={`${state.errEmail ? "err" : ""}`} />
-                                    <label htmlFor="#password">
-                                        <input type="password" id='password' className={`${state.errPassword ? "err" : ""}`} placeholder='Password' />
-                                        {password ? <AiOutlineEye onClick={code} /> : <AiOutlineEyeInvisible onClick={code} />}
-                                    </label>
-                                    <label className='label' htmlFor="image">
-                                        <input type="file" accept='image/*' id='image' />
-                                        <p>Profile Photo</p>
-                                        <BiImage />
-                                    </label>
-                                    {!state.loading ?
-                                        <button>
-                                            Continue <MdKeyboardArrowRight />
-                                        </button>
-                                        :
-                                        <ConfigProvider
-                                            theme={{
-                                                token: {
-                                                    colorTextBase: "#fff",
-                                                }
-                                            }}
-                                        >
-                                            <Progress
-                                                percent={isProgress}
-                                                status="active"
-                                                strokeColor={colorState.color}
-                                                strokeWidth={"40px"}
-                                                showInfo={false}
-                                                strokeLinecap="butt"
-                                            />
-                                        </ConfigProvider>
-                                    }
-                                </form>
-                                <p className='already'>Already registered? <span><Link to="/sign-in">Sign In</Link></span></p>
-                            </div>
-                        </div>
+                        </motion.div>
                     </div>
-                </motion.div>
-
+                </div>
             </div>
             <Footer />
         </>

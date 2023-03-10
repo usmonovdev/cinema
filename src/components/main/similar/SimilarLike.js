@@ -20,7 +20,6 @@ function SimilarLike({ data }) {
     const [docs] = useCollectionData(query)
     const like = async (e) => {
         setRemoveLike(true)
-        console.log("like")
         const newName = `${e.title == undefined ? e.name : e.title}`
         const docRef = doc(db, `likes/${currentUser?.uid}/children`, newName)
         await setDoc(docRef, {

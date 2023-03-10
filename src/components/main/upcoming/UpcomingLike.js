@@ -23,7 +23,6 @@ function UpcomingLike({ data }) {
     const like = async (e) => {
         if (currentUser !== null) {
         setRemoveLike(true)
-        console.log("like")
         const newName = `${e.title == undefined ? e.name : e.title}`
         const docRef = doc(db, `likes/${currentUser?.uid}/children`, newName)
         await setDoc(docRef, {
