@@ -57,7 +57,7 @@ function Navbar() {
                 }}
             >
                 <header>
-                    <Link to="/"><img src={logo} alt="Logo" />Media</Link>
+                    <Link to="/"><img src={logo} alt="Logo" />CINEEMA</Link>
                     <Hamburger
                         toggled={isOpen}
                         toggle={setOpen}

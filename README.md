@@ -1,1 +1,1 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/cde5d66f-7bf5-4b18-95d2-1d106415273f/deploy-status)](https://app.netlify.com/sites/shiny-dasik-b311f7/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cde5d66f-7bf5-4b18-95d2-1d106415273f/deploy-status)](https://app.netlify.com/sites/cineema/deploys)
