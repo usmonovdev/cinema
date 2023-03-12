@@ -1,9 +1,11 @@
+<img src="https://ucarecdn.com/1a90e464-cd6f-4cf4-bee9-7597ddb9e0f7/thumbilnail.jpg" width="100%">
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/cde5d66f-7bf5-4b18-95d2-1d106415273f/deploy-status)](https://app.netlify.com/sites/cineema/deploys)
 <br/>
 
-# CINEEMA - Movie application
-
 <p>Start date: 01.01.2023 | End date: 03.11.2023</p>
+
+# CINEEMA - Movie application
 
 <p>CINEMA is a movie application with a unique and responsive design, information about more than 500,000 movies,
         more than 150,000 TV series and more than 10,000 actors.</p>
@@ -67,3 +69,5 @@ yarn add framer-motion
 Thank you [TMDB Api](https://developers.themoviedb.org/3).
 
 Link the documentation in API [https://developers.themoviedb.org/3](https://developers.themoviedb.org/3)
+
+[Link the project](https://cineema.netlify.app/). Note: Uploading images may be more difficult when using the website for the first time. When using it for the second time, such problems are not observed. For this reason, I recommend using it in case of high internet speed.
