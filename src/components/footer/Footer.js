@@ -32,6 +32,7 @@ function Footer() {
                         <li>
                             <p className='title'><span>Resources</span></p>
                         </li>
+                        <li><a href="#">Documentation</a></li>
                         <li><a href="https://developers.themoviedb.org/3" target="_blank">Api</a></li>
                     </ul>
                 </div>

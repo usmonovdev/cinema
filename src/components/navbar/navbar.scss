@@ -67,7 +67,7 @@ body {
             font-weight: 600;
             z-index: 1000;
             img {
-                width: 40px;
+                width: 35px;
             }
         }
         .hamburger-react {
@@ -150,6 +150,7 @@ body {
                 .user-photo {
                     border: 2px solid var(--yellow);
                     width: 60px;
+                    aspect-ratio: 4 / 4;
                     border-radius: 20%;
                     background-color: var(--yellow);
                 }

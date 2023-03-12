@@ -13,6 +13,7 @@ import SignUp from "./components/registartion/SignUp";
 import SignIn from "./components/registartion/SignIn";
 import ForgotPassword from "./components/registartion/ForgotPassword";
 import "./App.css"
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
     // SET THEME COLOR USING LOCALSTORAGE
@@ -36,6 +37,7 @@ function App() {
                     <Route path="/actor" element={<Actor />} />
                     <Route path="/actor/:actorId" element={<ActorOpen />} />
                     <Route path="/settings" element={<Settings />} />
+                    <Route path="*" element={<PageNotFound />} />
                 </Routes>
             </MovieContextProvider>
         </>
